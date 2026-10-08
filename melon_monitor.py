@@ -118,20 +118,70 @@ def compare_ranks(previous, current):
     return changes
 
 
-def build_message(changes):
-    lines = ["🍈 멜론 차트 순위 변동"]
+def build_message(previous, current):
+    rows = []
 
-    for change in changes:
-        lines.append(
-            f'{change["artist"]} - {change["title"]}\\n'
-            f'{change["old_rank"]}위 → {change["new_rank"]}위 '
-            f'({change["direction"]} {change["difference"]}단계)'
+    for key, song in sorted(
+        current.items(),
+        key=lambda item: item[1]["rank"]
+    ):
+        old_rank = previous.get(key, {}).get("rank")
+        new_rank = song["rank"]
+
+        if old_rank is None:
+            change_text = "-"
+        elif new_rank < old_rank:
+            change_text = f'<span style="color:#e53935;font-weight:700;">▲ {old_rank - new_rank}</span>'
+        elif new_rank > old_rank:
+            change_text = f'<span style="color:#1e88e5;font-weight:700;">▼ {new_rank - old_rank}</span>'
+        else:
+            change_text = "-"
+
+        rows.append(
+            f"""
+            <tr>
+                <td style="padding:8px 10px;border-bottom:1px solid #eeeeee;">
+                    {song["artist"]}
+                </td>
+                <td style="padding:8px 10px;border-bottom:1px solid #eeeeee;">
+                    {song["title"]}
+                </td>
+                <td style="padding:8px 10px;border-bottom:1px solid #eeeeee;text-align:center;font-weight:700;">
+                    {new_rank}위
+                </td>
+                <td style="padding:8px 10px;border-bottom:1px solid #eeeeee;text-align:center;">
+                    {change_text}
+                </td>
+            </tr>
+            """
         )
 
-    return "\\n\\n".join(lines)
+    return f"""
+    <html>
+      <body style="font-family:Arial,'Malgun Gothic',sans-serif;">
+        <h2>🍈 멜론 차트 순위 변동</h2>
+        <table style="border-collapse:collapse;width:100%;max-width:800px;">
+          <thead>
+            <tr>
+              <th style="padding:8px 10px;text-align:left;border-bottom:2px solid #333333;">아티스트</th>
+              <th style="padding:8px 10px;text-align:left;border-bottom:2px solid #333333;">곡</th>
+              <th style="padding:8px 10px;text-align:center;border-bottom:2px solid #333333;">현재 순위</th>
+              <th style="padding:8px 10px;text-align:center;border-bottom:2px solid #333333;">변동</th>
+            </tr>
+          </thead>
+          <tbody>
+            {"".join(rows)}
+          </tbody>
+        </table>
+        <p style="margin-top:16px;color:#666666;">
+          ▲ 빨간색 = 순위 상승 / ▼ 파란색 = 순위 하락 / - = 변동 없음
+        </p>
+      </body>
+    </html>
+    """
 
 
-def send_email(message):
+def send_email(html_message):
     import smtplib
     from email.mime.text import MIMEText
     from email.header import Header
@@ -150,7 +200,7 @@ def send_email(message):
         print("이메일 설정이 없어 이메일 알림을 건너뜁니다.")
         return
 
-    mail = MIMEText(message, "plain", "utf-8")
+    mail = MIMEText(html_message, "html", "utf-8")
     mail["Subject"] = Header("🍈 멜론 차트 순위 변동", "utf-8")
     mail["From"] = sender
     mail["To"] = ", ".join(recipients)
@@ -222,8 +272,8 @@ def send_kakao(message):
     print("카카오톡 알림 전송 완료.")
 
 
-def send_notifications(changes):
-    message = build_message(changes)
+def send_notifications(previous, current):
+    message = build_message(previous, current)
 
     try:
         send_email(message)
@@ -261,7 +311,7 @@ def main():
                 f'({change["direction"]} {change["difference"]}단계)'
             )
 
-        send_notifications(changes)
+        send_notifications(previous, current)
     else:
         print("순위 변동 없음.")
 
