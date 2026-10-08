@@ -1,0 +1,200 @@
+:root {
+  font-family: Arial, "Malgun Gothic", sans-serif;
+  color: #202124;
+  background: #f7f7f9;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: #f7f7f9;
+}
+
+.container {
+  width: min(900px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 36px 0 60px;
+}
+
+.hero {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  align-items: flex-end;
+  margin-bottom: 28px;
+}
+
+h1 {
+  margin: 0;
+  font-size: 30px;
+}
+
+.hero p {
+  margin: 8px 0 0;
+  color: #666;
+}
+
+.updated {
+  color: #777;
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+.search {
+  background: #fff;
+  border: 1px solid #e7e7ea;
+  border-radius: 16px;
+  padding: 18px;
+  margin-bottom: 20px;
+}
+
+.search label {
+  display: block;
+  font-size: 13px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.search-row {
+  display: flex;
+  gap: 8px;
+}
+
+input {
+  flex: 1;
+  min-width: 0;
+  height: 46px;
+  border: 1px solid #d9d9df;
+  border-radius: 10px;
+  padding: 0 14px;
+  font-size: 15px;
+  outline: none;
+}
+
+input:focus {
+  border-color: #777;
+}
+
+button {
+  border: 1px solid #d9d9df;
+  background: #fff;
+  border-radius: 10px;
+  padding: 0 16px;
+  cursor: pointer;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.chip {
+  border: 1px solid #e2e2e7;
+  border-radius: 999px;
+  padding: 7px 10px;
+  font-size: 12px;
+  background: #fafafa;
+  cursor: pointer;
+}
+
+.summary {
+  margin: 0 0 10px;
+  font-size: 14px;
+  color: #666;
+}
+
+.results {
+  display: grid;
+  gap: 8px;
+}
+
+.song {
+  display: grid;
+  grid-template-columns: 46px 56px 64px minmax(0, 1fr);
+  align-items: center;
+  gap: 10px;
+  background: #fff;
+  border: 1px solid #e7e7ea;
+  border-radius: 14px;
+  padding: 10px 12px;
+}
+
+.rank {
+  text-align: right;
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.change {
+  text-align: center;
+  font-weight: 800;
+  font-size: 14px;
+}
+
+.change.up { color: #e91e63; }
+.change.down { color: #1976d2; }
+.change.same { color: #777; }
+
+.album-image {
+  width: 56px;
+  height: 56px;
+  object-fit: cover;
+  border-radius: 8px;
+  background: #eee;
+}
+
+.song-info {
+  min-width: 0;
+}
+
+.title {
+  font-size: 15px;
+  font-weight: 800;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.artist {
+  margin-top: 3px;
+  font-size: 12px;
+  color: #777;
+}
+
+.album {
+  margin-top: 3px;
+  font-size: 11px;
+  color: #999;
+}
+
+.empty {
+  background: #fff;
+  border: 1px dashed #d8d8dc;
+  border-radius: 14px;
+  padding: 28px;
+  text-align: center;
+  color: #777;
+}
+
+@media (max-width: 640px) {
+  .hero {
+    display: block;
+  }
+
+  .updated {
+    margin-top: 8px;
+  }
+
+  .song {
+    grid-template-columns: 34px 50px 54px minmax(0, 1fr);
+    gap: 7px;
+  }
+
+  .album-image {
+    width: 48px;
+    height: 48px;
+  }
+}
