@@ -61,7 +61,7 @@ const artistAliases = {
 function normalize(value) {
   return String(value || "")
     .toLowerCase()
-    .replace(/\\s+/g, "")
+    .replace(/\s+/g, "")
     .replace(/[^0-9a-z가-힣ㄱ-ㅎ]/g, "");
 }
 
@@ -88,7 +88,7 @@ function getKoreanInitials(value) {
 
 function getParenthesizedNames(artist) {
   const names = [];
-  const matches = String(artist).match(/\\(([^()]*)\\)/g) || [];
+  const matches = String(artist).match(/\(([^()]*)\)/g) || [];
 
   for (const match of matches) {
     const name = match.slice(1, -1).trim();
