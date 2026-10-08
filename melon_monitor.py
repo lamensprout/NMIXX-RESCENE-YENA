@@ -42,7 +42,7 @@ def get_melon_chart():
         title_element = row.select_one(".ellipsis.rank01 a")
         artist_element = row.select_one(".ellipsis.rank02 a")
         album_element = row.select_one(".ellipsis.rank03 a")
-        album_image_element = row.select_one(".wrap_album img")
+        album_image_element = row.select_one("td:nth-child(4) img") or row.select_one(".wrap_album img")
 
         if not rank_element or not title_element or not artist_element:
             continue
@@ -59,11 +59,14 @@ def get_melon_chart():
         album_image = ""
         if album_image_element:
             album_image = (
-                album_image_element.get("src")
-                or album_image_element.get("data-original")
+                album_image_element.get("data-original")
                 or album_image_element.get("data-lazy")
+                or album_image_element.get("src")
                 or ""
             )
+
+            if album_image.startswith("//"):
+                album_image = "https:" + album_image
 
         is_target = any(
             target.lower() in artist.lower()
@@ -232,8 +235,11 @@ def build_message(previous, current):
 
 def send_email(html_message):
     import smtplib
-    from email.mime.text import MIMEText
     from email.header import Header
+    from email.mime.image import MIMEImage
+    from email.mime.multipart import MIMEMultipart
+    from email.mime.text import MIMEText
+    import re
 
     sender = os.environ.get("EMAIL_SENDER")
     app_password = os.environ.get("EMAIL_APP_PASSWORD")
@@ -249,18 +255,65 @@ def send_email(html_message):
         print("이메일 설정이 없어 이메일 알림을 건너뜁니다.")
         return
 
-    mail = MIMEText(html_message, "html", "utf-8")
+    # 이미지가 메일 서버에서 차단되지 않도록 외부 이미지를 메일 안에 직접 첨부합니다.
+    image_urls = []
+    for url in re.findall(r'<img[^>]+src="([^"]+)"', html_message):
+        if url.startswith("http://") or url.startswith("https://"):
+            image_urls.append(url)
+
+    image_map = {}
+    for index, url in enumerate(dict.fromkeys(image_urls), start=1):
+        try:
+            image_response = requests.get(
+                url,
+                headers={
+                    "User-Agent": (
+                        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+                        "AppleWebKit/537.36 (KHTML, like Gecko) "
+                        "Chrome/154.0.0.0 Safari/537.36"
+                    ),
+                    "Referer": "https://www.melon.com/chart/index.htm",
+                },
+                timeout=20,
+            )
+            image_response.raise_for_status()
+            image_map[url] = (f"album_{index}", image_response.content)
+        except requests.RequestException as e:
+            print(f"앨범아트 다운로드 실패: {url} ({e})")
+
+    for url, (content_id, _) in image_map.items():
+        html_message = html_message.replace(
+            f'src="{url}"',
+            f'src="cid:{content_id}"'
+        )
+
+    mail = MIMEMultipart("related")
     mail["Subject"] = Header("🍈 멜론 차트 순위 변동", "utf-8")
     mail["From"] = sender
     mail["To"] = ", ".join(recipients)
+
+    alternative = MIMEMultipart("alternative")
+    alternative.attach(
+        MIMEText(
+            "멜론 차트 순위 변동 알림입니다. HTML 메일을 지원하는 환경에서 확인해주세요.",
+            "plain",
+            "utf-8",
+        )
+    )
+    alternative.attach(MIMEText(html_message, "html", "utf-8"))
+    mail.attach(alternative)
+
+    for content_id, image_bytes in image_map.values():
+        image = MIMEImage(image_bytes)
+        image.add_header("Content-ID", f"<{content_id}>")
+        image.add_header("Content-Disposition", "inline")
+        mail.attach(image)
 
     with smtplib.SMTP_SSL("smtp.naver.com", 465, timeout=20) as server:
         server.login(sender, app_password)
         server.sendmail(sender, recipients, mail.as_string())
 
-    print(f"이메일 알림 전송 완료: {len(recipients)}명")
-
-
+    print(f"이메일 알림 전송 완료: {len(recipients)}명 / 앨범아트 {len(image_map)}개")
 def send_kakao(message):
     refresh_token = os.environ.get("KAKAO_REFRESH_TOKEN")
     rest_api_key = os.environ.get("KAKAO_REST_API_KEY")
