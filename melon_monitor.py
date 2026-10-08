@@ -138,22 +138,28 @@ def send_email(message):
 
     sender = os.environ.get("EMAIL_SENDER")
     app_password = os.environ.get("EMAIL_APP_PASSWORD")
-    recipient = os.environ.get("EMAIL_RECIPIENT")
+    recipients_raw = os.environ.get("EMAIL_RECIPIENT")
 
-    if not sender or not app_password or not recipient:
+    recipients = [
+        address.strip()
+        for address in (recipients_raw or "").split(",")
+        if address.strip()
+    ]
+
+    if not sender or not app_password or not recipients:
         print("이메일 설정이 없어 이메일 알림을 건너뜁니다.")
         return
 
     mail = MIMEText(message, "plain", "utf-8")
     mail["Subject"] = Header("🍈 멜론 차트 순위 변동", "utf-8")
     mail["From"] = sender
-    mail["To"] = recipient
+    mail["To"] = ", ".join(recipients)
 
     with smtplib.SMTP_SSL("smtp.naver.com", 465, timeout=20) as server:
         server.login(sender, app_password)
-        server.sendmail(sender, recipient, mail.as_string())
+        server.sendmail(sender, recipients, mail.as_string())
 
-    print("이메일 알림 전송 완료.")
+    print(f"이메일 알림 전송 완료: {len(recipients)}명")
 
 
 def send_kakao(message):
