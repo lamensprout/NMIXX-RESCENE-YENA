@@ -5,6 +5,7 @@ from bs4 import BeautifulSoup
 
 MELON_URL = "https://www.melon.com/chart/index.htm"
 STATE_FILE = "state.json"
+NTFY_BASE_URL = "https://ntfy.sh"
 
 TARGET_ARTISTS = [
     "NMIXX",
@@ -26,44 +27,27 @@ def get_melon_chart():
         )
     }
 
-    response = requests.get(
-        MELON_URL,
-        headers=headers,
-        timeout=20
-    )
+    response = requests.get(MELON_URL, headers=headers, timeout=20)
     response.raise_for_status()
 
     soup = BeautifulSoup(response.text, "html.parser")
-
     rows = soup.select("tr.lst50, tr.lst100")
 
     if not rows:
-        raise RuntimeError(
-            "멜론 차트 데이터를 찾지 못했습니다."
-        )
+        raise RuntimeError("멜론 차트 데이터를 찾지 못했습니다.")
 
     chart = {}
 
     for row in rows:
         rank_element = row.select_one(".rank")
-        title_element = row.select_one(
-            ".ellipsis.rank01 a"
-        )
-        artist_element = row.select_one(
-            ".ellipsis.rank02 a"
-        )
+        title_element = row.select_one(".ellipsis.rank01 a")
+        artist_element = row.select_one(".ellipsis.rank02 a")
 
-        if (
-            not rank_element
-            or not title_element
-            or not artist_element
-        ):
+        if not rank_element or not title_element or not artist_element:
             continue
 
         try:
-            rank = int(
-                rank_element.get_text(strip=True)
-            )
+            rank = int(rank_element.get_text(strip=True))
         except ValueError:
             continue
 
@@ -83,7 +67,7 @@ def get_melon_chart():
         chart[key] = {
             "title": title,
             "artist": artist,
-            "rank": rank
+            "rank": rank,
         }
 
     return chart
@@ -94,28 +78,15 @@ def load_previous_state():
         return {}
 
     try:
-        with open(
-            STATE_FILE,
-            "r",
-            encoding="utf-8"
-        ) as f:
+        with open(STATE_FILE, "r", encoding="utf-8") as f:
             return json.load(f)
     except (json.JSONDecodeError, OSError):
         return {}
 
 
 def save_state(chart):
-    with open(
-        STATE_FILE,
-        "w",
-        encoding="utf-8"
-    ) as f:
-        json.dump(
-            chart,
-            f,
-            ensure_ascii=False,
-            indent=2
-        )
+    with open(STATE_FILE, "w", encoding="utf-8") as f:
+        json.dump(chart, f, ensure_ascii=False, indent=2)
 
 
 def compare_ranks(previous, current):
@@ -132,11 +103,7 @@ def compare_ranks(previous, current):
             continue
 
         difference = old_rank - new_rank
-
-        if difference > 0:
-            direction = "상승"
-        else:
-            direction = "하락"
+        direction = "상승" if difference > 0 else "하락"
 
         changes.append(
             {
@@ -145,11 +112,44 @@ def compare_ranks(previous, current):
                 "old_rank": old_rank,
                 "new_rank": new_rank,
                 "difference": abs(difference),
-                "direction": direction
+                "direction": direction,
             }
         )
 
     return changes
+
+
+def send_ntfy(changes):
+    topic = os.environ.get("NTFY_TOPIC")
+
+    if not topic:
+        print("NTFY_TOPIC이 설정되지 않아 알림을 보내지 않습니다.")
+        return
+
+    lines = ["🍈 멜론 차트 순위 변동"]
+
+    for change in changes:
+        lines.append(
+            f'{change["artist"]} - {change["title"]}\n'
+            f'{change["old_rank"]}위 → {change["new_rank"]}위 '
+            f'({change["direction"]} {change["difference"]}단계)'
+        )
+
+    message = "\n\n".join(lines)
+
+    response = requests.post(
+        f"{NTFY_BASE_URL}/{topic}",
+        data=message.encode("utf-8"),
+        headers={
+            "Title": "멜론 차트 순위 변동",
+            "Priority": "4",
+            "Tags": "chart_with_upwards_trend",
+        },
+        timeout=20,
+    )
+    response.raise_for_status()
+
+    print("ntfy 알림 전송 완료.")
 
 
 def main():
@@ -158,36 +158,26 @@ def main():
     current = get_melon_chart()
     previous = load_previous_state()
 
-    print(
-        f"대상 곡 {len(current)}곡 확인"
-    )
+    print(f"대상 곡 {len(current)}곡 확인")
 
     if not previous:
-        print(
-            "첫 실행입니다. "
-            "현재 순위를 저장합니다."
-        )
-
+        print("첫 실행입니다. 현재 순위를 저장합니다.")
         save_state(current)
         return
 
-    changes = compare_ranks(
-        previous,
-        current
-    )
+    changes = compare_ranks(previous, current)
 
     if changes:
         print("\n순위 변동 발견!")
 
         for change in changes:
             print(
-                f'{change["artist"]} - '
-                f'{change["title"]}: '
-                f'{change["old_rank"]}위 → '
-                f'{change["new_rank"]}위 '
-                f'({change["direction"]} '
-                f'{change["difference"]}단계)'
+                f'{change["artist"]} - {change["title"]}: '
+                f'{change["old_rank"]}위 → {change["new_rank"]}위 '
+                f'({change["direction"]} {change["difference"]}단계)'
             )
+
+        send_ntfy(changes)
     else:
         print("순위 변동 없음.")
 
