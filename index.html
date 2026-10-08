@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>🍈 Melon Artist Chart</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="container">
+    <header class="hero">
+      <div>
+        <h1>🍈 Melon Artist Chart</h1>
+        <p>아티스트를 검색하면 현재 멜론 TOP100 순위를 보여줘.</p>
+      </div>
+      <div id="updated" class="updated">불러오는 중...</div>
+    </header>
+
+    <section class="search">
+      <label for="artistSearch">아티스트 검색</label>
+      <div class="search-row">
+        <input id="artistSearch" type="search" placeholder="예: NMIXX, RESCENE, 최예나" autocomplete="off">
+        <button id="clearBtn" type="button">지우기</button>
+      </div>
+      <div id="popular" class="chips"></div>
+    </section>
+
+    <section>
+      <div id="summary" class="summary">아티스트를 검색해봐.</div>
+      <div id="results" class="results"></div>
+    </section>
+  </main>
+
+  <template id="songTemplate">
+    <article class="song">
+      <div class="rank"></div>
+      <div class="change"></div>
+      <img class="album-image" alt="" loading="lazy">
+      <div class="song-info">
+        <div class="title"></div>
+        <div class="artist"></div>
+        <div class="album"></div>
+      </div>
+    </article>
+  </template>
+
+  <script src="app.js"></script>
+</body>
+</html>
