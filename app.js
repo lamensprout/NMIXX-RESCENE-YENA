@@ -8,38 +8,102 @@ const template = document.getElementById("songTemplate");
 
 let songs = [];
 
-// 멜론에 현재 TOP100에 표시된 아티스트만 검색 대상으로 사용합니다.
-// 괄호 안의 표기(예: RESCENE (리센느))는 자동으로 별칭으로 인식합니다.
-// 멜론에 영문명만 표시되는 경우를 위해 별칭을 추가할 수도 있습니다.
+// 멜론의 현재 TOP100에 있는 아티스트만 검색 대상입니다.
+// 공식 표기, 한국어 이름, 영문 이름, 자주 쓰는 줄임말을 함께 검색할 수 있습니다.
+// 검색어의 대소문자·공백·일부 특수문자는 자동으로 무시합니다.
 const artistAliases = {
-  "NMIXX": ["엔믹스", "nmixx"],
-  "YENA (최예나)": ["예나", "최예나", "yena"],
-  "WOODZ": ["우즈"],
-  "aespa": ["에스파"],
-  "PLAVE": ["플레이브"],
-  "G-DRAGON": ["지드래곤", "권지용"],
-  "ALLDAY PROJECT": ["올데이 프로젝트", "올데이프로젝트"],
-  "BOYNEXTDOOR": ["보이넥스트도어"],
-  "BLACKPINK": ["블랙핑크"],
-  "KISS OF LIFE": ["키스 오브 라이프", "키스오브라이프", "KIOF", "키오프"],
-  "Lady Gaga": ["레이디 가가", "레이디가가"],
-  "NewJeans": ["뉴진스"],
-  "HUNTR/X": ["헌트릭스"],
-  "BTOB": ["비투비"],
+  "NMIXX": ["엔믹스", "nmixx", "믹스"],
+  "RESCENE (리센느)": ["리센느", "rescene", "res", "리센"],
+  "YENA (최예나)": ["예나", "최예나", "yena", "옌"],
+  "소연 (SOYEON)": ["소연", "soyeon"],
+  "아이오아이 (I.O.I)": ["아이오아이", "ioi", "i.o.i"],
+  "CORTIS (코르티스)": ["코르티스", "cortis"],
+  "ATEEZ(에이티즈)": ["에이티즈", "ateez"],
+  "태연 (TAEYEON)": ["태연", "taeyeon"],
+  "BIGBANG (빅뱅)": ["빅뱅", "bigbang", "bb"],
+  "WOODZ": ["우즈", "woodz"],
+  "aespa": ["에스파", "aespa", "에셉"],
+  "BIG Naughty (서동현)": ["빅나티", "빅너티", "bignaughty", "big naughty"],
+  "아일릿(ILLIT)": ["아일릿", "illit"],
+  "한로로": ["한로로"],
+  "아이유": ["iu"],
+  "화사 (HWASA)": ["화사", "hwasa"],
+  "임영웅": ["영웅", "limyoungwoong", "imyoungwoong"],
+  "Hearts2Hearts (하츠투하츠)": ["하츠투하츠", "hearts2hearts", "h2h"],
+  "최유리": ["최유리"],
+  "도경수(D.O.)": ["도경수", "디오", "d.o.", "do"],
+  "AKMU (악뮤)": ["악뮤", "akmu", "악동뮤지션"],
+  "PLAVE": ["플레이브", "plave", "플브"],
+  "성시경": ["성시경"],
+  "다비치": ["다비치"],
+  "G-DRAGON": ["지드래곤", "권지용", "gdragon", "gd"],
+  "볼빨간사춘기": ["볼사", "볼빨간", "bol4"],
+  "소녀시대-효리수 (Girls' Generation-HRS)": ["소녀시대효리수", "girls generation hrs", "hrs"],
+  "ALLDAY PROJECT": ["올데이 프로젝트", "올데이프로젝트", "alldayproject", "adp"],
+  "로이킴": ["로이킴", "roykim"],
+  "KiiiKiii (키키)": ["키키", "kiikiii"],
+  "김나영": ["김나영"],
+  "우디 (Woody)": ["우디", "woody"],
+  "BOYNEXTDOOR": ["보이넥스트도어", "boynextdoor", "bnd"],
+  "너드커넥션 (Nerd Connection)": ["너드커넥션", "nerdconnection", "nc"],
+  "이창섭": ["창섭"],
+  "로제 (ROSÉ)": ["로제", "rose", "rosé"],
+  "잔나비": ["잔나비"],
+  "DAY6 (데이식스)": ["데이식스", "day6", "d6"],
+  "방탄소년단": ["방탄", "bts", "비티에스"],
+  "IVE (아이브)": ["아이브", "ive"],
+  "폴킴": ["폴킴", "paulkim"],
+  "이찬혁": ["이찬혁"],
+  "정국": ["정국", "jungkook", "jk"],
+  "조째즈": ["조째즈"],
+  "10CM": ["십센치", "10cm"],
+  "이클립스 (ECLIPSE)": ["이클립스", "eclipse"],
+  "베스티": ["베스티", "bestie"],
+  "BLACKPINK": ["블랙핑크", "blackpink", "bp", "블핑"],
+  "이무진": ["이무진"],
+  "박재정": ["박재정"],
+  "카더가든": ["카더가든", "car the garden"],
+  "제니 (JENNIE)": ["제니", "jennie"],
+  "HUNTR/X": ["헌트릭스", "huntrx"],
+  "황가람": ["황가람"],
+  "에픽하이 (EPIK HIGH)": ["에픽하이", "epikhigh", "epik high"],
+  "멜로망스": ["멜로망스"],
+  "Lady Gaga": ["레이디 가가", "레이디가가", "ladygaga"],
+  "NewJeans": ["뉴진스", "newjeans", "nj"],
+  "TWS (투어스)": ["투어스", "tws"],
+  "경서예지": ["경서예지"],
+  "프로미스나인": ["프로미스나인", "fromis_9", "fromis9", "프나인"],
+  "임현정": ["임현정"],
+  "KISS OF LIFE": ["키스 오브 라이프", "키스오브라이프", "KIOF", "키오프"]
 };
+
+function getEnglishAcronyms(value) {
+  // "KISS OF LIFE" -> "KIOF", "DAY6" -> "D6" 같은 약칭을 자동으로 만듭니다.
+  const tokens = String(value)
+    .split(/[^0-9A-Za-zÀ-ÿ]+/)
+    .filter(Boolean);
+
+  if (tokens.length >= 2) {
+    const acronym = tokens.map(token => token[0]).join("");
+    if (acronym.length >= 2) return [acronym];
+  }
+
+  return [];
+}
 
 function getSearchNames(artist) {
   const names = [artist];
-  const aliases = artistAliases[artist] || [];
 
-  // "아티스트 (한국명)" 형태를 자동으로 분리합니다.
+  // "RESCENE (리센느)", "IVE (아이브)"처럼 괄호 안의 표기를 자동 인식합니다.
   const matches = artist.match(/\\(([^()]*)\\)/g) || [];
   for (const match of matches) {
     const alias = match.slice(1, -1).trim();
     if (alias) names.push(alias);
   }
 
-  for (const alias of aliases) names.push(alias);
+  names.push(...getEnglishAcronyms(artist));
+  names.push(...(artistAliases[artist] || []));
+
   return [...new Set(names)];
 }
 
