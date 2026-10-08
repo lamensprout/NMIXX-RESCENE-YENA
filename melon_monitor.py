@@ -128,29 +128,40 @@ def build_message(previous, current):
         old_rank = previous.get(key, {}).get("rank")
         new_rank = song["rank"]
 
-        if old_rank is None:
-            change_text = "-"
+        if old_rank is None or new_rank == old_rank:
+            change_text = '<span style="color:#777777;font-weight:700;">-</span>'
         elif new_rank < old_rank:
-            change_text = f'<span style="color:#e53935;font-weight:700;">▲ {old_rank - new_rank}</span>'
-        elif new_rank > old_rank:
-            change_text = f'<span style="color:#1e88e5;font-weight:700;">▼ {new_rank - old_rank}</span>'
+            change_text = (
+                f'<span style="color:#e91e63;font-weight:700;">'
+                f'▲ {old_rank - new_rank}'
+                f'</span>'
+            )
         else:
-            change_text = "-"
+            change_text = (
+                f'<span style="color:#1976d2;font-weight:700;">'
+                f'▼ {new_rank - old_rank}'
+                f'</span>'
+            )
 
         rows.append(
             f"""
             <tr>
-                <td style="padding:8px 10px;border-bottom:1px solid #eeeeee;">
-                    {song["artist"]}
+                <td style="padding:9px 8px;border-bottom:1px solid #eeeeee;
+                           text-align:right;width:42px;
+                           font-size:16px;font-weight:700;color:#333333;">
+                    {new_rank}
                 </td>
-                <td style="padding:8px 10px;border-bottom:1px solid #eeeeee;">
-                    {song["title"]}
-                </td>
-                <td style="padding:8px 10px;border-bottom:1px solid #eeeeee;text-align:center;font-weight:700;">
-                    {new_rank}위
-                </td>
-                <td style="padding:8px 10px;border-bottom:1px solid #eeeeee;text-align:center;">
+                <td style="padding:9px 8px;border-bottom:1px solid #eeeeee;
+                           text-align:left;width:52px;font-size:14px;">
                     {change_text}
+                </td>
+                <td style="padding:9px 8px;border-bottom:1px solid #eeeeee;">
+                    <div style="font-size:15px;font-weight:700;color:#222222;">
+                        {song["title"]}
+                    </div>
+                    <div style="margin-top:3px;font-size:12px;color:#888888;">
+                        {song["artist"]}
+                    </div>
                 </td>
             </tr>
             """
@@ -158,24 +169,28 @@ def build_message(previous, current):
 
     return f"""
     <html>
-      <body style="font-family:Arial,'Malgun Gothic',sans-serif;">
-        <h2>🍈 멜론 차트 순위 변동</h2>
-        <table style="border-collapse:collapse;width:100%;max-width:800px;">
-          <thead>
-            <tr>
-              <th style="padding:8px 10px;text-align:left;border-bottom:2px solid #333333;">아티스트</th>
-              <th style="padding:8px 10px;text-align:left;border-bottom:2px solid #333333;">곡</th>
-              <th style="padding:8px 10px;text-align:center;border-bottom:2px solid #333333;">현재 순위</th>
-              <th style="padding:8px 10px;text-align:center;border-bottom:2px solid #333333;">변동</th>
-            </tr>
-          </thead>
-          <tbody>
-            {"".join(rows)}
-          </tbody>
-        </table>
-        <p style="margin-top:16px;color:#666666;">
-          ▲ 빨간색 = 순위 상승 / ▼ 파란색 = 순위 하락 / - = 변동 없음
-        </p>
+      <body style="margin:0;padding:20px;
+                   font-family:Arial,'Malgun Gothic',sans-serif;
+                   background:#ffffff;color:#222222;">
+        <div style="max-width:620px;">
+          <h2 style="margin:0 0 14px 0;font-size:20px;">
+            🍈 멜론 차트
+          </h2>
+
+          <table style="border-collapse:collapse;width:100%;">
+            <tbody>
+              {"".join(rows)}
+            </tbody>
+          </table>
+
+          <div style="margin-top:14px;font-size:12px;color:#888888;">
+            <span style="color:#e91e63;font-weight:700;">▲</span>
+            상승&nbsp;&nbsp;
+            <span style="color:#1976d2;font-weight:700;">▼</span>
+            하락&nbsp;&nbsp;
+            - 변동 없음
+          </div>
+        </div>
       </body>
     </html>
     """
