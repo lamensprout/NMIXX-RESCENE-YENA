@@ -5,16 +5,28 @@ from bs4 import BeautifulSoup
 
 MELON_URL = "https://www.melon.com/chart/index.htm"
 STATE_FILE = "state.json"
+ARTISTS_FILE = "artists.json"
 
-TARGET_ARTISTS = [
-    "NMIXX",
-    "엔믹스",
-    "RESCENE",
-    "리센느",
-    "최예나",
-    "YENA",
-    "YENA (최예나)",
-]
+
+def load_artists():
+    if not os.path.exists(ARTISTS_FILE):
+        return {}
+
+    try:
+        with open(ARTISTS_FILE, "r", encoding="utf-8") as f:
+            return json.load(f)
+    except (json.JSONDecodeError, OSError):
+        return {}
+
+
+def get_artist_aliases():
+    artists = load_artists()
+    aliases = []
+
+    for artist_name, artist_aliases in artists.items():
+        aliases.extend([artist_name, *artist_aliases])
+
+    return [alias.strip() for alias in aliases if alias and alias.strip()]
 
 
 def get_melon_chart():
@@ -36,6 +48,7 @@ def get_melon_chart():
         raise RuntimeError("멜론 차트 데이터를 찾지 못했습니다.")
 
     chart = {}
+    target_artists = get_artist_aliases()
 
     for row in rows:
         rank_element = row.select_one(".rank")
@@ -70,7 +83,7 @@ def get_melon_chart():
 
         is_target = any(
             target.lower() in artist.lower()
-            for target in TARGET_ARTISTS
+            for target in target_artists
         )
 
         if not is_target:
@@ -394,8 +407,9 @@ def main():
 
     current = get_melon_chart()
     previous = load_previous_state()
+    artists = load_artists()
 
-    print(f"대상 곡 {len(current)}곡 확인")
+    print(f"등록 아티스트 {len(artists)}팀 / 대상 곡 {len(current)}곡 확인")
 
     if not previous:
         print("첫 실행입니다. 현재 순위를 저장합니다.")
