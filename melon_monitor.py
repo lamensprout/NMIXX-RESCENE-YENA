@@ -149,7 +149,7 @@ def send_email(message):
     mail["From"] = sender
     mail["To"] = recipient
 
-    with smtplib.SMTP_SSL("smtp.gmail.com", 465, timeout=20) as server:
+    with smtplib.SMTP_SSL("smtp.naver.com", 465, timeout=20) as server:
         server.login(sender, app_password)
         server.sendmail(sender, recipient, mail.as_string())
 
