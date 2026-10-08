@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-08T20:13:43.117136+00:00",
+  "updated_at": "2026-10-08T21:13:20.652804+00:00",
   "songs": [
     {
       "rank": 1,
@@ -372,21 +372,21 @@
     },
     {
       "rank": 42,
-      "title": "모든 날, 모든 순간 (Every day, Every Moment)",
-      "artist": "폴킴",
-      "album": "'키스 먼저 할까요?' OST Part.3",
-      "album_image": "https://cdnimg.melon.co.kr/cm/album/images/101/49/492/10149492_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 42,
-      "change": 0
-    },
-    {
-      "rank": 43,
       "title": "CRASH",
       "artist": "ALLDAY PROJECT",
       "album": "CRASH",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/145/75/403/14575403_20260922162806_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 43,
-      "change": 0
+      "change": 1
+    },
+    {
+      "rank": 43,
+      "title": "모든 날, 모든 순간 (Every day, Every Moment)",
+      "artist": "폴킴",
+      "album": "'키스 먼저 할까요?' OST Part.3",
+      "album_image": "https://cdnimg.melon.co.kr/cm/album/images/101/49/492/10149492_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 42,
+      "change": -1
     },
     {
       "rank": 44,
@@ -417,21 +417,21 @@
     },
     {
       "rank": 47,
-      "title": "모르시나요(PROD.로코베리)",
-      "artist": "조째즈",
-      "album": "모르시나요",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/116/85/729/11685729_20250106160640_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 47,
-      "change": 0
-    },
-    {
-      "rank": 48,
       "title": "주저하는 연인들을 위해",
       "artist": "잔나비",
       "album": "전설",
       "album_image": "https://cdnimg.melon.co.kr/cm/album/images/102/60/858/10260858_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 48,
-      "change": 0
+      "change": 1
+    },
+    {
+      "rank": 48,
+      "title": "모르시나요(PROD.로코베리)",
+      "artist": "조째즈",
+      "album": "모르시나요",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/116/85/729/11685729_20250106160640_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 47,
+      "change": -1
     },
     {
       "rank": 49,
