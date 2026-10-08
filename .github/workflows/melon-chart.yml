@@ -26,6 +26,8 @@ jobs:
           pip install -r requirements.txt
 
       - name: 멜론 차트 확인
+        env:
+          NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
         run: |
           python melon_monitor.py
 
