@@ -236,6 +236,7 @@ def build_message(previous, current):
 def send_email(html_message):
     import smtplib
     from email.header import Header
+    from email.utils import formataddr
     from email.mime.image import MIMEImage
     from email.mime.multipart import MIMEMultipart
     from email.mime.text import MIMEText
@@ -289,7 +290,7 @@ def send_email(html_message):
 
     mail = MIMEMultipart("related")
     mail["Subject"] = Header("🍈 멜론 차트 순위 변동", "utf-8")
-    mail["From"] = sender
+    mail["From"] = formataddr(("Melon_Bot", sender))
     mail["To"] = ", ".join(recipients)
 
     alternative = MIMEMultipart("alternative")
