@@ -74,7 +74,8 @@ const artistAliases = {
   "경서예지": ["경서예지"],
   "프로미스나인": ["프로미스나인", "fromis_9", "fromis9", "프나인"],
   "임현정": ["임현정"],
-  "KISS OF LIFE": ["키스 오브 라이프", "키스오브라이프", "KIOF", "키오프"]
+  "KISS OF LIFE": ["키스 오브 라이프", "키스오브라이프", "KIOF", "키오프"],
+  "BTOB": ["비투비", "btob", "비투비"]
 };
 
 function getEnglishAcronyms(value) {
