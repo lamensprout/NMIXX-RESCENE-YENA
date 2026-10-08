@@ -413,11 +413,18 @@ def main():
                 f'{change["old_rank"]}위 → {change["new_rank"]}위 '
                 f'({change["direction"]} {change["difference"]}단계)'
             )
+    else:
+        print("순위 변동 없음. 현재 차트를 확인합니다.")
 
+    from datetime import datetime, timezone, timedelta
+
+    kst = timezone(timedelta(hours=9))
+    current_hour = datetime.now(kst).hour
+
+    if 8 <= current_hour < 24:
         send_notifications(previous, current)
     else:
-        print("순위 변동 없음. 현재 차트를 메일로 전송합니다.")
-        send_notifications(previous, current)
+        print("00:00~07:59 알림 금지 시간입니다. 차트 확인 및 순위 저장만 합니다.")
 
     save_state(current)
 
