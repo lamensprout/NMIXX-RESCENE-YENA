@@ -21,6 +21,7 @@ const artistAliases = {
   "ALLDAY PROJECT": ["올데이 프로젝트", "올데이프로젝트"],
   "BOYNEXTDOOR": ["보이넥스트도어"],
   "BLACKPINK": ["블랙핑크"],
+  "KISS OF LIFE": ["키스 오브 라이프", "키스오브라이프", "KIOF"],
   "Lady Gaga": ["레이디 가가", "레이디가가"],
   "NewJeans": ["뉴진스"],
   "HUNTR/X": ["헌트릭스"],
