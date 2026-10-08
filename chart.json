@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-08T19:13:29.815109+00:00",
+  "updated_at": "2026-10-08T20:13:43.117136+00:00",
   "songs": [
     {
       "rank": 1,
@@ -340,8 +340,8 @@
       "artist": "너드커넥션 (Nerd Connection)",
       "album": "그대만 있다면 (여름날 우리 X 너드커넥션 (Nerd Connection))",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/113/05/759/11305759_20230814111006_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 39,
-      "change": 1
+      "previous_rank": 38,
+      "change": 0
     },
     {
       "rank": 39,
@@ -349,8 +349,8 @@
       "artist": "Hearts2Hearts (하츠투하츠)",
       "album": "Lemon Tang - The 2nd Mini Album",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/137/50/428/13750428_20260619162731_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 38,
-      "change": -1
+      "previous_rank": 39,
+      "change": 0
     },
     {
       "rank": 40,
