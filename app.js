@@ -8,24 +8,39 @@ const template = document.getElementById("songTemplate");
 
 let songs = [];
 
-// 자주 사용하는 한글/영문 표기를 함께 검색할 수 있도록 별칭을 지원합니다.
+// 멜론에 현재 TOP100에 표시된 아티스트만 검색 대상으로 사용합니다.
+// 괄호 안의 표기(예: RESCENE (리센느))는 자동으로 별칭으로 인식합니다.
+// 멜론에 영문명만 표시되는 경우를 위해 별칭을 추가할 수도 있습니다.
 const artistAliases = {
   "NMIXX": ["엔믹스", "nmixx"],
-  "RESCENE (리센느)": ["리센느", "rescene"],
   "YENA (최예나)": ["예나", "최예나", "yena"],
-
-  // 멜론에서 영문으로만 표시되는 아티스트도 한글로 검색할 수 있게 지원합니다.
   "WOODZ": ["우즈"],
   "aespa": ["에스파"],
   "PLAVE": ["플레이브"],
   "G-DRAGON": ["지드래곤", "권지용"],
   "ALLDAY PROJECT": ["올데이 프로젝트", "올데이프로젝트"],
-  "BOYNEXTDOOR": ["보이넥스트도어", "보이넥스트도어"],
+  "BOYNEXTDOOR": ["보이넥스트도어"],
   "BLACKPINK": ["블랙핑크"],
   "Lady Gaga": ["레이디 가가", "레이디가가"],
   "NewJeans": ["뉴진스"],
   "HUNTR/X": ["헌트릭스"],
+  "BTOB": ["비투비"],
 };
+
+function getSearchNames(artist) {
+  const names = [artist];
+  const aliases = artistAliases[artist] || [];
+
+  // "아티스트 (한국명)" 형태를 자동으로 분리합니다.
+  const matches = artist.match(/\\(([^()]*)\\)/g) || [];
+  for (const match of matches) {
+    const alias = match.slice(1, -1).trim();
+    if (alias) names.push(alias);
+  }
+
+  for (const alias of aliases) names.push(alias);
+  return [...new Set(names)];
+}
 
 function escapeText(value) {
   return value == null ? "" : String(value);
