@@ -1,0 +1,43 @@
+name: Melon Chart Monitor
+
+on:
+  schedule:
+    - cron: "0 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  monitor:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 저장소 가져오기
+        uses: actions/checkout@v4
+
+      - name: Python 설정
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: 필요한 패키지 설치
+        run: |
+          pip install -r requirements.txt
+
+      - name: 멜론 차트 확인
+        run: |
+          python melon_monitor.py
+
+      - name: 순위 상태 저장
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          if git diff --quiet; then
+            echo "변경된 파일이 없습니다."
+          else
+            git add state.json
+            git commit -m "Update Melon chart state"
+            git push
+          fi
