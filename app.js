@@ -8,8 +8,36 @@ const template = document.getElementById("songTemplate");
 
 let songs = [];
 
+// 자주 사용하는 한글/영문 표기를 함께 검색할 수 있도록 별칭을 지원합니다.
+const artistAliases = {
+  "NMIXX": ["엔믹스", "nmixx"],
+  "RESCENE (리센느)": ["리센느", "rescene"],
+  "YENA (최예나)": ["예나", "최예나", "yena"],
+};
+
 function escapeText(value) {
   return value == null ? "" : String(value);
+}
+
+function normalize(value) {
+  return String(value ?? "")
+    .toLowerCase()
+    .replace(/[^0-9a-z가-힣]/g, "");
+}
+
+function getSearchNames(artist) {
+  const names = [artist];
+  const aliases = artistAliases[artist] || [];
+  return names.concat(aliases);
+}
+
+function matchesArtist(artist, query) {
+  const normalizedQuery = normalize(query);
+  if (!normalizedQuery) return false;
+
+  return getSearchNames(artist).some(name =>
+    normalize(name).includes(normalizedQuery)
+  );
 }
 
 function formatChange(change) {
@@ -22,21 +50,22 @@ function render(list, query) {
   results.innerHTML = "";
 
   if (!query) {
-    summary.textContent = "아티스트를 검색해봐.";
+    summary.textContent = "아티스트를 검색해 주세요.";
     return;
   }
 
   if (!list.length) {
-    summary.textContent = `"${query}" 검색 결과가 없어.`;
-    results.innerHTML = '<div class="empty">TOP100에서 해당 아티스트를 찾지 못했어.</div>';
+    summary.textContent = `"${query}" 검색 결과가 없습니다.`;
+    results.innerHTML = '<div class="empty">TOP100에서 해당 아티스트를 찾지 못했습니다.</div>';
     return;
   }
 
-  summary.textContent = `"${query}" 검색 결과 ${list.length}곡`;
+  summary.textContent = `"${query}" 검색 결과 ${list.length}곡입니다.`;
 
   for (const song of list) {
     const node = template.content.cloneNode(true);
     node.querySelector(".rank").textContent = song.rank;
+
     const change = formatChange(song.change || 0);
     const changeEl = node.querySelector(".change");
     changeEl.textContent = change.text;
@@ -59,14 +88,15 @@ function render(list, query) {
 }
 
 function search(query) {
-  const q = query.trim().toLowerCase();
+  const q = query.trim();
   const filtered = q
-    ? songs.filter(song => song.artist.toLowerCase().includes(q))
+    ? songs.filter(song => matchesArtist(song.artist, q))
     : [];
-  render(filtered, query.trim());
+  render(filtered, q);
 }
 
 input.addEventListener("input", () => search(input.value));
+
 clearBtn.addEventListener("click", () => {
   input.value = "";
   search("");
@@ -76,7 +106,8 @@ clearBtn.addEventListener("click", () => {
 async function load() {
   try {
     const response = await fetch("chart.json", { cache: "no-store" });
-    if (!response.ok) throw new Error("차트 파일을 불러오지 못했어.");
+    if (!response.ok) throw new Error("차트 파일을 불러오지 못했습니다.");
+
     const data = await response.json();
     songs = Array.isArray(data.songs) ? data.songs : [];
 
@@ -107,7 +138,7 @@ async function load() {
       popular.appendChild(button);
     }
   } catch (error) {
-    updated.textContent = "차트 불러오기 실패";
+    updated.textContent = "차트를 불러오지 못했습니다.";
     summary.textContent = error.message;
   }
 }
