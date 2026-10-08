@@ -100,6 +100,8 @@ function getKoreanInitials(value) {
     const code = char.charCodeAt(0);
     if (code >= 0xAC00 && code <= 0xD7A3) {
       result.push(CHOSEONG[Math.floor((code - 0xAC00) / 588)]);
+    } else if (/^[ㄱ-ㅎ]$/.test(char)) {
+      result.push(char);
     }
   }
 
@@ -111,19 +113,18 @@ function getEnglishAcronyms(value) {
     .split(/[^0-9A-Za-zÀ-ÿ]+/)
     .filter(Boolean);
 
-  const results = [];
   if (tokens.length >= 2) {
-    results.push(tokens.map(token => token[0]).join(""));
+    return [tokens.map(token => token[0]).join("")];
   }
 
-  return results;
+  return [];
 }
 
 function getSearchNames(artist) {
   const names = [artist];
 
   // "RESCENE (리센느)", "IVE (아이브)"처럼 괄호 안의 표기를 자동 인식합니다.
-  const matches = artist.match(/\\(([^()]*)\\)/g) || [];
+  const matches = artist.match(/\(([^()]*)\)/g) || [];
   for (const match of matches) {
     const alias = match.slice(1, -1).trim();
     if (alias) names.push(alias);
@@ -144,13 +145,11 @@ function getSearchNames(artist) {
   return [...new Set(names.filter(Boolean))];
 }
 
-function formatChange(change) {(change) {
-  if (change > 0) return { text: `▲ ${change}`, className: "up" };
-  if (change < 0) return { text: `▼ ${Math.abs(change)}`, className: "down" };
+function formatChange(change) {
+  if (change > 0) return { text: \`▲ \${change}\`, className: "up" };
+  if (change < 0) return { text: \`▼ \${Math.abs(change)}\`, className: "down" };
   return { text: "-", className: "same" };
-}
-
-function render(list, query) {
+}(list, query) {
   results.innerHTML = "";
 
   if (!query) {
