@@ -2,41 +2,57 @@
   "LOVE ATTACK|||RESCENE (리센느)": {
     "title": "LOVE ATTACK",
     "artist": "RESCENE (리센느)",
+    "album": "SCENEDROME",
+    "album_image": "",
     "rank": 2
   },
   "Deja Vu|||RESCENE (리센느)": {
     "title": "Deja Vu",
     "artist": "RESCENE (리센느)",
+    "album": "Dearest",
+    "album_image": "",
     "rank": 3
   },
   "Pretty Girl|||RESCENE (리센느)": {
     "title": "Pretty Girl",
     "artist": "RESCENE (리센느)",
+    "album": "Pretty Girl - Special Single",
+    "album_image": "",
     "rank": 5
   },
   "캐치 캐치|||YENA (최예나)": {
     "title": "캐치 캐치",
     "artist": "YENA (최예나)",
+    "album": "LOVE CATCHER",
+    "album_image": "",
     "rank": 19
   },
   "Blue Valentine|||NMIXX": {
     "title": "Blue Valentine",
     "artist": "NMIXX",
-    "rank": 36
+    "album": "Blue Valentine",
+    "album_image": "",
+    "rank": 38
   },
   "Runaway|||RESCENE (리센느)": {
     "title": "Runaway",
     "artist": "RESCENE (리센느)",
-    "rank": 38
+    "album": "Runaway",
+    "album_image": "",
+    "rank": 39
   },
   "Heavy Serenade|||NMIXX": {
     "title": "Heavy Serenade",
     "artist": "NMIXX",
-    "rank": 51
+    "album": "Heavy Serenade",
+    "album_image": "",
+    "rank": 53
   },
   "Pinball|||RESCENE (리센느)": {
     "title": "Pinball",
     "artist": "RESCENE (리센느)",
+    "album": "SCENEDROME",
+    "album_image": "",
     "rank": 91
   }
 }
