@@ -146,24 +146,26 @@ function getSearchNames(artist) {
 }
 
 function formatChange(change) {
-  if (change > 0) return { text: \`▲ \${change}\`, className: "up" };
-  if (change < 0) return { text: \`▼ \${Math.abs(change)}\`, className: "down" };
+  if (change > 0) return { text: "▲ " + change, className: "up" };
+  if (change < 0) return { text: "▼ " + Math.abs(change), className: "down" };
   return { text: "-", className: "same" };
-}(list, query) {
+}
+
+function render(list, query) {
   results.innerHTML = "";
 
   if (!query) {
-    summary.textContent = "아티스트를 검색해 주세요.";
+    summary.textContent = "아티스트를 검색해 주세요."; 
     return;
   }
 
   if (!list.length) {
-    summary.textContent = `"${query}" 검색 결과가 없습니다.`;
+    summary.textContent = "\"" + query + "\" 검색 결과가 없습니다."; 
     results.innerHTML = '<div class="empty">TOP100에서 해당 아티스트를 찾지 못했습니다.</div>';
     return;
   }
 
-  summary.textContent = `"${query}" 검색 결과 ${list.length}곡입니다.`;
+  summary.textContent = "\"" + query + "\" 검색 결과 " + list.length + "곡입니다."; 
 
   for (const song of list) {
     const node = template.content.cloneNode(true);
@@ -177,7 +179,7 @@ function formatChange(change) {
     const image = node.querySelector(".album-image");
     if (song.album_image) {
       image.src = song.album_image;
-      image.alt = `${song.title} 앨범아트`;
+      image.alt = song.title + " 앨범아트";
     } else {
       image.style.visibility = "hidden";
     }
@@ -189,7 +191,6 @@ function formatChange(change) {
     results.appendChild(node);
   }
 }
-
 function search(query) {
   const q = query.trim();
   const filtered = q
