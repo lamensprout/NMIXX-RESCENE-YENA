@@ -5,7 +5,6 @@ from bs4 import BeautifulSoup
 
 MELON_URL = "https://www.melon.com/chart/index.htm"
 STATE_FILE = "state.json"
-NTFY_BASE_URL = "https://ntfy.sh"
 
 TARGET_ARTISTS = [
     "NMIXX",
@@ -119,37 +118,116 @@ def compare_ranks(previous, current):
     return changes
 
 
-def send_ntfy(changes):
-    topic = os.environ.get("NTFY_TOPIC")
-
-    if not topic:
-        print("NTFY_TOPIC이 설정되지 않아 알림을 보내지 않습니다.")
-        return
-
+def build_message(changes):
     lines = ["🍈 멜론 차트 순위 변동"]
 
     for change in changes:
         lines.append(
-            f'{change["artist"]} - {change["title"]}\n'
+            f'{change["artist"]} - {change["title"]}\\n'
             f'{change["old_rank"]}위 → {change["new_rank"]}위 '
             f'({change["direction"]} {change["difference"]}단계)'
         )
 
-    message = "\n\n".join(lines)
+    return "\\n\\n".join(lines)
+
+
+def send_email(message):
+    import smtplib
+    from email.mime.text import MIMEText
+    from email.header import Header
+
+    sender = os.environ.get("EMAIL_SENDER")
+    app_password = os.environ.get("EMAIL_APP_PASSWORD")
+    recipient = os.environ.get("EMAIL_RECIPIENT")
+
+    if not sender or not app_password or not recipient:
+        print("이메일 설정이 없어 이메일 알림을 건너뜁니다.")
+        return
+
+    mail = MIMEText(message, "plain", "utf-8")
+    mail["Subject"] = Header("🍈 멜론 차트 순위 변동", "utf-8")
+    mail["From"] = sender
+    mail["To"] = recipient
+
+    with smtplib.SMTP_SSL("smtp.gmail.com", 465, timeout=20) as server:
+        server.login(sender, app_password)
+        server.sendmail(sender, recipient, mail.as_string())
+
+    print("이메일 알림 전송 완료.")
+
+
+def send_kakao(message):
+    refresh_token = os.environ.get("KAKAO_REFRESH_TOKEN")
+    rest_api_key = os.environ.get("KAKAO_REST_API_KEY")
+    client_secret = os.environ.get("KAKAO_CLIENT_SECRET")
+
+    if not refresh_token or not rest_api_key:
+        print("카카오톡 설정이 없어 카카오톡 알림을 건너뜁니다.")
+        return
+
+    token_data = {
+        "grant_type": "refresh_token",
+        "client_id": rest_api_key,
+        "refresh_token": refresh_token,
+    }
+
+    if client_secret:
+        token_data["client_secret"] = client_secret
+
+    token_response = requests.post(
+        "https://kauth.kakao.com/oauth/token",
+        data=token_data,
+        timeout=20,
+    )
+    token_response.raise_for_status()
+
+    access_token = token_response.json().get("access_token")
+    if not access_token:
+        raise RuntimeError("카카오 액세스 토큰을 갱신하지 못했습니다.")
+
+    template_object = {
+        "object_type": "text",
+        "text": message,
+        "link": {
+            "web_url": "https://www.melon.com/chart/index.htm",
+            "mobile_web_url": "https://www.melon.com/chart/index.htm",
+        },
+    }
 
     response = requests.post(
-        f"{NTFY_BASE_URL}/{topic}",
-        data=message.encode("utf-8"),
+        "https://kapi.kakao.com/v2/api/talk/memo/default/send",
         headers={
-            "Title": "멜론 차트 순위 변동",
-            "Priority": "4",
-            "Tags": "chart_with_upwards_trend",
+            "Authorization": f"Bearer {access_token}",
+            "Content-Type": "application/x-www-form-urlencoded;charset=utf-8",
+        },
+        data={
+            "template_object": json.dumps(
+                template_object,
+                ensure_ascii=False,
+            )
         },
         timeout=20,
     )
     response.raise_for_status()
 
-    print("ntfy 알림 전송 완료.")
+    if response.json().get("result_code") != 0:
+        raise RuntimeError(f"카카오톡 메시지 전송 실패: {response.text}")
+
+    print("카카오톡 알림 전송 완료.")
+
+
+def send_notifications(changes):
+    message = build_message(changes)
+
+    try:
+        send_email(message)
+    except Exception as e:
+        print(f"이메일 알림 실패: {e}")
+
+    try:
+        send_kakao(message)
+    except Exception as e:
+        print(f"카카오톡 알림 실패: {e}")
 
 
 def main():
@@ -177,7 +255,7 @@ def main():
                 f'({change["direction"]} {change["difference"]}단계)'
             )
 
-        send_ntfy(changes)
+        send_notifications(changes)
     else:
         print("순위 변동 없음.")
 
