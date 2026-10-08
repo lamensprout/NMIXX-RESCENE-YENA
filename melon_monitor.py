@@ -41,6 +41,8 @@ def get_melon_chart():
         rank_element = row.select_one(".rank")
         title_element = row.select_one(".ellipsis.rank01 a")
         artist_element = row.select_one(".ellipsis.rank02 a")
+        album_element = row.select_one(".ellipsis.rank03 a")
+        album_image_element = row.select_one(".wrap_album img")
 
         if not rank_element or not title_element or not artist_element:
             continue
@@ -52,6 +54,16 @@ def get_melon_chart():
 
         title = title_element.get_text(strip=True)
         artist = artist_element.get_text(strip=True)
+        album = album_element.get_text(strip=True) if album_element else "앨범 정보 없음"
+
+        album_image = ""
+        if album_image_element:
+            album_image = (
+                album_image_element.get("src")
+                or album_image_element.get("data-original")
+                or album_image_element.get("data-lazy")
+                or ""
+            )
 
         is_target = any(
             target.lower() in artist.lower()
@@ -66,6 +78,8 @@ def get_melon_chart():
         chart[key] = {
             "title": title,
             "artist": artist,
+            "album": album,
+            "album_image": album_image,
             "rank": rank,
         }
 
@@ -155,12 +169,24 @@ def build_message(previous, current):
                            text-align:left;width:52px;font-size:14px;">
                     {change_text}
                 </td>
+                <td style="padding:9px 8px;border-bottom:1px solid #eeeeee;width:58px;">
+                    {
+                        f'<img src="{song["album_image"]}" width="48" height="48" '
+                        f'style="display:block;width:48px;height:48px;object-fit:cover;border-radius:4px;" '
+                        f'alt="">'
+                        if song.get("album_image")
+                        else ""
+                    }
+                </td>
                 <td style="padding:9px 8px;border-bottom:1px solid #eeeeee;">
                     <div style="font-size:15px;font-weight:700;color:#222222;">
                         {song["title"]}
                     </div>
-                    <div style="margin-top:3px;font-size:12px;color:#888888;">
+                    <div style="margin-top:3px;font-size:12px;color:#777777;">
                         {song["artist"]}
+                    </div>
+                    <div style="margin-top:3px;font-size:11px;color:#999999;">
+                        {song.get("album", "앨범 정보 없음")}
                     </div>
                 </td>
             </tr>
@@ -178,6 +204,14 @@ def build_message(previous, current):
           </h2>
 
           <table style="border-collapse:collapse;width:100%;">
+            <thead>
+              <tr>
+                <th style="padding:7px 8px;text-align:right;font-size:11px;color:#999999;">순위</th>
+                <th style="padding:7px 8px;font-size:11px;color:#999999;">변동</th>
+                <th style="padding:7px 8px;font-size:11px;color:#999999;"></th>
+                <th style="padding:7px 8px;text-align:left;font-size:11px;color:#999999;">곡 / 아티스트 / 앨범</th>
+              </tr>
+            </thead>
             <tbody>
               {"".join(rows)}
             </tbody>
