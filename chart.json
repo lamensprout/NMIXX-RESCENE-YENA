@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-08T17:13:35.692019+00:00",
+  "updated_at": "2026-10-08T18:14:41.105875+00:00",
   "songs": [
     {
       "rank": 1,
@@ -421,8 +421,8 @@
       "artist": "조째즈",
       "album": "모르시나요",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/116/85/729/11685729_20250106160640_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 48,
-      "change": 1
+      "previous_rank": 47,
+      "change": 0
     },
     {
       "rank": 48,
@@ -430,8 +430,8 @@
       "artist": "잔나비",
       "album": "전설",
       "album_image": "https://cdnimg.melon.co.kr/cm/album/images/102/60/858/10260858_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 47,
-      "change": -1
+      "previous_rank": 48,
+      "change": 0
     },
     {
       "rank": 49,
@@ -601,8 +601,8 @@
       "artist": "멜로망스",
       "album": "사랑인가 봐 (사내맞선 OST 스페셜 트랙)",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/108/71/162/10871162_20220217162422_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 68,
-      "change": 1
+      "previous_rank": 67,
+      "change": 0
     },
     {
       "rank": 68,
@@ -610,8 +610,8 @@
       "artist": "Lady Gaga",
       "album": "Die With A Smile",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/115/68/901/11568901_20240816130602_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 67,
-      "change": -1
+      "previous_rank": 68,
+      "change": 0
     },
     {
       "rank": 69,
