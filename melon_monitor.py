@@ -414,17 +414,10 @@ def main():
                 f'({change["direction"]} {change["difference"]}단계)'
             )
 
-        from datetime import datetime, timezone, timedelta
-
-        kst = timezone(timedelta(hours=9))
-        current_hour = datetime.now(kst).hour
-
-        if 0 <= current_hour < 8:
-            print("00:00~07:59 알림 금지 시간입니다. 메일을 보내지 않습니다.")
-        else:
-            send_notifications(previous, current)
+        send_notifications(previous, current)
     else:
-        print("순위 변동 없음.")
+        print("순위 변동 없음. 현재 차트를 메일로 전송합니다.")
+        send_notifications(previous, current)
 
     save_state(current)
 
