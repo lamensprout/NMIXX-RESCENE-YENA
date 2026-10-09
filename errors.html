@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>오류 게시판 | Melonitor</title>
+  <link rel="stylesheet" href="style.css?v=20261009-4">
+</head>
+<body>
+  <main class="container">
+    <header class="hero">
+      <div>
+        <a class="brand-link" href="/" aria-label="Melonitor 첫 화면으로"><h1>🍈 Melonitor</h1></a>
+        <p>이용 중 발견한 문제를 알려주세요.</p>
+      </div>
+      <div class="hero-tools">
+        <button id="themeToggle" class="theme-toggle" type="button" aria-label="다크 모드로 전환" title="다크 모드로 전환">🌙</button>
+      </div>
+    </header>
+
+    <section class="error-board-page" aria-labelledby="errorBoardTitle">
+      <div class="board-heading">
+        <div>
+          <h2 id="errorBoardTitle">오류 게시판</h2>
+          <p>검색 결과, 곡 순위, 앨범 정보 등 Melonitor에서 발견한 오류를 제보하는 공간입니다.</p>
+        </div>
+        <span class="board-status">Google Forms 접수 예정</span>
+      </div>
+
+      <section class="error-list-shell" aria-label="제보 목록 안내">
+        <div class="error-empty-icon" aria-hidden="true">📋</div>
+        <h3>제보 목록 연동 준비 중이에요</h3>
+        <p>제보는 Google Forms로 접수하고, 응답 목록을 이곳에 공개하려면 별도 연결이 필요해요. 현재는 공개 제보 목록이 아직 연결되지 않았습니다.</p>
+      </section>
+
+      <section class="report-form-card" aria-labelledby="reportFormTitle">
+        <div class="report-form-icon" aria-hidden="true">📝</div>
+        <div class="report-form-copy">
+          <h3 id="reportFormTitle">오류 제보하기</h3>
+          <p>어떤 화면에서 어떤 문제가 있었는지 적어주면 확인하고 수정하는 데 도움이 됩니다.</p>
+        </div>
+        <button class="report-form-button" type="button" disabled>구글 폼 링크 연결 대기 중</button>
+      </section>
+
+      <p class="board-footnote">Google Form을 만든 뒤 응답자용 링크를 연결하면 위 버튼으로 바로 이동할 수 있어요. 실제 제보 내역을 이 게시판에 표시하려면 Google Sheets 또는 별도 연동도 설정해야 합니다.</p>
+      <a class="board-back-link" href="/">← 차트로 돌아가기</a>
+    </section>
+  </main>
+  <script src="theme.js?v=2"></script>
+</body>
+</html>
