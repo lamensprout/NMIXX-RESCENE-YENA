@@ -4,9 +4,13 @@ const results = document.getElementById("results");
 const summary = document.getElementById("summary");
 const updated = document.getElementById("updated");
 const popular = document.getElementById("popular");
+const popularNote = document.getElementById("popularNote");
+const homeLink = document.getElementById("homeLink");
 const template = document.getElementById("songTemplate");
 
 let songs = [];
+let popularSearches = {};
+let popularityTimer = null;
 
 const artistAliases = {
   "NMIXX": ["엔믹스", "믹스"],
@@ -226,6 +230,91 @@ function matchesArtist(artist, query) {
   });
 }
 
+function loadPopularSearches() {
+  try {
+    const saved = JSON.parse(localStorage.getItem("melonitor-popular-searches") || "{}");
+    popularSearches = saved && typeof saved === "object" && !Array.isArray(saved) ? saved : {};
+  } catch (error) {
+    popularSearches = {};
+  }
+}
+
+function savePopularSearches() {
+  try {
+    localStorage.setItem("melonitor-popular-searches", JSON.stringify(popularSearches));
+  } catch (error) {
+    // 저장이 차단된 브라우저에서는 현재 화면에서만 순위를 표시합니다.
+  }
+}
+
+function renderPopularSearches() {
+  if (!popular) return;
+  popular.innerHTML = "";
+
+  const currentArtists = new Set(songs.map(function(song) { return song.artist; }));
+  const ranked = Object.entries(popularSearches)
+    .filter(function(entry) {
+      return currentArtists.has(entry[0]) && Number(entry[1]) > 0;
+    })
+    .sort(function(a, b) {
+      return Number(b[1]) - Number(a[1]) || a[0].localeCompare(b[0], "ko");
+    })
+    .slice(0, 8);
+
+  if (!ranked.length) {
+    if (popularNote) {
+      popularNote.textContent = "검색을 시작하면 이 브라우저에서 많이 검색한 아티스트 순으로 표시됩니다.";
+    }
+    return;
+  }
+
+  if (popularNote) {
+    popularNote.textContent = "이 브라우저에서 검색한 횟수 기준입니다.";
+  }
+
+  ranked.forEach(function(entry, index) {
+    const artist = entry[0];
+    const button = document.createElement("button");
+    button.className = "chip popular-chip";
+    button.type = "button";
+    button.textContent = (index + 1) + ". " + artist;
+    button.title = "검색 횟수: " + entry[1];
+
+    button.addEventListener("click", function() {
+      input.value = artist;
+      search(artist);
+      recordPopularSearch(artist);
+    });
+
+    popular.appendChild(button);
+  });
+}
+
+function recordPopularSearch(query) {
+  const q = String(query || "").trim();
+  if (normalize(q).length < 2) return;
+
+  const matchedSong = songs.find(function(song) {
+    return matchesArtist(song.artist, q);
+  });
+
+  if (!matchedSong) return;
+
+  const canonicalArtist = matchedSong.artist;
+  popularSearches[canonicalArtist] = (Number(popularSearches[canonicalArtist]) || 0) + 1;
+  savePopularSearches();
+  renderPopularSearches();
+}
+
+function schedulePopularSearch(query) {
+  if (popularityTimer) clearTimeout(popularityTimer);
+  const queryToRecord = query;
+
+  popularityTimer = setTimeout(function() {
+    recordPopularSearch(queryToRecord);
+  }, 900);
+}
+
 function formatChange(change) {
   if (change > 0) {
     return { text: "▲ " + change, className: "up" };
@@ -298,13 +387,25 @@ function search(query) {
 
 input.addEventListener("input", function() {
   search(input.value);
+  schedulePopularSearch(input.value);
 });
 
 clearBtn.addEventListener("click", function() {
+  if (popularityTimer) clearTimeout(popularityTimer);
   input.value = "";
   search("");
   input.focus();
 });
+
+if (homeLink) {
+  homeLink.addEventListener("click", function(event) {
+    event.preventDefault();
+    if (popularityTimer) clearTimeout(popularityTimer);
+    input.value = "";
+    search("");
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+}
 
 async function load() {
   try {
@@ -325,38 +426,7 @@ async function load() {
       updated.textContent = "업데이트 정보를 확인할 수 없습니다.";
     }
 
-    const artistCounts = new Map();
-
-    songs.forEach(function(song) {
-      artistCounts.set(
-        song.artist,
-        (artistCounts.get(song.artist) || 0) + 1
-      );
-    });
-
-    const topArtists = Array.from(artistCounts.entries())
-      .sort(function(a, b) {
-        return b[1] - a[1];
-      })
-      .slice(0, 8);
-
-    popular.innerHTML = "";
-
-    topArtists.forEach(function(entry) {
-      const artist = entry[0];
-      const button = document.createElement("button");
-
-      button.className = "chip";
-      button.type = "button";
-      button.textContent = artist;
-
-      button.addEventListener("click", function() {
-        input.value = artist;
-        search(artist);
-      });
-
-      popular.appendChild(button);
-    });
+    renderPopularSearches();
 
     summary.textContent = "아티스트를 검색해 주세요.";
   } catch (error) {
@@ -365,4 +435,6 @@ async function load() {
   }
 }
 
+loadPopularSearches();
+renderPopularSearches();
 load();
