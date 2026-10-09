@@ -278,3 +278,25 @@ body.dark-mode .theme-toggle {
     flex-direction: column;
   }
 }
+
+
+/* Extend the selected theme to the full document, including blank space below content. */
+html {
+  min-height: 100%;
+  background: #f7f7f9;
+}
+body {
+  min-height: 100vh;
+}
+html.dark-mode,
+html.dark-mode body,
+body.dark-mode {
+  background-color: #101318 !important;
+}
+html.dark-mode {
+  color: #edf0f5;
+  color-scheme: dark;
+}
+html:not(.dark-mode) {
+  color-scheme: light;
+}
