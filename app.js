@@ -189,7 +189,6 @@ function getSearchNames(artist) {
     names.push(name);
   });
 
-  // chart의 표시명이 예전 이름/새 이름 중 어느 쪽이든 alias 네트워크로 연결합니다.
   const knownForms = names.map(normalize);
   Object.entries(artistAliases).forEach(function(entry) {
     const key = normalize(entry[0]);
@@ -219,6 +218,91 @@ function getSearchNames(artist) {
   });
 
   return Array.from(new Set(names.filter(Boolean)));
+}
+
+// 이름 변경/별칭을 이용해 같은 아티스트인지 비교합니다.
+// 초성만 겹쳐서 서로 다른 아티스트가 합쳐지는 것을 막기 위해 초성은 사용하지 않습니다.
+function getArtistIdentityTokens(artist) {
+  const tokens = [normalize(artist)];
+  getParenthesizedNames(artist).forEach(function(name) {
+    tokens.push(normalize(name));
+  });
+  return tokens.filter(Boolean);
+}
+
+function areSameArtist(a, b) {
+  const aTokens = getArtistIdentityTokens(a);
+  const bTokens = getArtistIdentityTokens(b);
+  const knownForms = new Set(aTokens.concat(bTokens));
+
+  let changed = true;
+  while (changed) {
+    changed = false;
+
+    Object.entries(artistAliases).forEach(function(entry) {
+      const group = [entry[0]].concat(entry[1] || []).map(normalize).filter(Boolean);
+      const touchesKnownForm = group.some(function(name) {
+        return knownForms.has(name);
+      });
+
+      if (touchesKnownForm) {
+        group.forEach(function(name) {
+          if (!knownForms.has(name)) {
+            knownForms.add(name);
+            changed = true;
+          }
+        });
+      }
+    });
+  }
+
+  return aTokens.some(function(token) {
+    return knownForms.has(token) && bTokens.some(function(other) {
+      return knownForms.has(other) && token === other;
+    });
+  }) || aTokens.some(function(token) {
+    return bTokens.some(function(other) {
+      if (token === other) return true;
+      const aNames = getAliasClosure(token);
+      return aNames.has(other);
+    });
+  });
+}
+
+function getAliasClosure(value) {
+  const knownForms = new Set([normalize(value)]);
+  let changed = true;
+
+  while (changed) {
+    changed = false;
+    Object.entries(artistAliases).forEach(function(entry) {
+      const group = [entry[0]].concat(entry[1] || []).map(normalize).filter(Boolean);
+      if (group.some(function(name) { return knownForms.has(name); })) {
+        group.forEach(function(name) {
+          if (!knownForms.has(name)) {
+            knownForms.add(name);
+            changed = true;
+          }
+        });
+      }
+    });
+  }
+
+  return knownForms;
+}
+
+function getCanonicalChartArtist(artist) {
+  const chartArtists = [];
+  songs.forEach(function(song) {
+    if (song.artist && chartArtists.indexOf(song.artist) === -1) {
+      chartArtists.push(song.artist);
+    }
+  });
+
+  // 차트 순서대로 먼저 등장한 멜론 표기를 대표 이름으로 사용합니다.
+  return chartArtists.find(function(candidate) {
+    return areSameArtist(candidate, artist);
+  }) || artist;
 }
 
 function matchesArtist(artist, query) {
@@ -251,13 +335,29 @@ function renderPopularSearches() {
   if (!popular) return;
   popular.innerHTML = "";
 
-  const currentArtists = new Set(songs.map(function(song) { return song.artist; }));
-  const ranked = Object.entries(popularSearches)
-    .filter(function(entry) {
-      return currentArtists.has(entry[0]) && Number(entry[1]) > 0;
-    })
+  const canonicalCounts = new Map();
+
+  Object.entries(popularSearches).forEach(function(entry) {
+    const savedArtist = entry[0];
+    const count = Number(entry[1]) || 0;
+    if (count <= 0) return;
+
+    const canonicalArtist = getCanonicalChartArtist(savedArtist);
+    const existsInChart = songs.some(function(song) {
+      return song.artist && areSameArtist(song.artist, canonicalArtist);
+    });
+
+    if (!existsInChart) return;
+
+    canonicalCounts.set(
+      canonicalArtist,
+      (canonicalCounts.get(canonicalArtist) || 0) + count
+    );
+  });
+
+  const ranked = Array.from(canonicalCounts.entries())
     .sort(function(a, b) {
-      return Number(b[1]) - Number(a[1]) || a[0].localeCompare(b[0], "ko");
+      return b[1] - a[1] || a[0].localeCompare(b[0], "ko");
     })
     .slice(0, 8);
 
@@ -300,7 +400,7 @@ function recordPopularSearch(query) {
 
   if (!matchedSong) return;
 
-  const canonicalArtist = matchedSong.artist;
+  const canonicalArtist = getCanonicalChartArtist(matchedSong.artist);
   popularSearches[canonicalArtist] = (Number(popularSearches[canonicalArtist]) || 0) + 1;
   savePopularSearches();
   renderPopularSearches();
