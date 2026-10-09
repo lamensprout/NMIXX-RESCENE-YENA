@@ -27,7 +27,9 @@ const artistAliases = {
   "임영웅": ["영웅"],
   "Hearts2Hearts (하츠투하츠)": ["하츠투하츠", "하투하", "하투하츠", "H2H"],
   "도경수(D.O.)": ["도경수", "디오"],
-  "AKMU (악뮤)": ["악뮤", "악동뮤지션"],
+  "AKMU (악뮤)": ["악뮤", "악동뮤지션", "Akdong Musician", "AkdongMusician"],
+  "AKMU": ["악뮤", "악동뮤지션", "Akdong Musician"],
+  "악동뮤지션": ["AKMU", "악뮤", "Akdong Musician"],
   "PLAVE": ["플레이브", "플브"],
   "G-DRAGON": ["지드래곤", "지디", "권지용", "GD"],
   "볼빨간사춘기": ["볼사", "볼빨간", "BOL4"],
@@ -55,7 +57,76 @@ const artistAliases = {
   "NewJeans": ["뉴진스", "뉴진"],
   "프로미스나인": ["프나", "프미나"],
   "KISS OF LIFE": ["키스 오브 라이프", "키스오브라이프", "키오프", "KIOF"],
-  "BTOB": ["비투비"]
+  "BTOB": ["비투비"],
+
+  // 공식 그룹명 변경/개명 이력 검색
+  "i-dle": ["아이들", "(여자)아이들", "여자아이들", "(G)I-DLE", "G-I-DLE", "GIDLE", "여자 아이들"],
+  "아이들": ["i-dle", "(여자)아이들", "여자아이들", "(G)I-DLE", "G-I-DLE", "GIDLE"],
+  "(여자)아이들": ["i-dle", "아이들", "여자아이들", "(G)I-DLE", "G-I-DLE", "GIDLE"],
+  "여자아이들": ["i-dle", "아이들", "(여자)아이들", "(G)I-DLE", "G-I-DLE", "GIDLE"],
+  "(G)I-DLE": ["i-dle", "아이들", "(여자)아이들", "여자아이들", "GIDLE", "G-I-DLE"],
+  "GIDLE": ["i-dle", "아이들", "(여자)아이들", "여자아이들", "(G)I-DLE"],
+
+  "HIGHLIGHT": ["하이라이트", "BEAST", "비스트"],
+  "하이라이트": ["HIGHLIGHT", "BEAST", "비스트"],
+  "BEAST": ["HIGHLIGHT", "하이라이트", "비스트"],
+  "비스트": ["HIGHLIGHT", "하이라이트", "BEAST"],
+
+  "Dreamcatcher": ["드림캐쳐", "MINX", "밍스", "Dream Catcher"],
+  "드림캐쳐": ["Dreamcatcher", "MINX", "밍스"],
+  "MINX": ["Dreamcatcher", "드림캐쳐", "밍스"],
+
+  "DKZ": ["디케이지", "DONGKIZ", "동키즈"],
+  "디케이지": ["DKZ", "DONGKIZ", "동키즈"],
+  "DONGKIZ": ["DKZ", "디케이지", "동키즈"],
+  "동키즈": ["DKZ", "디케이지", "DONGKIZ"],
+
+  "TO1": ["티오원", "TOO", "티오오"],
+  "티오원": ["TO1", "TOO", "티오오"],
+  "TOO": ["TO1", "티오원", "티오오"],
+
+  "ALICE": ["앨리스", "ELRIS", "엘리스"],
+  "앨리스": ["ALICE", "ELRIS", "엘리스"],
+  "ELRIS": ["ALICE", "앨리스", "엘리스"],
+
+  "BBGIRLS": ["BB GIRLS", "비비걸스", "Brave Girls", "브레이브걸스"],
+  "BB GIRLS": ["BBGIRLS", "비비걸스", "Brave Girls", "브레이브걸스"],
+  "Brave Girls": ["BBGIRLS", "BB GIRLS", "비비걸스", "브레이브걸스"],
+  "브레이브걸스": ["BBGIRLS", "BB GIRLS", "Brave Girls", "비비걸스"],
+
+  "ONEWE": ["원위", "M.A.S 0094", "MAS", "마스"],
+  "원위": ["ONEWE", "M.A.S 0094", "MAS", "마스"],
+  "M.A.S 0094": ["ONEWE", "원위", "MAS", "마스"],
+  "MAS": ["ONEWE", "원위", "M.A.S 0094", "마스"],
+
+  "DMTN": ["달마시안", "Dalmatian"],
+  "Dalmatian": ["DMTN", "달마시안"],
+  "달마시안": ["DMTN", "Dalmatian"],
+
+  "The New Six": ["TNX", "더뉴식스"],
+  "TNX": ["The New Six", "더뉴식스"],
+  "더뉴식스": ["The New Six", "TNX"],
+
+  "GIRLSET": ["VCHA", "걸셋"],
+  "VCHA": ["GIRLSET", "걸셋"],
+  "걸셋": ["GIRLSET", "VCHA"],
+
+  "The KingDom": ["KINGDOM", "더킹덤"],
+  "KINGDOM": ["The KingDom", "더킹덤"],
+  "더킹덤": ["The KingDom", "KINGDOM"],
+
+  "SEVENUS": ["세븐어스", "MASC", "마스크"],
+  "세븐어스": ["SEVENUS", "MASC", "마스크"],
+  "MASC": ["SEVENUS", "세븐어스", "마스크"],
+
+  "XENO-T": ["제노티", "TOPPDOGG", "탑독"],
+  "제노티": ["XENO-T", "TOPPDOGG", "탑독"],
+  "TOPPDOGG": ["XENO-T", "제노티", "탑독"],
+
+  "Blackswan": ["블랙스완", "Rania", "BP Rania", "라니아"],
+  "블랙스완": ["Blackswan", "Rania", "BP Rania", "라니아"],
+  "Rania": ["Blackswan", "블랙스완", "BP Rania", "라니아"],
+  "BP Rania": ["Blackswan", "블랙스완", "Rania", "라니아"]
 };
 
 function normalize(value) {
@@ -114,15 +185,26 @@ function getSearchNames(artist) {
     names.push(name);
   });
 
-  // 멜론 데이터의 공백이 일반 공백/줄바꿈 불가 공백(NBSP)으로 달라도 별칭을 찾습니다.
-  const aliasEntry = Object.entries(artistAliases).find(function(entry) {
-    return normalize(entry[0]) === normalize(artist);
+  // chart의 표시명이 예전 이름/새 이름 중 어느 쪽이든 alias 네트워크로 연결합니다.
+  const knownForms = names.map(normalize);
+  Object.entries(artistAliases).forEach(function(entry) {
+    const key = normalize(entry[0]);
+    const aliases = entry[1] || [];
+    const aliasForms = aliases.map(normalize);
+
+    const matches = knownForms.some(function(form) {
+      return form && (form === key || aliasForms.indexOf(form) !== -1);
+    });
+
+    if (matches) {
+      names.push(entry[0]);
+      names.push.apply(names, aliases);
+    }
   });
-  names.push.apply(names, aliasEntry ? aliasEntry[1] : []);
+
   names.push.apply(names, getEnglishAcronyms(artist));
 
   const snapshot = names.slice();
-
   snapshot.forEach(function(name) {
     const initials = getKoreanInitials(name);
     if (initials) names.push(initials);
