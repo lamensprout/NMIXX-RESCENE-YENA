@@ -25,7 +25,7 @@ const artistAliases = {
   "아이유": ["아이유", "IU"],
   "화사 (HWASA)": ["화사"],
   "임영웅": ["영웅"],
-  "Hearts2Hearts (하츠투하츠)": ["하츠투하츠", "하투하"],
+  "Hearts2Hearts (하츠투하츠)": ["하츠투하츠", "하투하", "하투하츠", "H2H"],
   "도경수(D.O.)": ["도경수", "디오"],
   "AKMU (악뮤)": ["악뮤", "악동뮤지션"],
   "PLAVE": ["플레이브", "플브"],
@@ -114,7 +114,11 @@ function getSearchNames(artist) {
     names.push(name);
   });
 
-  names.push.apply(names, artistAliases[artist] || []);
+  // 멜론 데이터의 공백이 일반 공백/줄바꿈 불가 공백(NBSP)으로 달라도 별칭을 찾습니다.
+  const aliasEntry = Object.entries(artistAliases).find(function(entry) {
+    return normalize(entry[0]) === normalize(artist);
+  });
+  names.push.apply(names, aliasEntry ? aliasEntry[1] : []);
   names.push.apply(names, getEnglishAcronyms(artist));
 
   const snapshot = names.slice();
