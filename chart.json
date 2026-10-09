@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-09T20:11:29.394483+00:00",
+  "updated_at": "2026-10-09T21:12:31.861665+00:00",
   "songs": [
     {
       "rank": 1,
@@ -309,30 +309,30 @@
     },
     {
       "rank": 35,
-      "title": "HOME SWEET HOME (feat. 태양, 대성)",
-      "artist": "G-DRAGON",
-      "album": "HOME SWEET HOME (feat. 태양, 대성)",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/116/47/670/11647670_20241121150855_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 35,
-      "change": 0
-    },
-    {
-      "rank": 36,
       "title": "봄 내음보다 너를",
       "artist": "김나영",
       "album": "봄 내음보다 너를",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/105/92/109/10592109_20210413181735_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 36,
-      "change": 0
+      "change": 1
     },
     {
-      "rank": 37,
+      "rank": 36,
       "title": "Blue Valentine",
       "artist": "NMIXX",
       "album": "Blue Valentine",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/121/49/391/12149391_20251013150421_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 37,
-      "change": 0
+      "change": 1
+    },
+    {
+      "rank": 37,
+      "title": "HOME SWEET HOME (feat. 태양, 대성)",
+      "artist": "G-DRAGON",
+      "album": "HOME SWEET HOME (feat. 태양, 대성)",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/116/47/670/11647670_20241121150855_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 35,
+      "change": -2
     },
     {
       "rank": 38,
@@ -565,8 +565,8 @@
       "artist": "DAY6 (데이식스)",
       "album": "Every DAY6 February",
       "album_image": "https://cdnimg.melon.co.kr/cm/album/images/100/36/099/10036099_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 64,
-      "change": 1
+      "previous_rank": 63,
+      "change": 0
     },
     {
       "rank": 64,
@@ -574,8 +574,8 @@
       "artist": "로제 (ROSÉ)",
       "album": "APT.",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/116/19/809/11619809_20241018103507_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 63,
-      "change": -1
+      "previous_rank": 64,
+      "change": 0
     },
     {
       "rank": 65,
@@ -646,8 +646,8 @@
       "artist": "TWS (투어스)",
       "album": "Sparkling Blue",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/113/91/902/11391902_20250922111638_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 73,
-      "change": 1
+      "previous_rank": 72,
+      "change": 0
     },
     {
       "rank": 73,
@@ -655,8 +655,8 @@
       "artist": "경서예지",
       "album": "다정히 내 이름을 부르면 (경서예지 x 전건호)",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/106/10/525/10610525_20210518143433_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 72,
-      "change": -1
+      "previous_rank": 73,
+      "change": 0
     },
     {
       "rank": 74,
