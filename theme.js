@@ -6,6 +6,7 @@
 
   function setTheme(theme) {
     const dark = theme === "dark";
+    document.documentElement.classList.toggle("dark-mode", dark);
     document.body.classList.toggle("dark-mode", dark);
     button.textContent = dark ? "☀️" : "🌙";
     button.setAttribute("aria-label", dark ? "라이트 모드로 전환" : "다크 모드로 전환");
