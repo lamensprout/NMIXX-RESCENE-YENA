@@ -10,7 +10,7 @@
   <main class="container">
     <header class="hero">
       <div>
-        <h1>🍈 Melon Artist Chart</h1>
+        <a id="homeLink" class="brand-link" href="./" aria-label="Melonitor 첫 화면으로"><h1>🍈 Melon Artist Chart</h1></a>
         <p>아티스트를 검색하면 현재 멜론 TOP100 순위를 보여드립니다.</p>
       </div>
       <div class="hero-tools">
@@ -25,7 +25,9 @@
         <input id="artistSearch" type="search" placeholder="예: NMIXX, 엔믹스, RESCENE, 리센느, 최예나" autocomplete="off">
         <button id="clearBtn" type="button">지우기</button>
       </div>
-      <div id="popular" class="chips"></div>
+      <h2 class="popular-heading">인기 검색어</h2>
+      <p id="popularNote" class="popular-note">검색을 시작하면 이 브라우저에서 많이 검색한 아티스트 순으로 표시됩니다.</p>
+      <div id="popular" class="chips" aria-label="인기 검색어 순위"></div>
     </section>
 
     <section>
@@ -47,7 +49,7 @@
     </article>
   </template>
 
-  <script src="app.js?v=20261009-8"></script>
+  <script src="app.js?v=20261009-9"></script>
   <script src="theme.js?v=2"></script>
 </body>
 </html>
