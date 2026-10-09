@@ -198,3 +198,73 @@ button {
     height: 48px;
   }
 }
+
+ 
+/* Theme toggle */
+.container { position: relative; }
+.hero-tools {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+}
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  padding: 0;
+  border: 1px solid #d9d9df;
+  border-radius: 50%;
+  background: #fff;
+  color: #202124;
+  font-size: 21px;
+  line-height: 1;
+  cursor: pointer;
+  transition: transform 120ms ease, background 160ms ease, border-color 160ms ease;
+}
+.theme-toggle:hover { transform: rotate(-8deg); }
+.theme-toggle:focus-visible { outline: 2px solid #00cd3b; outline-offset: 3px; }
+
+body.dark-mode {
+  color: #edf0f5;
+  background: #101318;
+}
+body.dark-mode .search,
+body.dark-mode .song,
+body.dark-mode .empty {
+  color: #edf0f5;
+  background: #191e25;
+  border-color: #303844;
+}
+body.dark-mode input,
+body.dark-mode button,
+body.dark-mode .chip {
+  color: #edf0f5;
+  background: #202731;
+  border-color: #394351;
+}
+body.dark-mode input::placeholder { color: #8e99a8; }
+body.dark-mode .hero p,
+body.dark-mode .updated,
+body.dark-mode .summary,
+body.dark-mode .artist {
+  color: #aab3c1;
+}
+body.dark-mode .album { color: #8792a1; }
+body.dark-mode .empty { color: #aab3c1; }
+body.dark-mode .album-image { background: #282f39; }
+body.dark-mode .theme-toggle {
+  color: #f5f0d4;
+  background: #202731;
+  border-color: #424c5a;
+}
+@media (max-width: 640px) {
+  .hero-tools {
+    margin-top: 12px;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+    align-items: center;
+  }
+}
