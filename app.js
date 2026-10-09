@@ -89,10 +89,10 @@ const artistAliases = {
   "앨리스": ["ALICE", "ELRIS", "엘리스"],
   "ELRIS": ["ALICE", "앨리스", "엘리스"],
 
-  "BBGIRLS": ["BB GIRLS", "비비걸스", "Brave Girls", "브레이브걸스"],
-  "BB GIRLS": ["BBGIRLS", "비비걸스", "Brave Girls", "브레이브걸스"],
-  "Brave Girls": ["BBGIRLS", "BB GIRLS", "비비걸스", "브레이브걸스"],
-  "브레이브걸스": ["BBGIRLS", "BB GIRLS", "Brave Girls", "비비걸스"],
+  "BBGIRLS": ["BB GIRLS", "비비걸스", "브브걸", "Brave Girls", "브레이브걸스"],
+  "BB GIRLS": ["BBGIRLS", "비비걸스", "브브걸", "Brave Girls", "브레이브걸스"],
+  "Brave Girls": ["BBGIRLS", "BB GIRLS", "비비걸스", "브브걸", "브레이브걸스"],
+  "브레이브걸스": ["BBGIRLS", "BB GIRLS", "Brave Girls", "비비걸스", "브브걸"],
 
   "ONEWE": ["원위", "M.A.S 0094", "MAS", "마스"],
   "원위": ["ONEWE", "M.A.S 0094", "MAS", "마스"],
