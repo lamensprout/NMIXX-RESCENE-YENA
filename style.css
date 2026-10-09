@@ -333,3 +333,178 @@ html:not(.dark-mode) {
 body.dark-mode .popular-note {
   color: #aab3c1;
 }
+
+
+/* Error board and report entry */
+.report-teaser {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 22px;
+  margin-top: 34px;
+  padding: 22px 24px;
+  border: 1px solid #e1e4e8;
+  border-radius: 16px;
+  background: #fff;
+}
+.report-teaser-copy { min-width: 0; }
+.report-kicker {
+  display: block;
+  margin-bottom: 6px;
+  color: #179b39;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: .12em;
+}
+.report-teaser h2 {
+  margin: 0;
+  font-size: 20px;
+}
+.report-teaser p {
+  margin: 7px 0 0;
+  color: #6c737f;
+  font-size: 13px;
+  line-height: 1.6;
+}
+.report-open-link {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 15px;
+  border: 1px solid #17a13c;
+  border-radius: 10px;
+  background: #17a13c;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: transform 120ms ease, background 120ms ease;
+}
+.report-open-link:hover { background: #11842f; transform: translateY(-1px); }
+.report-open-link:focus-visible,
+.board-back-link:focus-visible { outline: 2px solid #00cd3b; outline-offset: 3px; }
+
+.error-board-page { display: grid; gap: 18px; }
+.board-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 18px;
+  margin: 10px 0 2px;
+}
+.board-heading h2 { margin: 0; font-size: 27px; }
+.board-heading p { margin: 8px 0 0; color: #6c737f; line-height: 1.65; font-size: 14px; }
+.board-status {
+  display: inline-flex;
+  align-items: center;
+  flex: 0 0 auto;
+  padding: 7px 10px;
+  border: 1px solid #dcefe0;
+  border-radius: 999px;
+  background: #f1fbf3;
+  color: #187a32;
+  font-size: 12px;
+  font-weight: 700;
+}
+.error-list-shell,
+.report-form-card {
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  background: #fff;
+}
+.error-list-shell {
+  min-height: 190px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 28px;
+  text-align: center;
+}
+.error-empty-icon,
+.report-form-icon {
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 14px;
+  background: #f0f8f1;
+  font-size: 22px;
+}
+.error-list-shell h3 { margin: 13px 0 0; font-size: 16px; }
+.error-list-shell p {
+  max-width: 470px;
+  margin: 8px 0 0;
+  color: #737b87;
+  font-size: 13px;
+  line-height: 1.7;
+}
+.report-form-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 20px;
+}
+.report-form-icon { flex: 0 0 auto; }
+.report-form-copy { min-width: 0; flex: 1; }
+.report-form-copy h3 { margin: 0; font-size: 16px; }
+.report-form-copy p {
+  margin: 6px 0 0;
+  color: #737b87;
+  font-size: 13px;
+  line-height: 1.65;
+}
+.report-form-button {
+  min-height: 42px;
+  flex: 0 0 auto;
+  border: 1px solid #d4d8de;
+  border-radius: 10px;
+  padding: 0 14px;
+  background: #f1f3f5;
+  color: #7b828d;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: not-allowed;
+}
+.board-footnote {
+  margin: -6px 2px 0;
+  color: #818894;
+  font-size: 12px;
+  line-height: 1.7;
+}
+.board-back-link {
+  justify-self: start;
+  margin-top: 4px;
+  color: #2a773b;
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+}
+body.dark-mode .report-teaser,
+body.dark-mode .error-list-shell,
+body.dark-mode .report-form-card {
+  color: #edf0f5;
+  background: #191e25;
+  border-color: #303844;
+}
+body.dark-mode .report-teaser p,
+body.dark-mode .board-heading p,
+body.dark-mode .error-list-shell p,
+body.dark-mode .report-form-copy p,
+body.dark-mode .board-footnote { color: #aab3c1; }
+body.dark-mode .report-open-link { color: #fff; background: #168a35; border-color: #168a35; }
+body.dark-mode .report-status { border-color: #31563a; background: #1c3022; color: #a6e3b2; }
+body.dark-mode .board-status { border-color: #31563a; background: #1c3022; color: #a6e3b2; }
+body.dark-mode .error-empty-icon,
+body.dark-mode .report-form-icon { background: #24372a; }
+body.dark-mode .report-form-button { background: #252d37; color: #8f9aa8; border-color: #3a4553; }
+body.dark-mode .board-back-link { color: #8ed69e; }
+
+@media (max-width: 640px) {
+  .report-teaser { align-items: stretch; flex-direction: column; padding: 19px; gap: 16px; }
+  .report-open-link { justify-content: center; }
+  .board-heading { flex-direction: column; }
+  .report-form-card { align-items: stretch; flex-direction: column; padding: 18px; }
+  .report-form-button { min-height: 44px; }
+}
