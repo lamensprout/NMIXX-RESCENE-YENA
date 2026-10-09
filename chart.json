@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-09T18:14:12.114280+00:00",
+  "updated_at": "2026-10-09T19:11:25.798526+00:00",
   "songs": [
     {
       "rank": 1,
@@ -187,8 +187,8 @@
       "artist": "한로로",
       "album": "자몽살구클럽",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/119/82/233/11982233_20250801150859_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 22,
-      "change": 1
+      "previous_rank": 21,
+      "change": 0
     },
     {
       "rank": 22,
@@ -196,8 +196,8 @@
       "artist": "최유리",
       "album": "생각을 멈추다 보면",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/113/69/106/11369106_20231120180538_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 21,
-      "change": -1
+      "previous_rank": 22,
+      "change": 0
     },
     {
       "rank": 23,
@@ -471,19 +471,19 @@
     },
     {
       "rank": 53,
-      "title": "Golden",
-      "artist": "HUNTR/X",
-      "album": "KPop Demon Hunters (Soundtrack from the Netflix Film)",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/118/59/863/11859863_20250620104512_500.jpg/melon/resize/120/quality/80/optimize",
+      "title": "소나기",
+      "artist": "이클립스 (ECLIPSE)",
+      "album": "선재 업고 튀어 OST Part 1",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/114/59/325/11459325_20240405171054_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 54,
       "change": 1
     },
     {
       "rank": 54,
-      "title": "소나기",
-      "artist": "이클립스 (ECLIPSE)",
-      "album": "선재 업고 튀어 OST Part 1",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/114/59/325/11459325_20240405171054_500.jpg/melon/resize/120/quality/80/optimize",
+      "title": "Golden",
+      "artist": "HUNTR/X",
+      "album": "KPop Demon Hunters (Soundtrack from the Netflix Film)",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/118/59/863/11859863_20250620104512_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 53,
       "change": -1
     },
@@ -664,8 +664,8 @@
       "artist": "NewJeans",
       "album": "NewJeans 1st EP 'New Jeans'",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/110/11/565/11011565_20220801102637_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 75,
-      "change": 1
+      "previous_rank": 74,
+      "change": 0
     },
     {
       "rank": 75,
@@ -673,8 +673,8 @@
       "artist": "아이유",
       "album": "The Winning",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/114/04/142/11404142_20240220141548_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 74,
-      "change": -1
+      "previous_rank": 75,
+      "change": 0
     },
     {
       "rank": 76,
