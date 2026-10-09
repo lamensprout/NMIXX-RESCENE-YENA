@@ -366,3 +366,39 @@ async function load() {
 }
 
 load();
+// 라이트/다크 모드 전환 및 선택 저장
+const themeToggle = document.getElementById("themeToggle");
+
+function applyTheme(theme) {
+  const isDark = theme === "dark";
+  document.body.classList.toggle("dark-mode", isDark);
+
+  if (themeToggle) {
+    themeToggle.textContent = isDark ? "☀️" : "🌙";
+    themeToggle.setAttribute(
+      "aria-label",
+      isDark ? "라이트 모드로 전환" : "다크 모드로 전환"
+    );
+    themeToggle.title = isDark ? "라이트 모드로 전환" : "다크 모드로 전환";
+  }
+}
+
+let savedTheme = "light";
+try {
+  savedTheme = localStorage.getItem("melonitor-theme") || "light";
+} catch (error) {
+  savedTheme = "light";
+}
+applyTheme(savedTheme);
+
+if (themeToggle) {
+  themeToggle.addEventListener("click", function() {
+    const nextTheme = document.body.classList.contains("dark-mode") ? "light" : "dark";
+    applyTheme(nextTheme);
+    try {
+      localStorage.setItem("melonitor-theme", nextTheme);
+    } catch (error) {
+      // 저장이 차단된 환경에서는 현재 페이지에서만 전환합니다.
+    }
+  });
+}
