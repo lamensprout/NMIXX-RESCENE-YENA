@@ -497,15 +497,6 @@ clearBtn.addEventListener("click", function() {
   input.focus();
 });
 
-if (homeLink) {
-  homeLink.addEventListener("click", function(event) {
-    event.preventDefault();
-    if (popularityTimer) clearTimeout(popularityTimer);
-    input.value = "";
-    search("");
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  });
-}
 
 async function load() {
   try {
