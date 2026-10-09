@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-09T17:11:56.879238+00:00",
+  "updated_at": "2026-10-09T18:14:12.114280+00:00",
   "songs": [
     {
       "rank": 1,
@@ -133,8 +133,8 @@
       "artist": "YENA (최예나)",
       "album": "LOVE CATCHER",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/129/08/035/12908035_20260309142026_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 16,
-      "change": 1
+      "previous_rank": 15,
+      "change": 0
     },
     {
       "rank": 16,
@@ -142,8 +142,8 @@
       "artist": "화사 (HWASA)",
       "album": "Good Goodbye",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/121/60/000/12160000_20251014164646_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 15,
-      "change": -1
+      "previous_rank": 16,
+      "change": 0
     },
     {
       "rank": 17,
@@ -183,19 +183,19 @@
     },
     {
       "rank": 21,
-      "title": "생각을 멈추다 보면",
-      "artist": "최유리",
-      "album": "생각을 멈추다 보면",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/113/69/106/11369106_20231120180538_500.jpg/melon/resize/120/quality/80/optimize",
+      "title": "0+0",
+      "artist": "한로로",
+      "album": "자몽살구클럽",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/119/82/233/11982233_20250801150859_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 22,
       "change": 1
     },
     {
       "rank": 22,
-      "title": "0+0",
-      "artist": "한로로",
-      "album": "자몽살구클럽",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/119/82/233/11982233_20250801150859_500.jpg/melon/resize/120/quality/80/optimize",
+      "title": "생각을 멈추다 보면",
+      "artist": "최유리",
+      "album": "생각을 멈추다 보면",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/113/69/106/11369106_20231120180538_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 21,
       "change": -1
     },
@@ -471,19 +471,19 @@
     },
     {
       "rank": 53,
-      "title": "소나기",
-      "artist": "이클립스 (ECLIPSE)",
-      "album": "선재 업고 튀어 OST Part 1",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/114/59/325/11459325_20240405171054_500.jpg/melon/resize/120/quality/80/optimize",
+      "title": "Golden",
+      "artist": "HUNTR/X",
+      "album": "KPop Demon Hunters (Soundtrack from the Netflix Film)",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/118/59/863/11859863_20250620104512_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 54,
       "change": 1
     },
     {
       "rank": 54,
-      "title": "Golden",
-      "artist": "HUNTR/X",
-      "album": "KPop Demon Hunters (Soundtrack from the Netflix Film)",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/118/59/863/11859863_20250620104512_500.jpg/melon/resize/120/quality/80/optimize",
+      "title": "소나기",
+      "artist": "이클립스 (ECLIPSE)",
+      "album": "선재 업고 튀어 OST Part 1",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/114/59/325/11459325_20240405171054_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 53,
       "change": -1
     },
@@ -660,21 +660,21 @@
     },
     {
       "rank": 74,
-      "title": "Love wins all",
-      "artist": "아이유",
-      "album": "The Winning",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/114/04/142/11404142_20240220141548_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 74,
-      "change": 0
-    },
-    {
-      "rank": 75,
       "title": "Hype Boy",
       "artist": "NewJeans",
       "album": "NewJeans 1st EP 'New Jeans'",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/110/11/565/11011565_20220801102637_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 75,
-      "change": 0
+      "change": 1
+    },
+    {
+      "rank": 75,
+      "title": "Love wins all",
+      "artist": "아이유",
+      "album": "The Winning",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/114/04/142/11404142_20240220141548_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 74,
+      "change": -1
     },
     {
       "rank": 76,
