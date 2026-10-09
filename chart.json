@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-09T21:12:31.861665+00:00",
+  "updated_at": "2026-10-09T22:12:07.250338+00:00",
   "songs": [
     {
       "rank": 1,
@@ -309,21 +309,21 @@
     },
     {
       "rank": 35,
-      "title": "봄 내음보다 너를",
-      "artist": "김나영",
-      "album": "봄 내음보다 너를",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/105/92/109/10592109_20210413181735_500.jpg/melon/resize/120/quality/80/optimize",
+      "title": "Blue Valentine",
+      "artist": "NMIXX",
+      "album": "Blue Valentine",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/121/49/391/12149391_20251013150421_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 36,
       "change": 1
     },
     {
       "rank": 36,
-      "title": "Blue Valentine",
-      "artist": "NMIXX",
-      "album": "Blue Valentine",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/121/49/391/12149391_20251013150421_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 37,
-      "change": 1
+      "title": "봄 내음보다 너를",
+      "artist": "김나영",
+      "album": "봄 내음보다 너를",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/105/92/109/10592109_20210413181735_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 35,
+      "change": -1
     },
     {
       "rank": 37,
@@ -331,8 +331,8 @@
       "artist": "G-DRAGON",
       "album": "HOME SWEET HOME (feat. 태양, 대성)",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/116/47/670/11647670_20241121150855_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 35,
-      "change": -2
+      "previous_rank": 37,
+      "change": 0
     },
     {
       "rank": 38,
