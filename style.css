@@ -268,3 +268,13 @@ body.dark-mode .theme-toggle {
     align-items: center;
   }
 }
+
+/* Keep the theme control aligned with the upper-right corner of the header. */
+.hero { align-items: flex-start; }
+@media (max-width: 640px) {
+  .hero-tools {
+    margin-top: 12px;
+    align-items: flex-end;
+    flex-direction: column;
+  }
+}
