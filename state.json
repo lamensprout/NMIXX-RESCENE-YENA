@@ -18,7 +18,7 @@
     "artist": "RESCENE (리센느)",
     "album": "Pretty Girl - Special Single",
     "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/137/88/545/13788545_20260707111659_500.jpg/melon/resize/120/quality/80/optimize",
-    "rank": 5
+    "rank": 4
   },
   "캐치 캐치|||YENA (최예나)": {
     "title": "캐치 캐치",
@@ -34,25 +34,25 @@
     "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/121/49/391/12149391_20251013150421_500.jpg/melon/resize/120/quality/80/optimize",
     "rank": 38
   },
-  "Heavy Serenade|||NMIXX": {
-    "title": "Heavy Serenade",
-    "artist": "NMIXX",
-    "album": "Heavy Serenade",
-    "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/133/57/541/13357541_20260511133217_500.jpg/melon/resize/120/quality/80/optimize",
-    "rank": 45
-  },
   "Runaway|||RESCENE (리센느)": {
     "title": "Runaway",
     "artist": "RESCENE (리센느)",
     "album": "Runaway",
     "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/133/12/413/13312413_20260406143448_500.jpg/melon/resize/120/quality/80/optimize",
-    "rank": 46
+    "rank": 40
+  },
+  "Heavy Serenade|||NMIXX": {
+    "title": "Heavy Serenade",
+    "artist": "NMIXX",
+    "album": "Heavy Serenade",
+    "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/133/57/541/13357541_20260511133217_500.jpg/melon/resize/120/quality/80/optimize",
+    "rank": 47
   },
   "Pinball|||RESCENE (리센느)": {
     "title": "Pinball",
     "artist": "RESCENE (리센느)",
     "album": "SCENEDROME",
     "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/115/75/849/11575849_20240826152240_500.jpg/melon/resize/120/quality/80/optimize",
-    "rank": 90
+    "rank": 87
   }
 }
