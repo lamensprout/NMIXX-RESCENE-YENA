@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-10T20:10:27.719535+00:00",
+  "updated_at": "2026-10-10T21:10:39.741759+00:00",
   "songs": [
     {
       "rank": 1,
@@ -493,8 +493,8 @@
       "artist": "RESCENE (리센느)",
       "album": "Runaway",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/133/12/413/13312413_20260406143448_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 56,
-      "change": 1
+      "previous_rank": 55,
+      "change": 0
     },
     {
       "rank": 56,
@@ -502,8 +502,8 @@
       "artist": "aespa",
       "album": "Whiplash - The 5th Mini Album",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/116/20/540/11620540_20241018183208_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 55,
-      "change": -1
+      "previous_rank": 56,
+      "change": 0
     },
     {
       "rank": 57,
@@ -633,21 +633,21 @@
     },
     {
       "rank": 71,
-      "title": "Welcome to the Show",
-      "artist": "DAY6 (데이식스)",
-      "album": "Fourever",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/114/44/397/11444397_20240318115810_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 71,
-      "change": 0
-    },
-    {
-      "rank": 72,
       "title": "Die With A Smile",
       "artist": "Lady Gaga",
       "album": "Die With A Smile",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/115/68/901/11568901_20240816130602_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 72,
-      "change": 0
+      "change": 1
+    },
+    {
+      "rank": 72,
+      "title": "Welcome to the Show",
+      "artist": "DAY6 (데이식스)",
+      "album": "Fourever",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/114/44/397/11444397_20240318115810_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 71,
+      "change": -1
     },
     {
       "rank": 73,
