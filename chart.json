@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-10T21:10:39.741759+00:00",
+  "updated_at": "2026-10-10T22:10:39.009613+00:00",
   "songs": [
     {
       "rank": 1,
@@ -354,21 +354,21 @@
     },
     {
       "rank": 40,
-      "title": "천상연",
-      "artist": "이창섭",
-      "album": "천상연 (웹툰 '선녀외전' X 이창섭 (LEE CHANGSUB))",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/114/21/941/11421941_20240220105008_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 40,
-      "change": 0
-    },
-    {
-      "rank": 41,
       "title": "BANG BANG",
       "artist": "IVE (아이브)",
       "album": "REVIVE+",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/128/45/274/12845274_20260223113048_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 41,
-      "change": 0
+      "change": 1
+    },
+    {
+      "rank": 41,
+      "title": "천상연",
+      "artist": "이창섭",
+      "album": "천상연 (웹툰 '선녀외전' X 이창섭 (LEE CHANGSUB))",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/114/21/941/11421941_20240220105008_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 40,
+      "change": -1
     },
     {
       "rank": 42,
@@ -408,21 +408,21 @@
     },
     {
       "rank": 46,
-      "title": "모르시나요(PROD.로코베리)",
-      "artist": "조째즈",
-      "album": "모르시나요",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/116/85/729/11685729_20250106160640_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 46,
-      "change": 0
-    },
-    {
-      "rank": 47,
       "title": "너에게 닿기를",
       "artist": "10CM",
       "album": "너에게 닿기를",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/117/30/411/11730411_20250306095101_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 47,
-      "change": 0
+      "change": 1
+    },
+    {
+      "rank": 47,
+      "title": "모르시나요(PROD.로코베리)",
+      "artist": "조째즈",
+      "album": "모르시나요",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/116/85/729/11685729_20250106160640_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 46,
+      "change": -1
     },
     {
       "rank": 48,
@@ -480,21 +480,21 @@
     },
     {
       "rank": 54,
-      "title": "소나기",
-      "artist": "이클립스 (ECLIPSE)",
-      "album": "선재 업고 튀어 OST Part 1",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/114/59/325/11459325_20240405171054_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 54,
-      "change": 0
-    },
-    {
-      "rank": 55,
       "title": "Runaway",
       "artist": "RESCENE (리센느)",
       "album": "Runaway",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/133/12/413/13312413_20260406143448_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 55,
-      "change": 0
+      "change": 1
+    },
+    {
+      "rank": 55,
+      "title": "소나기",
+      "artist": "이클립스 (ECLIPSE)",
+      "album": "선재 업고 튀어 OST Part 1",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/114/59/325/11459325_20240405171054_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 54,
+      "change": -1
     },
     {
       "rank": 56,
@@ -637,8 +637,8 @@
       "artist": "Lady Gaga",
       "album": "Die With A Smile",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/115/68/901/11568901_20240816130602_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 72,
-      "change": 1
+      "previous_rank": 71,
+      "change": 0
     },
     {
       "rank": 72,
@@ -646,8 +646,8 @@
       "artist": "DAY6 (데이식스)",
       "album": "Fourever",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/114/44/397/11444397_20240318115810_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 71,
-      "change": -1
+      "previous_rank": 72,
+      "change": 0
     },
     {
       "rank": 73,
