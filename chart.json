@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-10T17:10:19.734240+00:00",
+  "updated_at": "2026-10-10T18:12:35.030357+00:00",
   "songs": [
     {
       "rank": 1,
@@ -313,8 +313,8 @@
       "artist": "NMIXX",
       "album": "Blue Valentine",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/121/49/391/12149391_20251013150421_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 36,
-      "change": 1
+      "previous_rank": 35,
+      "change": 0
     },
     {
       "rank": 36,
@@ -322,8 +322,8 @@
       "artist": "G-DRAGON",
       "album": "HOME SWEET HOME (feat. 태양, 대성)",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/116/47/670/11647670_20241121150855_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 35,
-      "change": -1
+      "previous_rank": 36,
+      "change": 0
     },
     {
       "rank": 37,
@@ -354,21 +354,21 @@
     },
     {
       "rank": 40,
-      "title": "BANG BANG",
-      "artist": "IVE (아이브)",
-      "album": "REVIVE+",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/128/45/274/12845274_20260223113048_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 40,
-      "change": 0
-    },
-    {
-      "rank": 41,
       "title": "천상연",
       "artist": "이창섭",
       "album": "천상연 (웹툰 '선녀외전' X 이창섭 (LEE CHANGSUB))",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/114/21/941/11421941_20240220105008_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 41,
-      "change": 0
+      "change": 1
+    },
+    {
+      "rank": 41,
+      "title": "BANG BANG",
+      "artist": "IVE (아이브)",
+      "album": "REVIVE+",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/128/45/274/12845274_20260223113048_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 40,
+      "change": -1
     },
     {
       "rank": 42,
@@ -808,8 +808,8 @@
       "artist": "오반(OVAN)",
       "album": "교회오빠",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/117/32/247/11732247_20250313092931_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 91,
-      "change": 1
+      "previous_rank": 90,
+      "change": 0
     },
     {
       "rank": 91,
@@ -817,8 +817,8 @@
       "artist": "임영웅",
       "album": "IM HERO",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/109/23/444/10923444_20220502140600_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 90,
-      "change": -1
+      "previous_rank": 91,
+      "change": 0
     },
     {
       "rank": 92,
