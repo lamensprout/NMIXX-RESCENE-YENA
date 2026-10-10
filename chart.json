@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-10T19:11:30.538590+00:00",
+  "updated_at": "2026-10-10T20:10:27.719535+00:00",
   "songs": [
     {
       "rank": 1,
@@ -489,19 +489,19 @@
     },
     {
       "rank": 55,
-      "title": "Whiplash",
-      "artist": "aespa",
-      "album": "Whiplash - The 5th Mini Album",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/116/20/540/11620540_20241018183208_500.jpg/melon/resize/120/quality/80/optimize",
+      "title": "Runaway",
+      "artist": "RESCENE (리센느)",
+      "album": "Runaway",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/133/12/413/13312413_20260406143448_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 56,
       "change": 1
     },
     {
       "rank": 56,
-      "title": "Runaway",
-      "artist": "RESCENE (리센느)",
-      "album": "Runaway",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/133/12/413/13312413_20260406143448_500.jpg/melon/resize/120/quality/80/optimize",
+      "title": "Whiplash",
+      "artist": "aespa",
+      "album": "Whiplash - The 5th Mini Album",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/116/20/540/11620540_20241018183208_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 55,
       "change": -1
     },
@@ -790,8 +790,8 @@
       "artist": "RESCENE (리센느)",
       "album": "SCENEDROME",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/115/75/849/11575849_20240826152240_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 89,
-      "change": 1
+      "previous_rank": 88,
+      "change": 0
     },
     {
       "rank": 89,
@@ -799,8 +799,8 @@
       "artist": "PLAVE",
       "album": "이 밤을 빌려 말해요 (오늘 밤, 세계에서 이 사랑이 사라진다 해도 X PLAVE)",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/124/58/320/12458320_20251226151630_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 88,
-      "change": -1
+      "previous_rank": 89,
+      "change": 0
     },
     {
       "rank": 90,
@@ -808,8 +808,8 @@
       "artist": "임영웅",
       "album": "IM HERO",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/109/23/444/10923444_20220502140600_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 91,
-      "change": 1
+      "previous_rank": 90,
+      "change": 0
     },
     {
       "rank": 91,
@@ -817,8 +817,8 @@
       "artist": "오반(OVAN)",
       "album": "교회오빠",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/117/32/247/11732247_20250313092931_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 90,
-      "change": -1
+      "previous_rank": 91,
+      "change": 0
     },
     {
       "rank": 92,
