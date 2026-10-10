@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-10T06:15:24.504627+00:00",
+  "updated_at": "2026-10-10T07:12:19.526767+00:00",
   "songs": [
     {
       "rank": 1,
@@ -151,8 +151,8 @@
       "artist": "BIG Naughty (서동현)",
       "album": "노스탈지아",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/144/94/275/14494275_20260828144050_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 18,
-      "change": 1
+      "previous_rank": 17,
+      "change": 0
     },
     {
       "rank": 18,
@@ -160,8 +160,8 @@
       "artist": "Hearts2Hearts (하츠투하츠)",
       "album": "RUDE!",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/128/69/629/12869629_20260219143819_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 17,
-      "change": -1
+      "previous_rank": 18,
+      "change": 0
     },
     {
       "rank": 19,
@@ -174,28 +174,28 @@
     },
     {
       "rank": 20,
+      "title": "생각을 멈추다 보면",
+      "artist": "최유리",
+      "album": "생각을 멈추다 보면",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/113/69/106/11369106_20231120180538_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 22,
+      "change": 2
+    },
+    {
+      "rank": 21,
       "title": "Dear my crazy soulmate",
       "artist": "아이유",
       "album": "이 별로부터",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/145/35/765/14535765_20260909154035_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 20,
-      "change": 0
+      "change": -1
     },
     {
-      "rank": 21,
+      "rank": 22,
       "title": "0+0",
       "artist": "한로로",
       "album": "자몽살구클럽",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/119/82/233/11982233_20250801150859_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 22,
-      "change": 1
-    },
-    {
-      "rank": 22,
-      "title": "생각을 멈추다 보면",
-      "artist": "최유리",
-      "album": "생각을 멈추다 보면",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/113/69/106/11369106_20231120180538_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 21,
       "change": -1
     },
@@ -228,7 +228,7 @@
     },
     {
       "rank": 26,
-      "title": "소문의 낙원",
+      "title": "기쁨, 슬픔, 아름다운 마음",
       "artist": "AKMU (악뮤)",
       "album": "개화",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/133/12/398/13312398_20260406142544_500.jpg/melon/resize/120/quality/80/optimize",
@@ -237,7 +237,7 @@
     },
     {
       "rank": 27,
-      "title": "기쁨, 슬픔, 아름다운 마음",
+      "title": "소문의 낙원",
       "artist": "AKMU (악뮤)",
       "album": "개화",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/133/12/398/13312398_20260406142544_500.jpg/melon/resize/120/quality/80/optimize",
@@ -255,64 +255,64 @@
     },
     {
       "rank": 29,
+      "title": "너의 모든 순간",
+      "artist": "성시경",
+      "album": "별에서 온 그대 OST Part.7",
+      "album_image": "https://cdnimg.melon.co.kr/cm/album/images/022/32/505/2232505_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 31,
+      "change": 2
+    },
+    {
+      "rank": 30,
       "title": "Pop Off Pop Off",
       "artist": "KiiiKiii (키키)",
       "album": "WhyKiiiKiii",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/144/29/080/14429080_20260806154450_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 29,
-      "change": 0
+      "change": -1
     },
     {
-      "rank": 30,
+      "rank": 31,
       "title": "이 별로부터",
       "artist": "아이유",
       "album": "이 별로부터",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/145/35/765/14535765_20260909154035_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 31,
-      "change": 1
-    },
-    {
-      "rank": 31,
-      "title": "너의 모든 순간",
-      "artist": "성시경",
-      "album": "별에서 온 그대 OST Part.7",
-      "album_image": "https://cdnimg.melon.co.kr/cm/album/images/022/32/505/2232505_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 30,
       "change": -1
     },
     {
       "rank": 32,
-      "title": "CRASH",
-      "artist": "ALLDAY PROJECT",
-      "album": "CRASH",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/145/75/403/14575403_20260922162806_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 32,
-      "change": 0
-    },
-    {
-      "rank": 33,
-      "title": "어제보다 슬픈 오늘",
-      "artist": "우디 (Woody)",
-      "album": "어제보다 슬픈 오늘",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/117/56/010/11756010_20250331135525_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 36,
+      "title": "HOME SWEET HOME (feat. 태양, 대성)",
+      "artist": "G-DRAGON",
+      "album": "HOME SWEET HOME (feat. 태양, 대성)",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/116/47/670/11647670_20241121150855_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 35,
       "change": 3
     },
     {
-      "rank": 34,
+      "rank": 33,
       "title": "Lemon Tang",
       "artist": "Hearts2Hearts (하츠투하츠)",
       "album": "Lemon Tang - The 2nd Mini Album",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/137/50/428/13750428_20260619162731_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 34,
-      "change": 0
+      "change": 1
+    },
+    {
+      "rank": 34,
+      "title": "CRASH",
+      "artist": "ALLDAY PROJECT",
+      "album": "CRASH",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/145/75/403/14575403_20260922162806_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 32,
+      "change": -2
     },
     {
       "rank": 35,
-      "title": "HOME SWEET HOME (feat. 태양, 대성)",
-      "artist": "G-DRAGON",
-      "album": "HOME SWEET HOME (feat. 태양, 대성)",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/116/47/670/11647670_20241121150855_500.jpg/melon/resize/120/quality/80/optimize",
+      "title": "어제보다 슬픈 오늘",
+      "artist": "우디 (Woody)",
+      "album": "어제보다 슬픈 오늘",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/117/56/010/11756010_20250331135525_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 33,
       "change": -2
     },
@@ -322,8 +322,8 @@
       "artist": "로이킴",
       "album": "내게 사랑이 뭐냐고 물어본다면",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/116/16/312/11616312_20241015135802_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 35,
-      "change": -1
+      "previous_rank": 36,
+      "change": 0
     },
     {
       "rank": 37,
@@ -345,84 +345,84 @@
     },
     {
       "rank": 39,
-      "title": "사랑은 늘 도망가",
-      "artist": "임영웅",
-      "album": "신사와 아가씨 OST Part.2",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/107/35/654/10735654_20211008114339_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 39,
-      "change": 0
-    },
-    {
-      "rank": 40,
-      "title": "봄 내음보다 너를",
-      "artist": "김나영",
-      "album": "봄 내음보다 너를",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/105/92/109/10592109_20210413181735_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 40,
-      "change": 0
-    },
-    {
-      "rank": 41,
       "title": "BANG BANG",
       "artist": "IVE (아이브)",
       "album": "REVIVE+",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/128/45/274/12845274_20260223113048_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 41,
-      "change": 0
+      "change": 2
+    },
+    {
+      "rank": 40,
+      "title": "사랑은 늘 도망가",
+      "artist": "임영웅",
+      "album": "신사와 아가씨 OST Part.2",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/107/35/654/10735654_20211008114339_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 39,
+      "change": -1
+    },
+    {
+      "rank": 41,
+      "title": "봄 내음보다 너를",
+      "artist": "김나영",
+      "album": "봄 내음보다 너를",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/105/92/109/10592109_20210413181735_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 40,
+      "change": -1
     },
     {
       "rank": 42,
+      "title": "멸종위기사랑",
+      "artist": "이찬혁",
+      "album": "EROS",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/118/91/198/11891198_20250714145747_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 45,
+      "change": 3
+    },
+    {
+      "rank": 43,
       "title": "천상연",
       "artist": "이창섭",
       "album": "천상연 (웹툰 '선녀외전' X 이창섭 (LEE CHANGSUB))",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/114/21/941/11421941_20240220105008_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 42,
-      "change": 0
+      "change": -1
     },
     {
-      "rank": 43,
+      "rank": 44,
+      "title": "그대만 있다면 (여름날 우리 X 너드커넥션 (Nerd Connection))",
+      "artist": "너드커넥션 (Nerd Connection)",
+      "album": "그대만 있다면 (여름날 우리 X 너드커넥션 (Nerd Connection))",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/113/05/759/11305759_20230814111006_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 46,
+      "change": 2
+    },
+    {
+      "rank": 45,
       "title": "toxic till the end",
       "artist": "로제 (ROSÉ)",
       "album": "rosie",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/116/59/696/11659696_20241205141243_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 43,
-      "change": 0
+      "change": -2
     },
     {
-      "rank": 44,
+      "rank": 46,
+      "title": "한 페이지가 될 수 있게",
+      "artist": "DAY6 (데이식스)",
+      "album": "The Book of Us : Gravity",
+      "album_image": "https://cdnimg.melon.co.kr/cm/album/images/103/07/346/10307346_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 49,
+      "change": 3
+    },
+    {
+      "rank": 47,
       "title": "Runaway",
       "artist": "RESCENE (리센느)",
       "album": "Runaway",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/133/12/413/13312413_20260406143448_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 44,
-      "change": 0
-    },
-    {
-      "rank": 45,
-      "title": "멸종위기사랑",
-      "artist": "이찬혁",
-      "album": "EROS",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/118/91/198/11891198_20250714145747_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 47,
-      "change": 2
-    },
-    {
-      "rank": 46,
-      "title": "그대만 있다면 (여름날 우리 X 너드커넥션 (Nerd Connection))",
-      "artist": "너드커넥션 (Nerd Connection)",
-      "album": "그대만 있다면 (여름날 우리 X 너드커넥션 (Nerd Connection))",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/113/05/759/11305759_20230814111006_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 45,
-      "change": -1
-    },
-    {
-      "rank": 47,
-      "title": "Heavy Serenade",
-      "artist": "NMIXX",
-      "album": "Heavy Serenade",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/133/57/541/13357541_20260511133217_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 46,
-      "change": -1
+      "change": -3
     },
     {
       "rank": 48,
@@ -430,35 +430,35 @@
       "artist": "10CM",
       "album": "너에게 닿기를",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/117/30/411/11730411_20250306095101_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 49,
-      "change": 1
-    },
-    {
-      "rank": 49,
-      "title": "한 페이지가 될 수 있게",
-      "artist": "DAY6 (데이식스)",
-      "album": "The Book of Us : Gravity",
-      "album_image": "https://cdnimg.melon.co.kr/cm/album/images/103/07/346/10307346_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 48,
-      "change": -1
-    },
-    {
-      "rank": 50,
-      "title": "주저하는 연인들을 위해",
-      "artist": "잔나비",
-      "album": "전설",
-      "album_image": "https://cdnimg.melon.co.kr/cm/album/images/102/60/858/10260858_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 50,
       "change": 0
     },
     {
-      "rank": 51,
+      "rank": 49,
+      "title": "Heavy Serenade",
+      "artist": "NMIXX",
+      "album": "Heavy Serenade",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/133/57/541/13357541_20260511133217_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 47,
+      "change": -2
+    },
+    {
+      "rank": 50,
       "title": "모르시나요(PROD.로코베리)",
       "artist": "조째즈",
       "album": "모르시나요",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/116/85/729/11685729_20250106160640_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 51,
-      "change": 0
+      "change": 1
+    },
+    {
+      "rank": 51,
+      "title": "주저하는 연인들을 위해",
+      "artist": "잔나비",
+      "album": "전설",
+      "album_image": "https://cdnimg.melon.co.kr/cm/album/images/102/60/858/10260858_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 50,
+      "change": -1
     },
     {
       "rank": 52,
@@ -471,39 +471,39 @@
     },
     {
       "rank": 53,
-      "title": "오늘만 I LOVE YOU",
-      "artist": "BOYNEXTDOOR",
-      "album": "오늘만 I LOVE YOU",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/116/85/070/11685070_20250106111631_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 58,
-      "change": 5
-    },
-    {
-      "rank": 54,
       "title": "뛰어(JUMP)",
       "artist": "BLACKPINK",
       "album": "뛰어(JUMP)",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/118/90/480/11890480_20250711095238_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 55,
+      "previous_rank": 54,
       "change": 1
     },
     {
-      "rank": 55,
-      "title": "Golden",
-      "artist": "HUNTR/X",
-      "album": "KPop Demon Hunters (Soundtrack from the Netflix Film)",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/118/59/863/11859863_20250620104512_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 54,
+      "rank": 54,
+      "title": "오늘만 I LOVE YOU",
+      "artist": "BOYNEXTDOOR",
+      "album": "오늘만 I LOVE YOU",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/116/85/070/11685070_20250106111631_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 53,
       "change": -1
     },
     {
-      "rank": 56,
+      "rank": 55,
       "title": "청춘만화",
       "artist": "이무진",
       "album": "만화 (滿花)",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/116/08/521/11608521_20241004161722_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 53,
-      "change": -3
+      "previous_rank": 56,
+      "change": 1
+    },
+    {
+      "rank": 56,
+      "title": "Golden",
+      "artist": "HUNTR/X",
+      "album": "KPop Demon Hunters (Soundtrack from the Netflix Film)",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/118/59/863/11859863_20250620104512_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 55,
+      "change": -1
     },
     {
       "rank": 57,
@@ -511,8 +511,8 @@
       "artist": "aespa",
       "album": "Whiplash - The 5th Mini Album",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/116/20/540/11620540_20241018183208_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 56,
-      "change": -1
+      "previous_rank": 57,
+      "change": 0
     },
     {
       "rank": 58,
@@ -520,8 +520,8 @@
       "artist": "DAY6 (데이식스)",
       "album": "Fourever",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/114/44/397/11444397_20240318115810_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 59,
-      "change": 1
+      "previous_rank": 58,
+      "change": 0
     },
     {
       "rank": 59,
@@ -529,161 +529,161 @@
       "artist": "이클립스 (ECLIPSE)",
       "album": "선재 업고 튀어 OST Part 1",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/114/59/325/11459325_20240405171054_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 57,
-      "change": -2
+      "previous_rank": 59,
+      "change": 0
     },
     {
       "rank": 60,
-      "title": "예뻤어",
-      "artist": "DAY6 (데이식스)",
-      "album": "Every DAY6 February",
-      "album_image": "https://cdnimg.melon.co.kr/cm/album/images/100/36/099/10036099_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 64,
-      "change": 4
-    },
-    {
-      "rank": 61,
       "title": "이 밤을 빌려 말해요",
       "artist": "PLAVE",
       "album": "이 밤을 빌려 말해요 (오늘 밤, 세계에서 이 사랑이 사라진다 해도 X PLAVE)",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/124/58/320/12458320_20251226151630_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 61,
+      "change": 1
+    },
+    {
+      "rank": 61,
+      "title": "APT.",
+      "artist": "로제 (ROSÉ)",
+      "album": "APT.",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/116/19/809/11619809_20241018103507_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 62,
       "change": 1
     },
     {
       "rank": 62,
-      "title": "APT.",
-      "artist": "로제 (ROSÉ)",
-      "album": "APT.",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/116/19/809/11619809_20241018103507_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 67,
-      "change": 5
+      "title": "예뻤어",
+      "artist": "DAY6 (데이식스)",
+      "album": "Every DAY6 February",
+      "album_image": "https://cdnimg.melon.co.kr/cm/album/images/100/36/099/10036099_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 60,
+      "change": -2
     },
     {
       "rank": 63,
+      "title": "Guitarist",
+      "artist": "도경수(D.O.)",
+      "album": "DOPAMINE - The 4th Mini Album",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/145/26/395/14526395_20260907104149_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 68,
+      "change": 5
+    },
+    {
+      "rank": 64,
+      "title": "입춘",
+      "artist": "한로로",
+      "album": "입춘",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/108/90/163/10890163_20220311160155_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 67,
+      "change": 3
+    },
+    {
+      "rank": 65,
       "title": "헤어지자 말해요",
       "artist": "박재정",
       "album": "1집 Alone",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/112/27/533/11227533_20230419162238_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 61,
+      "previous_rank": 63,
       "change": -2
     },
     {
-      "rank": 64,
+      "rank": 66,
       "title": "나는 반딧불",
       "artist": "황가람",
       "album": "나는 반딧불",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/116/20/541/11620541_20241018183253_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 65,
-      "change": 1
+      "previous_rank": 64,
+      "change": -2
     },
     {
-      "rank": 65,
+      "rank": 67,
       "title": "like JENNIE",
       "artist": "제니 (JENNIE)",
       "album": "Ruby",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/117/30/946/11730946_20250307173452_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 68,
-      "change": 3
+      "previous_rank": 65,
+      "change": -2
     },
     {
-      "rank": 66,
+      "rank": 68,
+      "title": "첫 만남은 계획대로 되지 않아",
+      "artist": "TWS (투어스)",
+      "album": "Sparkling Blue",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/113/91/902/11391902_20250922111638_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 75,
+      "change": 7
+    },
+    {
+      "rank": 69,
+      "title": "Die With A Smile",
+      "artist": "Lady Gaga",
+      "album": "Die With A Smile",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/115/68/901/11568901_20240816130602_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 73,
+      "change": 4
+    },
+    {
+      "rank": 70,
       "title": "그대 작은 나의 세상이 되어",
       "artist": "카더가든",
       "album": "부재",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/105/54/647/10554647_20210127173809_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 66,
-      "change": 0
-    },
-    {
-      "rank": 67,
-      "title": "입춘",
-      "artist": "한로로",
-      "album": "입춘",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/108/90/163/10890163_20220311160155_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 63,
       "change": -4
     },
     {
-      "rank": 68,
-      "title": "Guitarist",
-      "artist": "도경수(D.O.)",
-      "album": "DOPAMINE - The 4th Mini Album",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/145/26/395/14526395_20260907104149_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 60,
-      "change": -8
-    },
-    {
-      "rank": 69,
+      "rank": 71,
       "title": "Seven (feat. Latto) - Clean Ver.",
       "artist": "정국",
       "album": "Seven (feat. Latto) - Clean Ver.",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/112/86/070/11286070_20230713181059_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 69,
-      "change": 0
+      "change": -2
     },
     {
-      "rank": 70,
-      "title": "Welcome to the Show",
-      "artist": "DAY6 (데이식스)",
-      "album": "Fourever",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/114/44/397/11444397_20240318115810_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 74,
-      "change": 4
-    },
-    {
-      "rank": 71,
+      "rank": 72,
       "title": "사랑인가 봐",
       "artist": "멜로망스",
       "album": "사랑인가 봐 (사내맞선 OST 스페셜 트랙)",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/108/71/162/10871162_20220217162422_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 73,
-      "change": 2
+      "previous_rank": 71,
+      "change": -1
     },
     {
-      "rank": 72,
+      "rank": 73,
+      "title": "Welcome to the Show",
+      "artist": "DAY6 (데이식스)",
+      "album": "Fourever",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/114/44/397/11444397_20240318115810_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 70,
+      "change": -3
+    },
+    {
+      "rank": 74,
+      "title": "Hype Boy",
+      "artist": "NewJeans",
+      "album": "NewJeans 1st EP 'New Jeans'",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/110/11/565/11011565_20220801102637_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 79,
+      "change": 5
+    },
+    {
+      "rank": 75,
+      "title": "STYLE",
+      "artist": "Hearts2Hearts (하츠투하츠)",
+      "album": "STYLE",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/118/58/555/11858555_20250618105530_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 82,
+      "change": 7
+    },
+    {
+      "rank": 76,
       "title": "청혼하지 않을 이유를 못 찾았어",
       "artist": "이무진",
       "album": "청혼하지 않을 이유를 못 찾았어",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/114/55/285/11455285_20240401151801_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 75,
-      "change": 3
-    },
-    {
-      "rank": 73,
-      "title": "Die With A Smile",
-      "artist": "Lady Gaga",
-      "album": "Die With A Smile",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/115/68/901/11568901_20240816130602_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 77,
-      "change": 4
-    },
-    {
-      "rank": 74,
-      "title": "Dynamite",
-      "artist": "방탄소년단",
-      "album": "Dynamite (DayTime Version)",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/104/79/150/10479150_20200918102847_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 80,
-      "change": 6
-    },
-    {
-      "rank": 75,
-      "title": "첫 만남은 계획대로 되지 않아",
-      "artist": "TWS (투어스)",
-      "album": "Sparkling Blue",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/113/91/902/11391902_20250922111638_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 76,
-      "change": 1
-    },
-    {
-      "rank": 76,
-      "title": "Love wins all",
-      "artist": "아이유",
-      "album": "The Winning",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/114/04/142/11404142_20240220141548_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 81,
-      "change": 5
+      "previous_rank": 72,
+      "change": -4
     },
     {
       "rank": 77,
@@ -691,98 +691,98 @@
       "artist": "방탄소년단",
       "album": "ARIRANG",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/129/27/820/12927820_20260320091310_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 71,
-      "change": -6
+      "previous_rank": 77,
+      "change": 0
     },
     {
       "rank": 78,
-      "title": "봄날",
-      "artist": "방탄소년단",
-      "album": "YOU NEVER WALK ALONE",
-      "album_image": "https://cdnimg.melon.co.kr/cm/album/images/100/37/969/10037969_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 82,
-      "change": 4
-    },
-    {
-      "rank": 79,
-      "title": "Hype Boy",
-      "artist": "NewJeans",
-      "album": "NewJeans 1st EP 'New Jeans'",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/110/11/565/11011565_20220801102637_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 83,
-      "change": 4
-    },
-    {
-      "rank": 80,
-      "title": "우리들의 블루스",
-      "artist": "임영웅",
-      "album": "IM HERO",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/109/23/444/10923444_20220502140600_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 70,
-      "change": -10
-    },
-    {
-      "rank": 81,
-      "title": "연애의 조건 (Love Options)",
-      "artist": "베스티",
-      "album": "연애의 조건",
-      "album_image": "https://cdnimg.melon.co.kr/cm/album/images/022/10/766/2210766_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 72,
-      "change": -9
-    },
-    {
-      "rank": 82,
-      "title": "STYLE",
-      "artist": "Hearts2Hearts (하츠투하츠)",
-      "album": "STYLE",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/118/58/555/11858555_20250618105530_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 79,
-      "change": -3
-    },
-    {
-      "rank": 83,
       "title": "Love Love Love (Feat. Yoong Jin Of Casker)",
       "artist": "에픽하이 (EPIK HIGH)",
       "album": "Remapping The Human Soul",
       "album_image": "https://cdnimg.melon.co.kr/cm/album/images/003/42/967/342967_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 85,
-      "change": 2
+      "previous_rank": 83,
+      "change": 5
     },
     {
-      "rank": 84,
+      "rank": 79,
       "title": "다정히 내 이름을 부르면",
       "artist": "경서예지",
       "album": "다정히 내 이름을 부르면 (경서예지 x 전건호)",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/106/10/525/10610525_20210518143433_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 84,
-      "change": 0
+      "change": 5
     },
     {
-      "rank": 85,
-      "title": "또또",
-      "artist": "임영웅",
-      "album": "IM HERO 10",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/144/98/154/14498154_20260910102107_500.jpg/melon/resize/120/quality/80/optimize",
+      "rank": 80,
+      "title": "Love wins all",
+      "artist": "아이유",
+      "album": "The Winning",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/114/04/142/11404142_20240220141548_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 76,
+      "change": -4
+    },
+    {
+      "rank": 81,
+      "title": "봄날",
+      "artist": "방탄소년단",
+      "album": "YOU NEVER WALK ALONE",
+      "album_image": "https://cdnimg.melon.co.kr/cm/album/images/100/37/969/10037969_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 78,
-      "change": -7
+      "change": -3
     },
     {
-      "rank": 86,
+      "rank": 82,
+      "title": "Dynamite",
+      "artist": "방탄소년단",
+      "album": "Dynamite (DayTime Version)",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/104/79/150/10479150_20200918102847_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 74,
+      "change": -8
+    },
+    {
+      "rank": 83,
+      "title": "우리들의 블루스",
+      "artist": "임영웅",
+      "album": "IM HERO",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/109/23/444/10923444_20220502140600_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 80,
+      "change": -3
+    },
+    {
+      "rank": 84,
       "title": "Vitamin ME",
       "artist": "프로미스나인",
       "album": "Glow ME",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/138/16/948/13816948_20260720140607_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 87,
-      "change": 1
+      "previous_rank": 86,
+      "change": 2
     },
     {
-      "rank": 87,
+      "rank": 85,
       "title": "Magnetic",
       "artist": "아일릿(ILLIT)",
       "album": "SUPER REAL ME",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/114/50/069/11450069_20240325110702_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 88,
-      "change": 1
+      "previous_rank": 87,
+      "change": 2
+    },
+    {
+      "rank": 86,
+      "title": "연애의 조건 (Love Options)",
+      "artist": "베스티",
+      "album": "연애의 조건",
+      "album_image": "https://cdnimg.melon.co.kr/cm/album/images/022/10/766/2210766_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 81,
+      "change": -5
+    },
+    {
+      "rank": 87,
+      "title": "또또",
+      "artist": "임영웅",
+      "album": "IM HERO 10",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/144/98/154/14498154_20260910102107_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 85,
+      "change": -2
     },
     {
       "rank": 88,
@@ -790,8 +790,8 @@
       "artist": "임영웅",
       "album": "IM HERO 2",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/120/83/192/12083192_20250828155052_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 86,
-      "change": -2
+      "previous_rank": 88,
+      "change": 0
     },
     {
       "rank": 89,
@@ -799,26 +799,26 @@
       "artist": "임현정",
       "album": "All That Love",
       "album_image": "https://cdnimg.melon.co.kr/cm/album/images/003/14/795/314795_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 90,
-      "change": 1
+      "previous_rank": 89,
+      "change": 0
     },
     {
       "rank": 90,
-      "title": "Pinball",
-      "artist": "RESCENE (리센느)",
-      "album": "SCENEDROME",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/115/75/849/11575849_20240826152240_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 89,
-      "change": -1
-    },
-    {
-      "rank": 91,
       "title": "REBEL HEART",
       "artist": "IVE (아이브)",
       "album": "IVE EMPATHY",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/116/89/783/11689783_20250203110601_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 92,
+      "previous_rank": 91,
       "change": 1
+    },
+    {
+      "rank": 91,
+      "title": "Pinball",
+      "artist": "RESCENE (리센느)",
+      "album": "SCENEDROME",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/115/75/849/11575849_20240826152240_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 90,
+      "change": -1
     },
     {
       "rank": 92,
@@ -826,8 +826,8 @@
       "artist": "임영웅",
       "album": "IM HERO 10",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/144/98/154/14498154_20260910102107_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 91,
-      "change": -1
+      "previous_rank": 92,
+      "change": 0
     },
     {
       "rank": 93,
@@ -849,19 +849,19 @@
     },
     {
       "rank": 95,
-      "title": "살아온 우리에게",
-      "artist": "임영웅",
-      "album": "IM HERO 10",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/144/98/154/14498154_20260910102107_500.jpg/melon/resize/120/quality/80/optimize",
+      "title": "FAMOUS",
+      "artist": "ALLDAY PROJECT",
+      "album": "FAMOUS",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/118/57/160/11857160_20250623154620_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 96,
       "change": 1
     },
     {
       "rank": 96,
-      "title": "FAMOUS",
-      "artist": "ALLDAY PROJECT",
-      "album": "FAMOUS",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/118/57/160/11857160_20250623154620_500.jpg/melon/resize/120/quality/80/optimize",
+      "title": "살아온 우리에게",
+      "artist": "임영웅",
+      "album": "IM HERO 10",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/144/98/154/14498154_20260910102107_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 95,
       "change": -1
     },
@@ -876,19 +876,19 @@
     },
     {
       "rank": 98,
-      "title": "Flower",
-      "artist": "오반(OVAN)",
-      "album": "교회오빠",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/117/32/247/11732247_20250313092931_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 100,
-      "change": 2
-    },
-    {
-      "rank": 99,
       "title": "미워요 RE",
       "artist": "임영웅",
       "album": "IM HERO 10",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/144/98/154/14498154_20260910102107_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 99,
+      "change": 1
+    },
+    {
+      "rank": 99,
+      "title": "Flower",
+      "artist": "오반(OVAN)",
+      "album": "교회오빠",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/117/32/247/11732247_20250313092931_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 98,
       "change": -1
     },
@@ -898,8 +898,8 @@
       "artist": "임영웅",
       "album": "IM HERO 10",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/144/98/154/14498154_20260910102107_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 99,
-      "change": -1
+      "previous_rank": 100,
+      "change": 0
     }
   ]
 }
