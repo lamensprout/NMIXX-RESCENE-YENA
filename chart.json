@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-10T18:12:35.030357+00:00",
+  "updated_at": "2026-10-10T19:11:30.538590+00:00",
   "songs": [
     {
       "rank": 1,
@@ -358,8 +358,8 @@
       "artist": "이창섭",
       "album": "천상연 (웹툰 '선녀외전' X 이창섭 (LEE CHANGSUB))",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/114/21/941/11421941_20240220105008_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 41,
-      "change": 1
+      "previous_rank": 40,
+      "change": 0
     },
     {
       "rank": 41,
@@ -367,8 +367,8 @@
       "artist": "IVE (아이브)",
       "album": "REVIVE+",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/128/45/274/12845274_20260223113048_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 40,
-      "change": -1
+      "previous_rank": 41,
+      "change": 0
     },
     {
       "rank": 42,
@@ -489,21 +489,21 @@
     },
     {
       "rank": 55,
-      "title": "Runaway",
-      "artist": "RESCENE (리센느)",
-      "album": "Runaway",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/133/12/413/13312413_20260406143448_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 55,
-      "change": 0
-    },
-    {
-      "rank": 56,
       "title": "Whiplash",
       "artist": "aespa",
       "album": "Whiplash - The 5th Mini Album",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/116/20/540/11620540_20241018183208_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 56,
-      "change": 0
+      "change": 1
+    },
+    {
+      "rank": 56,
+      "title": "Runaway",
+      "artist": "RESCENE (리센느)",
+      "album": "Runaway",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/133/12/413/13312413_20260406143448_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 55,
+      "change": -1
     },
     {
       "rank": 57,
@@ -786,39 +786,39 @@
     },
     {
       "rank": 88,
-      "title": "이 밤을 빌려 말해요",
-      "artist": "PLAVE",
-      "album": "이 밤을 빌려 말해요 (오늘 밤, 세계에서 이 사랑이 사라진다 해도 X PLAVE)",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/124/58/320/12458320_20251226151630_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 88,
-      "change": 0
-    },
-    {
-      "rank": 89,
       "title": "Pinball",
       "artist": "RESCENE (리센느)",
       "album": "SCENEDROME",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/115/75/849/11575849_20240826152240_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 89,
-      "change": 0
+      "change": 1
+    },
+    {
+      "rank": 89,
+      "title": "이 밤을 빌려 말해요",
+      "artist": "PLAVE",
+      "album": "이 밤을 빌려 말해요 (오늘 밤, 세계에서 이 사랑이 사라진다 해도 X PLAVE)",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/124/58/320/12458320_20251226151630_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 88,
+      "change": -1
     },
     {
       "rank": 90,
-      "title": "Flower",
-      "artist": "오반(OVAN)",
-      "album": "교회오빠",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/117/32/247/11732247_20250313092931_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 90,
-      "change": 0
-    },
-    {
-      "rank": 91,
       "title": "우리들의 블루스",
       "artist": "임영웅",
       "album": "IM HERO",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/109/23/444/10923444_20220502140600_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 91,
-      "change": 0
+      "change": 1
+    },
+    {
+      "rank": 91,
+      "title": "Flower",
+      "artist": "오반(OVAN)",
+      "album": "교회오빠",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/117/32/247/11732247_20250313092931_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 90,
+      "change": -1
     },
     {
       "rank": 92,
