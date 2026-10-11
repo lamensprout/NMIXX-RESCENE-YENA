@@ -25,34 +25,34 @@
     "artist": "YENA (최예나)",
     "album": "LOVE CATCHER",
     "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/129/08/035/12908035_20260309142026_500.jpg/melon/resize/120/quality/80/optimize",
-    "rank": 17
-  },
-  "Runaway|||RESCENE (리센느)": {
-    "title": "Runaway",
-    "artist": "RESCENE (리센느)",
-    "album": "Runaway",
-    "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/133/12/413/13312413_20260406143448_500.jpg/melon/resize/120/quality/80/optimize",
-    "rank": 51
+    "rank": 15
   },
   "Blue Valentine|||NMIXX": {
     "title": "Blue Valentine",
     "artist": "NMIXX",
     "album": "Blue Valentine",
     "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/121/49/391/12149391_20251013150421_500.jpg/melon/resize/120/quality/80/optimize",
-    "rank": 53
+    "rank": 43
+  },
+  "Runaway|||RESCENE (리센느)": {
+    "title": "Runaway",
+    "artist": "RESCENE (리센느)",
+    "album": "Runaway",
+    "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/133/12/413/13312413_20260406143448_500.jpg/melon/resize/120/quality/80/optimize",
+    "rank": 47
   },
   "Heavy Serenade|||NMIXX": {
     "title": "Heavy Serenade",
     "artist": "NMIXX",
     "album": "Heavy Serenade",
     "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/133/57/541/13357541_20260511133217_500.jpg/melon/resize/120/quality/80/optimize",
-    "rank": 62
+    "rank": 54
   },
   "Pinball|||RESCENE (리센느)": {
     "title": "Pinball",
     "artist": "RESCENE (리센느)",
     "album": "SCENEDROME",
     "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/115/75/849/11575849_20240826152240_500.jpg/melon/resize/120/quality/80/optimize",
-    "rank": 83
+    "rank": 86
   }
 }
