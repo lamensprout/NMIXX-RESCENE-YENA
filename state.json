@@ -32,7 +32,7 @@
     "artist": "RESCENE (리센느)",
     "album": "Runaway",
     "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/133/12/413/13312413_20260406143448_500.jpg/melon/resize/120/quality/80/optimize",
-    "rank": 22
+    "rank": 28
   },
   "Blue Valentine|||NMIXX": {
     "title": "Blue Valentine",
@@ -46,13 +46,13 @@
     "artist": "NMIXX",
     "album": "Heavy Serenade",
     "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/133/57/541/13357541_20260511133217_500.jpg/melon/resize/120/quality/80/optimize",
-    "rank": 44
+    "rank": 43
   },
   "Pinball|||RESCENE (리센느)": {
     "title": "Pinball",
     "artist": "RESCENE (리센느)",
     "album": "SCENEDROME",
     "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/115/75/849/11575849_20240826152240_500.jpg/melon/resize/120/quality/80/optimize",
-    "rank": 58
+    "rank": 56
   }
 }
