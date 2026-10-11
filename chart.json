@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-11T17:11:11.527409+00:00",
+  "updated_at": "2026-10-11T18:13:13.340792+00:00",
   "songs": [
     {
       "rank": 1,
@@ -520,8 +520,8 @@
       "artist": "한로로",
       "album": "입춘",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/108/90/163/10890163_20220311160155_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 59,
-      "change": 1
+      "previous_rank": 58,
+      "change": 0
     },
     {
       "rank": 59,
@@ -529,8 +529,8 @@
       "artist": "DAY6 (데이식스)",
       "album": "Fourever",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/114/44/397/11444397_20240318115810_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 58,
-      "change": -1
+      "previous_rank": 59,
+      "change": 0
     },
     {
       "rank": 60,
@@ -678,21 +678,21 @@
     },
     {
       "rank": 76,
-      "title": "Love wins all",
-      "artist": "아이유",
-      "album": "The Winning",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/114/04/142/11404142_20240220141548_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 76,
-      "change": 0
-    },
-    {
-      "rank": 77,
       "title": "STYLE",
       "artist": "Hearts2Hearts (하츠투하츠)",
       "album": "STYLE",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/118/58/555/11858555_20250618105530_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 77,
-      "change": 0
+      "change": 1
+    },
+    {
+      "rank": 77,
+      "title": "Love wins all",
+      "artist": "아이유",
+      "album": "The Winning",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/114/04/142/11404142_20240220141548_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 76,
+      "change": -1
     },
     {
       "rank": 78,
