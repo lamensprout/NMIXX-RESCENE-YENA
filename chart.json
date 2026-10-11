@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-11T21:11:39.267061+00:00",
+  "updated_at": "2026-10-11T22:11:30.414507+00:00",
   "songs": [
     {
       "rank": 1,
@@ -165,21 +165,21 @@
     },
     {
       "rank": 19,
-      "title": "0+0",
-      "artist": "한로로",
-      "album": "자몽살구클럽",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/119/82/233/11982233_20250801150859_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 19,
-      "change": 0
-    },
-    {
-      "rank": 20,
       "title": "생각을 멈추다 보면",
       "artist": "최유리",
       "album": "생각을 멈추다 보면",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/113/69/106/11369106_20231120180538_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 20,
-      "change": 0
+      "change": 1
+    },
+    {
+      "rank": 20,
+      "title": "0+0",
+      "artist": "한로로",
+      "album": "자몽살구클럽",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/119/82/233/11982233_20250801150859_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 19,
+      "change": -1
     },
     {
       "rank": 21,
@@ -372,21 +372,21 @@
     },
     {
       "rank": 42,
-      "title": "주저하는 연인들을 위해",
-      "artist": "잔나비",
-      "album": "전설",
-      "album_image": "https://cdnimg.melon.co.kr/cm/album/images/102/60/858/10260858_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 42,
-      "change": 0
-    },
-    {
-      "rank": 43,
       "title": "BANG BANG",
       "artist": "IVE (아이브)",
       "album": "REVIVE+",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/128/45/274/12845274_20260223113048_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 43,
-      "change": 0
+      "change": 1
+    },
+    {
+      "rank": 43,
+      "title": "주저하는 연인들을 위해",
+      "artist": "잔나비",
+      "album": "전설",
+      "album_image": "https://cdnimg.melon.co.kr/cm/album/images/102/60/858/10260858_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 42,
+      "change": -1
     },
     {
       "rank": 44,
@@ -561,21 +561,21 @@
     },
     {
       "rank": 63,
-      "title": "헤어지자 말해요",
-      "artist": "박재정",
-      "album": "1집 Alone",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/112/27/533/11227533_20230419162238_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 63,
-      "change": 0
-    },
-    {
-      "rank": 64,
       "title": "나는 반딧불",
       "artist": "황가람",
       "album": "나는 반딧불",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/116/20/541/11620541_20241018183253_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 64,
-      "change": 0
+      "change": 1
+    },
+    {
+      "rank": 64,
+      "title": "헤어지자 말해요",
+      "artist": "박재정",
+      "album": "1집 Alone",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/112/27/533/11227533_20230419162238_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 63,
+      "change": -1
     },
     {
       "rank": 65,
@@ -633,21 +633,21 @@
     },
     {
       "rank": 71,
-      "title": "청혼하지 않을 이유를 못 찾았어",
-      "artist": "이무진",
-      "album": "청혼하지 않을 이유를 못 찾았어",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/114/55/285/11455285_20240401151801_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 71,
-      "change": 0
-    },
-    {
-      "rank": 72,
       "title": "Guitarist",
       "artist": "도경수(D.O.)",
       "album": "DOPAMINE - The 4th Mini Album",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/145/26/395/14526395_20260907104149_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 72,
-      "change": 0
+      "change": 1
+    },
+    {
+      "rank": 72,
+      "title": "청혼하지 않을 이유를 못 찾았어",
+      "artist": "이무진",
+      "album": "청혼하지 않을 이유를 못 찾았어",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/114/55/285/11455285_20240401151801_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 71,
+      "change": -1
     },
     {
       "rank": 73,
@@ -678,30 +678,30 @@
     },
     {
       "rank": 76,
-      "title": "Hype Boy",
-      "artist": "NewJeans",
-      "album": "NewJeans 1st EP 'New Jeans'",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/110/11/565/11011565_20220801102637_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 77,
-      "change": 1
-    },
-    {
-      "rank": 77,
-      "title": "STYLE",
-      "artist": "Hearts2Hearts (하츠투하츠)",
-      "album": "STYLE",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/118/58/555/11858555_20250618105530_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 76,
-      "change": -1
-    },
-    {
-      "rank": 78,
       "title": "Love wins all",
       "artist": "아이유",
       "album": "The Winning",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/114/04/142/11404142_20240220141548_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 78,
-      "change": 0
+      "change": 2
+    },
+    {
+      "rank": 77,
+      "title": "Hype Boy",
+      "artist": "NewJeans",
+      "album": "NewJeans 1st EP 'New Jeans'",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/110/11/565/11011565_20220801102637_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 76,
+      "change": -1
+    },
+    {
+      "rank": 78,
+      "title": "STYLE",
+      "artist": "Hearts2Hearts (하츠투하츠)",
+      "album": "STYLE",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/118/58/555/11858555_20250618105530_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 77,
+      "change": -1
     },
     {
       "rank": 79,
