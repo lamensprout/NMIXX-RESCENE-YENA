@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-11T20:10:53.257083+00:00",
+  "updated_at": "2026-10-11T21:11:39.267061+00:00",
   "songs": [
     {
       "rank": 1,
@@ -421,8 +421,8 @@
       "artist": "조째즈",
       "album": "모르시나요",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/116/85/729/11685729_20250106160640_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 48,
-      "change": 1
+      "previous_rank": 47,
+      "change": 0
     },
     {
       "rank": 48,
@@ -430,8 +430,8 @@
       "artist": "NMIXX",
       "album": "Heavy Serenade",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/133/57/541/13357541_20260511133217_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 47,
-      "change": -1
+      "previous_rank": 48,
+      "change": 0
     },
     {
       "rank": 49,
@@ -678,21 +678,21 @@
     },
     {
       "rank": 76,
+      "title": "Hype Boy",
+      "artist": "NewJeans",
+      "album": "NewJeans 1st EP 'New Jeans'",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/110/11/565/11011565_20220801102637_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 77,
+      "change": 1
+    },
+    {
+      "rank": 77,
       "title": "STYLE",
       "artist": "Hearts2Hearts (하츠투하츠)",
       "album": "STYLE",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/118/58/555/11858555_20250618105530_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 76,
-      "change": 0
-    },
-    {
-      "rank": 77,
-      "title": "Hype Boy",
-      "artist": "NewJeans",
-      "album": "NewJeans 1st EP 'New Jeans'",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/110/11/565/11011565_20220801102637_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 78,
-      "change": 1
+      "change": -1
     },
     {
       "rank": 78,
@@ -700,8 +700,8 @@
       "artist": "아이유",
       "album": "The Winning",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/114/04/142/11404142_20240220141548_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 77,
-      "change": -1
+      "previous_rank": 78,
+      "change": 0
     },
     {
       "rank": 79,
