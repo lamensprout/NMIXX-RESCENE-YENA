@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>계정 | Melonitor</title>
+  <link rel="stylesheet" href="style.css?v=20261012-5">
+</head>
+<body>
+  <main class="container account-container">
+    <header class="hero">
+      <div>
+        <a class="brand-link" href="/" aria-label="Melonitor 첫 화면으로"><h1>🍈 Melonitor</h1></a>
+        <p>로그인하면 검색 기록과 즐겨찾기를 계정에 저장할 수 있어요.</p>
+      </div>
+      <div class="hero-tools">
+        <button id="themeToggle" class="theme-toggle" type="button" aria-label="다크 모드로 전환" title="다크 모드로 전환">🌙</button>
+      </div>
+    </header>
+
+    <section class="account-card" aria-labelledby="accountTitle">
+      <div class="account-kicker">YOUR MELONITOR</div>
+      <h2 id="accountTitle">계정 관리</h2>
+      <p class="account-intro">계정에 로그인하면 다른 기기에서도 개인 검색 기록과 좋아하는 아티스트를 불러올 수 있어요.</p>
+
+      <div id="accountSetupNotice" class="account-notice" role="status" hidden>
+        계정 기능을 연결하는 마지막 설정이 남아 있어요. 사이트 운영자가 Supabase 프로젝트를 만들고 프로젝트 URL과 Publishable key를 설정해야 회원가입을 사용할 수 있습니다. 연결 전에도 메인 화면의 즐겨찾기는 이 브라우저에 저장됩니다.
+      </div>
+
+      <div id="accountStatus" class="account-status" role="status" hidden></div>
+
+      <form id="authForm" class="auth-form">
+        <label for="accountEmail">이메일</label>
+        <input id="accountEmail" name="email" type="email" autocomplete="email" placeholder="이메일 주소" required>
+        <label for="accountPassword">비밀번호</label>
+        <input id="accountPassword" name="password" type="password" autocomplete="current-password" minlength="8" placeholder="8자 이상" required>
+        <div class="auth-actions">
+          <button id="signInButton" type="button" class="primary-button">로그인</button>
+          <button id="signUpButton" type="button" class="secondary-button">회원가입</button>
+        </div>
+      </form>
+
+      <div id="signedInPanel" class="signed-in-panel" hidden>
+        <p>로그인된 계정</p>
+        <strong id="signedInEmail"></strong>
+        <p class="signed-in-explainer">검색 기록과 즐겨찾기는 이 계정에 저장돼요.</p>
+        <button id="signOutButton" type="button" class="secondary-button">로그아웃</button>
+      </div>
+
+      <p id="accountMessage" class="account-message" aria-live="polite"></p>
+      <a class="account-back-link" href="/">← Melonitor 메인으로 돌아가기</a>
+    </section>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="supabase-config.js?v=1"></script>
+  <script src="monitor-store.js?v=1"></script>
+  <script src="account.js?v=1"></script>
+  <script src="theme.js?v=2"></script>
+</body>
+</html>
