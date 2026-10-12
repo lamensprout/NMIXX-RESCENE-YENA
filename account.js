@@ -28,7 +28,7 @@
   const message = document.getElementById("accountMessage");
   const signInButton = document.getElementById("signInButton");
   const signOutButton = document.getElementById("signOutButton");
-  let authMode = "signup";
+  let authMode = "login";
 
   function setAuthMode(mode) {
     authMode = mode;
