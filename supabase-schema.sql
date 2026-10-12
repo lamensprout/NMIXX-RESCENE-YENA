@@ -95,7 +95,8 @@ returns boolean
 language plpgsql
 immutable
 parallel safe
-as $$
+set search_path = ''
+as $
 declare
   v_nickname text := btrim(coalesce(p_nickname, ''));
   v_separator_free text;
