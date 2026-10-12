@@ -303,16 +303,30 @@
     return { ok: true, synced: true };
   }
 
-  async function signUp(email, password) {
+  function createTemporarySignupPassword() {
+    if (!window.crypto || typeof window.crypto.getRandomValues !== "function") {
+      throw new Error("이 브라우저에서는 안전한 회원가입을 시작할 수 없어요. 최신 브라우저에서 다시 시도해 주세요.");
+    }
+    const bytes = new Uint8Array(32);
+    window.crypto.getRandomValues(bytes);
+    return Array.from(bytes, value => value.toString(16).padStart(2, "0")).join("") + "Aa1!";
+  }
+
+  async function startSignup(email) {
     if (!client) throw new Error("계정 기능 설정이 아직 완료되지 않았습니다.");
+    if (currentUser) throw new Error("먼저 현재 계정에서 로그아웃해 주세요.");
+
+    const temporaryPassword = createTemporarySignupPassword();
     const result = await client.auth.signUp({
-      email,
-      password,
-      options: { emailRedirectTo: window.location.origin + "/account.html" }
+      email: String(email || "").trim(),
+      password: temporaryPassword,
+      options: {
+        emailRedirectTo: window.location.origin + "/account.html",
+        data: { melonitor_signup_flow: "email-first" }
+      }
     });
 
-    // If a session is returned immediately, Confirm Email is disabled.
-    // Do not leave the browser signed in; a verified-email-first flow requires this setting.
+    // The flow requires email confirmation before the user sets their own password.
     if (!result.error && result.data && result.data.session) {
       try { await client.auth.signOut(); } catch (_) {}
       currentUser = null;
@@ -344,6 +358,36 @@
       if (isReady()) await migrateLocalData(currentUser);
     }
     return result;
+  }
+
+  async function completeSignup(rawNickname, rawPassword) {
+    if (!client || !currentUser || !isEmailVerified(currentUser)) {
+      throw new Error("이메일 인증을 먼저 완료해 주세요.");
+    }
+    if (hasNickname()) {
+      throw new Error("이미 가입 절차를 완료한 계정이에요. 로그인해서 이용해 주세요.");
+    }
+
+    const nickname = String(rawNickname || "").trim();
+    const nicknameError = getNicknameValidationError(nickname);
+    if (nicknameError) throw new Error(nicknameError);
+
+    const password = String(rawPassword || "");
+    if (password.length < 8 || password.length > 72) {
+      throw new Error("비밀번호는 8~72자로 설정해 주세요.");
+    }
+
+    // Set the user's chosen password only after clicking the email verification link.
+    const { data: passwordData, error: passwordError } = await client.auth.updateUser({ password });
+    if (passwordError) {
+      throw new Error(passwordError.message || "비밀번호를 저장하지 못했어요. 다시 시도해 주세요.");
+    }
+    if (passwordData && passwordData.user) currentUser = passwordData.user;
+
+    // A unique-nickname conflict can happen after the password is saved; the user
+    // stays on the setup panel and can retry with another nickname.
+    await saveNickname(nickname);
+    return { user: currentUser, profile: currentProfile };
   }
 
   async function saveNickname(rawNickname) {
@@ -405,8 +449,9 @@
     getFavorites,
     addFavorite,
     removeFavorite,
-    signUp,
+    startSignup,
     signIn,
+    completeSignup,
     saveNickname,
     getNicknameValidationError,
     signOut
