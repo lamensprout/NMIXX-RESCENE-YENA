@@ -7,6 +7,11 @@ const popular = document.getElementById("popular");
 const popularNote = document.getElementById("popularNote");
 const homeLink = document.getElementById("homeLink");
 const template = document.getElementById("songTemplate");
+const favoriteForm = document.getElementById("favoriteForm");
+const favoriteInput = document.getElementById("favoriteInput");
+const favoriteArtists = document.getElementById("favoriteArtists");
+const favoritesNote = document.getElementById("favoritesNote");
+const accountLink = document.getElementById("accountLink");
 
 let songs = [];
 let popularSearches = {};
@@ -337,21 +342,18 @@ function getCanonicalPopularArtist(artist) {
   return aliasEntry ? aliasEntry[0] : value;
 }
 
-function loadPopularSearches() {
+async function loadPopularSearches() {
   try {
-    const saved = JSON.parse(localStorage.getItem("melonitor-popular-searches") || "{}");
-    popularSearches = saved && typeof saved === "object" && !Array.isArray(saved) ? saved : {};
+    if (window.MonitorStore) {
+      popularSearches = await MonitorStore.getSearches();
+    } else {
+      const saved = JSON.parse(localStorage.getItem("melonitor-popular-searches") || "{}");
+      popularSearches = saved && typeof saved === "object" && !Array.isArray(saved) ? saved : {};
+    }
   } catch (error) {
     popularSearches = {};
   }
-}
-
-function savePopularSearches() {
-  try {
-    localStorage.setItem("melonitor-popular-searches", JSON.stringify(popularSearches));
-  } catch (error) {
-    // 저장이 차단된 브라우저에서는 현재 화면에서만 순위를 표시합니다.
-  }
+  renderPopularSearches();
 }
 
 function renderPopularSearches() {
@@ -359,19 +361,11 @@ function renderPopularSearches() {
   popular.innerHTML = "";
 
   const canonicalCounts = new Map();
-
   Object.entries(popularSearches).forEach(function(entry) {
-    const savedArtist = entry[0];
+    const artist = getCanonicalPopularArtist(entry[0]);
     const count = Number(entry[1]) || 0;
-    if (count <= 0) return;
-
-    const canonicalArtist = getCanonicalPopularArtist(savedArtist);
-    if (!canonicalArtist) return;
-
-    canonicalCounts.set(
-      canonicalArtist,
-      (canonicalCounts.get(canonicalArtist) || 0) + count
-    );
+    if (!artist || count <= 0) return;
+    canonicalCounts.set(artist, (canonicalCounts.get(artist) || 0) + count);
   });
 
   const ranked = Array.from(canonicalCounts.entries())
@@ -382,13 +376,16 @@ function renderPopularSearches() {
 
   if (!ranked.length) {
     if (popularNote) {
-      popularNote.textContent = "검색하면 이 브라우저의 인기 검색어가 표시됩니다. TOP100에 없는 아티스트도 포함됩니다.";
+      popularNote.textContent = "검색하면 개인 인기 검색어가 표시됩니다. TOP100에 없는 아티스트도 포함됩니다.";
     }
     return;
   }
 
+  const signedIn = !!(window.MonitorStore && MonitorStore.getUser());
   if (popularNote) {
-    popularNote.textContent = "이 브라우저의 검색 횟수 기준입니다. TOP100에 없는 아티스트도 표시됩니다.";
+    popularNote.textContent = signedIn
+      ? "로그인한 계정에 저장된 검색 횟수 기준입니다."
+      : "이 브라우저의 검색 횟수 기준입니다. 로그인하면 계정에 저장할 수 있어요.";
   }
 
   ranked.forEach(function(entry, index) {
@@ -397,7 +394,7 @@ function renderPopularSearches() {
     button.className = "chip popular-chip";
     button.type = "button";
     button.textContent = (index + 1) + ". " + artist;
-    button.title = "이 브라우저의 검색 횟수: " + entry[1];
+    button.title = "검색 횟수: " + entry[1];
 
     button.addEventListener("click", function() {
       input.value = artist;
@@ -409,7 +406,98 @@ function renderPopularSearches() {
   });
 }
 
-function recordPopularSearch(query) {
+async function renderFavoriteArtists() {
+  if (!favoriteArtists) return;
+  favoriteArtists.innerHTML = "";
+
+  let names = [];
+  try {
+    names = window.MonitorStore ? await MonitorStore.getFavorites() : [];
+  } catch (_) {
+    names = [];
+  }
+
+  const seen = new Set();
+  names = names
+    .map(getCanonicalPopularArtist)
+    .filter(function(name) {
+      const key = normalize(name);
+      if (!key || seen.has(key)) return false;
+      seen.add(key);
+      return true;
+    });
+
+  const signedIn = !!(window.MonitorStore && MonitorStore.getUser());
+  if (favoritesNote) {
+    if (!names.length) {
+      favoritesNote.textContent = signedIn
+        ? "아직 등록한 아티스트가 없어요. 위에서 좋아하는 아티스트를 추가해 보세요."
+        : "좋아하는 아티스트를 추가해 보세요. 로그인 전에는 이 브라우저에, 로그인 후에는 계정에 저장됩니다.";
+    } else {
+      favoritesNote.textContent = signedIn
+        ? "계정에 저장된 즐겨찾기예요. 다른 기기에서도 로그인하면 볼 수 있어요."
+        : "이 브라우저에 저장된 즐겨찾기예요. 계정에 저장하려면 로그인해 주세요.";
+    }
+  }
+  if (accountLink) accountLink.textContent = signedIn ? "내 계정" : "로그인 / 회원가입";
+
+  if (!names.length) return;
+
+  names.forEach(function(artist) {
+    const wrap = document.createElement("span");
+    wrap.className = "favorite-item";
+
+    const open = document.createElement("button");
+    open.className = "chip favorite-chip";
+    open.type = "button";
+    open.textContent = artist;
+    open.title = artist + " 검색";
+    open.addEventListener("click", function() {
+      input.value = artist;
+      search(artist);
+      recordPopularSearch(artist);
+    });
+
+    const remove = document.createElement("button");
+    remove.className = "favorite-remove";
+    remove.type = "button";
+    remove.textContent = "×";
+    remove.setAttribute("aria-label", artist + " 즐겨찾기 삭제");
+    remove.title = "즐겨찾기에서 삭제";
+    remove.addEventListener("click", async function() {
+      if (window.MonitorStore) await MonitorStore.removeFavorite(artist);
+      await renderFavoriteArtists();
+    });
+
+    wrap.appendChild(open);
+    wrap.appendChild(remove);
+    favoriteArtists.appendChild(wrap);
+  });
+}
+
+if (favoriteForm) {
+  favoriteForm.addEventListener("submit", async function(event) {
+    event.preventDefault();
+    const raw = String(favoriteInput && favoriteInput.value || "").trim();
+    if (normalize(raw).length < 2) {
+      if (favoritesNote) favoritesNote.textContent = "아티스트 이름을 2글자 이상 입력해 주세요.";
+      return;
+    }
+
+    const artist = getCanonicalPopularArtist(raw);
+    const result = window.MonitorStore
+      ? await MonitorStore.addFavorite(artist)
+      : { ok: false, synced: false };
+
+    if (favoriteInput) favoriteInput.value = "";
+    await renderFavoriteArtists();
+    if (favoritesNote && result && result.ok && !result.synced && window.MonitorStore && MonitorStore.getUser()) {
+      favoritesNote.textContent = "서버 연결이 되지 않아 이 브라우저에 임시 저장했어요. 계정 동기화를 위해 데이터베이스 설정을 확인해 주세요.";
+    }
+  });
+}
+
+async function recordPopularSearch(query) {
   const q = String(query || "").trim();
   if (normalize(q).length < 2) return;
 
@@ -417,15 +505,19 @@ function recordPopularSearch(query) {
     return matchesArtist(song.artist, q);
   });
 
-  // TOP100에서 찾으면 멜론 표기를, 찾지 못하면 검색한 이름을 기록합니다.
+  // 차트에서 찾으면 멜론 표기를, 없으면 입력한 아티스트/별칭을 기록합니다.
   const canonicalArtist = matchedSong
     ? getCanonicalChartArtist(matchedSong.artist)
     : getCanonicalPopularArtist(q);
   if (!canonicalArtist) return;
 
-  popularSearches[canonicalArtist] = (Number(popularSearches[canonicalArtist]) || 0) + 1;
-  savePopularSearches();
-  renderPopularSearches();
+  if (window.MonitorStore) {
+    await MonitorStore.recordSearch(canonicalArtist);
+  } else {
+    popularSearches[canonicalArtist] = (Number(popularSearches[canonicalArtist]) || 0) + 1;
+    try { localStorage.setItem("melonitor-popular-searches", JSON.stringify(popularSearches)); } catch (_) {}
+  }
+  await loadPopularSearches();
 }
 
 function schedulePopularSearch(query) {
@@ -522,6 +614,12 @@ clearBtn.addEventListener("click", function() {
 
 async function load() {
   try {
+    if (window.MonitorStore) {
+      try { await MonitorStore.init(); } catch (accountError) {
+        console.warn("계정 상태를 확인하지 못했습니다:", accountError);
+      }
+    }
+
     const response = await fetch("./chart.json", { cache: "no-store" });
 
     if (!response.ok) {
@@ -539,7 +637,8 @@ async function load() {
       updated.textContent = "업데이트 정보를 확인할 수 없습니다.";
     }
 
-    renderPopularSearches();
+    await loadPopularSearches();
+    await renderFavoriteArtists();
 
     summary.textContent = "아티스트를 검색해 주세요.";
   } catch (error) {
@@ -548,6 +647,8 @@ async function load() {
   }
 }
 
-loadPopularSearches();
-renderPopularSearches();
+window.addEventListener("melonitor-auth-change", async function() {
+  await loadPopularSearches();
+  await renderFavoriteArtists();
+});
 load();
