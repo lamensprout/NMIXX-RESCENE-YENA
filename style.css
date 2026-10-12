@@ -1116,3 +1116,26 @@ body.dark-mode .chart-status {
     justify-content: flex-start;
   }
 }
+
+
+/* Keep the manual chart refresh button transparent */
+.refresh-chart-button,
+body.dark-mode .refresh-chart-button {
+  background: transparent;
+  color: #168a35;
+  border-color: #17a13c;
+}
+.refresh-chart-button:hover:not(:disabled),
+body.dark-mode .refresh-chart-button:hover:not(:disabled) {
+  background: transparent;
+  color: #0f762b;
+  border-color: #0f9d34;
+}
+body.dark-mode .refresh-chart-button {
+  color: #8ed69e;
+  border-color: #426d4a;
+}
+body.dark-mode .refresh-chart-button:hover:not(:disabled) {
+  color: #b5f0bf;
+  border-color: #68a875;
+}
