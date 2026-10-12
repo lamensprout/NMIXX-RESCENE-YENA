@@ -910,3 +910,126 @@ body.dark-mode .verification-code { color: #edf0f5; }
   background: var(--accent, #00cd3b);
   color: #102014;
 }
+
+
+/* Refined account page: clean segmented login/sign-up selector */
+.account-container {
+  max-width: 600px;
+  padding-top: 30px;
+}
+.account-card {
+  padding: 32px;
+  border-color: #e6ebe7;
+  border-radius: 20px;
+  box-shadow: 0 12px 34px rgba(24, 48, 30, .06);
+}
+.account-card h2 {
+  letter-spacing: -.035em;
+}
+.account-intro {
+  max-width: 48ch;
+  line-height: 1.75;
+}
+.auth-choice {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 6px;
+  margin: 22px 0 18px;
+  padding: 5px;
+  border: 1px solid #e4e9e5;
+  border-radius: 14px;
+  background: #f2f5f2;
+}
+.auth-choice-button {
+  min-height: 46px;
+  padding: 0 12px;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  background: transparent;
+  color: #626d65;
+  font-size: 14px;
+  font-weight: 700;
+  transition: background 140ms ease, color 140ms ease, box-shadow 140ms ease;
+}
+.auth-choice-button:hover:not(.is-active) {
+  background: rgba(255, 255, 255, .75);
+  color: #202b23;
+}
+.auth-choice-button.is-active {
+  border-color: #00bd35;
+  background: #00cd3b;
+  color: #09210f;
+  box-shadow: 0 2px 5px rgba(0, 120, 32, .13);
+}
+.auth-choice-button:focus-visible {
+  outline: 2px solid #008f2a;
+  outline-offset: 2px;
+}
+.signup-stage,
+.login-panel {
+  margin-top: 0;
+  padding: 22px;
+  border-color: #e4eae5;
+  border-radius: 14px;
+  background: #fbfcfb;
+}
+.signup-stage h3,
+.login-panel h3 {
+  font-size: 19px;
+  letter-spacing: -.02em;
+}
+.signup-stage > p,
+.login-panel > p {
+  line-height: 1.75;
+}
+.signup-stage .auth-form .primary-button,
+.login-panel .auth-form .primary-button,
+.nickname-panel .auth-form .primary-button {
+  width: 100%;
+  min-height: 46px;
+  margin-top: 9px;
+}
+.auth-form input {
+  background: #fff;
+}
+.auth-form input:focus {
+  border-color: #00b936;
+  box-shadow: 0 0 0 3px rgba(0, 205, 59, .11);
+}
+.account-message:empty {
+  min-height: 0;
+  margin: 0;
+}
+body.dark-mode .account-card {
+  border-color: #303844;
+  box-shadow: 0 12px 34px rgba(0, 0, 0, .18);
+}
+body.dark-mode .auth-choice {
+  border-color: #303844;
+  background: #141920;
+}
+body.dark-mode .auth-choice-button { color: #bac4bd; }
+body.dark-mode .auth-choice-button:hover:not(.is-active) {
+  background: #252d37;
+  color: #edf0f5;
+}
+body.dark-mode .auth-choice-button.is-active {
+  background: #00cd3b;
+  color: #09210f;
+  border-color: #00bd35;
+}
+body.dark-mode .signup-stage,
+body.dark-mode .login-panel {
+  background: #151a20;
+  border-color: #303844;
+}
+body.dark-mode .auth-form input {
+  color: #edf0f5;
+  background: #202731;
+}
+@media (max-width: 640px) {
+  .account-container { padding-top: 22px; }
+  .account-card { padding: 22px; border-radius: 17px; }
+  .signup-stage,
+  .login-panel { padding: 18px; }
+}
