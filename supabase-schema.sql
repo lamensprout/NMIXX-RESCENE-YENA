@@ -96,7 +96,7 @@ language plpgsql
 immutable
 parallel safe
 set search_path = ''
-as $
+as $$
 declare
   v_nickname text := btrim(coalesce(p_nickname, ''));
   v_separator_free text;
