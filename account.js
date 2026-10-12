@@ -111,8 +111,9 @@
     if (!nicknameForm.reportValidity()) return;
 
     const nickname = nicknameInput.value.trim();
-    if (!/^[가-힣A-Za-z0-9_]{2,16}$/.test(nickname)) {
-      setMessage("닉네임은 한글 또는 영어로 2~16자여야 해요. 숫자와 밑줄(_)도 사용할 수 있어요.", true);
+    const nicknameError = MonitorStore.getNicknameValidationError(nickname);
+    if (nicknameError) {
+      setMessage(nicknameError, true);
       return;
     }
 
