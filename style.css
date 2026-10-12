@@ -1062,3 +1062,57 @@ body.dark-mode .account-back-link-top:hover {
   background: #24372a;
   border-color: #426d4a;
 }
+
+
+/* Manual refresh for chart data */
+.chart-refresh-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.refresh-chart-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 38px;
+  padding: 0 12px;
+  border: 1px solid #17a13c;
+  border-radius: 10px;
+  background: #17a13c;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  white-space: nowrap;
+  transition: background 120ms ease, transform 120ms ease;
+}
+.refresh-chart-button:hover:not(:disabled) {
+  background: #11842f;
+  transform: translateY(-1px);
+}
+.refresh-chart-button:focus-visible {
+  outline: 2px solid #00cd3b;
+  outline-offset: 3px;
+}
+.refresh-chart-button:disabled {
+  opacity: .65;
+  cursor: wait;
+}
+.chart-status {
+  color: #737b87;
+  font-size: 12px;
+  line-height: 1.4;
+}
+body.dark-mode .refresh-chart-button {
+  color: #fff;
+  background: #168a35;
+  border-color: #168a35;
+}
+body.dark-mode .chart-status {
+  color: #aab3c1;
+}
+@media (max-width: 640px) {
+  .chart-refresh-controls {
+    justify-content: flex-start;
+  }
+}
