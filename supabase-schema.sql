@@ -146,6 +146,13 @@ create table if not exists public.melonitor_profiles (
 create unique index if not exists melonitor_profiles_nickname_case_insensitive_unique
   on public.melonitor_profiles (lower(btrim(nickname)));
 
+-- Apply moderation checks when this SQL is run on an existing profile table as well.
+alter table public.melonitor_profiles
+  drop constraint if exists melonitor_profiles_nickname_moderation_check;
+alter table public.melonitor_profiles
+  add constraint melonitor_profiles_nickname_moderation_check
+  check (public.melonitor_nickname_is_allowed(nickname)) not valid;
+
 alter table public.melonitor_profiles enable row level security;
 drop policy if exists "Users can read their own profile" on public.melonitor_profiles;
 create policy "Users can read their own profile"
