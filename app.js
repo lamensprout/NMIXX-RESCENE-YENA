@@ -314,20 +314,26 @@ function matchesArtist(artist, query) {
   });
 }
 
-function loadPopularSearches() {
+async function loadPopularSearches() {
+  if (!popular) return;
+
   try {
-    const saved = JSON.parse(localStorage.getItem("melonitor-popular-searches") || "{}");
-    popularSearches = saved && typeof saved === "object" && !Array.isArray(saved) ? saved : {};
+    const response = await fetch("/api/popular-searches", { cache: "no-store" });
+    if (!response.ok) throw new Error("인기 검색어를 불러오지 못했습니다.");
+
+    const data = await response.json();
+    popularSearches = data && data.popular && Array.isArray(data.popular)
+      ? Object.fromEntries(data.popular.map(function(item) {
+          return [item.artist, Number(item.count) || 0];
+        }))
+      : {};
+    renderPopularSearches();
   } catch (error) {
     popularSearches = {};
-  }
-}
-
-function savePopularSearches() {
-  try {
-    localStorage.setItem("melonitor-popular-searches", JSON.stringify(popularSearches));
-  } catch (error) {
-    // 저장이 차단된 브라우저에서는 현재 화면에서만 순위를 표시합니다.
+    renderPopularSearches();
+    if (popularNote) {
+      popularNote.textContent = "전체 인기 검색어를 표시하려면 데이터베이스 연결이 필요합니다.";
+    }
   }
 }
 
@@ -335,41 +341,26 @@ function renderPopularSearches() {
   if (!popular) return;
   popular.innerHTML = "";
 
-  const canonicalCounts = new Map();
-
-  Object.entries(popularSearches).forEach(function(entry) {
-    const savedArtist = entry[0];
-    const count = Number(entry[1]) || 0;
-    if (count <= 0) return;
-
-    const canonicalArtist = getCanonicalChartArtist(savedArtist);
-    const existsInChart = songs.some(function(song) {
-      return song.artist && areSameArtist(song.artist, canonicalArtist);
-    });
-
-    if (!existsInChart) return;
-
-    canonicalCounts.set(
-      canonicalArtist,
-      (canonicalCounts.get(canonicalArtist) || 0) + count
-    );
-  });
-
-  const ranked = Array.from(canonicalCounts.entries())
+  const ranked = Object.entries(popularSearches)
+    .filter(function(entry) {
+      return Number(entry[1]) > 0 && songs.some(function(song) {
+        return song.artist === entry[0];
+      });
+    })
     .sort(function(a, b) {
-      return b[1] - a[1] || a[0].localeCompare(b[0], "ko");
+      return Number(b[1]) - Number(a[1]) || a[0].localeCompare(b[0], "ko");
     })
     .slice(0, 8);
 
   if (!ranked.length) {
-    if (popularNote) {
-      popularNote.textContent = "검색을 시작하면 이 브라우저에서 많이 검색한 아티스트 순으로 표시됩니다.";
+    if (popularNote && !popularNote.textContent.includes("데이터베이스 연결")) {
+      popularNote.textContent = "방문자들의 검색이 쌓이면 인기 검색어 순으로 표시됩니다.";
     }
     return;
   }
 
   if (popularNote) {
-    popularNote.textContent = "이 브라우저에서 검색한 횟수 기준입니다.";
+    popularNote.textContent = "전체 방문자의 검색 횟수 기준입니다.";
   }
 
   ranked.forEach(function(entry, index) {
@@ -378,7 +369,7 @@ function renderPopularSearches() {
     button.className = "chip popular-chip";
     button.type = "button";
     button.textContent = (index + 1) + ". " + artist;
-    button.title = "검색 횟수: " + entry[1];
+    button.title = "전체 검색 횟수: " + entry[1];
 
     button.addEventListener("click", function() {
       input.value = artist;
@@ -390,7 +381,7 @@ function renderPopularSearches() {
   });
 }
 
-function recordPopularSearch(query) {
+async function recordPopularSearch(query) {
   const q = String(query || "").trim();
   if (normalize(q).length < 2) return;
 
@@ -401,9 +392,21 @@ function recordPopularSearch(query) {
   if (!matchedSong) return;
 
   const canonicalArtist = getCanonicalChartArtist(matchedSong.artist);
-  popularSearches[canonicalArtist] = (Number(popularSearches[canonicalArtist]) || 0) + 1;
-  savePopularSearches();
-  renderPopularSearches();
+
+  try {
+    const response = await fetch("/api/popular-searches", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ artist: canonicalArtist })
+    });
+
+    if (!response.ok) throw new Error("검색 횟수를 저장하지 못했습니다.");
+    await loadPopularSearches();
+  } catch (error) {
+    if (popularNote) {
+      popularNote.textContent = "전체 인기 검색어 저장을 준비 중입니다.";
+    }
+  }
 }
 
 function schedulePopularSearch(query) {
