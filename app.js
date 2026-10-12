@@ -9,6 +9,7 @@ const homeLink = document.getElementById("homeLink");
 const template = document.getElementById("songTemplate");
 const favoriteForm = document.getElementById("favoriteForm");
 const favoriteInput = document.getElementById("favoriteInput");
+const artistSuggestions = document.getElementById("artistSuggestions");
 const favoriteArtists = document.getElementById("favoriteArtists");
 const favoritesNote = document.getElementById("favoritesNote");
 const accountLink = document.getElementById("accountLink");
@@ -342,6 +343,30 @@ function getCanonicalPopularArtist(artist) {
   return aliasEntry ? aliasEntry[0] : value;
 }
 
+function renderArtistSuggestions() {
+  if (!artistSuggestions) return;
+  artistSuggestions.innerHTML = "";
+
+  const names = new Set();
+  songs.forEach(function(song) {
+    if (song.artist) names.add(song.artist);
+  });
+  Object.entries(artistAliases).forEach(function(entry) {
+    names.add(entry[0]);
+    (entry[1] || []).forEach(function(name) { names.add(name); });
+  });
+
+  Array.from(names)
+    .filter(Boolean)
+    .sort(function(a, b) { return a.localeCompare(b, "ko"); })
+    .slice(0, 500)
+    .forEach(function(name) {
+      const option = document.createElement("option");
+      option.value = name;
+      artistSuggestions.appendChild(option);
+    });
+}
+
 async function loadPopularSearches() {
   try {
     if (window.MonitorStore) {
@@ -628,6 +653,7 @@ async function load() {
 
     const data = await response.json();
     songs = Array.isArray(data.songs) ? data.songs : [];
+    renderArtistSuggestions();
 
     if (data.updated_at) {
       const date = new Date(data.updated_at);
