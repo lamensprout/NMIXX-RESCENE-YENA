@@ -63,7 +63,7 @@
     completeSignupButton.disabled = !configured || !signedIn || hasNickname;
   }
 
-  async function sendVerificationEmail() {
+  async function sendVerificationEmail(isResend = false) {
     if (!signupEmailForm.reportValidity()) return;
     const email = signupEmailInput.value.trim();
     sendVerificationButton.disabled = true;
@@ -71,7 +71,11 @@
     setMessage("인증 메일을 보내고 있어요.");
 
     try {
-      const { data, error } = await MonitorStore.startSignup(email);
+      const result = isResend
+        ? await MonitorStore.resendSignupVerification(email)
+        : await MonitorStore.startSignup(email);
+      const data = result.data;
+      const error = result.error;
       if (error) throw error;
 
       if (data && data.emailConfirmationDisabled) {
@@ -104,7 +108,7 @@
     await sendVerificationEmail();
   });
 
-  resendVerificationButton.addEventListener("click", sendVerificationEmail);
+  resendVerificationButton.addEventListener("click", () => sendVerificationEmail(true));
 
   showLoginButton.addEventListener("click", () => {
     loginExpanded = !loginExpanded;
