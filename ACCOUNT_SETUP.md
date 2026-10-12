@@ -1,48 +1,39 @@
 # Melonitor 계정 기능 설정
 
-회원가입은 **이메일 인증 → 필수 닉네임 설정 → 이용** 순서입니다. Supabase 이메일 인증이 켜져 있어야 하며, 설정 전에는 계정 기능을 사용할 수 없습니다.
+회원가입 흐름은 **이메일 입력 및 인증 메일 발송 → 이메일 링크 인증 → 닉네임과 비밀번호 설정 → 이용**입니다. 로그인은 기존 회원이 이메일과 비밀번호를 입력하는 방식만 사용합니다.
 
-## 1. Supabase 프로젝트 만들기
+## 1. Supabase 프로젝트 연결
 1. Supabase에서 프로젝트를 만듭니다.
 2. Project URL과 Publishable key를 확인합니다.
-3. 프로젝트의 SQL Editor를 엽니다.
+3. 저장소의 \`supabase-config.js\`에 두 값을 입력합니다. 브라우저용 공개 Publishable key만 사용하고 Secret/service_role key는 절대 입력하지 않습니다.
 
-## 2. 데이터베이스 준비
-1. 이 저장소의 `supabase-schema.sql`을 엽니다.
+## 2. 데이터베이스 스키마 실행
+1. 이 저장소의 \`supabase-schema.sql\`을 엽니다.
 2. 전체 내용을 Supabase SQL Editor에 붙여 넣고 Run을 누릅니다.
-3. 검색 기록, 즐겨찾기, 필수 닉네임 프로필 테이블과 사용자별 보안 정책이 만들어집니다.
+3. 검색 기록, 즐겨찾기, 닉네임 고유성, 부적절한 닉네임 필터 테이블과 정책이 준비됩니다.
 
-기존에 이전 버전의 SQL을 실행했어도 업데이트된 파일을 다시 실행하면 새 닉네임 테이블과 정책이 추가됩니다.
+## 3. 이메일 인증 설정
+1. Supabase Dashboard → Authentication → Sign In / Providers → Email에서 **Confirm email**을 켭니다.
+2. Authentication URL Configuration에서 Site URL을 \`https://melonitor.pages.dev\`로 설정합니다.
+3. Redirect URLs에 \`https://melonitor.pages.dev/account.html\`을 추가합니다.
+4. 메일함에서 인증 링크를 열면 가입 절차를 시작한 브라우저의 \`/account.html\`로 돌아오도록 설정합니다.
 
-## 3. 사이트에 프로젝트 연결
-1. 이 저장소의 `supabase-config.js`를 엽니다.
-2. `projectUrl`과 `publishableKey`에 각각 Supabase Project URL과 Publishable key를 입력합니다.
-3. 변경 사항을 `web-app` 브랜치에 저장해 배포합니다.
+Supabase의 이메일 확인은 \`signUp\` 확인 링크 흐름을 사용하고, 확인 후 세션이 생성되면 사용자는 \`updateUser({ password })\`로 본인이 쓸 비밀번호를 설정합니다. 공식 문서:
+- https://supabase.com/docs/reference/javascript/auth-signup
+- https://supabase.com/docs/reference/javascript/auth-updateuser
+- https://supabase.com/docs/guides/auth/general-configuration
 
-브라우저에 보이는 공개용 Publishable key만 사용하세요. Secret key나 `service_role` key는 절대 넣지 마세요.
+## 4. 가입 테스트
+1. \`/account.html\`에서 이메일 주소만 입력하고 **인증 메일 보내기**를 누릅니다.
+2. 이메일을 열고 인증 링크를 누릅니다. 가능하면 가입을 시작한 브라우저에서 링크를 엽니다.
+3. 인증 후 \`/account.html\`에서 닉네임과 비밀번호 설정 화면이 나타납니다.
+4. 닉네임을 정하고 앞으로 로그인에 사용할 비밀번호(8~72자)를 입력합니다.
+5. 완료 후에는 이메일과 비밀번호만으로 로그인할 수 있습니다.
 
-## 4. 이메일 인증을 반드시 켜기
-1. Supabase Dashboard의 Authentication 설정에서 Email provider를 엽니다.
-2. **Confirm email**이 켜져 있는지 확인합니다. 꺼져 있으면 회원가입 직후 세션이 발급되어 이메일 인증을 거치지 않을 수 있습니다.
-3. Site URL을 `https://melonitor.pages.dev`로 설정합니다.
-4. Redirect URLs 허용 목록에 `https://melonitor.pages.dev/account.html`을 추가합니다.
+이미 가입된 이메일이거나 인증 메일이 도착하지 않으면 로그인 화면에서 이메일과 비밀번호로 로그인해 주세요. 이메일 발송은 Supabase의 이메일 제공자/SMTP 및 발송 제한 설정의 영향을 받습니다.
 
-Supabase 공식 문서에 따르면 Confirm email이 켜져 있으면 회원가입 응답에서 세션이 즉시 발급되지 않고, 사용자는 이메일을 확인한 뒤 로그인할 수 있습니다. 설정이 꺼져 있어 세션이 즉시 발급되면 Melonitor는 안내 메시지를 표시합니다. 자세한 내용: https://supabase.com/docs/guides/auth/general-configuration
+## 기존 기록
+이메일 인증 및 닉네임 설정을 마친 뒤 이 브라우저에 남아 있는 검색 기록과 즐겨찾기를 계정으로 이전합니다. 이미 사라진 기록은 복구할 수 없습니다.
 
-## 5. 가입 흐름 테스트
-1. `/account.html`에서 이메일과 비밀번호를 입력하고 회원가입을 누릅니다.
-2. 받은 편지함에서 인증 링크를 누릅니다.
-3. 인증 링크가 Melonitor 계정 페이지로 돌아오면 닉네임 설정 폼이 나타납니다.
-4. 한글 또는 영어로 2~16자 닉네임을 정합니다. 숫자와 밑줄도 허용됩니다. 공백과 다른 특수문자는 허용되지 않으며, 닉네임은 대소문자를 구분하지 않고 중복을 막습니다. 예를 들어 `NMIXX`, `nMIxx`, `NMixX`는 같은 닉네임으로 취급됩니다.
-5. 닉네임 저장을 완료하면 메인 화면의 개인 검색어와 즐겨찾기를 이용할 수 있습니다.
-
-## 기존 기록 이전
-이메일 인증과 닉네임 설정을 완료한 뒤, 이 브라우저에 남아 있는 기존 검색 기록과 즐겨찾기를 계정으로 이전합니다. 브라우저에 더 이상 남아 있지 않은 기록이나 이전에 저장되지 않았던 서버 기록은 복구할 수 없습니다.
-
-
-## 부적절한 닉네임 필터
-닉네임은 원문뿐 아니라 숫자·밑줄을 제거한 형태와 일부 숫자를 비슷한 영문자로 해석한 형태도 함께 검사합니다. 따라서 실제 차단어 사이에 숫자나 밑줄을 넣어 우회하려는 경우도 일부 막을 수 있습니다.
-
-차단 대상은 **욕설·모욕, 성적 표현, 혐오·차별 표현, 위협적 표현, 개인정보 노출 가능성이 있는 닉네임, 운영진·공식 계정 사칭**입니다. `얼굴`이나 `face`처럼 그 자체로 중립적인 일반 단어는 부적절한 표현으로 간주하지 않으며, 차단 목록에 넣지 않습니다.
-
-자동 필터는 모든 문맥과 새로운 우회 표기를 완벽하게 판별할 수 없으므로, 이용자가 차단을 우회하거나 정상적인 표현이 잘못 차단되는 사례가 확인되면 목록을 검토·수정해야 합니다.
+## 닉네임 기준
+한글/영문 2~16자, 숫자와 밑줄 허용. 영문 대소문자에 관계없이 중복을 차단합니다. 욕설·성적 표현·혐오 표현, 개인정보로 보이는 닉네임, 운영진 사칭은 제한합니다. 숫자나 밑줄을 끼워 넣은 일부 우회 표기도 정규화해 검사하지만, 모든 문맥을 완벽하게 판별할 수는 없습니다.
