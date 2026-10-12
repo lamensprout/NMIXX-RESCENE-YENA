@@ -1,9 +1,8 @@
 /*
  * Supabase 연결 설정
- * Supabase 프로젝트의 Project URL과 Publishable key를 입력하세요.
- * 이 파일에는 secret/service_role key를 절대 넣지 마세요.
+ * Public browser config only. Never put a secret/service_role key here.
  */
 window.MELONITOR_SUPABASE_CONFIG = {
-  projectUrl: "",
-  publishableKey: ""
+  projectUrl: "https://gyfhwndqmjmerjvpovmx.supabase.co",
+  publishableKey: "sb_publishable_EPJ59wN3-DY5iYnXjU4dmA_67b9Fs_E"
 };
