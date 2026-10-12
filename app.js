@@ -740,9 +740,7 @@ async function load() {
 
     const data = await response.json();
     songs = Array.isArray(data.songs) ? data.songs : [];
-    renderArtistSuggestions();
-
-    if (data.updated_at) {
+if (data.updated_at) {
       const date = new Date(data.updated_at);
       updated.textContent =
         "업데이트: " + date.toLocaleString("ko-KR");
