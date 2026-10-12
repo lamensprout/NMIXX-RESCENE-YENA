@@ -104,29 +104,118 @@ returns boolean
 language plpgsql
 immutable
 parallel safe
-as $$
+as $
 declare
   v_nickname text := btrim(coalesce(p_nickname, ''));
-  v_normalized text;
+  v_separator_free text;
+  v_leet_like text;
+  v_blocked_pattern text := '(씨+이*발+|시+이*발+|씨+팔+|시+팔+|씨벌|시벌|씨불|시불|씹새끼|개새끼|새끼|좆|좇|존나|존내|병신|븅신|빙신|지랄|염병|개년|개놈|미친년|미친놈|느금마|니애미|애미뒤|애비뒤|보지|자지|성폭행|강간|야동|포르노|따먹|후장|딸딸이|섹스|창녀|걸레|맘충|한남충|한녀충|짱깨|쪽바리|얼굴|fuck|fuk|shit|bitch|bastard|motherfucker|asshole|jackass|dumbass|dick|pussy|cunt|slut|whore|porn|hentai|blowjob|handjob|masturbat|dildo|nigger|nigga|faggot|dyke|chink|kike|spic|tranny|retard|pedo|pedophile|heilhitler|whitepower|whitepride|kkk|face)';
+  v_reserved_pattern text := '^(admin|administrator|moderator|staff|support|developer|official|운영자|관리자|개발자|고객센터|공식|melonitor|멜로니터)$|^(melonitor|멜로니터)(admin|administrator|moderator|staff|support|developer|official|운영자|관리자|개발자|공식)$|^(admin|administrator|moderator|staff|support|developer|official|운영자|관리자|개발자|공식)(melonitor|멜로니터)$|^(official|공식)(nmixx|rescene|yena|엔믹스|리센느|예나|최예나)$|^(nmixx|rescene|yena|엔믹스|리센느|예나|최예나)(official|공식)
+
+revoke all on function public.melonitor_nickname_is_allowed(text) from public, anon;
+grant execute on function public.melonitor_nickname_is_allowed(text) to authenticated;
+
+create table if not exists public.melonitor_profiles (
+  user_id uuid primary key references auth.users(id) on delete cascade,
+  nickname text not null check (nickname ~ '^[가-힣A-Za-z0-9_]{2,16}$'),
+  created_at timestamptz not null default now()
+);
+
+-- NMIXX, nMIxx, and NMixX are the same nickname.
+create unique index if not exists melonitor_profiles_nickname_case_insensitive_unique
+  on public.melonitor_profiles (lower(btrim(nickname)));
+
+-- Check constraints marked NOT VALID still apply to new or changed rows,
+-- without breaking migration if an existing account has to be reviewed.
+alter table public.melonitor_profiles
+  drop constraint if exists melonitor_profiles_nickname_moderation_check;
+alter table public.melonitor_profiles
+  add constraint melonitor_profiles_nickname_moderation_check
+  check (public.melonitor_nickname_is_allowed(nickname)) not valid;
+
+alter table public.melonitor_profiles enable row level security;
+
+drop policy if exists "Users can read their own profile" on public.melonitor_profiles;
+create policy "Users can read their own profile"
+on public.melonitor_profiles for select to authenticated
+using ((select auth.uid()) = user_id);
+
+drop policy if exists "Users can insert their own profile" on public.melonitor_profiles;
+create policy "Users can insert their own profile"
+on public.melonitor_profiles for insert to authenticated
+with check ((select auth.uid()) = user_id);
+
+drop policy if exists "Users can update their own profile" on public.melonitor_profiles;
+create policy "Users can update their own profile"
+on public.melonitor_profiles for update to authenticated
+using ((select auth.uid()) = user_id)
+with check ((select auth.uid()) = user_id);
+
+grant select, insert, update on public.melonitor_profiles to authenticated;
+;
 begin
-  if v_nickname !~ '^[가-힣A-Za-z0-9_]{2,16}$' then
+  if v_nickname !~ '^[가-힣A-Za-z0-9_]{2,16}
+
+revoke all on function public.melonitor_nickname_is_allowed(text) from public, anon;
+grant execute on function public.melonitor_nickname_is_allowed(text) to authenticated;
+
+create table if not exists public.melonitor_profiles (
+  user_id uuid primary key references auth.users(id) on delete cascade,
+  nickname text not null check (nickname ~ '^[가-힣A-Za-z0-9_]{2,16}$'),
+  created_at timestamptz not null default now()
+);
+
+-- NMIXX, nMIxx, and NMixX are the same nickname.
+create unique index if not exists melonitor_profiles_nickname_case_insensitive_unique
+  on public.melonitor_profiles (lower(btrim(nickname)));
+
+-- Check constraints marked NOT VALID still apply to new or changed rows,
+-- without breaking migration if an existing account has to be reviewed.
+alter table public.melonitor_profiles
+  drop constraint if exists melonitor_profiles_nickname_moderation_check;
+alter table public.melonitor_profiles
+  add constraint melonitor_profiles_nickname_moderation_check
+  check (public.melonitor_nickname_is_allowed(nickname)) not valid;
+
+alter table public.melonitor_profiles enable row level security;
+
+drop policy if exists "Users can read their own profile" on public.melonitor_profiles;
+create policy "Users can read their own profile"
+on public.melonitor_profiles for select to authenticated
+using ((select auth.uid()) = user_id);
+
+drop policy if exists "Users can insert their own profile" on public.melonitor_profiles;
+create policy "Users can insert their own profile"
+on public.melonitor_profiles for insert to authenticated
+with check ((select auth.uid()) = user_id);
+
+drop policy if exists "Users can update their own profile" on public.melonitor_profiles;
+create policy "Users can update their own profile"
+on public.melonitor_profiles for update to authenticated
+using ((select auth.uid()) = user_id)
+with check ((select auth.uid()) = user_id);
+
+grant select, insert, update on public.melonitor_profiles to authenticated;
+ then
     return false;
   end if;
 
-  v_normalized := translate(lower(v_nickname), '0134578', 'oieastb');
-  v_normalized := regexp_replace(v_normalized, '[_0-9]+', '', 'g');
-  v_normalized := regexp_replace(v_normalized, '(.)\1+', '\1', 'g');
+  -- Variant 1: remove every digit/underscore, so interspersed characters cannot split a blocked term.
+  v_separator_free := lower(v_nickname);
+  v_separator_free := regexp_replace(v_separator_free, '[_0-9]+', '', 'g');
+  v_separator_free := regexp_replace(v_separator_free, '(.)\1+', '\1', 'g');
 
-  if v_normalized ~ '(씨+이*발+|시+이*발+|씨+팔+|시+팔+|씨벌|시벌|씨불|시불|씹새끼|개새끼|새끼|좆|좇|존나|존내|병신|븅신|빙신|지랄|염병|개년|개놈|미친년|미친놈|느금마|니애미|애미뒤|애비뒤|보지|자지|성폭행|강간|야동|포르노|따먹|후장|딸딸이|섹스|창녀|걸레|맘충|한남충|한녀충|짱깨|쪽바리|fuck|fuk|shit|bitch|bastard|motherfucker|asshole|jackass|dumbass|dick|pussy|cunt|slut|whore|porn|hentai|blowjob|handjob|masturbat|dildo|nigger|nigga|faggot|dyke|chink|kike|spic|tranny|retard|pedo|pedophile|heilhitler|whitepower|whitepride|kkk)' then
+  -- Variant 2: also match common leetspeak substitutions such as f4ce -> face.
+  v_leet_like := translate(lower(v_nickname), '0134578', 'oieastb');
+  v_leet_like := regexp_replace(v_leet_like, '_+', '', 'g');
+  v_leet_like := regexp_replace(v_leet_like, '(.)\1+', '\1', 'g');
+
+  if v_separator_free ~ v_blocked_pattern or v_leet_like ~ v_blocked_pattern then
     return false;
   end if;
 
   -- Reserved names and account impersonation prevention.
-  if v_normalized ~ '^(admin|administrator|moderator|staff|support|developer|official|운영자|관리자|개발자|고객센터|공식|melonitor|멜로니터)$'
-     or v_normalized ~ '^(melonitor|멜로니터)(admin|administrator|moderator|staff|support|developer|official|운영자|관리자|개발자|공식)$'
-     or v_normalized ~ '^(admin|administrator|moderator|staff|support|developer|official|운영자|관리자|개발자|공식)(melonitor|멜로니터)$'
-     or v_normalized ~ '^(official|공식)(nmixx|rescene|yena|엔믹스|리센느|예나|최예나)$'
-     or v_normalized ~ '^(nmixx|rescene|yena|엔믹스|리센느|예나|최예나)(official|공식)$' then
+  if v_separator_free ~ v_reserved_pattern or v_leet_like ~ v_reserved_pattern then
     return false;
   end if;
 
@@ -138,7 +227,7 @@ begin
 
   return true;
 end;
-$$;
+$;
 
 revoke all on function public.melonitor_nickname_is_allowed(text) from public, anon;
 grant execute on function public.melonitor_nickname_is_allowed(text) to authenticated;
