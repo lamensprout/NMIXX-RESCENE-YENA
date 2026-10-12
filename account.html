@@ -4,14 +4,14 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>계정 | Melonitor</title>
-  <link rel="stylesheet" href="style.css?v=20261012-6">
+  <link rel="stylesheet" href="style.css?v=20261012-7">
 </head>
 <body>
   <main class="container account-container">
     <header class="hero">
       <div>
         <a class="brand-link" href="/" aria-label="Melonitor 첫 화면으로"><h1>🍈 Melonitor</h1></a>
-        <p>이메일 인증 후 닉네임을 설정하면 Melonitor를 이용할 수 있어요.</p>
+        <p>회원가입은 이메일 인증부터 시작해요.</p>
       </div>
       <div class="hero-tools">
         <button id="themeToggle" class="theme-toggle" type="button" aria-label="다크 모드로 전환" title="다크 모드로 전환">🌙</button>
@@ -21,41 +21,63 @@
     <section class="account-card" aria-labelledby="accountTitle">
       <div class="account-kicker">YOUR MELONITOR</div>
       <h2 id="accountTitle">계정 관리</h2>
-      <p class="account-intro">회원가입 후 이메일 인증 링크를 먼저 눌러 주세요. 인증이 완료되면 필수 닉네임 설정 단계가 열립니다.</p>
+      <p class="account-intro">회원가입은 이메일 인증을 먼저 완료한 다음, 닉네임과 비밀번호를 설정하는 순서예요.</p>
 
       <div id="accountSetupNotice" class="account-notice" role="status" hidden>
         계정 기능을 연결하는 설정이 남아 있어요. Supabase 프로젝트 URL과 Publishable key를 등록하고, 이메일 인증 및 프로필 테이블을 설정해야 회원가입을 사용할 수 있습니다.
       </div>
-
       <div id="accountStatus" class="account-status" role="status" hidden></div>
 
-      <form id="authForm" class="auth-form">
-        <label for="accountEmail">이메일</label>
-        <input id="accountEmail" name="email" type="email" autocomplete="email" placeholder="이메일 주소" required>
-        <label for="accountPassword">비밀번호</label>
-        <input id="accountPassword" name="password" type="password" autocomplete="new-password" minlength="8" placeholder="8자 이상" required>
-        <div class="auth-actions">
-          <button id="signInButton" type="button" class="primary-button">로그인</button>
-          <button id="signUpButton" type="button" class="secondary-button">회원가입</button>
+      <section id="signupEmailPanel" class="signup-stage" aria-labelledby="signupEmailTitle">
+        <div class="stage-number">STEP 1</div>
+        <h3 id="signupEmailTitle">이메일 인증</h3>
+        <p>가입할 이메일 주소로 인증 메일을 보낼게요. 메일의 인증 링크를 누른 뒤 이 페이지로 돌아오면 다음 단계가 열려요.</p>
+        <form id="signupEmailForm" class="auth-form">
+          <label for="signupEmailInput">가입할 이메일</label>
+          <input id="signupEmailInput" name="signupEmail" type="email" autocomplete="email" placeholder="이메일 주소" required>
+          <button id="sendVerificationButton" type="submit" class="primary-button">인증 메일 보내기</button>
+        </form>
+        <div id="verificationSentPanel" class="verification-sent" role="status" hidden>
+          <strong>메일함을 확인해 주세요.</strong>
+          <p>인증 링크를 누르면 닉네임과 비밀번호를 설정할 수 있어요. 링크는 가입을 시작한 브라우저에서 여는 것이 가장 좋아요.</p>
+          <button id="resendVerificationButton" type="button" class="secondary-button">인증 메일 다시 보내기</button>
         </div>
-      </form>
+      </section>
+
+      <button id="showLoginButton" class="login-toggle" type="button" aria-expanded="false">이미 가입했어요 · 로그인</button>
+
+      <section id="loginPanel" class="login-panel" hidden aria-labelledby="loginTitle">
+        <h3 id="loginTitle">로그인</h3>
+        <p>로그인은 이메일과 비밀번호만으로 진행해요.</p>
+        <form id="authForm" class="auth-form">
+          <label for="accountEmail">이메일</label>
+          <input id="accountEmail" name="email" type="email" autocomplete="username" placeholder="이메일 주소" required>
+          <label for="accountPassword">비밀번호</label>
+          <input id="accountPassword" name="password" type="password" autocomplete="current-password" placeholder="비밀번호" required>
+          <button id="signInButton" type="submit" class="primary-button">로그인</button>
+        </form>
+      </section>
 
       <section id="nicknamePanel" class="nickname-panel" hidden aria-labelledby="nicknameTitle">
-        <h3 id="nicknameTitle">닉네임 설정</h3>
-        <p>이메일 인증이 완료됐어요. Melonitor를 이용하려면 닉네임을 꼭 정해 주세요.</p>
+        <div class="stage-number">STEP 2</div>
+        <h3 id="nicknameTitle">닉네임과 비밀번호 설정</h3>
+        <p>이메일 인증이 완료됐어요. 이용하려면 고유한 닉네임과 앞으로 로그인할 때 사용할 비밀번호를 정해 주세요.</p>
         <form id="nicknameForm" class="auth-form">
           <label for="nicknameInput">닉네임 (필수)</label>
           <input id="nicknameInput" name="nickname" type="text" minlength="2" maxlength="16" pattern="[가-힣A-Za-z0-9_]{2,16}" autocomplete="nickname" placeholder="예: MelonFan, 멜론팬" aria-describedby="nicknameHelp" required>
           <small id="nicknameHelp" class="nickname-help">한글·영어 2~16자. 숫자와 밑줄(_)은 가능해요. 욕설·성적·혐오 표현이나 운영진 사칭 닉네임은 사용할 수 없어요.</small>
-          <button id="saveNicknameButton" type="submit" class="primary-button">닉네임 저장하고 시작하기</button>
+          <label for="signupPassword">비밀번호 (필수)</label>
+          <input id="signupPassword" name="signupPassword" type="password" minlength="8" maxlength="72" autocomplete="new-password" placeholder="8~72자" required>
+          <small class="nickname-help">이 비밀번호를 나중에 이메일과 함께 사용해 로그인해요.</small>
+          <button id="completeSignupButton" type="submit" class="primary-button">닉네임과 비밀번호 저장</button>
         </form>
       </section>
 
       <div id="signedInPanel" class="signed-in-panel" hidden>
-        <p>로그인된 계정</p>
+        <p>로그인 완료</p>
         <strong id="signedInNickname"></strong>
         <p id="signedInEmail" class="signed-in-email"></p>
-        <p class="signed-in-explainer">이메일 인증이 완료됐어요. 검색 기록과 즐겨찾기는 이 계정에 저장됩니다.</p>
+        <p class="signed-in-explainer">이메일 인증과 닉네임·비밀번호 설정이 완료됐어요. 검색 기록과 즐겨찾기가 계정에 저장됩니다.</p>
         <button id="signOutButton" type="button" class="secondary-button">로그아웃</button>
       </div>
 
@@ -66,8 +88,8 @@
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="supabase-config.js?v=1"></script>
-  <script src="monitor-store.js?v=7"></script>
-  <script src="account.js?v=3"></script>
+  <script src="monitor-store.js?v=8"></script>
+  <script src="account.js?v=4"></script>
   <script src="theme.js?v=2"></script>
 </body>
 </html>
