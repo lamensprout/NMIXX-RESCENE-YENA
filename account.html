@@ -46,7 +46,7 @@
         <form id="nicknameForm" class="auth-form">
           <label for="nicknameInput">닉네임 (필수)</label>
           <input id="nicknameInput" name="nickname" type="text" minlength="2" maxlength="16" pattern="[가-힣A-Za-z0-9_]{2,16}" autocomplete="nickname" placeholder="예: MelonFan, 멜론팬" aria-describedby="nicknameHelp" required>
-          <small id="nicknameHelp" class="nickname-help">한글·영어 2~16자. 숫자와 밑줄(_)도 사용할 수 있어요. 공백과 특수문자는 사용할 수 없어요.</small>
+          <small id="nicknameHelp" class="nickname-help">한글·영어 2~16자. 숫자와 밑줄(_)은 가능해요. 욕설·성적·혐오 표현이나 운영진 사칭 닉네임은 사용할 수 없어요.</small>
           <button id="saveNicknameButton" type="submit" class="primary-button">닉네임 저장하고 시작하기</button>
         </form>
       </section>
@@ -66,8 +66,8 @@
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="supabase-config.js?v=1"></script>
-  <script src="monitor-store.js?v=3"></script>
-  <script src="account.js?v=2"></script>
+  <script src="monitor-store.js?v=4"></script>
+  <script src="account.js?v=3"></script>
   <script src="theme.js?v=2"></script>
 </body>
 </html>
