@@ -26,12 +26,14 @@
         <input id="artistSearch" type="search" placeholder="예: NMIXX, 엔믹스, RESCENE, 리센느, 최예나" autocomplete="off">
         <button id="clearBtn" type="button">지우기</button>
       </div>
-      <h2 class="popular-heading">인기 검색어</h2>
-      <p id="popularNote" class="popular-note">검색을 시작하면 이 브라우저에서 많이 검색한 아티스트 순으로 표시됩니다.</p>
-      <div id="popular" class="chips" aria-label="인기 검색어 순위"></div>
+      <div id="personalSearchPanel" hidden>
+        <h2 class="popular-heading">인기 검색어</h2>
+        <p id="popularNote" class="popular-note">로그인하면 내 검색 기록을 기준으로 표시됩니다.</p>
+        <div id="popular" class="chips" aria-label="인기 검색어 순위"></div>
+      </div>
     </section>
 
-    <section class="favorites-panel" aria-labelledby="favoriteTitle">
+    <section id="favoritesPanel" class="favorites-panel" aria-labelledby="favoriteTitle" hidden>
       <div class="favorites-heading">
         <div>
           <h2 id="favoriteTitle">내가 좋아하는 아티스트</h2>
@@ -79,7 +81,7 @@
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="supabase-config.js?v=1"></script>
   <script src="monitor-store.js?v=1"></script>
-  <script src="app.js?v=20261012-14"></script>
+  <script src="app.js?v=20261012-15"></script>
   <script src="theme.js?v=2"></script>
 </body>
 </html>
