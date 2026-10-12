@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>계정 | Melonitor</title>
-  <link rel="stylesheet" href="style.css?v=20261012-7">
+  <link rel="stylesheet" href="style.css?v=20261012-8">
 </head>
 <body>
   <main class="container account-container">
@@ -31,16 +31,22 @@
       <section id="signupEmailPanel" class="signup-stage" aria-labelledby="signupEmailTitle">
         <div class="stage-number">STEP 1</div>
         <h3 id="signupEmailTitle">이메일 인증</h3>
-        <p>가입할 이메일 주소로 인증 메일을 보낼게요. 메일의 인증 링크를 누른 뒤 이 페이지로 돌아오면 다음 단계가 열려요.</p>
+        <p>가입할 이메일 주소로 6자리 인증 코드를 보낼게요. 이메일에 도착한 코드를 아래에 입력해 주세요.</p>
         <form id="signupEmailForm" class="auth-form">
           <label for="signupEmailInput">가입할 이메일</label>
           <input id="signupEmailInput" name="signupEmail" type="email" autocomplete="email" placeholder="이메일 주소" required>
-          <button id="sendVerificationButton" type="submit" class="primary-button">인증 메일 보내기</button>
+          <button id="sendVerificationButton" type="submit" class="primary-button">인증 코드 보내기</button>
         </form>
         <div id="verificationSentPanel" class="verification-sent" role="status" hidden>
-          <strong>메일함을 확인해 주세요.</strong>
-          <p>인증 링크를 누르면 닉네임과 비밀번호를 설정할 수 있어요. 링크는 가입을 시작한 브라우저에서 여는 것이 가장 좋아요.</p>
-          <button id="resendVerificationButton" type="button" class="secondary-button">인증 메일 다시 보내기</button>
+          <strong>이메일을 확인해 주세요.</strong>
+          <p>받은 메일의 6자리 코드를 입력하면 닉네임과 비밀번호 설정 단계로 넘어가요.</p>
+          <form id="verificationOtpForm" class="auth-form otp-form">
+            <label for="verificationCodeInput">6자리 인증 코드</label>
+            <input id="verificationCodeInput" class="verification-code" name="verificationCode" type="text" inputmode="numeric" autocomplete="one-time-code" pattern="[0-9]{6}" minlength="6" maxlength="6" placeholder="123456" aria-describedby="verificationCodeHelp" required>
+            <small id="verificationCodeHelp" class="nickname-help">이메일로 받은 숫자 6자리를 입력해 주세요.</small>
+            <button id="verifyOtpButton" type="submit" class="primary-button">인증 코드 확인</button>
+          </form>
+          <button id="resendVerificationButton" type="button" class="secondary-button">인증 코드 다시 보내기</button>
         </div>
       </section>
 
@@ -88,8 +94,8 @@
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="supabase-config.js?v=1"></script>
-  <script src="monitor-store.js?v=9"></script>
-  <script src="account.js?v=5"></script>
+  <script src="monitor-store.js?v=10"></script>
+  <script src="account.js?v=6"></script>
   <script src="theme.js?v=2"></script>
 </body>
 </html>
