@@ -716,3 +716,40 @@ body.dark-mode .account-back-link { color: #8ed69e; }
   .account-card { padding: 20px; }
   .auth-actions { flex-direction: column; }
 }
+
+
+/* Required post-verification nickname step */
+.nickname-panel {
+  margin-top: 16px;
+  padding: 18px;
+  border: 1px solid #dcefe0;
+  border-radius: 12px;
+  background: #f5fbf6;
+}
+.nickname-panel h3 { margin: 0; font-size: 18px; }
+.nickname-panel > p {
+  margin: 8px 0 14px;
+  color: #53665a;
+  font-size: 13px;
+  line-height: 1.7;
+}
+.nickname-help {
+  margin: -2px 0 5px;
+  color: #68717d;
+  font-size: 12px;
+  line-height: 1.6;
+}
+.signed-in-email {
+  margin-top: 5px !important;
+  color: #68717d;
+  overflow-wrap: anywhere;
+}
+body.dark-mode .nickname-panel {
+  background: #1c3022;
+  border-color: #31563a;
+}
+body.dark-mode .nickname-panel > p,
+body.dark-mode .nickname-help,
+body.dark-mode .signed-in-email {
+  color: #aab3c1;
+}
