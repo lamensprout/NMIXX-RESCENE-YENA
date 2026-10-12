@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-12T17:13:27.381976+00:00",
+  "updated_at": "2026-10-12T18:13:44.775733+00:00",
   "songs": [
     {
       "rank": 1,
@@ -430,8 +430,8 @@
       "artist": "DAY6 (데이식스)",
       "album": "The Book of Us : Gravity",
       "album_image": "https://cdnimg.melon.co.kr/cm/album/images/103/07/346/10307346_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 49,
-      "change": 1
+      "previous_rank": 48,
+      "change": 0
     },
     {
       "rank": 49,
@@ -439,8 +439,8 @@
       "artist": "조째즈",
       "album": "모르시나요",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/116/85/729/11685729_20250106160640_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 48,
-      "change": -1
+      "previous_rank": 49,
+      "change": 0
     },
     {
       "rank": 50,
@@ -484,8 +484,8 @@
       "artist": "이클립스 (ECLIPSE)",
       "album": "선재 업고 튀어 OST Part 1",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/114/59/325/11459325_20240405171054_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 55,
-      "change": 1
+      "previous_rank": 54,
+      "change": 0
     },
     {
       "rank": 55,
@@ -493,8 +493,8 @@
       "artist": "aespa",
       "album": "Whiplash - The 5th Mini Album",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/116/20/540/11620540_20241018183208_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 54,
-      "change": -1
+      "previous_rank": 55,
+      "change": 0
     },
     {
       "rank": 56,
@@ -534,21 +534,21 @@
     },
     {
       "rank": 60,
+      "title": "이 밤을 빌려 말해요",
+      "artist": "PLAVE",
+      "album": "이 밤을 빌려 말해요 (오늘 밤, 세계에서 이 사랑이 사라진다 해도 X PLAVE)",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/124/58/320/12458320_20251226151630_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 61,
+      "change": 1
+    },
+    {
+      "rank": 61,
       "title": "오늘만 I LOVE YOU",
       "artist": "BOYNEXTDOOR",
       "album": "오늘만 I LOVE YOU",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/116/85/070/11685070_20250106111631_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 60,
-      "change": 0
-    },
-    {
-      "rank": 61,
-      "title": "이 밤을 빌려 말해요",
-      "artist": "PLAVE",
-      "album": "이 밤을 빌려 말해요 (오늘 밤, 세계에서 이 사랑이 사라진다 해도 X PLAVE)",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/124/58/320/12458320_20251226151630_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 62,
-      "change": 1
+      "change": -1
     },
     {
       "rank": 62,
@@ -556,8 +556,8 @@
       "artist": "DAY6 (데이식스)",
       "album": "Every DAY6 February",
       "album_image": "https://cdnimg.melon.co.kr/cm/album/images/100/36/099/10036099_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 61,
-      "change": -1
+      "previous_rank": 62,
+      "change": 0
     },
     {
       "rank": 63,
@@ -655,8 +655,8 @@
       "artist": "DAY6 (데이식스)",
       "album": "Fourever",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/114/44/397/11444397_20240318115810_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 74,
-      "change": 1
+      "previous_rank": 73,
+      "change": 0
     },
     {
       "rank": 74,
@@ -664,8 +664,8 @@
       "artist": "이무진",
       "album": "청혼하지 않을 이유를 못 찾았어",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/114/55/285/11455285_20240401151801_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 73,
-      "change": -1
+      "previous_rank": 74,
+      "change": 0
     },
     {
       "rank": 75,
@@ -673,8 +673,8 @@
       "artist": "NewJeans",
       "album": "NewJeans 1st EP 'New Jeans'",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/110/11/565/11011565_20220801102637_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 76,
-      "change": 1
+      "previous_rank": 75,
+      "change": 0
     },
     {
       "rank": 76,
@@ -682,8 +682,8 @@
       "artist": "에픽하이 (EPIK HIGH)",
       "album": "Remapping The Human Soul",
       "album_image": "https://cdnimg.melon.co.kr/cm/album/images/003/42/967/342967_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 75,
-      "change": -1
+      "previous_rank": 76,
+      "change": 0
     },
     {
       "rank": 77,
@@ -772,8 +772,8 @@
       "artist": "방탄소년단",
       "album": "Dynamite (DayTime Version)",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/104/79/150/10479150_20200918102847_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 87,
-      "change": 1
+      "previous_rank": 86,
+      "change": 0
     },
     {
       "rank": 87,
@@ -781,8 +781,8 @@
       "artist": "방탄소년단",
       "album": "YOU NEVER WALK ALONE",
       "album_image": "https://cdnimg.melon.co.kr/cm/album/images/100/37/969/10037969_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 86,
-      "change": -1
+      "previous_rank": 87,
+      "change": 0
     },
     {
       "rank": 88,
@@ -885,21 +885,21 @@
     },
     {
       "rank": 99,
+      "title": "Star Trace",
+      "artist": "PLAVE",
+      "album": "HYPERDRIVE",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/146/29/242/14629242_20261007150642_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 100,
+      "change": 1
+    },
+    {
+      "rank": 100,
       "title": "또또",
       "artist": "임영웅",
       "album": "IM HERO 10",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/144/98/154/14498154_20260910102107_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 99,
-      "change": 0
-    },
-    {
-      "rank": 100,
-      "title": "Star Trace",
-      "artist": "PLAVE",
-      "album": "HYPERDRIVE",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/146/29/242/14629242_20261007150642_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": null,
-      "change": 0
+      "change": -1
     }
   ]
 }
