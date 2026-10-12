@@ -14,7 +14,8 @@
 
 ## 3. 이메일 인증 설정
 1. Supabase Dashboard → Authentication → Sign In / Providers → Email에서 **Confirm email**을 켭니다.
-2. Authentication URL Configuration에서 Site URL을 \`https://melonitor.pages.dev\`로 설정합니다.
+2. Authentication URL Configuration에서 Redirect URLs에 `https://melonitor.pages.dev/account.html`을 먼저 추가합니다.
+3. Site URL을 \`https://melonitor.pages.dev\`로 설정합니다.
 3. Redirect URLs에 \`https://melonitor.pages.dev/account.html\`을 추가합니다.
 4. 메일함에서 인증 링크를 열면 가입 절차를 시작한 브라우저의 \`/account.html\`로 돌아오도록 설정합니다.
 
