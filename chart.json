@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-12T21:12:08.435201+00:00",
+  "updated_at": "2026-10-12T22:11:37.473781+00:00",
   "songs": [
     {
       "rank": 1,
@@ -183,21 +183,21 @@
     },
     {
       "rank": 21,
-      "title": "0+0",
-      "artist": "한로로",
-      "album": "자몽살구클럽",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/119/82/233/11982233_20250801150859_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 21,
-      "change": 0
-    },
-    {
-      "rank": 22,
       "title": "어떻게 이별까지 사랑하겠어, 널 사랑하는 거지",
       "artist": "AKMU (악뮤)",
       "album": "항해",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/103/31/947/10331947_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 22,
-      "change": 0
+      "change": 1
+    },
+    {
+      "rank": 22,
+      "title": "0+0",
+      "artist": "한로로",
+      "album": "자몽살구클럽",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/119/82/233/11982233_20250801150859_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 21,
+      "change": -1
     },
     {
       "rank": 23,
@@ -426,21 +426,21 @@
     },
     {
       "rank": 48,
-      "title": "한 페이지가 될 수 있게",
-      "artist": "DAY6 (데이식스)",
-      "album": "The Book of Us : Gravity",
-      "album_image": "https://cdnimg.melon.co.kr/cm/album/images/103/07/346/10307346_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 48,
-      "change": 0
-    },
-    {
-      "rank": 49,
       "title": "모르시나요(PROD.로코베리)",
       "artist": "조째즈",
       "album": "모르시나요",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/116/85/729/11685729_20250106160640_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 49,
-      "change": 0
+      "change": 1
+    },
+    {
+      "rank": 49,
+      "title": "한 페이지가 될 수 있게",
+      "artist": "DAY6 (데이식스)",
+      "album": "The Book of Us : Gravity",
+      "album_image": "https://cdnimg.melon.co.kr/cm/album/images/103/07/346/10307346_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 48,
+      "change": -1
     },
     {
       "rank": 50,
@@ -525,21 +525,21 @@
     },
     {
       "rank": 59,
-      "title": "그대 작은 나의 세상이 되어",
-      "artist": "카더가든",
-      "album": "부재",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/105/54/647/10554647_20210127173809_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 59,
-      "change": 0
-    },
-    {
-      "rank": 60,
       "title": "이 밤을 빌려 말해요",
       "artist": "PLAVE",
       "album": "이 밤을 빌려 말해요 (오늘 밤, 세계에서 이 사랑이 사라진다 해도 X PLAVE)",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/124/58/320/12458320_20251226151630_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 60,
-      "change": 0
+      "change": 1
+    },
+    {
+      "rank": 60,
+      "title": "그대 작은 나의 세상이 되어",
+      "artist": "카더가든",
+      "album": "부재",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/105/54/647/10554647_20210127173809_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 59,
+      "change": -1
     },
     {
       "rank": 61,
@@ -642,21 +642,21 @@
     },
     {
       "rank": 72,
-      "title": "Die With A Smile",
-      "artist": "Lady Gaga",
-      "album": "Die With A Smile",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/115/68/901/11568901_20240816130602_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 72,
-      "change": 0
-    },
-    {
-      "rank": 73,
       "title": "Welcome to the Show",
       "artist": "DAY6 (데이식스)",
       "album": "Fourever",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/114/44/397/11444397_20240318115810_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 73,
-      "change": 0
+      "change": 1
+    },
+    {
+      "rank": 73,
+      "title": "Die With A Smile",
+      "artist": "Lady Gaga",
+      "album": "Die With A Smile",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/115/68/901/11568901_20240816130602_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 72,
+      "change": -1
     },
     {
       "rank": 74,
@@ -691,8 +691,8 @@
       "artist": "TWS (투어스)",
       "album": "Sparkling Blue",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/113/91/902/11391902_20250922111638_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 78,
-      "change": 1
+      "previous_rank": 77,
+      "change": 0
     },
     {
       "rank": 78,
@@ -700,8 +700,8 @@
       "artist": "아이유",
       "album": "The Winning",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/114/04/142/11404142_20240220141548_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 77,
-      "change": -1
+      "previous_rank": 78,
+      "change": 0
     },
     {
       "rank": 79,
@@ -867,30 +867,30 @@
     },
     {
       "rank": 97,
-      "title": "에피소드",
-      "artist": "이무진",
-      "album": "에피소드",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/113/82/987/11382987_20231212165916_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 97,
-      "change": 0
-    },
-    {
-      "rank": 98,
-      "title": "계절의 끝",
-      "artist": "박재정",
-      "album": "기록 (上)",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/145/94/437/14594437_20260928153017_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 98,
-      "change": 0
-    },
-    {
-      "rank": 99,
       "title": "Star Trace",
       "artist": "PLAVE",
       "album": "HYPERDRIVE",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/146/29/242/14629242_20261007150642_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 99,
-      "change": 0
+      "change": 2
+    },
+    {
+      "rank": 98,
+      "title": "에피소드",
+      "artist": "이무진",
+      "album": "에피소드",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/113/82/987/11382987_20231212165916_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 97,
+      "change": -1
+    },
+    {
+      "rank": 99,
+      "title": "계절의 끝",
+      "artist": "박재정",
+      "album": "기록 (上)",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/145/94/437/14594437_20260928153017_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 98,
+      "change": -1
     },
     {
       "rank": 100,
