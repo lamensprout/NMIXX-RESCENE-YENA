@@ -4,19 +4,20 @@
   const CONFIG = window.MELONITOR_SUPABASE_CONFIG || {};
   const NICKNAME_PATTERN = /^[가-힣A-Za-z0-9_]{2,16}$/;
   const NICKNAME_BLOCKED_PATTERNS = [
-    /씨+이*발+|시+이*발+|씨+팔+|시+팔+|씨벌|시벌|씨불|시불|씹새끼|개새끼|새끼|좆|좇|존나|존내|병신|븅신|빙신|지랄|염병|개년|개놈|미친년|미친놈|느금마|니애미|애미뒤|애비뒤|보지|자지|성폭행|강간|야동|포르노|따먹|후장|딸딸이|섹스|창녀|걸레|맘충|한남충|한녀충|짱깨|쪽바리/u,
-    /fuck|fuk|shit|bitch|bastard|motherfucker|asshole|jackass|dumbass|dick|pussy|cunt|slut|whore|porn|hentai|blowjob|handjob|masturbat|dildo|nigger|nigga|faggot|dyke|chink|kike|spic|tranny|retard|pedo|pedophile|heilhitler|whitepower|whitepride|kkk/u
+    /씨+이*발+|시+이*발+|씨+팔+|시+팔+|씨벌|시벌|씨불|시불|씹새끼|개새끼|새끼|좆|좇|존나|존내|병신|븅신|빙신|지랄|염병|개년|개놈|미친년|미친놈|느금마|니애미|애미뒤|애비뒤|보지|자지|성폭행|강간|야동|포르노|따먹|후장|딸딸이|섹스|창녀|걸레|맘충|한남충|한녀충|짱깨|쪽바리|얼굴/u,
+    /fuck|fuk|shit|bitch|bastard|motherfucker|asshole|jackass|dumbass|dick|pussy|cunt|slut|whore|porn|hentai|blowjob|handjob|masturbat|dildo|nigger|nigga|faggot|dyke|chink|kike|spic|tranny|retard|pedo|pedophile|heilhitler|whitepower|whitepride|kkk|face/u
   ];
   const NICKNAME_RESERVED = /^(admin|administrator|moderator|staff|support|developer|official|운영자|관리자|개발자|고객센터|공식|melonitor|멜로니터)$|^(melonitor|멜로니터)(admin|administrator|moderator|staff|support|developer|official|운영자|관리자|개발자|공식)$|^(admin|administrator|moderator|staff|support|developer|official|운영자|관리자|개발자|공식)(melonitor|멜로니터)$|^(official|공식)(nmixx|rescene|yena|엔믹스|리센느|예나|최예나)$|^(nmixx|rescene|yena|엔믹스|리센느|예나|최예나)(official|공식)$/u;
 
   function normalizeNicknameForModeration(nickname) {
+    const raw = String(nickname || "").normalize("NFKC").toLowerCase();
     const substitutions = { "0": "o", "1": "i", "3": "e", "4": "a", "5": "s", "7": "t", "8": "b" };
-    return String(nickname || "")
-      .normalize("NFKC")
-      .toLowerCase()
-      .replace(/[0134578]/g, character => substitutions[character])
-      .replace(/[_0-9]/g, "")
-      .replace(/(.)\1+/gu, "$1");
+    const collapseRepeats = value => value.replace(/(.)\1+/gu, "$1");
+    // First variant: remove all digits and allowed separators, so inserted digits/underscores cannot hide words.
+    const separatorFree = collapseRepeats(raw.replace(/[_0-9]+/g, ""));
+    // Second variant: interpret common leetspeak digits as letters (for example, f4ce -> face).
+    const leetLike = collapseRepeats(raw.replace(/_/g, "").replace(/[0134578]/g, character => substitutions[character]));
+    return Array.from(new Set([separatorFree, leetLike]));
   }
 
   function getNicknameValidationError(rawNickname) {
@@ -25,12 +26,12 @@
       return "닉네임은 한글 또는 영어로 2~16자여야 해요. 숫자와 밑줄(_)도 사용할 수 있어요.";
     }
 
-    const normalized = normalizeNicknameForModeration(nickname);
-    if (NICKNAME_BLOCKED_PATTERNS.some(pattern => pattern.test(normalized))) {
-      return "욕설, 성적인 표현, 혐오·비하 표현이 포함된 닉네임은 사용할 수 없어요. 다른 닉네임을 선택해 주세요.";
+    const normalizedVariants = normalizeNicknameForModeration(nickname);
+    if (normalizedVariants.some(normalized => NICKNAME_BLOCKED_PATTERNS.some(pattern => pattern.test(normalized)))) {
+      return "욕설, 성적인 표현, 혐오·비하 표현 또는 차단된 단어가 포함된 닉네임은 사용할 수 없어요. 숫자나 밑줄로 바꿔 써도 제한됩니다.";
     }
 
-    if (NICKNAME_RESERVED.test(normalized)) {
+    if (normalizedVariants.some(normalized => NICKNAME_RESERVED.test(normalized))) {
       return "운영진이나 공식 계정으로 오해할 수 있는 닉네임은 사용할 수 없어요.";
     }
 
