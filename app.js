@@ -10,6 +10,8 @@ const template = document.getElementById("songTemplate");
 const favoriteForm = document.getElementById("favoriteForm");
 const favoriteInput = document.getElementById("favoriteInput");
 const artistSuggestions = document.getElementById("artistSuggestions");
+const personalSearchPanel = document.getElementById("personalSearchPanel");
+const favoritesPanel = document.getElementById("favoritesPanel");
 const favoriteArtists = document.getElementById("favoriteArtists");
 const favoritesNote = document.getElementById("favoritesNote");
 const accountLink = document.getElementById("accountLink");
@@ -343,6 +345,19 @@ function getCanonicalPopularArtist(artist) {
   return aliasEntry ? aliasEntry[0] : value;
 }
 
+function updatePersonalPanels() {
+  const signedIn = !!(window.MonitorStore && MonitorStore.getUser());
+
+  if (personalSearchPanel) personalSearchPanel.hidden = !signedIn;
+  if (favoritesPanel) favoritesPanel.hidden = !signedIn;
+  if (accountLink) accountLink.textContent = signedIn ? "내 계정" : "로그인 / 회원가입";
+
+  if (!signedIn) {
+    if (popular) popular.innerHTML = "";
+    if (favoriteArtists) favoriteArtists.innerHTML = "";
+  }
+}
+
 function renderArtistSuggestions() {
   if (!artistSuggestions) return;
   artistSuggestions.innerHTML = "";
@@ -383,7 +398,9 @@ async function loadPopularSearches() {
 
 function renderPopularSearches() {
   if (!popular) return;
+  updatePersonalPanels();
   popular.innerHTML = "";
+  if (!window.MonitorStore || !MonitorStore.getUser()) return;
 
   const canonicalCounts = new Map();
   Object.entries(popularSearches).forEach(function(entry) {
@@ -433,7 +450,9 @@ function renderPopularSearches() {
 
 async function renderFavoriteArtists() {
   if (!favoriteArtists) return;
+  updatePersonalPanels();
   favoriteArtists.innerHTML = "";
+  if (!window.MonitorStore || !MonitorStore.getUser()) return;
 
   let names = [];
   try {
@@ -523,6 +542,9 @@ if (favoriteForm) {
 }
 
 async function recordPopularSearch(query) {
+  // 개인 검색 기록은 로그인한 계정에만 추가합니다.
+  if (!window.MonitorStore || !MonitorStore.getUser()) return;
+
   const q = String(query || "").trim();
   if (normalize(q).length < 2) return;
 
@@ -644,6 +666,7 @@ async function load() {
         console.warn("계정 상태를 확인하지 못했습니다:", accountError);
       }
     }
+    updatePersonalPanels();
 
     const response = await fetch("./chart.json", { cache: "no-store" });
 
@@ -674,6 +697,7 @@ async function load() {
 }
 
 window.addEventListener("melonitor-auth-change", async function() {
+  updatePersonalPanels();
   await loadPopularSearches();
   await renderFavoriteArtists();
 });
