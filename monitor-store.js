@@ -339,6 +339,15 @@
     return result;
   }
 
+  async function resendSignupVerification(email) {
+    if (!client) throw new Error("계정 기능 설정이 아직 완료되지 않았습니다.");
+    return client.auth.resend({
+      type: "signup",
+      email: String(email || "").trim(),
+      options: { emailRedirectTo: window.location.origin + "/account.html" }
+    });
+  }
+
   async function signIn(email, password) {
     if (!client) throw new Error("계정 기능 설정이 아직 완료되지 않았습니다.");
     const result = await client.auth.signInWithPassword({ email, password });
@@ -450,6 +459,7 @@
     addFavorite,
     removeFavorite,
     startSignup,
+    resendSignupVerification,
     signIn,
     completeSignup,
     saveNickname,
