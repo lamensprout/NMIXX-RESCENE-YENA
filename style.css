@@ -830,3 +830,17 @@ body.dark-mode .verification-sent {
   background: #1c3022;
   border-color: #31563a;
 }
+
+
+/* Email six-digit verification code */
+.otp-form { margin-top: 12px; }
+.verification-code {
+  text-align: center;
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: .35em;
+  font-variant-numeric: tabular-nums;
+}
+.verification-code::placeholder { letter-spacing: .35em; }
+#resendVerificationButton { margin-top: 12px; }
+body.dark-mode .verification-code { color: #edf0f5; }
