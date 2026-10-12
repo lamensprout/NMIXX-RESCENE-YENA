@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>계정 | Melonitor</title>
-  <link rel="stylesheet" href="style.css?v=20261012-8">
+  <link rel="stylesheet" href="style.css?v=20261012-10">
 </head>
 <body>
   <main class="container account-container">
@@ -28,7 +28,12 @@
       </div>
       <div id="accountStatus" class="account-status" role="status" hidden></div>
 
-      <section id="signupEmailPanel" class="signup-stage" aria-labelledby="signupEmailTitle">
+      <div id="authChoice" class="auth-choice" role="group" aria-label="계정 메뉴">
+        <button id="chooseLoginButton" class="auth-choice-button" type="button">로그인</button>
+        <button id="chooseSignupButton" class="auth-choice-button is-active" type="button">회원가입</button>
+      </div>
+
+      <section id="signupEmailPanel" class="signup-stage" aria-labelledby="signupEmailTitle" hidden>
         <div class="stage-number">STEP 1</div>
         <h3 id="signupEmailTitle">이메일 인증</h3>
         <p>가입할 이메일 주소로 6자리 인증 코드를 보낼게요. 이메일에 도착한 코드를 아래에 입력해 주세요.</p>
@@ -49,8 +54,6 @@
           <button id="resendVerificationButton" type="button" class="secondary-button">인증 코드 다시 보내기</button>
         </div>
       </section>
-
-      <button id="showLoginButton" class="login-toggle" type="button" aria-expanded="false">이미 가입했어요 · 로그인</button>
 
       <section id="loginPanel" class="login-panel" hidden aria-labelledby="loginTitle">
         <h3 id="loginTitle">로그인</h3>
@@ -95,7 +98,7 @@
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="supabase-config.js?v=1"></script>
   <script src="monitor-store.js?v=10"></script>
-  <script src="account.js?v=6"></script>
+  <script src="account.js?v=7"></script>
   <script src="theme.js?v=2"></script>
 </body>
 </html>
