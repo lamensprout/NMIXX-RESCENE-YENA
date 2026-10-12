@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-12T19:13:18.724672+00:00",
+  "updated_at": "2026-10-12T20:13:36.127961+00:00",
   "songs": [
     {
       "rank": 1,
@@ -543,21 +543,21 @@
     },
     {
       "rank": 61,
-      "title": "오늘만 I LOVE YOU",
-      "artist": "BOYNEXTDOOR",
-      "album": "오늘만 I LOVE YOU",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/116/85/070/11685070_20250106111631_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 61,
-      "change": 0
-    },
-    {
-      "rank": 62,
       "title": "예뻤어",
       "artist": "DAY6 (데이식스)",
       "album": "Every DAY6 February",
       "album_image": "https://cdnimg.melon.co.kr/cm/album/images/100/36/099/10036099_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 62,
-      "change": 0
+      "change": 1
+    },
+    {
+      "rank": 62,
+      "title": "오늘만 I LOVE YOU",
+      "artist": "BOYNEXTDOOR",
+      "album": "오늘만 I LOVE YOU",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/116/85/070/11685070_20250106111631_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 61,
+      "change": -1
     },
     {
       "rank": 63,
@@ -673,8 +673,8 @@
       "artist": "에픽하이 (EPIK HIGH)",
       "album": "Remapping The Human Soul",
       "album_image": "https://cdnimg.melon.co.kr/cm/album/images/003/42/967/342967_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 76,
-      "change": 1
+      "previous_rank": 75,
+      "change": 0
     },
     {
       "rank": 76,
@@ -682,8 +682,8 @@
       "artist": "NewJeans",
       "album": "NewJeans 1st EP 'New Jeans'",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/110/11/565/11011565_20220801102637_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 75,
-      "change": -1
+      "previous_rank": 76,
+      "change": 0
     },
     {
       "rank": 77,
@@ -844,8 +844,8 @@
       "artist": "ALLDAY PROJECT",
       "album": "ALLDAY PROJECT",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/123/92/184/12392184_20251208133705_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 95,
-      "change": 1
+      "previous_rank": 94,
+      "change": 0
     },
     {
       "rank": 95,
@@ -853,8 +853,8 @@
       "artist": "임영웅",
       "album": "IM HERO 2",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/120/83/192/12083192_20250828155052_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 94,
-      "change": -1
+      "previous_rank": 95,
+      "change": 0
     },
     {
       "rank": 96,
