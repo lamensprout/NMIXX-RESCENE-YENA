@@ -1,6 +1,6 @@
 # Melonitor 계정 기능 설정
 
-회원가입 흐름은 **이메일 입력 및 인증 메일 발송 → 이메일 링크 인증 → 닉네임과 비밀번호 설정 → 이용**입니다. 로그인은 기존 회원이 이메일과 비밀번호를 입력하는 방식만 사용합니다.
+회원가입 흐름은 **이메일 입력 및 6자리 인증 코드 발송 → 코드 확인 → 닉네임과 비밀번호 설정 → 이용**입니다. 로그인은 기존 회원이 이메일과 비밀번호를 입력하는 방식만 사용합니다.
 
 ## 1. Supabase 프로젝트 연결
 1. Supabase에서 프로젝트를 만듭니다.
@@ -14,24 +14,29 @@
 
 ## 3. 이메일 인증 설정
 1. Supabase Dashboard → Authentication → Sign In / Providers → Email에서 **Confirm email**을 켭니다.
-2. Authentication URL Configuration에서 Redirect URLs에 `https://melonitor.pages.dev/account.html`을 먼저 추가합니다.
-3. Site URL을 \`https://melonitor.pages.dev\`로 설정합니다.
-3. Redirect URLs에 \`https://melonitor.pages.dev/account.html\`을 추가합니다.
-4. 메일함에서 인증 링크를 열면 가입 절차를 시작한 브라우저의 \`/account.html\`로 돌아오도록 설정합니다.
+2. Authentication → URL Configuration에서 Site URL을 `https://melonitor.pages.dev`로 설정하고 Redirect URLs에 `https://melonitor.pages.dev/account.html`을 추가합니다.
+3. Authentication → Email Templates → **Confirm signup** 템플릿을 열고 subject와 body를 6자리 코드 방식으로 바꿉니다.
 
-Supabase의 이메일 확인은 \`signUp\` 확인 링크 흐름을 사용하고, 확인 후 세션이 생성되면 사용자는 \`updateUser({ password })\`로 본인이 쓸 비밀번호를 설정합니다. 공식 문서:
-- https://supabase.com/docs/reference/javascript/auth-signup
-- https://supabase.com/docs/reference/javascript/auth-updateuser
-- https://supabase.com/docs/guides/auth/general-configuration
+Subject:
+`[Melonitor] 이메일 인증 코드: {{ .Token }}`
+
+Body (HTML):
+`<h2>Melonitor 이메일 인증</h2><p>회원가입을 완료하려면 아래 6자리 인증 코드를 Melonitor 페이지에 입력해 주세요.</p><p style="font-size:28px;font-weight:bold;letter-spacing:6px;">{{ .Token }}</p><p>본인이 요청하지 않았다면 이 메일을 무시해 주세요.</p>`
+
+4. Save를 누릅니다. 가입 때 보내는 이메일은 **Confirm signup** 템플릿을 사용하므로, **Magic link** 템플릿만 바꾸는 것으로는 충분하지 않습니다.
+
+Supabase 공식 문서:
+- https://supabase.com/docs/guides/auth/auth-email-templates
+- https://supabase.com/docs/reference/javascript/auth-verifyotp
 
 ## 4. 가입 테스트
-1. \`/account.html\`에서 이메일 주소만 입력하고 **인증 메일 보내기**를 누릅니다.
-2. 이메일을 열고 인증 링크를 누릅니다. 가능하면 가입을 시작한 브라우저에서 링크를 엽니다.
-3. 인증 후 \`/account.html\`에서 닉네임과 비밀번호 설정 화면이 나타납니다.
+1. `/account.html`에서 이메일 주소를 입력하고 **인증 코드 보내기**를 누릅니다.
+2. 이메일에 도착한 6자리 숫자를 사이트에 입력하고 **인증 코드 확인**을 누릅니다.
+3. 인증 후 닉네임과 비밀번호 설정 화면이 나타납니다.
 4. 닉네임을 정하고 앞으로 로그인에 사용할 비밀번호(8~72자)를 입력합니다.
 5. 완료 후에는 이메일과 비밀번호만으로 로그인할 수 있습니다.
 
-이미 가입된 이메일이거나 인증 메일이 도착하지 않으면 로그인 화면에서 이메일과 비밀번호로 로그인해 주세요. 이메일 발송은 Supabase의 이메일 제공자/SMTP 및 발송 제한 설정의 영향을 받습니다.
+이미 인증한 이메일은 가입용 코드가 다시 발송되지 않을 수 있습니다. 첫 테스트 후 다른 이메일로 새 가입을 시험하거나, 기존 테스트 계정으로는 로그인해 주세요. 이메일 발송은 Supabase의 이메일 제공자/SMTP 및 발송 제한 설정의 영향을 받습니다.
 
 ## 기존 기록
 이메일 인증 및 닉네임 설정을 마친 뒤 이 브라우저에 남아 있는 검색 기록과 즐겨찾기를 계정으로 이전합니다. 이미 사라진 기록은 복구할 수 없습니다.
