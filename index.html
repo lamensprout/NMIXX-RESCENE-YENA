@@ -42,11 +42,11 @@
       </div>
       <form id="favoriteForm" class="favorite-form">
         <label class="visually-hidden" for="favoriteInput">즐겨찾기 아티스트 이름</label>
-        <input id="favoriteInput" type="text" maxlength="100" list="artistSuggestions" placeholder="아티스트명을 선택하거나 입력해 주세요" autocomplete="off">
-        <datalist id="artistSuggestions"></datalist>
-        <button type="submit" class="primary-button">아티스트 추가</button>
+        <input id="favoriteInput" type="search" maxlength="100" placeholder="아티스트 이름 검색 (예: 엔믹스)" autocomplete="off" aria-controls="favoriteSearchResults" aria-expanded="false">
+        <button id="favoriteAddButton" type="submit" class="primary-button" disabled>아티스트 추가</button>
       </form>
-      <p id="favoritesNote" class="favorites-note">좋아하는 아티스트를 추가해 보세요.</p>
+      <div id="favoriteSearchResults" class="favorite-search-results" role="listbox" aria-label="아티스트 검색 결과" hidden></div>
+      <p id="favoritesNote" class="favorites-note">아티스트를 검색한 뒤 결과에서 선택해 주세요.</p>
       <div id="favoriteArtists" class="chips favorite-list" aria-label="내가 좋아하는 아티스트 목록"></div>
     </section>
 
