@@ -7,6 +7,9 @@
   const sendVerificationButton = document.getElementById("sendVerificationButton");
   const verificationSentPanel = document.getElementById("verificationSentPanel");
   const resendVerificationButton = document.getElementById("resendVerificationButton");
+  const verificationOtpForm = document.getElementById("verificationOtpForm");
+  const verificationCodeInput = document.getElementById("verificationCodeInput");
+  const verifyOtpButton = document.getElementById("verifyOtpButton");
   const showLoginButton = document.getElementById("showLoginButton");
   const loginPanel = document.getElementById("loginPanel");
   const authForm = document.getElementById("authForm");
@@ -60,6 +63,7 @@
     signInButton.disabled = !configured;
     sendVerificationButton.disabled = !configured;
     resendVerificationButton.disabled = !configured;
+    if (verifyOtpButton) verifyOtpButton.disabled = !configured;
     completeSignupButton.disabled = !configured || !signedIn || hasNickname;
   }
 
@@ -68,7 +72,8 @@
     const email = signupEmailInput.value.trim();
     sendVerificationButton.disabled = true;
     resendVerificationButton.disabled = true;
-    setMessage("인증 메일을 보내고 있어요.");
+    if (verifyOtpButton) verifyOtpButton.disabled = true;
+    setMessage(isResend ? "인증 코드를 다시 보내고 있어요." : "인증 코드를 보내고 있어요.");
 
     try {
       const result = isResend
@@ -84,12 +89,40 @@
       }
 
       verificationSentPanel.hidden = false;
-      sendVerificationButton.textContent = "인증 메일 다시 보내기";
-      setMessage("요청을 처리했어요. 새 계정이면 인증 메일이 도착해요. 이미 가입한 계정이라면 아래 로그인 버튼에서 이메일과 비밀번호로 로그인해 주세요.");
+      sendVerificationButton.textContent = "인증 코드 다시 보내기";
+      setMessage("인증 코드를 요청했어요. 받은 메일에서 6자리 숫자를 찾아 입력해 주세요. 이미 가입한 계정이라면 아래 로그인에서 이메일과 비밀번호로 로그인해 주세요.");
+      verificationCodeInput.focus();
     } catch (error) {
-      setMessage(error.message || "인증 메일을 보내지 못했어요. 이메일을 확인한 뒤 다시 시도해 주세요.", true);
+      setMessage(error.message || "인증 코드를 보내지 못했어요. 이메일을 확인한 뒤 다시 시도해 주세요.", true);
     } finally {
       sendVerificationButton.disabled = !MonitorStore.isConfigured();
+      resendVerificationButton.disabled = !MonitorStore.isConfigured();
+      if (verifyOtpButton) verifyOtpButton.disabled = !MonitorStore.isConfigured();
+    }
+  }
+
+  async function verifySignupCode(event) {
+    event.preventDefault();
+    if (!verificationOtpForm.reportValidity()) return;
+
+    verifyOtpButton.disabled = true;
+    resendVerificationButton.disabled = true;
+    setMessage("인증 코드를 확인하고 있어요.");
+    try {
+      const result = await MonitorStore.verifySignupOtp(
+        signupEmailInput.value.trim(),
+        verificationCodeInput.value.trim()
+      );
+      if (result.error) throw result.error;
+
+      verificationCodeInput.value = "";
+      verificationSentPanel.hidden = true;
+      showSignedIn(MonitorStore.getUser());
+      setMessage("이메일 인증이 완료됐어요. 이제 닉네임과 비밀번호를 설정해 주세요.");
+    } catch (error) {
+      setMessage(error.message || "인증에 실패했어요. 6자리 코드를 확인하고 다시 시도해 주세요.", true);
+    } finally {
+      verifyOtpButton.disabled = !MonitorStore.isConfigured();
       resendVerificationButton.disabled = !MonitorStore.isConfigured();
     }
   }
@@ -108,6 +141,12 @@
     await sendVerificationEmail();
   });
 
+  if (verificationOtpForm) {
+    verificationOtpForm.addEventListener("submit", verifySignupCode);
+  }
+  verificationCodeInput.addEventListener("input", () => {
+    verificationCodeInput.value = verificationCodeInput.value.replace(/[^0-9]/g, "").slice(0, 6);
+  });
   resendVerificationButton.addEventListener("click", () => sendVerificationEmail(true));
 
   showLoginButton.addEventListener("click", () => {
