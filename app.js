@@ -9,7 +9,8 @@ const homeLink = document.getElementById("homeLink");
 const template = document.getElementById("songTemplate");
 const favoriteForm = document.getElementById("favoriteForm");
 const favoriteInput = document.getElementById("favoriteInput");
-const artistSuggestions = document.getElementById("artistSuggestions");
+const favoriteAddButton = document.getElementById("favoriteAddButton");
+const favoriteSearchResults = document.getElementById("favoriteSearchResults");
 const personalSearchPanel = document.getElementById("personalSearchPanel");
 const favoritesPanel = document.getElementById("favoritesPanel");
 const favoriteArtists = document.getElementById("favoriteArtists");
@@ -19,6 +20,7 @@ const accountLink = document.getElementById("accountLink");
 let songs = [];
 let popularSearches = {};
 let popularityTimer = null;
+let selectedFavoriteArtist = "";
 
 const artistAliases = {
   "NMIXX": ["엔믹스", "믹스"],
@@ -363,28 +365,75 @@ function updatePersonalPanels() {
   }
 }
 
-function renderArtistSuggestions() {
-  if (!artistSuggestions) return;
-  artistSuggestions.innerHTML = "";
+function findFavoriteArtistMatches(query) {
+  const q = String(query || "").trim();
+  if (normalize(q).length < 1) return [];
 
-  const names = new Set();
+  const names = [];
   songs.forEach(function(song) {
-    if (song.artist) names.add(song.artist);
-  });
-  Object.entries(artistAliases).forEach(function(entry) {
-    names.add(entry[0]);
-    (entry[1] || []).forEach(function(name) { names.add(name); });
+    if (song.artist && matchesArtist(song.artist, q)) {
+      const canonical = getCanonicalChartArtist(song.artist);
+      if (!names.some(function(name) { return areSameArtist(name, canonical); })) names.push(canonical);
+    }
   });
 
-  Array.from(names)
-    .filter(Boolean)
-    .sort(function(a, b) { return a.localeCompare(b, "ko"); })
-    .slice(0, 500)
-    .forEach(function(name) {
-      const option = document.createElement("option");
-      option.value = name;
-      artistSuggestions.appendChild(option);
+  Object.keys(artistAliases).forEach(function(name) {
+    if (matchesArtist(name, q)) {
+      const canonical = getCanonicalChartArtist(name);
+      if (!names.some(function(existing) { return areSameArtist(existing, canonical); })) names.push(canonical);
+    }
+  });
+
+  return names.sort(function(a, b) { return a.localeCompare(b, "ko"); }).slice(0, 8);
+}
+
+function renderFavoriteSearchResults() {
+  if (!favoriteInput || !favoriteSearchResults) return;
+  const query = favoriteInput.value.trim();
+  favoriteSearchResults.innerHTML = "";
+  selectedFavoriteArtist = "";
+  if (favoriteAddButton) favoriteAddButton.disabled = true;
+
+  if (!query) {
+    favoriteSearchResults.hidden = true;
+    favoriteInput.setAttribute("aria-expanded", "false");
+    return;
+  }
+
+  const matches = findFavoriteArtistMatches(query);
+  if (!matches.length) {
+    const empty = document.createElement("p");
+    empty.className = "favorite-search-empty";
+    empty.textContent = "검색 결과가 없어요. 아티스트 이름을 다시 확인해 주세요.";
+    favoriteSearchResults.appendChild(empty);
+    favoriteSearchResults.hidden = false;
+    favoriteInput.setAttribute("aria-expanded", "true");
+    return;
+  }
+
+  matches.forEach(function(artist) {
+    const option = document.createElement("button");
+    option.type = "button";
+    option.className = "favorite-search-option";
+    option.setAttribute("role", "option");
+    option.textContent = artist;
+    option.addEventListener("click", function() {
+      selectedFavoriteArtist = artist;
+      favoriteInput.value = artist;
+      favoriteSearchResults.innerHTML = "";
+      const chosen = document.createElement("div");
+      chosen.className = "favorite-search-selected";
+      chosen.textContent = "선택됨: " + artist;
+      favoriteSearchResults.appendChild(chosen);
+      favoriteSearchResults.hidden = false;
+      favoriteInput.setAttribute("aria-expanded", "false");
+      if (favoriteAddButton) favoriteAddButton.disabled = false;
+      if (favoritesNote) favoritesNote.textContent = "선택한 아티스트를 추가할 수 있어요.";
     });
+    favoriteSearchResults.appendChild(option);
+  });
+  favoriteSearchResults.hidden = false;
+  favoriteInput.setAttribute("aria-expanded", "true");
 }
 
 async function loadPopularSearches() {
@@ -524,21 +573,31 @@ async function renderFavoriteArtists() {
   });
 }
 
+if (favoriteInput) {
+  favoriteInput.addEventListener("input", renderFavoriteSearchResults);
+}
+
 if (favoriteForm) {
   favoriteForm.addEventListener("submit", async function(event) {
     event.preventDefault();
-    const raw = String(favoriteInput && favoriteInput.value || "").trim();
-    if (normalize(raw).length < 2) {
-      if (favoritesNote) favoritesNote.textContent = "아티스트 이름을 2글자 이상 입력해 주세요.";
+    if (!selectedFavoriteArtist) {
+      if (favoritesNote) favoritesNote.textContent = "먼저 검색 결과에서 아티스트를 선택해 주세요.";
+      renderFavoriteSearchResults();
       return;
     }
 
-    const artist = getCanonicalPopularArtist(raw);
+    const artist = selectedFavoriteArtist;
     const result = window.MonitorStore
       ? await MonitorStore.addFavorite(artist)
       : { ok: false, synced: false };
 
     if (favoriteInput) favoriteInput.value = "";
+    selectedFavoriteArtist = "";
+    if (favoriteAddButton) favoriteAddButton.disabled = true;
+    if (favoriteSearchResults) {
+      favoriteSearchResults.innerHTML = "";
+      favoriteSearchResults.hidden = true;
+    }
     await renderFavoriteArtists();
     if (favoritesNote && result && result.ok && !result.synced && window.MonitorStore && MonitorStore.getUser()) {
       favoritesNote.textContent = "서버 연결이 되지 않아 이 브라우저에 임시 저장했어요. 계정 동기화를 위해 데이터베이스 설정을 확인해 주세요.";
