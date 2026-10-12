@@ -1033,3 +1033,32 @@ body.dark-mode .auth-form input {
   .signup-stage,
   .login-panel { padding: 18px; }
 }
+
+
+/* Top-positioned return-to-home control on the account page */
+.account-back-link-top {
+  display: inline-flex;
+  align-items: center;
+  min-height: 38px;
+  margin: 0 0 22px;
+  padding: 0 12px;
+  border: 1px solid #d9dfe6;
+  border-radius: 10px;
+  background: #f7f8fa;
+  color: #20833b;
+  text-decoration: none;
+  transition: background 140ms ease, border-color 140ms ease;
+}
+.account-back-link-top:hover {
+  background: #edf7ef;
+  border-color: #a9d7b2;
+}
+body.dark-mode .account-back-link-top {
+  color: #8ed69e;
+  background: #202731;
+  border-color: #3a4553;
+}
+body.dark-mode .account-back-link-top:hover {
+  background: #24372a;
+  border-color: #426d4a;
+}
