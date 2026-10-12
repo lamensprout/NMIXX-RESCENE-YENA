@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-12T20:13:36.127961+00:00",
+  "updated_at": "2026-10-12T21:12:08.435201+00:00",
   "songs": [
     {
       "rank": 1,
@@ -547,8 +547,8 @@
       "artist": "DAY6 (데이식스)",
       "album": "Every DAY6 February",
       "album_image": "https://cdnimg.melon.co.kr/cm/album/images/100/36/099/10036099_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 62,
-      "change": 1
+      "previous_rank": 61,
+      "change": 0
     },
     {
       "rank": 62,
@@ -556,8 +556,8 @@
       "artist": "BOYNEXTDOOR",
       "album": "오늘만 I LOVE YOU",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/116/85/070/11685070_20250106111631_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 61,
-      "change": -1
+      "previous_rank": 62,
+      "change": 0
     },
     {
       "rank": 63,
@@ -687,21 +687,21 @@
     },
     {
       "rank": 77,
-      "title": "Love wins all",
-      "artist": "아이유",
-      "album": "The Winning",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/114/04/142/11404142_20240220141548_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 77,
-      "change": 0
-    },
-    {
-      "rank": 78,
       "title": "첫 만남은 계획대로 되지 않아",
       "artist": "TWS (투어스)",
       "album": "Sparkling Blue",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/113/91/902/11391902_20250922111638_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 78,
-      "change": 0
+      "change": 1
+    },
+    {
+      "rank": 78,
+      "title": "Love wins all",
+      "artist": "아이유",
+      "album": "The Winning",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/114/04/142/11404142_20240220141548_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 77,
+      "change": -1
     },
     {
       "rank": 79,
