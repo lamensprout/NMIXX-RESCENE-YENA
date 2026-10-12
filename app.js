@@ -346,11 +346,16 @@ function getCanonicalPopularArtist(artist) {
 }
 
 function updatePersonalPanels() {
-  const signedIn = !!(window.MonitorStore && MonitorStore.getUser());
+  const hasUser = !!(window.MonitorStore && MonitorStore.getUser());
+  const signedIn = !!(window.MonitorStore && MonitorStore.isReady());
 
   if (personalSearchPanel) personalSearchPanel.hidden = !signedIn;
   if (favoritesPanel) favoritesPanel.hidden = !signedIn;
-  if (accountLink) accountLink.textContent = signedIn ? "내 계정" : "로그인 / 회원가입";
+  if (accountLink) {
+    accountLink.textContent = !hasUser
+      ? "로그인 / 회원가입"
+      : (signedIn ? "내 계정" : "닉네임 설정하기");
+  }
 
   if (!signedIn) {
     if (popular) popular.innerHTML = "";
@@ -400,7 +405,7 @@ function renderPopularSearches() {
   if (!popular) return;
   updatePersonalPanels();
   popular.innerHTML = "";
-  if (!window.MonitorStore || !MonitorStore.getUser()) return;
+  if (!window.MonitorStore || !MonitorStore.isReady()) return;
 
   const canonicalCounts = new Map();
   Object.entries(popularSearches).forEach(function(entry) {
@@ -452,7 +457,7 @@ async function renderFavoriteArtists() {
   if (!favoriteArtists) return;
   updatePersonalPanels();
   favoriteArtists.innerHTML = "";
-  if (!window.MonitorStore || !MonitorStore.getUser()) return;
+  if (!window.MonitorStore || !MonitorStore.isReady()) return;
 
   let names = [];
   try {
@@ -542,8 +547,8 @@ if (favoriteForm) {
 }
 
 async function recordPopularSearch(query) {
-  // 개인 검색 기록은 로그인한 계정에만 추가합니다.
-  if (!window.MonitorStore || !MonitorStore.getUser()) return;
+  // 개인 검색 기록은 이메일 인증과 필수 닉네임 설정을 마친 계정에만 추가합니다.
+  if (!window.MonitorStore || !MonitorStore.isReady()) return;
 
   const q = String(query || "").trim();
   if (normalize(q).length < 2) return;
