@@ -34,7 +34,7 @@
       return "운영진이나 공식 계정으로 오해할 수 있는 닉네임은 사용할 수 없어요.";
     }
 
-    if (/^\\d{8,}$/.test(nickname)) {
+    if (!/[A-Za-z가-힣]/.test(nickname) && nickname.replace(/[^0-9]/g, "").length >= 8) {
       return "전화번호 등 개인정보로 오해될 수 있는 숫자만의 닉네임은 사용할 수 없어요.";
     }
 
