@@ -723,39 +723,86 @@ clearBtn.addEventListener("click", function() {
 });
 
 
-async function load() {
+let chartHasLoaded = false;
+let chartLoadInProgress = false;
+
+async function loadChartData(manual = false) {
+  if (chartLoadInProgress) return;
+  chartLoadInProgress = true;
+
+  if (refreshChartButton) {
+    refreshChartButton.disabled = true;
+    refreshChartButton.textContent = "↻ 갱신 중...";
+  }
+  if (chartStatus) {
+    chartStatus.textContent = manual ? "최신 차트 확인 중..." : "차트 불러오는 중...";
+  }
+
   try {
-    if (window.MonitorStore) {
-      try { await MonitorStore.init(); } catch (accountError) {
-        console.warn("계정 상태를 확인하지 못했습니다:", accountError);
-      }
-    }
-    updatePersonalPanels();
-
-    const response = await fetch("./chart.json", { cache: "no-store" });
-
+    // 브라우저 캐시에 남은 파일 대신 서버의 최신 chart.json을 요청합니다.
+    const response = await fetch("./chart.json?refresh=" + Date.now(), { cache: "no-store" });
     if (!response.ok) {
-      throw new Error("차트 파일을 불러오지 못했습니다.");
+      throw new Error("차트 파일을 불러오지 못했습니다. (" + response.status + ")");
     }
 
     const data = await response.json();
-    songs = Array.isArray(data.songs) ? data.songs : [];
-if (data.updated_at) {
-      const date = new Date(data.updated_at);
-      updated.textContent =
-        "업데이트: " + date.toLocaleString("ko-KR");
-    } else {
-      updated.textContent = "업데이트 정보를 확인할 수 없습니다.";
+    if (!data || !Array.isArray(data.songs) || data.songs.length === 0) {
+      throw new Error("차트 데이터가 비어 있거나 형식이 올바르지 않습니다.");
     }
+
+    songs = data.songs;
+    chartHasLoaded = true;
 
     await loadPopularSearches();
     await renderFavoriteArtists();
 
-    summary.textContent = "아티스트를 검색해 주세요.";
+    if (input.value.trim()) {
+      search(input.value);
+    } else {
+      summary.textContent = "아티스트를 검색해 주세요.";
+      results.innerHTML = "";
+    }
+
+    if (chartStatus) {
+      chartStatus.textContent = manual ? "갱신 완료" : "";
+    }
   } catch (error) {
-    updated.textContent = "차트를 불러오지 못했습니다.";
-    summary.textContent = error.message;
+    console.error("차트를 불러오지 못했습니다:", error);
+    if (chartStatus) {
+      chartStatus.textContent = chartHasLoaded ? "갱신 실패" : "차트 로딩 실패";
+    }
+    if (!chartHasLoaded) {
+      summary.textContent = error.message || "차트를 불러오지 못했습니다.";
+    } else if (manual) {
+      summary.textContent = input.value.trim()
+        ? "차트를 갱신하지 못했어요. 이전 차트를 계속 표시합니다."
+        : "차트를 갱신하지 못했어요. 이전 차트 데이터를 계속 표시합니다.";
+    }
+  } finally {
+    chartLoadInProgress = false;
+    if (refreshChartButton) {
+      refreshChartButton.disabled = false;
+      refreshChartButton.textContent = "↻ 차트 새로고침";
+    }
   }
+}
+
+async function load() {
+  if (window.MonitorStore) {
+    try {
+      await MonitorStore.init();
+    } catch (accountError) {
+      console.warn("계정 상태를 확인하지 못했습니다:", accountError);
+    }
+  }
+  updatePersonalPanels();
+  await loadChartData(false);
+}
+
+if (refreshChartButton) {
+  refreshChartButton.addEventListener("click", function() {
+    loadChartData(true);
+  });
 }
 
 window.addEventListener("melonitor-auth-change", async function() {
