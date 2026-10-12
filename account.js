@@ -10,7 +10,9 @@
   const verificationOtpForm = document.getElementById("verificationOtpForm");
   const verificationCodeInput = document.getElementById("verificationCodeInput");
   const verifyOtpButton = document.getElementById("verifyOtpButton");
-  const showLoginButton = document.getElementById("showLoginButton");
+  const chooseLoginButton = document.getElementById("chooseLoginButton");
+  const chooseSignupButton = document.getElementById("chooseSignupButton");
+  const authChoice = document.getElementById("authChoice");
   const loginPanel = document.getElementById("loginPanel");
   const authForm = document.getElementById("authForm");
   const emailInput = document.getElementById("accountEmail");
@@ -26,7 +28,18 @@
   const message = document.getElementById("accountMessage");
   const signInButton = document.getElementById("signInButton");
   const signOutButton = document.getElementById("signOutButton");
-  let loginExpanded = false;
+  let authMode = "signup";
+
+  function setAuthMode(mode) {
+    authMode = mode;
+    if (chooseLoginButton) chooseLoginButton.classList.toggle("is-active", mode === "login");
+    if (chooseSignupButton) chooseSignupButton.classList.toggle("is-active", mode === "signup");
+    if (chooseLoginButton) chooseLoginButton.setAttribute("aria-pressed", mode === "login" ? "true" : "false");
+    if (chooseSignupButton) chooseSignupButton.setAttribute("aria-pressed", mode === "signup" ? "true" : "false");
+    const ready = MonitorStore.isConfigured() && !MonitorStore.getUser();
+    signupEmailPanel.hidden = !ready || mode !== "signup";
+    loginPanel.hidden = !ready || mode !== "login";
+  }
 
   function setMessage(text, error) {
     message.textContent = text || "";
@@ -39,9 +52,8 @@
     const hasNickname = signedIn && MonitorStore.hasNickname();
 
     setupNotice.hidden = configured;
-    signupEmailPanel.hidden = !configured || signedIn;
-    showLoginButton.hidden = !configured || signedIn;
-    loginPanel.hidden = !configured || signedIn || !loginExpanded;
+    if (authChoice) authChoice.hidden = !configured || signedIn;
+    setAuthMode(authMode);
     nicknamePanel.hidden = !configured || !signedIn || hasNickname;
     signedInPanel.hidden = !configured || !hasNickname;
     status.hidden = true;
@@ -59,7 +71,6 @@
       status.textContent = "Supabase 연결을 완료해야 회원가입과 로그인을 사용할 수 있어요.";
     }
 
-    showLoginButton.setAttribute("aria-expanded", loginExpanded ? "true" : "false");
     signInButton.disabled = !configured;
     sendVerificationButton.disabled = !configured;
     resendVerificationButton.disabled = !configured;
@@ -149,11 +160,14 @@
   });
   resendVerificationButton.addEventListener("click", () => sendVerificationEmail(true));
 
-  showLoginButton.addEventListener("click", () => {
-    loginExpanded = !loginExpanded;
-    loginPanel.hidden = !loginExpanded || !MonitorStore.isConfigured() || !!MonitorStore.getUser();
-    showLoginButton.setAttribute("aria-expanded", loginExpanded ? "true" : "false");
-    if (loginExpanded) emailInput.focus();
+  chooseLoginButton.addEventListener("click", () => {
+    setAuthMode("login");
+    emailInput.focus();
+  });
+
+  chooseSignupButton.addEventListener("click", () => {
+    setAuthMode("signup");
+    signupEmailInput.focus();
   });
 
   authForm.addEventListener("submit", async event => {
@@ -217,7 +231,7 @@
     try {
       const { error } = await MonitorStore.signOut();
       if (error) throw error;
-      loginExpanded = true;
+      setAuthMode("login");
       showSignedIn(null);
       setMessage("로그아웃됐어요. 다시 이용하려면 이메일과 비밀번호로 로그인해 주세요.");
     } catch (error) {
