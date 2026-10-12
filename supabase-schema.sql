@@ -97,3 +97,33 @@ $$;
 
 revoke all on function public.record_melonitor_search(text, integer) from public, anon;
 grant execute on function public.record_melonitor_search(text, integer) to authenticated;
+
+
+-- Required nickname profile, created only after the user's email is verified.
+-- Nicknames accept 2-16 Korean/English letters, digits, and underscores.
+create table if not exists public.melonitor_profiles (
+  user_id uuid primary key references auth.users(id) on delete cascade,
+  nickname text not null check (nickname ~ '^[가-힣A-Za-z0-9_]{2,16}$'),
+  nickname_key text generated always as (lower(nickname)) stored unique,
+  created_at timestamptz not null default now()
+);
+
+alter table public.melonitor_profiles enable row level security;
+
+drop policy if exists "Users can read their own profile" on public.melonitor_profiles;
+create policy "Users can read their own profile"
+on public.melonitor_profiles for select to authenticated
+using ((select auth.uid()) = user_id);
+
+drop policy if exists "Users can insert their own profile" on public.melonitor_profiles;
+create policy "Users can insert their own profile"
+on public.melonitor_profiles for insert to authenticated
+with check ((select auth.uid()) = user_id);
+
+drop policy if exists "Users can update their own profile" on public.melonitor_profiles;
+create policy "Users can update their own profile"
+on public.melonitor_profiles for update to authenticated
+using ((select auth.uid()) = user_id)
+with check ((select auth.uid()) = user_id);
+
+grant select, insert, update on public.melonitor_profiles to authenticated;
