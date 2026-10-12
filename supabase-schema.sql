@@ -103,10 +103,35 @@ grant execute on function public.record_melonitor_search(text, integer) to authe
 -- Nicknames accept 2-16 Korean/English letters, digits, and underscores.
 create table if not exists public.melonitor_profiles (
   user_id uuid primary key references auth.users(id) on delete cascade,
-  nickname text not null check (nickname ~ '^[가-힣A-Za-z0-9_]{2,16}$'),
+  nickname text not null check (nickname ~ '^[가-힣A-Za-z0-9_]{2,16}
+alter table public.melonitor_profiles enable row level security;
+
+drop policy if exists "Users can read their own profile" on public.melonitor_profiles;
+create policy "Users can read their own profile"
+on public.melonitor_profiles for select to authenticated
+using ((select auth.uid()) = user_id);
+
+drop policy if exists "Users can insert their own profile" on public.melonitor_profiles;
+create policy "Users can insert their own profile"
+on public.melonitor_profiles for insert to authenticated
+with check ((select auth.uid()) = user_id);
+
+drop policy if exists "Users can update their own profile" on public.melonitor_profiles;
+create policy "Users can update their own profile"
+on public.melonitor_profiles for update to authenticated
+using ((select auth.uid()) = user_id)
+with check ((select auth.uid()) = user_id);
+
+grant select, insert, update on public.melonitor_profiles to authenticated;
+),
   nickname_key text generated always as (lower(nickname)) stored unique,
   created_at timestamptz not null default now()
 );
+
+-- English nicknames are case-insensitive: NMIXX, nMIxx, and NMixX are the same name.
+-- Enforce this in the database so concurrent sign-ups cannot bypass the duplicate check.
+create unique index if not exists melonitor_profiles_nickname_case_insensitive_unique
+  on public.melonitor_profiles (lower(btrim(nickname)));
 
 alter table public.melonitor_profiles enable row level security;
 
