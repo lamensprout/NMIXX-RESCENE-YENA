@@ -40,7 +40,8 @@
       </div>
       <form id="favoriteForm" class="favorite-form">
         <label class="visually-hidden" for="favoriteInput">즐겨찾기 아티스트 이름</label>
-        <input id="favoriteInput" type="text" maxlength="100" placeholder="예: NMIXX, RESCENE, YENA" autocomplete="off">
+        <input id="favoriteInput" type="text" maxlength="100" list="artistSuggestions" placeholder="아티스트명을 선택하거나 입력해 주세요" autocomplete="off">
+        <datalist id="artistSuggestions"></datalist>
         <button type="submit" class="primary-button">아티스트 추가</button>
       </form>
       <p id="favoritesNote" class="favorites-note">좋아하는 아티스트를 추가해 보세요.</p>
@@ -78,7 +79,7 @@
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="supabase-config.js?v=1"></script>
   <script src="monitor-store.js?v=1"></script>
-  <script src="app.js?v=20261012-13"></script>
+  <script src="app.js?v=20261012-14"></script>
   <script src="theme.js?v=2"></script>
 </body>
 </html>
