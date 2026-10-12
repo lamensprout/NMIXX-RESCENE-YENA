@@ -16,7 +16,7 @@
       .toLowerCase()
       .replace(/[0134578]/g, character => substitutions[character])
       .replace(/[_0-9]/g, "")
-      .replace(/(.)\\1+/gu, "$1");
+      .replace(/(.)\1+/gu, "$1");
   }
 
   function getNicknameValidationError(rawNickname) {
