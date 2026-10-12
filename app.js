@@ -758,11 +758,13 @@ async function requestServerChart(method) {
   }
 
   const response = await fetch(config.endpoint, options);
+  const responseText = await response.text();
   let data = null;
   try {
-    data = await response.json();
+    data = JSON.parse(responseText);
   } catch (_) {
-    throw new Error("차트 서버에서 올바른 응답을 받지 못했습니다.");
+    const detail = responseText.trim().replace(/\s+/g, " ").slice(0, 180);
+    throw new Error(detail || "차트 서버에서 올바른 응답을 받지 못했습니다. (" + response.status + ")");
   }
 
   if (!response.ok) {
@@ -851,16 +853,18 @@ async function loadChartData(manual = false) {
     }
   } catch (error) {
     console.error("차트 갱신 실패:", error);
+    const errorMessage = String(error && error.message ? error.message : "알 수 없는 오류").slice(0, 180);
     if (chartStatus) {
-      chartStatus.textContent = chartHasLoaded ? "갱신 실패" : "차트 로딩 실패";
+      chartStatus.textContent = (chartHasLoaded ? "갱신 실패" : "차트 로딩 실패") + " · " + errorMessage;
+      chartStatus.title = errorMessage;
     }
 
     if (!chartHasLoaded) {
-      summary.textContent = error.message || "차트를 불러오지 못했습니다.";
+      summary.textContent = errorMessage || "차트를 불러오지 못했습니다.";
     } else if (manual) {
-      summary.textContent = input.value.trim()
+      summary.textContent = (input.value.trim()
         ? "멜론 TOP100을 갱신하지 못했어요. 이전 차트를 계속 표시합니다."
-        : "멜론 TOP100을 갱신하지 못했어요. 이전 차트 데이터를 계속 표시합니다.";
+        : "멜론 TOP100을 갱신하지 못했어요. 이전 차트 데이터를 계속 표시합니다.") + " (원인: " + errorMessage + ")";
     }
   } finally {
     chartLoadInProgress = false;
