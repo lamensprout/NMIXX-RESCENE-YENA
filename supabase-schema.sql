@@ -98,40 +98,68 @@ $$;
 revoke all on function public.record_melonitor_search(text, integer) from public, anon;
 grant execute on function public.record_melonitor_search(text, integer) to authenticated;
 
+-- Normalize and check nicknames in the database too, so a client-side filter cannot be bypassed.
+create or replace function public.melonitor_nickname_is_allowed(p_nickname text)
+returns boolean
+language plpgsql
+immutable
+parallel safe
+as $$
+declare
+  v_nickname text := btrim(coalesce(p_nickname, ''));
+  v_normalized text;
+begin
+  if v_nickname !~ '^[가-힣A-Za-z0-9_]{2,16}$' then
+    return false;
+  end if;
 
--- Required nickname profile, created only after the user's email is verified.
--- Nicknames accept 2-16 Korean/English letters, digits, and underscores.
+  v_normalized := translate(lower(v_nickname), '0134578', 'oieastb');
+  v_normalized := regexp_replace(v_normalized, '[_0-9]+', '', 'g');
+  v_normalized := regexp_replace(v_normalized, '(.)\1+', '\1', 'g');
+
+  if v_normalized ~ '(씨+이*발+|시+이*발+|씨+팔+|시+팔+|씨벌|시벌|씨불|시불|씹새끼|개새끼|새끼|좆|좇|존나|존내|병신|븅신|빙신|지랄|염병|개년|개놈|미친년|미친놈|느금마|니애미|애미뒤|애비뒤|보지|자지|성폭행|강간|야동|포르노|따먹|후장|딸딸이|섹스|창녀|걸레|맘충|한남충|한녀충|짱깨|쪽바리|fuck|fuk|shit|bitch|bastard|motherfucker|asshole|jackass|dumbass|dick|pussy|cunt|slut|whore|porn|hentai|blowjob|handjob|masturbat|dildo|nigger|nigga|faggot|dyke|chink|kike|spic|tranny|retard|pedo|pedophile|heilhitler|whitepower|whitepride|kkk)' then
+    return false;
+  end if;
+
+  -- Reserved names and account impersonation prevention.
+  if v_normalized ~ '^(admin|administrator|moderator|staff|support|developer|official|운영자|관리자|개발자|고객센터|공식|melonitor|멜로니터)$'
+     or v_normalized ~ '^(melonitor|멜로니터)(admin|administrator|moderator|staff|support|developer|official|운영자|관리자|개발자|공식)$'
+     or v_normalized ~ '^(admin|administrator|moderator|staff|support|developer|official|운영자|관리자|개발자|공식)(melonitor|멜로니터)$'
+     or v_normalized ~ '^(official|공식)(nmixx|rescene|yena|엔믹스|리센느|예나|최예나)$'
+     or v_normalized ~ '^(nmixx|rescene|yena|엔믹스|리센느|예나|최예나)(official|공식)$' then
+    return false;
+  end if;
+
+  -- Numeric-only handles resembling a phone number are not allowed.
+  if v_nickname !~ '[A-Za-z가-힣]'
+     and char_length(regexp_replace(v_nickname, '[^0-9]', '', 'g')) >= 8 then
+    return false;
+  end if;
+
+  return true;
+end;
+$$;
+
+revoke all on function public.melonitor_nickname_is_allowed(text) from public, anon;
+grant execute on function public.melonitor_nickname_is_allowed(text) to authenticated;
+
 create table if not exists public.melonitor_profiles (
   user_id uuid primary key references auth.users(id) on delete cascade,
-  nickname text not null check (nickname ~ '^[가-힣A-Za-z0-9_]{2,16}
-alter table public.melonitor_profiles enable row level security;
-
-drop policy if exists "Users can read their own profile" on public.melonitor_profiles;
-create policy "Users can read their own profile"
-on public.melonitor_profiles for select to authenticated
-using ((select auth.uid()) = user_id);
-
-drop policy if exists "Users can insert their own profile" on public.melonitor_profiles;
-create policy "Users can insert their own profile"
-on public.melonitor_profiles for insert to authenticated
-with check ((select auth.uid()) = user_id);
-
-drop policy if exists "Users can update their own profile" on public.melonitor_profiles;
-create policy "Users can update their own profile"
-on public.melonitor_profiles for update to authenticated
-using ((select auth.uid()) = user_id)
-with check ((select auth.uid()) = user_id);
-
-grant select, insert, update on public.melonitor_profiles to authenticated;
-),
-  nickname_key text generated always as (lower(nickname)) stored unique,
+  nickname text not null check (nickname ~ '^[가-힣A-Za-z0-9_]{2,16}$'),
   created_at timestamptz not null default now()
 );
 
--- English nicknames are case-insensitive: NMIXX, nMIxx, and NMixX are the same name.
--- Enforce this in the database so concurrent sign-ups cannot bypass the duplicate check.
+-- NMIXX, nMIxx, and NMixX are the same nickname.
 create unique index if not exists melonitor_profiles_nickname_case_insensitive_unique
   on public.melonitor_profiles (lower(btrim(nickname)));
+
+-- Check constraints marked NOT VALID still apply to new or changed rows,
+-- without breaking migration if an existing account has to be reviewed.
+alter table public.melonitor_profiles
+  drop constraint if exists melonitor_profiles_nickname_moderation_check;
+alter table public.melonitor_profiles
+  add constraint melonitor_profiles_nickname_moderation_check
+  check (public.melonitor_nickname_is_allowed(nickname)) not valid;
 
 alter table public.melonitor_profiles enable row level security;
 
