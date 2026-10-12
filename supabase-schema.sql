@@ -109,7 +109,7 @@ declare
   v_nickname text := btrim(coalesce(p_nickname, ''));
   v_separator_free text;
   v_leet_like text;
-  v_blocked_pattern text := '(씨+이*발+|시+이*발+|씨+팔+|시+팔+|씨벌|시벌|씨불|시불|씹새끼|개새끼|새끼|좆|좇|존나|존내|병신|븅신|빙신|지랄|염병|개년|개놈|미친년|미친놈|느금마|니애미|애미뒤|애비뒤|보지|자지|성폭행|강간|야동|포르노|따먹|후장|딸딸이|섹스|창녀|걸레|맘충|한남충|한녀충|짱깨|쪽바리|얼굴|fuck|fuk|shit|bitch|bastard|motherfucker|asshole|jackass|dumbass|dick|pussy|cunt|slut|whore|porn|hentai|blowjob|handjob|masturbat|dildo|nigger|nigga|faggot|dyke|chink|kike|spic|tranny|retard|pedo|pedophile|heilhitler|whitepower|whitepride|kkk|face)';
+  v_blocked_pattern text := '(씨+이*발+|시+이*발+|씨+팔+|시+팔+|씨벌|시벌|씨불|시불|씹새끼|개새끼|새끼|좆|좇|존나|존내|병신|븅신|빙신|지랄|염병|개년|개놈|미친년|미친놈|느금마|니애미|애미뒤|애비뒤|보지|자지|성폭행|강간|야동|포르노|따먹|후장|딸딸이|섹스|창녀|걸레|맘충|한남충|한녀충|짱깨|쪽바리|fuck|fuk|shit|bitch|bastard|motherfucker|asshole|jackass|dumbass|dick|pussy|cunt|slut|whore|porn|hentai|blowjob|handjob|masturbat|dildo|nigger|nigga|faggot|dyke|chink|kike|spic|tranny|retard|pedo|pedophile|heilhitler|whitepower|whitepride|kkk)';
   v_reserved_pattern text := '^(admin|administrator|moderator|staff|support|developer|official|운영자|관리자|개발자|고객센터|공식|melonitor|멜로니터)$|^(melonitor|멜로니터)(admin|administrator|moderator|staff|support|developer|official|운영자|관리자|개발자|공식)$|^(admin|administrator|moderator|staff|support|developer|official|운영자|관리자|개발자|공식)(melonitor|멜로니터)$|^(official|공식)(nmixx|rescene|yena|엔믹스|리센느|예나|최예나)$|^(nmixx|rescene|yena|엔믹스|리센느|예나|최예나)(official|공식)
 
 revoke all on function public.melonitor_nickname_is_allowed(text) from public, anon;
