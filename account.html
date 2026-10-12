@@ -4,14 +4,14 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>계정 | Melonitor</title>
-  <link rel="stylesheet" href="style.css?v=20261012-5">
+  <link rel="stylesheet" href="style.css?v=20261012-6">
 </head>
 <body>
   <main class="container account-container">
     <header class="hero">
       <div>
         <a class="brand-link" href="/" aria-label="Melonitor 첫 화면으로"><h1>🍈 Melonitor</h1></a>
-        <p>로그인하면 검색 기록과 즐겨찾기를 계정에 저장할 수 있어요.</p>
+        <p>이메일 인증 후 닉네임을 설정하면 Melonitor를 이용할 수 있어요.</p>
       </div>
       <div class="hero-tools">
         <button id="themeToggle" class="theme-toggle" type="button" aria-label="다크 모드로 전환" title="다크 모드로 전환">🌙</button>
@@ -21,10 +21,10 @@
     <section class="account-card" aria-labelledby="accountTitle">
       <div class="account-kicker">YOUR MELONITOR</div>
       <h2 id="accountTitle">계정 관리</h2>
-      <p class="account-intro">계정에 로그인하면 다른 기기에서도 개인 검색 기록과 좋아하는 아티스트를 불러올 수 있어요.</p>
+      <p class="account-intro">회원가입 후 이메일 인증 링크를 먼저 눌러 주세요. 인증이 완료되면 필수 닉네임 설정 단계가 열립니다.</p>
 
       <div id="accountSetupNotice" class="account-notice" role="status" hidden>
-        계정 기능을 연결하는 마지막 설정이 남아 있어요. 사이트 운영자가 Supabase 프로젝트를 만들고 프로젝트 URL과 Publishable key를 설정해야 회원가입을 사용할 수 있습니다. 연결 전에도 메인 화면의 즐겨찾기는 이 브라우저에 저장됩니다.
+        계정 기능을 연결하는 설정이 남아 있어요. Supabase 프로젝트 URL과 Publishable key를 등록하고, 이메일 인증 및 프로필 테이블을 설정해야 회원가입을 사용할 수 있습니다.
       </div>
 
       <div id="accountStatus" class="account-status" role="status" hidden></div>
@@ -33,17 +33,29 @@
         <label for="accountEmail">이메일</label>
         <input id="accountEmail" name="email" type="email" autocomplete="email" placeholder="이메일 주소" required>
         <label for="accountPassword">비밀번호</label>
-        <input id="accountPassword" name="password" type="password" autocomplete="current-password" minlength="8" placeholder="8자 이상" required>
+        <input id="accountPassword" name="password" type="password" autocomplete="new-password" minlength="8" placeholder="8자 이상" required>
         <div class="auth-actions">
           <button id="signInButton" type="button" class="primary-button">로그인</button>
           <button id="signUpButton" type="button" class="secondary-button">회원가입</button>
         </div>
       </form>
 
+      <section id="nicknamePanel" class="nickname-panel" hidden aria-labelledby="nicknameTitle">
+        <h3 id="nicknameTitle">닉네임 설정</h3>
+        <p>이메일 인증이 완료됐어요. Melonitor를 이용하려면 닉네임을 꼭 정해 주세요.</p>
+        <form id="nicknameForm" class="auth-form">
+          <label for="nicknameInput">닉네임 (필수)</label>
+          <input id="nicknameInput" name="nickname" type="text" minlength="2" maxlength="16" pattern="[가-힣A-Za-z0-9_]{2,16}" autocomplete="nickname" placeholder="예: MelonFan, 멜론팬" aria-describedby="nicknameHelp" required>
+          <small id="nicknameHelp" class="nickname-help">한글·영어 2~16자. 숫자와 밑줄(_)도 사용할 수 있어요. 공백과 특수문자는 사용할 수 없어요.</small>
+          <button id="saveNicknameButton" type="submit" class="primary-button">닉네임 저장하고 시작하기</button>
+        </form>
+      </section>
+
       <div id="signedInPanel" class="signed-in-panel" hidden>
         <p>로그인된 계정</p>
-        <strong id="signedInEmail"></strong>
-        <p class="signed-in-explainer">검색 기록과 즐겨찾기는 이 계정에 저장돼요.</p>
+        <strong id="signedInNickname"></strong>
+        <p id="signedInEmail" class="signed-in-email"></p>
+        <p class="signed-in-explainer">이메일 인증이 완료됐어요. 검색 기록과 즐겨찾기는 이 계정에 저장됩니다.</p>
         <button id="signOutButton" type="button" class="secondary-button">로그아웃</button>
       </div>
 
@@ -54,8 +66,8 @@
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="supabase-config.js?v=1"></script>
-  <script src="monitor-store.js?v=1"></script>
-  <script src="account.js?v=1"></script>
+  <script src="monitor-store.js?v=2"></script>
+  <script src="account.js?v=2"></script>
   <script src="theme.js?v=2"></script>
 </body>
 </html>
