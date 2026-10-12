@@ -727,28 +727,101 @@ clearBtn.addEventListener("click", function() {
 let chartHasLoaded = false;
 let chartLoadInProgress = false;
 
+function getChartFunctionConfig() {
+  const config = window.MELONITOR_SUPABASE_CONFIG || {};
+  if (
+    typeof config.projectUrl !== "string" ||
+    !config.projectUrl.startsWith("https://") ||
+    typeof config.publishableKey !== "string" ||
+    !config.publishableKey.trim()
+  ) {
+    throw new Error("최신 차트 수집 서버 설정을 찾을 수 없습니다.");
+  }
+  return {
+    endpoint: config.projectUrl.replace(/\\/+$/, "") + "/functions/v1/melon-chart",
+    publishableKey: config.publishableKey
+  };
+}
+
+async function requestServerChart(method) {
+  const config = getChartFunctionConfig();
+  const headers = { apikey: config.publishableKey };
+  const options = {
+    method: method,
+    headers: headers,
+    cache: "no-store"
+  };
+
+  if (method === "POST") {
+    headers["Content-Type"] = "application/json";
+    options.body = "{}";
+  }
+
+  const response = await fetch(config.endpoint, options);
+  let data = null;
+  try {
+    data = await response.json();
+  } catch (_) {
+    throw new Error("차트 서버에서 올바른 응답을 받지 못했습니다.");
+  }
+
+  if (!response.ok) {
+    throw new Error((data && data.error) || "차트 서버 요청에 실패했습니다. (" + response.status + ")");
+  }
+  if (!data || !Array.isArray(data.songs) || data.songs.length !== 100) {
+    throw new Error("서버가 TOP100 100곡을 반환하지 않았습니다.");
+  }
+  return data;
+}
+
+async function requestStaticChart() {
+  const response = await fetch("./chart.json?fallback=" + Date.now(), { cache: "no-store" });
+  if (!response.ok) {
+    throw new Error("차트 파일을 불러오지 못했습니다. (" + response.status + ")");
+  }
+  const data = await response.json();
+  if (!data || !Array.isArray(data.songs) || data.songs.length !== 100) {
+    throw new Error("저장된 차트 데이터가 비어 있거나 형식이 올바르지 않습니다.");
+  }
+  return data;
+}
+
+function formatChartUpdateTime(updatedAt) {
+  if (!updatedAt) return "";
+  const date = new Date(updatedAt);
+  if (Number.isNaN(date.getTime())) return "";
+  return date.toLocaleTimeString("ko-KR", {
+    hour: "2-digit",
+    minute: "2-digit"
+  });
+}
+
 async function loadChartData(manual = false) {
   if (chartLoadInProgress) return;
   chartLoadInProgress = true;
 
   if (refreshChartButton) {
     refreshChartButton.disabled = true;
-    refreshChartButton.textContent = "↻ 갱신 중...";
+    refreshChartButton.textContent = manual ? "↻ TOP100 수집 중..." : "↻ 차트 불러오는 중...";
   }
   if (chartStatus) {
-    chartStatus.textContent = manual ? "최신 차트 확인 중..." : "차트 불러오는 중...";
+    chartStatus.textContent = manual ? "멜론 TOP100을 새로 수집하고 있어요..." : "최신 차트 불러오는 중...";
   }
 
   try {
-    // 브라우저 캐시에 남은 파일 대신 서버의 최신 chart.json을 요청합니다.
-    const response = await fetch("./chart.json?refresh=" + Date.now(), { cache: "no-store" });
-    if (!response.ok) {
-      throw new Error("차트 파일을 불러오지 못했습니다. (" + response.status + ")");
-    }
+    let data;
 
-    const data = await response.json();
-    if (!data || !Array.isArray(data.songs) || data.songs.length === 0) {
-      throw new Error("차트 데이터가 비어 있거나 형식이 올바르지 않습니다.");
+    if (manual) {
+      // 버튼 클릭 시 정적 파일 재요청이 아니라 서버에서 멜론을 다시 수집합니다.
+      data = await requestServerChart("POST");
+    } else {
+      // 저장된 최신 공용 캐시를 먼저 확인하고, 서버에 문제가 있으면 정적 차트를 사용합니다.
+      try {
+        data = await requestServerChart("GET");
+      } catch (serverError) {
+        console.warn("최신 차트 서버를 사용할 수 없어 저장된 파일을 불러옵니다:", serverError);
+        data = await requestStaticChart();
+      }
     }
 
     songs = data.songs;
@@ -765,19 +838,29 @@ async function loadChartData(manual = false) {
     }
 
     if (chartStatus) {
-      chartStatus.textContent = manual ? "갱신 완료" : "";
+      const updatedTime = formatChartUpdateTime(data.updated_at);
+      if (manual && data.refresh_status === "refreshed") {
+        chartStatus.textContent = "멜론 TOP100 갱신 완료" + (updatedTime ? " · " + updatedTime : "");
+      } else if (manual && data.refresh_status === "recently_updated") {
+        chartStatus.textContent = "최근 갱신된 최신 차트를 표시 중" + (updatedTime ? " · " + updatedTime : "");
+      } else if (manual) {
+        chartStatus.textContent = "최신 차트를 불러왔어요" + (updatedTime ? " · " + updatedTime : "");
+      } else {
+        chartStatus.textContent = "";
+      }
     }
   } catch (error) {
-    console.error("차트를 불러오지 못했습니다:", error);
+    console.error("차트 갱신 실패:", error);
     if (chartStatus) {
       chartStatus.textContent = chartHasLoaded ? "갱신 실패" : "차트 로딩 실패";
     }
+
     if (!chartHasLoaded) {
       summary.textContent = error.message || "차트를 불러오지 못했습니다.";
     } else if (manual) {
       summary.textContent = input.value.trim()
-        ? "차트를 갱신하지 못했어요. 이전 차트를 계속 표시합니다."
-        : "차트를 갱신하지 못했어요. 이전 차트 데이터를 계속 표시합니다.";
+        ? "멜론 TOP100을 갱신하지 못했어요. 이전 차트를 계속 표시합니다."
+        : "멜론 TOP100을 갱신하지 못했어요. 이전 차트 데이터를 계속 표시합니다.";
     }
   } finally {
     chartLoadInProgress = false;
