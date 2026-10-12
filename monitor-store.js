@@ -3,6 +3,43 @@
   const FAVORITE_KEY = "melonitor-favorite-artists";
   const CONFIG = window.MELONITOR_SUPABASE_CONFIG || {};
   const NICKNAME_PATTERN = /^[가-힣A-Za-z0-9_]{2,16}$/;
+  const NICKNAME_BLOCKED_PATTERNS = [
+    /씨+이*발+|시+이*발+|씨+팔+|시+팔+|씨벌|시벌|씨불|시불|씹새끼|개새끼|새끼|좆|좇|존나|존내|병신|븅신|빙신|지랄|염병|개년|개놈|미친년|미친놈|느금마|니애미|애미뒤|애비뒤|보지|자지|성폭행|강간|야동|포르노|따먹|후장|딸딸이|섹스|창녀|걸레|맘충|한남충|한녀충|짱깨|쪽바리/u,
+    /fuck|fuk|shit|bitch|bastard|motherfucker|asshole|jackass|dumbass|dick|pussy|cunt|slut|whore|porn|hentai|blowjob|handjob|masturbat|dildo|nigger|nigga|faggot|dyke|chink|kike|spic|tranny|retard|pedo|pedophile|heilhitler|whitepower|whitepride|kkk/u
+  ];
+  const NICKNAME_RESERVED = /^(admin|administrator|moderator|staff|support|developer|official|운영자|관리자|개발자|고객센터|공식|melonitor|멜로니터)$|^(melonitor|멜로니터)(admin|administrator|moderator|staff|support|developer|official|운영자|관리자|개발자|공식)$|^(admin|administrator|moderator|staff|support|developer|official|운영자|관리자|개발자|공식)(melonitor|멜로니터)$|^(official|공식)(nmixx|rescene|yena|엔믹스|리센느|예나|최예나)$|^(nmixx|rescene|yena|엔믹스|리센느|예나|최예나)(official|공식)$/u;
+
+  function normalizeNicknameForModeration(nickname) {
+    const substitutions = { "0": "o", "1": "i", "3": "e", "4": "a", "5": "s", "7": "t", "8": "b" };
+    return String(nickname || "")
+      .normalize("NFKC")
+      .toLowerCase()
+      .replace(/[0134578]/g, character => substitutions[character])
+      .replace(/[_0-9]/g, "")
+      .replace(/(.)\\1+/gu, "$1");
+  }
+
+  function getNicknameValidationError(rawNickname) {
+    const nickname = String(rawNickname || "").trim();
+    if (!NICKNAME_PATTERN.test(nickname)) {
+      return "닉네임은 한글 또는 영어로 2~16자여야 해요. 숫자와 밑줄(_)도 사용할 수 있어요.";
+    }
+
+    const normalized = normalizeNicknameForModeration(nickname);
+    if (NICKNAME_BLOCKED_PATTERNS.some(pattern => pattern.test(normalized))) {
+      return "욕설, 성적인 표현, 혐오·비하 표현이 포함된 닉네임은 사용할 수 없어요. 다른 닉네임을 선택해 주세요.";
+    }
+
+    if (NICKNAME_RESERVED.test(normalized)) {
+      return "운영진이나 공식 계정으로 오해할 수 있는 닉네임은 사용할 수 없어요.";
+    }
+
+    if (/^\\d{8,}$/.test(nickname)) {
+      return "전화번호 등 개인정보로 오해될 수 있는 숫자만의 닉네임은 사용할 수 없어요.";
+    }
+
+    return "";
+  }
   let client = null;
   let currentUser = null;
   let currentProfile = null;
@@ -314,9 +351,8 @@
     }
 
     const nickname = String(rawNickname || "").trim();
-    if (!NICKNAME_PATTERN.test(nickname)) {
-      throw new Error("닉네임은 한글 또는 영어로 2~16자여야 해요. 숫자와 밑줄(_)도 사용할 수 있어요.");
-    }
+    const nicknameError = getNicknameValidationError(nickname);
+    if (nicknameError) throw new Error(nicknameError);
     if (hasNickname()) throw new Error("이미 닉네임 설정을 완료했어요.");
 
     const { data, error } = await client
@@ -333,7 +369,7 @@
         throw new Error("이미 사용 중인 닉네임이에요. 영문 대소문자를 바꿔도 같은 닉네임으로 취급돼요. 다른 닉네임을 선택해 주세요.");
       }
       if (error.code === "23514") {
-        throw new Error("닉네임은 한글 또는 영어로 2~16자여야 해요. 숫자와 밑줄(_)도 사용할 수 있어요.");
+        throw new Error("닉네임 형식이 올바르지 않거나 부적절한 표현이 포함되어 있어요. 다른 닉네임을 선택해 주세요.");
       }
       throw new Error("닉네임을 저장하지 못했어요. 데이터베이스 설정을 확인해 주세요.");
     }
@@ -371,6 +407,7 @@
     signUp,
     signIn,
     saveNickname,
+    getNicknameValidationError,
     signOut
   };
 })();
