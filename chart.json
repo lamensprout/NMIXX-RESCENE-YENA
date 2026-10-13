@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-13T20:23:40.236578+00:00",
+  "updated_at": "2026-10-13T21:21:31.210554+00:00",
   "songs": [
     {
       "rank": 1,
@@ -313,8 +313,8 @@
       "artist": "PLAVE",
       "album": "이 밤을 빌려 말해요 (오늘 밤, 세계에서 이 사랑이 사라진다 해도 X PLAVE)",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/124/58/320/12458320_20251226151630_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 36,
-      "change": 1
+      "previous_rank": 35,
+      "change": 0
     },
     {
       "rank": 36,
@@ -322,8 +322,8 @@
       "artist": "NMIXX",
       "album": "Blue Valentine",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/121/49/391/12149391_20251013150421_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 35,
-      "change": -1
+      "previous_rank": 36,
+      "change": 0
     },
     {
       "rank": 37,
@@ -412,8 +412,8 @@
       "artist": "10CM",
       "album": "너에게 닿기를",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/117/30/411/11730411_20250306095101_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 47,
-      "change": 1
+      "previous_rank": 46,
+      "change": 0
     },
     {
       "rank": 47,
@@ -421,8 +421,8 @@
       "artist": "Hearts2Hearts (하츠투하츠)",
       "album": "Lemon Tang - The 2nd Mini Album",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/137/50/428/13750428_20260619162731_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 46,
-      "change": -1
+      "previous_rank": 47,
+      "change": 0
     },
     {
       "rank": 48,
@@ -538,8 +538,8 @@
       "artist": "HUNTR/X",
       "album": "KPop Demon Hunters (Soundtrack from the Netflix Film)",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/118/59/863/11859863_20250620104512_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 61,
-      "change": 1
+      "previous_rank": 60,
+      "change": 0
     },
     {
       "rank": 61,
@@ -547,8 +547,8 @@
       "artist": "DAY6 (데이식스)",
       "album": "Every DAY6 February",
       "album_image": "https://cdnimg.melon.co.kr/cm/album/images/100/36/099/10036099_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 60,
-      "change": -1
+      "previous_rank": 61,
+      "change": 0
     },
     {
       "rank": 62,
@@ -570,21 +570,21 @@
     },
     {
       "rank": 64,
-      "title": "like JENNIE",
-      "artist": "제니 (JENNIE)",
-      "album": "Ruby",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/117/30/946/11730946_20250307173452_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 64,
-      "change": 0
-    },
-    {
-      "rank": 65,
       "title": "입춘",
       "artist": "한로로",
       "album": "입춘",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/108/90/163/10890163_20220311160155_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 65,
-      "change": 0
+      "change": 1
+    },
+    {
+      "rank": 65,
+      "title": "like JENNIE",
+      "artist": "제니 (JENNIE)",
+      "album": "Ruby",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/117/30/946/11730946_20250307173452_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 64,
+      "change": -1
     },
     {
       "rank": 66,
