@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-13T21:21:31.210554+00:00",
+  "updated_at": "2026-10-13T22:20:53.012525+00:00",
   "songs": [
     {
       "rank": 1,
@@ -381,21 +381,21 @@
     },
     {
       "rank": 43,
-      "title": "toxic till the end",
-      "artist": "로제 (ROSÉ)",
-      "album": "rosie",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/116/59/696/11659696_20241205141243_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 43,
-      "change": 0
-    },
-    {
-      "rank": 44,
       "title": "Heavy Serenade",
       "artist": "NMIXX",
       "album": "Heavy Serenade",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/133/57/541/13357541_20260511133217_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 44,
-      "change": 0
+      "change": 1
+    },
+    {
+      "rank": 44,
+      "title": "toxic till the end",
+      "artist": "로제 (ROSÉ)",
+      "album": "rosie",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/116/59/696/11659696_20241205141243_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 43,
+      "change": -1
     },
     {
       "rank": 45,
@@ -408,21 +408,21 @@
     },
     {
       "rank": 46,
-      "title": "너에게 닿기를",
-      "artist": "10CM",
-      "album": "너에게 닿기를",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/117/30/411/11730411_20250306095101_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 46,
-      "change": 0
-    },
-    {
-      "rank": 47,
       "title": "Lemon Tang",
       "artist": "Hearts2Hearts (하츠투하츠)",
       "album": "Lemon Tang - The 2nd Mini Album",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/137/50/428/13750428_20260619162731_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 47,
-      "change": 0
+      "change": 1
+    },
+    {
+      "rank": 47,
+      "title": "너에게 닿기를",
+      "artist": "10CM",
+      "album": "너에게 닿기를",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/117/30/411/11730411_20250306095101_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 46,
+      "change": -1
     },
     {
       "rank": 48,
@@ -480,21 +480,21 @@
     },
     {
       "rank": 54,
-      "title": "Whiplash",
-      "artist": "aespa",
-      "album": "Whiplash - The 5th Mini Album",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/116/20/540/11620540_20241018183208_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 54,
-      "change": 0
-    },
-    {
-      "rank": 55,
       "title": "뛰어(JUMP)",
       "artist": "BLACKPINK",
       "album": "뛰어(JUMP)",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/118/90/480/11890480_20250711095238_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 55,
-      "change": 0
+      "change": 1
+    },
+    {
+      "rank": 55,
+      "title": "Whiplash",
+      "artist": "aespa",
+      "album": "Whiplash - The 5th Mini Album",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/116/20/540/11620540_20241018183208_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 54,
+      "change": -1
     },
     {
       "rank": 56,
@@ -574,8 +574,8 @@
       "artist": "한로로",
       "album": "입춘",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/108/90/163/10890163_20220311160155_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 65,
-      "change": 1
+      "previous_rank": 64,
+      "change": 0
     },
     {
       "rank": 65,
@@ -583,8 +583,8 @@
       "artist": "제니 (JENNIE)",
       "album": "Ruby",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/117/30/946/11730946_20250307173452_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 64,
-      "change": -1
+      "previous_rank": 65,
+      "change": 0
     },
     {
       "rank": 66,
@@ -624,39 +624,39 @@
     },
     {
       "rank": 70,
-      "title": "다정히 내 이름을 부르면",
-      "artist": "경서예지",
-      "album": "다정히 내 이름을 부르면 (경서예지 x 전건호)",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/106/10/525/10610525_20210518143433_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 70,
-      "change": 0
-    },
-    {
-      "rank": 71,
       "title": "청혼하지 않을 이유를 못 찾았어",
       "artist": "이무진",
       "album": "청혼하지 않을 이유를 못 찾았어",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/114/55/285/11455285_20240401151801_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 71,
-      "change": 0
+      "change": 1
+    },
+    {
+      "rank": 71,
+      "title": "다정히 내 이름을 부르면",
+      "artist": "경서예지",
+      "album": "다정히 내 이름을 부르면 (경서예지 x 전건호)",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/106/10/525/10610525_20210518143433_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 70,
+      "change": -1
     },
     {
       "rank": 72,
-      "title": "Love wins all",
-      "artist": "아이유",
-      "album": "The Winning",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/114/04/142/11404142_20240220141548_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 72,
-      "change": 0
-    },
-    {
-      "rank": 73,
       "title": "Die With A Smile",
       "artist": "Lady Gaga",
       "album": "Die With A Smile",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/115/68/901/11568901_20240816130602_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 73,
-      "change": 0
+      "change": 1
+    },
+    {
+      "rank": 73,
+      "title": "Love wins all",
+      "artist": "아이유",
+      "album": "The Winning",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/114/04/142/11404142_20240220141548_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 72,
+      "change": -1
     },
     {
       "rank": 74,
