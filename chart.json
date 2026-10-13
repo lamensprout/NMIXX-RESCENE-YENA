@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-13T18:18:56.406157+00:00",
+  "updated_at": "2026-10-13T19:26:18.939794+00:00",
   "songs": [
     {
       "rank": 1,
@@ -295,8 +295,8 @@
       "artist": "소녀시대-효리수 (Girls' Generation-HRS)",
       "album": "Skibidi",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/144/94/370/14494370_20260828152343_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 34,
-      "change": 1
+      "previous_rank": 33,
+      "change": 0
     },
     {
       "rank": 34,
@@ -304,8 +304,8 @@
       "artist": "볼빨간사춘기",
       "album": "여름아 부탁해",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/138/23/274/13823274_20260721152311_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 33,
-      "change": -1
+      "previous_rank": 34,
+      "change": 0
     },
     {
       "rank": 35,
