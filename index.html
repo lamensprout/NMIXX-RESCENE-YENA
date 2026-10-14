@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>🍈 Melon Artist Chart</title>
-  <link rel="stylesheet" href="style.css?v=20261014-4">
+  <link rel="stylesheet" href="style.css?v=20261014-5">
 </head>
 <body>
   <main class="container">
@@ -17,8 +17,8 @@
         <div class="user-menu">
           <button id="userMenuToggle" class="user-menu-trigger" type="button" aria-label="사용자 메뉴 열기" aria-expanded="false" aria-controls="userMenuPanel">
             <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-              <circle cx="12" cy="7" r="4"></circle>
-              <path d="M3.5 21c.2-4.6 3.9-7.7 8.5-7.7s8.3 3.1 8.5 7.7H3.5Z"></path>
+              <circle cx="12" cy="7.2" r="3.35" fill="none" stroke="currentColor" stroke-width="1.65"></circle>
+              <path d="M4.1 20v-1.25c0-2.65 2.05-4.65 4.65-4.65h6.5c2.6 0 4.65 2 4.65 4.65V20H4.1Z" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"></path>
             </svg>
           </button>
           <div id="userMenuPanel" class="user-menu-panel" role="menu" aria-label="사용자 설정" hidden>
@@ -29,10 +29,14 @@
               <span id="accountLinkLabel">로그인 / 회원가입</span>
             </a>
             <div class="user-menu-divider" role="separator"></div>
-            <button id="themeMenuToggle" class="user-menu-item" type="button" role="menuitem">
-              <span id="themeMenuSymbol" class="user-menu-symbol" aria-hidden="true">☾</span>
-              <span id="themeMenuLabel">어두운 화면으로</span>
-            </button>
+            <div class="user-theme-section">
+              <div class="user-theme-heading">화면 모드</div>
+              <div id="themeModeControl" class="theme-mode-control" data-active-mode="auto" role="group" aria-label="화면 모드 선택">
+                <button class="theme-mode-option" type="button" data-theme-mode="light" aria-pressed="false">라이트</button>
+                <button class="theme-mode-option" type="button" data-theme-mode="auto" aria-pressed="true">AUTO</button>
+                <button class="theme-mode-option" type="button" data-theme-mode="dark" aria-pressed="false">다크</button>
+              </div>
+            </div>
           </div>
         </div>
         <div class="chart-refresh-controls">
@@ -103,16 +107,15 @@
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="supabase-config.js?v=1"></script>
   <script src="monitor-store.js?v=10"></script>
-  <script src="app.js?v=20261014-4"></script>
-  <script src="theme.js?v=4"></script>
+  <script src="app.js?v=20261014-5"></script>
+  <script src="theme.js?v=5"></script>
   <script>
     (() => {
       const toggle = document.getElementById("userMenuToggle");
       const panel = document.getElementById("userMenuPanel");
       const account = document.getElementById("accountLink");
-      const theme = document.getElementById("themeMenuToggle");
+      const themeOptions = panel ? panel.querySelectorAll("[data-theme-mode]") : [];
       if (!toggle || !panel) return;
-
       function closeMenu() {
         panel.hidden = true;
         toggle.setAttribute("aria-expanded", "false");
@@ -123,7 +126,6 @@
         toggle.setAttribute("aria-expanded", "true");
         toggle.setAttribute("aria-label", "사용자 메뉴 닫기");
       }
-
       toggle.addEventListener("click", () => panel.hidden ? openMenu() : closeMenu());
       document.addEventListener("click", event => {
         if (!panel.hidden && !event.target.closest(".user-menu")) closeMenu();
@@ -135,7 +137,7 @@
         }
       });
       if (account) account.addEventListener("click", closeMenu);
-      if (theme) theme.addEventListener("click", closeMenu);
+      themeOptions.forEach(option => option.addEventListener("click", closeMenu));
     })();
   </script>
 </body>
