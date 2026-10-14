@@ -2148,3 +2148,99 @@ body.dark-mode .account-signout-button:hover:not(:disabled) {
   color: #fff !important;
   border-color: #91a3af !important;
 }
+
+/* Account profile photo upload and preview */
+.profile-avatar-settings {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 18px 0 20px;
+  margin-bottom: 14px;
+  border-bottom: 1px solid #e4e9e5;
+}
+.profile-avatar-preview {
+  display: grid;
+  place-items: center;
+  flex: 0 0 92px;
+  width: 92px;
+  height: 92px;
+  overflow: hidden;
+  border: 1px solid #d4dde2;
+  border-radius: 50%;
+  background: #f2f5f6;
+  color: #6c7a84;
+  font-size: 42px;
+}
+.profile-avatar-preview img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.profile-avatar-preview img[hidden],
+.profile-avatar-placeholder[hidden] { display: none !important; }
+.profile-avatar-details { min-width: 0; flex: 1; }
+.profile-avatar-details h4 { margin: 0; font-size: 14px; font-weight: 750; }
+.profile-avatar-details > p:not(.profile-avatar-status) {
+  margin: 6px 0 12px;
+  color: #73808a;
+  font-size: 12px;
+}
+.profile-avatar-file-input { display: none !important; }
+.profile-avatar-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.profile-avatar-actions .secondary-button {
+  min-height: 38px;
+  padding: 0 12px;
+  font-size: 12px;
+}
+.profile-avatar-status {
+  min-height: 17px;
+  margin: 9px 0 0;
+  color: #687580;
+  font-size: 11px;
+  line-height: 1.5;
+}
+.profile-avatar-status.is-error { color: #b42318; }
+.profile-avatar-status:empty { visibility: hidden; }
+.user-menu-trigger.has-avatar svg { display: none; }
+.user-menu-avatar {
+  display: block;
+  width: 28px;
+  height: 28px;
+  border: 1px solid #d6dde2;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.user-menu-avatar[hidden] { display: none !important; }
+.user-menu-trigger.has-avatar {
+  overflow: hidden;
+  padding: 0;
+  border-color: #d6dde2;
+  border-radius: 50%;
+  background: transparent !important;
+}
+.user-menu-trigger.has-avatar:hover,
+.user-menu-trigger.has-avatar[aria-expanded="true"] {
+  border-color: #168a35;
+  background: transparent !important;
+}
+body.dark-mode .profile-avatar-settings { border-bottom-color: #303a43; }
+body.dark-mode .profile-avatar-preview {
+  border-color: #3c4853;
+  background: #202731;
+  color: #aab4bd;
+}
+body.dark-mode .profile-avatar-details > p:not(.profile-avatar-status),
+body.dark-mode .profile-avatar-status { color: #aab3c1; }
+body.dark-mode .user-menu-avatar { border-color: #3c4853; }
+@media (max-width: 520px) {
+  .profile-avatar-settings { align-items: flex-start; gap: 14px; }
+  .profile-avatar-preview { flex-basis: 76px; width: 76px; height: 76px; font-size: 34px; }
+  .profile-avatar-actions { align-items: stretch; flex-direction: column; }
+  .profile-avatar-actions .secondary-button { width: 100%; }
+}
