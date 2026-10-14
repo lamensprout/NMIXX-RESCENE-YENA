@@ -1665,3 +1665,52 @@ body.dark-mode .theme-mode-control[data-active-mode="dark"] .theme-mode-option[d
 body.dark-mode .theme-toggle[data-theme-mode="light"] { background: #d9dce1; border-color: #c9cdd3; }
 body.dark-mode .theme-toggle[data-theme-mode="auto"] { background: #ecd25b; border-color: #d4bb45; }
 body.dark-mode .theme-toggle[data-theme-mode="dark"] { background: #60bd6c; border-color: #60bd6c; }
+
+
+/* Mode picker: the active label sits on a white pill; the track shows the mode color. */
+.theme-mode-control[data-active-mode="light"],
+body.dark-mode .theme-mode-control[data-active-mode="light"] {
+  background: #e9edf0;
+  border-color: #d8dfe4;
+}
+.theme-mode-control[data-active-mode="auto"],
+body.dark-mode .theme-mode-control[data-active-mode="auto"] {
+  background: #ecd25b;
+  border-color: #d8be48;
+}
+.theme-mode-control[data-active-mode="dark"],
+body.dark-mode .theme-mode-control[data-active-mode="dark"] {
+  background: #60bd6c;
+  border-color: #4fa85a;
+}
+
+/* Unselected options stay transparent over the track. */
+.theme-mode-control .theme-mode-option[data-theme-mode="light"],
+.theme-mode-control .theme-mode-option[data-theme-mode="auto"],
+.theme-mode-control .theme-mode-option[data-theme-mode="dark"],
+body.dark-mode .theme-mode-control .theme-mode-option[data-theme-mode="light"],
+body.dark-mode .theme-mode-control .theme-mode-option[data-theme-mode="auto"],
+body.dark-mode .theme-mode-control .theme-mode-option[data-theme-mode="dark"] {
+  background: transparent;
+  border-color: transparent;
+  color: #26323b;
+  box-shadow: none;
+}
+.theme-mode-control .theme-mode-option:hover,
+body.dark-mode .theme-mode-control .theme-mode-option:hover {
+  background: rgb(255 255 255 / 25%);
+  color: #17212b;
+}
+
+/* Whichever mode is selected, its own pill remains white. */
+.theme-mode-control[data-active-mode="light"] .theme-mode-option[data-theme-mode="light"],
+.theme-mode-control[data-active-mode="auto"] .theme-mode-option[data-theme-mode="auto"],
+.theme-mode-control[data-active-mode="dark"] .theme-mode-option[data-theme-mode="dark"],
+body.dark-mode .theme-mode-control[data-active-mode="light"] .theme-mode-option[data-theme-mode="light"],
+body.dark-mode .theme-mode-control[data-active-mode="auto"] .theme-mode-option[data-theme-mode="auto"],
+body.dark-mode .theme-mode-control[data-active-mode="dark"] .theme-mode-option[data-theme-mode="dark"] {
+  background: #ffffff;
+  border-color: #d7dde2;
+  color: #17212b;
+  box-shadow: 0 1px 3px rgb(0 0 0 / 15%);
+}
