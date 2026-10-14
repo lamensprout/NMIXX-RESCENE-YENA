@@ -1480,11 +1480,12 @@ body.dark-mode .chart-status { color: #9eabb5; }
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 46px;
-  height: 46px;
+  flex: 0 0 38px;
+  width: 38px;
+  height: 38px;
   padding: 0;
   border: 1px solid transparent;
-  border-radius: 12px;
+  border-radius: 10px;
   background: transparent;
   color: #111820;
   cursor: pointer;
@@ -1500,8 +1501,8 @@ body.dark-mode .chart-status { color: #9eabb5; }
 }
 .user-menu-trigger svg {
   display: block;
-  width: 28px;
-  height: 28px;
+  width: 24px;
+  height: 24px;
   fill: currentColor;
 }
 .user-menu-panel {
