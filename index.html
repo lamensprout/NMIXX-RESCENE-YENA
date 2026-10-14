@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>🍈 Melon Artist Chart</title>
-  <link rel="stylesheet" href="style.css?v=20261014-14">
+  <link rel="stylesheet" href="style.css?v=20261014-16">
 </head>
 <body>
   <main class="container">
@@ -14,7 +14,7 @@
         <p>멜론 TOP100 아티스트 검색</p>
       </div>
       <nav class="main-nav" aria-label="주요 메뉴">
-        <a id="favoritesNavLink" href="#favoritesPanel">좋아하는 아티스트</a>
+        <a id="favoritesNavLink" href="/favorites.html">좋아하는 아티스트</a>
         <a href="/errors.html">오류 제보</a>
         <a href="https://www.melon.com/chart/index.htm" target="_blank" rel="noopener noreferrer">멜론차트 공식 사이트 <span aria-hidden="true">↗</span></a>
       </nav>
@@ -64,23 +64,6 @@
       </div>
     </section>
 
-    <section id="favoritesPanel" class="favorites-panel" aria-labelledby="favoriteTitle" tabindex="-1" hidden>
-      <div class="favorites-heading">
-        <div>
-          <h2 id="favoriteTitle">내가 좋아하는 아티스트</h2>
-          <p>좋아하는 아티스트를 추가하면 TOP100에 없어도 여기에서 바로 검색할 수 있어요.</p>
-        </div>
-      </div>
-      <form id="favoriteForm" class="favorite-form">
-        <label class="visually-hidden" for="favoriteInput">즐겨찾기 아티스트 이름</label>
-        <input id="favoriteInput" type="search" maxlength="100" placeholder="아티스트 이름 검색 (예: 엔믹스)" autocomplete="off" aria-controls="favoriteSearchResults" aria-expanded="false">
-        <button id="favoriteAddButton" type="submit" class="primary-button" disabled>아티스트 추가</button>
-      </form>
-      <div id="favoriteSearchResults" class="favorite-search-results" role="listbox" aria-label="아티스트 검색 결과" hidden></div>
-      <p id="favoritesNote" class="favorites-note">아티스트를 검색한 뒤 결과에서 선택해 주세요.</p>
-      <div id="favoriteArtists" class="chips favorite-list" aria-label="내가 좋아하는 아티스트 목록"></div>
-    </section>
-
     <section>
       <div id="summary" class="summary">아티스트를 검색해 주세요.</div>
       <div id="results" class="results"></div>
@@ -112,7 +95,7 @@
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="supabase-config.js?v=1"></script>
   <script src="monitor-store.js?v=11"></script>
-  <script src="app.js?v=20261014-10"></script>
+  <script src="app.js?v=20261014-11"></script>
   <script src="theme.js?v=5"></script>
   <script>
     (() => {
