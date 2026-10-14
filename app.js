@@ -643,18 +643,6 @@ async function renderFavoriteArtists() {
   });
 }
 
-if (favoritesNavLink) {
-  favoritesNavLink.addEventListener("click", function(event) {
-    event.preventDefault();
-    if (!favoritesPanel || favoritesPanel.hidden) {
-      window.location.href = "/account.html";
-      return;
-    }
-    favoritesPanel.scrollIntoView({ behavior: "smooth", block: "start" });
-    favoritesPanel.focus({ preventScroll: true });
-  });
-}
-
 if (favoriteInput) {
   favoriteInput.addEventListener("compositionstart", function() {
     favoriteSearchComposing = true;
@@ -997,6 +985,9 @@ async function loadChartData(manual = false, silent = false) {
 }
 
 async function load() {
+  const initialArtist = new URLSearchParams(window.location.search).get("artist");
+  if (initialArtist && input && !input.value.trim()) input.value = initialArtist;
+
   if (window.MonitorStore) {
     try {
       await MonitorStore.init();
