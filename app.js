@@ -16,7 +16,7 @@ const personalSearchPanel = document.getElementById("personalSearchPanel");
 const favoritesPanel = document.getElementById("favoritesPanel");
 const favoriteArtists = document.getElementById("favoriteArtists");
 const favoritesNote = document.getElementById("favoritesNote");
-const accountLink = document.getElementById("accountLink");
+const accountLinkLabel = document.getElementById("accountLinkLabel");
 
 let songs = [];
 let popularSearches = {};
@@ -354,8 +354,8 @@ function updatePersonalPanels() {
 
   if (personalSearchPanel) personalSearchPanel.hidden = !signedIn;
   if (favoritesPanel) favoritesPanel.hidden = !signedIn;
-  if (accountLink) {
-    accountLink.textContent = !hasUser
+  if (accountLinkLabel) {
+    accountLinkLabel.textContent = !hasUser
       ? "로그인 / 회원가입"
       : (signedIn ? "내 계정" : "닉네임 설정하기");
   }
@@ -538,7 +538,7 @@ async function renderFavoriteArtists() {
         : "이 브라우저에 저장된 즐겨찾기예요. 계정에 저장하려면 로그인해 주세요.";
     }
   }
-  if (accountLink) accountLink.textContent = signedIn ? "내 계정" : "로그인 / 회원가입";
+  if (accountLink) accountLinkLabel.textContent = signedIn ? "내 계정" : "로그인 / 회원가입";
 
   if (!names.length) return;
 
