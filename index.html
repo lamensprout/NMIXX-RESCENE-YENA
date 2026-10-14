@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>🍈 Melon Artist Chart</title>
-  <link rel="stylesheet" href="style.css?v=20261014-18">
+  <link rel="stylesheet" href="style.css?v=20261014-20">
 </head>
 <body>
   <main class="container">
@@ -22,6 +22,7 @@
       <div class="hero-tools">
         <div class="user-menu">
           <button id="userMenuToggle" class="user-menu-trigger" type="button" aria-label="사용자 메뉴 열기" aria-expanded="false" aria-controls="userMenuPanel">
+            <img class="user-menu-avatar" alt="" aria-hidden="true" hidden>
             <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
               <circle cx="12" cy="7.2" r="3.35" fill="none" stroke="currentColor" stroke-width="1.65"></circle>
               <path d="M4.1 20v-1.25c0-2.65 2.05-4.65 4.65-4.65h6.5c2.6 0 4.65 2 4.65 4.65V20H4.1Z" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"></path>
@@ -87,8 +88,9 @@
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="supabase-config.js?v=1"></script>
-  <script src="monitor-store.js?v=11"></script>
-  <script src="app.js?v=20261014-12"></script>
+  <script src="monitor-store.js?v=12"></script>
+  <script src="profile-avatar.js?v=1"></script>
+  <script src="app.js?v=20261014-13"></script>
   <script src="theme.js?v=5"></script>
   <script>
     (() => {
