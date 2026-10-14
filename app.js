@@ -848,9 +848,9 @@ async function loadChartData(manual = false, silent = false) {
       } else if (manual) {
         chartStatus.textContent = "최신 차트를 불러왔어요" + (updatedTime ? " · " + updatedTime : "");
       } else {
-        chartStatus.textContent = "자동 갱신: 60초마다";
+        chartStatus.textContent = "";
       }
-      chartStatus.title = "공용 TOP100은 서버에서 60초마다 갱신되며, 이 화면도 60초마다 최신 데이터를 확인합니다.";
+      chartStatus.title = manual ? "차트 새로고침 요청 결과" : "";
     }
   } catch (error) {
     console.error("차트 갱신 실패:", error);
