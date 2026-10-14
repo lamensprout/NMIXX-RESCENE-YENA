@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-14T17:25:15.086237+00:00",
+  "updated_at": "2026-10-14T18:28:09.089605+00:00",
   "songs": [
     {
       "rank": 1,
@@ -313,8 +313,8 @@
       "artist": "아이유",
       "album": "이 별로부터",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/145/35/765/14535765_20260909154035_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 36,
-      "change": 1
+      "previous_rank": 35,
+      "change": 0
     },
     {
       "rank": 36,
@@ -322,8 +322,8 @@
       "artist": "NMIXX",
       "album": "Blue Valentine",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/121/49/391/12149391_20251013150421_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 35,
-      "change": -1
+      "previous_rank": 36,
+      "change": 0
     },
     {
       "rank": 37,
@@ -349,8 +349,8 @@
       "artist": "너드커넥션 (Nerd Connection)",
       "album": "그대만 있다면 (여름날 우리 X 너드커넥션 (Nerd Connection))",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/113/05/759/11305759_20230814111006_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 40,
-      "change": 1
+      "previous_rank": 39,
+      "change": 0
     },
     {
       "rank": 40,
@@ -358,8 +358,8 @@
       "artist": "KiiiKiii (키키)",
       "album": "WhyKiiiKiii",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/144/29/080/14429080_20260806154450_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 39,
-      "change": -1
+      "previous_rank": 40,
+      "change": 0
     },
     {
       "rank": 41,
@@ -565,8 +565,8 @@
       "artist": "DAY6 (데이식스)",
       "album": "Every DAY6 February",
       "album_image": "https://cdnimg.melon.co.kr/cm/album/images/100/36/099/10036099_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 64,
-      "change": 1
+      "previous_rank": 63,
+      "change": 0
     },
     {
       "rank": 64,
@@ -574,8 +574,8 @@
       "artist": "에픽하이 (EPIK HIGH)",
       "album": "미장센",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/146/44/789/14644789_20261012141149_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 63,
-      "change": -1
+      "previous_rank": 64,
+      "change": 0
     },
     {
       "rank": 65,
@@ -624,21 +624,21 @@
     },
     {
       "rank": 70,
-      "title": "Guitarist",
-      "artist": "도경수(D.O.)",
-      "album": "DOPAMINE - The 4th Mini Album",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/145/26/395/14526395_20260907104149_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 70,
-      "change": 0
-    },
-    {
-      "rank": 71,
       "title": "청혼하지 않을 이유를 못 찾았어",
       "artist": "이무진",
       "album": "청혼하지 않을 이유를 못 찾았어",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/114/55/285/11455285_20240401151801_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 71,
-      "change": 0
+      "change": 1
+    },
+    {
+      "rank": 71,
+      "title": "Guitarist",
+      "artist": "도경수(D.O.)",
+      "album": "DOPAMINE - The 4th Mini Album",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/145/26/395/14526395_20260907104149_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 70,
+      "change": -1
     },
     {
       "rank": 72,
