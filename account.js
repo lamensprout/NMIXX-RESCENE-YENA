@@ -35,7 +35,35 @@
   const passwordChangeForm = document.getElementById("passwordChangeForm");
   const newAccountPasswordInput = document.getElementById("newAccountPassword");
   const updatePasswordButton = document.getElementById("updatePasswordButton");
+  const profileAvatarPreview = document.getElementById("profileAvatarPreview");
+  const profileAvatarPlaceholder = document.getElementById("profileAvatarPlaceholder");
+  const profileAvatarFileInput = document.getElementById("profileAvatarFileInput");
+  const chooseProfileAvatarButton = document.getElementById("chooseProfileAvatarButton");
+  const removeProfileAvatarButton = document.getElementById("removeProfileAvatarButton");
+  const profileAvatarStatus = document.getElementById("profileAvatarStatus");
+  let profileAvatarBusy = false;
   let authMode = "login";
+
+  function setProfileAvatarStatus(text, isError) {
+    if (!profileAvatarStatus) return;
+    profileAvatarStatus.textContent = text || "";
+    profileAvatarStatus.classList.toggle("is-error", !!isError);
+  }
+
+  function renderProfileAvatar() {
+    const avatarUrl = MonitorStore.getAvatarUrl ? MonitorStore.getAvatarUrl() : "";
+    if (profileAvatarPreview) {
+      if (avatarUrl && profileAvatarPreview.getAttribute("src") !== avatarUrl) {
+        profileAvatarPreview.src = avatarUrl;
+      }
+      profileAvatarPreview.hidden = !avatarUrl;
+    }
+    if (profileAvatarPlaceholder) profileAvatarPlaceholder.hidden = !!avatarUrl;
+    if (removeProfileAvatarButton) removeProfileAvatarButton.hidden = !avatarUrl;
+    const canEdit = !!(MonitorStore.isConfigured() && MonitorStore.isReady());
+    if (chooseProfileAvatarButton) chooseProfileAvatarButton.disabled = !canEdit || profileAvatarBusy;
+    if (removeProfileAvatarButton) removeProfileAvatarButton.disabled = !canEdit || profileAvatarBusy;
+  }
 
   function setAuthMode(mode) {
     authMode = mode;
@@ -54,6 +82,7 @@
   }
 
   function showSignedIn(user) {
+    renderProfileAvatar();
     const configured = MonitorStore.isConfigured();
     const signedIn = !!user;
     const hasNickname = signedIn && MonitorStore.hasNickname();
@@ -292,6 +321,52 @@
         setMessage(error.message || "비밀번호를 변경하지 못했어요. 다시 시도해 주세요.", true);
       } finally {
         updatePasswordButton.disabled = !MonitorStore.isConfigured() || !MonitorStore.hasNickname();
+      }
+    });
+  }
+
+  if (chooseProfileAvatarButton && profileAvatarFileInput) {
+    chooseProfileAvatarButton.addEventListener("click", () => {
+      if (!profileAvatarBusy) profileAvatarFileInput.click();
+    });
+
+    profileAvatarFileInput.addEventListener("change", async () => {
+      const file = profileAvatarFileInput.files && profileAvatarFileInput.files[0];
+      if (!file) return;
+
+      profileAvatarBusy = true;
+      renderProfileAvatar();
+      setProfileAvatarStatus("프로필 사진을 업로드하고 있어요.");
+      try {
+        await MonitorStore.uploadAvatar(file);
+        renderProfileAvatar();
+        setProfileAvatarStatus("프로필 사진을 변경했어요.");
+      } catch (error) {
+        setProfileAvatarStatus(error.message || "프로필 사진을 변경하지 못했어요.", true);
+      } finally {
+        profileAvatarBusy = false;
+        profileAvatarFileInput.value = "";
+        renderProfileAvatar();
+      }
+    });
+  }
+
+  if (removeProfileAvatarButton) {
+    removeProfileAvatarButton.addEventListener("click", async () => {
+      if (profileAvatarBusy || !MonitorStore.getAvatarUrl()) return;
+
+      profileAvatarBusy = true;
+      renderProfileAvatar();
+      setProfileAvatarStatus("프로필 사진을 삭제하고 있어요.");
+      try {
+        await MonitorStore.removeAvatar();
+        renderProfileAvatar();
+        setProfileAvatarStatus("프로필 사진을 삭제했어요.");
+      } catch (error) {
+        setProfileAvatarStatus(error.message || "프로필 사진을 삭제하지 못했어요.", true);
+      } finally {
+        profileAvatarBusy = false;
+        renderProfileAvatar();
       }
     });
   }
