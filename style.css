@@ -1484,7 +1484,7 @@ body.dark-mode .chart-status { color: #9eabb5; }
   height: 46px;
   padding: 0;
   border: 1px solid transparent;
-  border-radius: 50%;
+  border-radius: 12px;
   background: transparent;
   color: #111820;
   cursor: pointer;
