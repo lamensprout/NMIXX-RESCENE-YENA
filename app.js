@@ -538,7 +538,7 @@ async function renderFavoriteArtists() {
         : "이 브라우저에 저장된 즐겨찾기예요. 계정에 저장하려면 로그인해 주세요.";
     }
   }
-  if (accountLink) accountLinkLabel.textContent = signedIn ? "내 계정" : "로그인 / 회원가입";
+  if (accountLinkLabel) accountLinkLabel.textContent = signedIn ? "내 계정" : "로그인 / 회원가입";
 
   if (!names.length) return;
 
