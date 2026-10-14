@@ -17,6 +17,7 @@ const favoritesPanel = document.getElementById("favoritesPanel");
 const favoriteArtists = document.getElementById("favoriteArtists");
 const favoritesNote = document.getElementById("favoritesNote");
 const accountLinkLabel = document.getElementById("accountLinkLabel");
+const favoritesNavLink = document.getElementById("favoritesNavLink");
 
 let songs = [];
 let popularSearches = {};
@@ -639,6 +640,18 @@ async function renderFavoriteArtists() {
     wrap.appendChild(open);
     wrap.appendChild(remove);
     favoriteArtists.appendChild(wrap);
+  });
+}
+
+if (favoritesNavLink) {
+  favoritesNavLink.addEventListener("click", function(event) {
+    event.preventDefault();
+    if (!favoritesPanel || favoritesPanel.hidden) {
+      window.location.href = "/account.html";
+      return;
+    }
+    favoritesPanel.scrollIntoView({ behavior: "smooth", block: "start" });
+    favoritesPanel.focus({ preventScroll: true });
   });
 }
 
