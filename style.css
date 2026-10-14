@@ -2052,3 +2052,99 @@ body.dark-mode .feedback-action-pending {
     width: 100%;
   }
 }
+
+/* Outline-only action buttons: keep the accent on the border, not the fill. */
+.primary-button,
+a.primary-button,
+.refresh-chart-button,
+.report-form-button[href],
+.favorites-login-button {
+  background: transparent !important;
+  color: #168a35 !important;
+  border: 1px solid #168a35 !important;
+  box-shadow: none !important;
+}
+.primary-button:hover:not(:disabled),
+a.primary-button:hover,
+.refresh-chart-button:hover:not(:disabled),
+.report-form-button[href]:hover,
+.report-form-button[href]:focus-visible,
+.favorites-login-button:hover {
+  background: transparent !important;
+  color: #0f742b !important;
+  border-color: #0f742b !important;
+  box-shadow: none !important;
+}
+.search-row button {
+  background: transparent !important;
+  color: #1c2b36 !important;
+  border: 1px solid #1c2b36 !important;
+}
+.search-row button:hover:not(:disabled) {
+  background: transparent !important;
+  color: #0f742b !important;
+  border-color: #0f742b !important;
+}
+.secondary-button,
+.account-signout-button {
+  background: transparent !important;
+  color: #43515b !important;
+  border: 1px solid #b8c2c9 !important;
+  box-shadow: none !important;
+}
+.secondary-button:hover:not(:disabled),
+.account-signout-button:hover:not(:disabled) {
+  background: transparent !important;
+  color: #17212b !important;
+  border-color: #526b7b !important;
+}
+.auth-choice-button.is-active {
+  background: transparent !important;
+  color: #168a35 !important;
+  border-color: #168a35 !important;
+  box-shadow: none !important;
+}
+body.dark-mode .primary-button,
+body.dark-mode a.primary-button,
+body.dark-mode .refresh-chart-button,
+body.dark-mode .report-form-button[href],
+body.dark-mode .favorites-login-button,
+body.dark-mode .auth-choice-button.is-active {
+  background: transparent !important;
+  color: #8ed69e !important;
+  border-color: #68a875 !important;
+  box-shadow: none !important;
+}
+body.dark-mode .primary-button:hover:not(:disabled),
+body.dark-mode a.primary-button:hover,
+body.dark-mode .refresh-chart-button:hover:not(:disabled),
+body.dark-mode .report-form-button[href]:hover,
+body.dark-mode .report-form-button[href]:focus-visible,
+body.dark-mode .favorites-login-button:hover,
+body.dark-mode .auth-choice-button.is-active:hover {
+  background: transparent !important;
+  color: #b5f0bf !important;
+  border-color: #8ed69e !important;
+}
+body.dark-mode .search-row button {
+  background: transparent !important;
+  color: #dce4e9 !important;
+  border-color: #71808b !important;
+}
+body.dark-mode .search-row button:hover:not(:disabled) {
+  background: transparent !important;
+  color: #8ed69e !important;
+  border-color: #68a875 !important;
+}
+body.dark-mode .secondary-button,
+body.dark-mode .account-signout-button {
+  background: transparent !important;
+  color: #c0cbd3 !important;
+  border-color: #56636e !important;
+}
+body.dark-mode .secondary-button:hover:not(:disabled),
+body.dark-mode .account-signout-button:hover:not(:disabled) {
+  background: transparent !important;
+  color: #fff !important;
+  border-color: #91a3af !important;
+}
