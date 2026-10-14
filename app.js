@@ -23,6 +23,7 @@ let popularSearches = {};
 let popularityTimer = null;
 let selectedFavoriteArtist = "";
 let melonArtistCatalog = [];
+let melonArtistCatalogSignature = "";
 let favoriteSearchComposing = false;
 
 const artistAliases = {
@@ -353,6 +354,11 @@ function getCanonicalPopularArtist(artist) {
 // Build a local, pre-normalized list of known Melon artist names and aliases.
 // This keeps favorite-artist suggestions responsive while typing.
 function buildMelonArtistCatalog() {
+  const signature = Array.from(new Set(
+    songs.map(function(song) { return song.artist; }).filter(Boolean)
+  )).sort().join("|");
+  if (signature && signature === melonArtistCatalogSignature && melonArtistCatalog.length) return;
+
   const candidates = new Map();
 
   function addCandidate(canonical, forms) {
@@ -381,13 +387,13 @@ function buildMelonArtistCatalog() {
     songs.map(function(song) { return song.artist; }).filter(Boolean)
   ));
   chartArtists.forEach(function(artist) {
-    addCandidate(getCanonicalChartArtist(artist), [artist].concat(getSearchNames(artist)));
+    addCandidate(artist, [artist].concat(getSearchNames(artist)));
   });
 
   Object.entries(artistAliases).forEach(function(entry) {
     const name = entry[0];
     const aliases = entry[1] || [];
-    const bareName = name.replace(/\\s*\\([^()]*\\)\\s*/g, " ").trim();
+    const bareName = name.replace(/\s*\([^()]*\)\s*/g, " ").trim();
     const canonical = getCanonicalChartArtist(name);
     addCandidate(canonical, [name, bareName].concat(getParenthesizedNames(name), aliases, getSearchNames(name)));
   });
@@ -398,6 +404,7 @@ function buildMelonArtistCatalog() {
       forms: Array.from(item.forms)
     };
   });
+  melonArtistCatalogSignature = signature;
 }
 
 function resolveKnownMelonArtist(query) {
