@@ -114,7 +114,7 @@
 
     const { data, error } = await client
       .from("melonitor_profiles")
-      .select("nickname")
+      .select("nickname, avatar_url")
       .eq("user_id", targetUser.id)
       .maybeSingle();
 
@@ -445,7 +445,7 @@
         { user_id: currentUser.id, nickname },
         { onConflict: "user_id" }
       )
-      .select("nickname")
+      .select("nickname, avatar_url")
       .single();
 
     if (error) {
@@ -478,7 +478,7 @@
       .from("melonitor_profiles")
       .update({ nickname })
       .eq("user_id", currentUser.id)
-      .select("nickname")
+      .select("nickname, avatar_url")
       .single();
 
     if (error) {
@@ -493,6 +493,90 @@
 
     currentProfile = data;
     notifyAuthChange("NICKNAME_UPDATED");
+    return currentProfile;
+  }
+
+  function getAvatarUrl() {
+    return currentProfile && typeof currentProfile.avatar_url === "string"
+      ? currentProfile.avatar_url
+      : "";
+  }
+
+  async function uploadAvatar(file) {
+    if (!client || !currentUser || !isEmailVerified(currentUser) || !isReady()) {
+      throw new Error("프로필 사진을 변경하려면 먼저 로그인해 주세요.");
+    }
+    if (!file || !["image/jpeg", "image/png", "image/webp"].includes(file.type)) {
+      throw new Error("JPG, PNG, WEBP 형식의 이미지만 사용할 수 있어요.");
+    }
+    if (file.size > 2 * 1024 * 1024) {
+      throw new Error("프로필 사진은 2MB 이하로 선택해 주세요.");
+    }
+
+    const path = currentUser.id + "/avatar";
+    const { error: uploadError } = await client.storage
+      .from("profile-avatars")
+      .upload(path, file, {
+        cacheControl: "3600",
+        contentType: file.type,
+        upsert: true
+      });
+
+    if (uploadError) {
+      console.warn("프로필 사진 업로드 실패:", uploadError.message);
+      throw new Error("사진을 업로드하지 못했어요. 잠시 후 다시 시도해 주세요.");
+    }
+
+    const { data: publicData } = client.storage.from("profile-avatars").getPublicUrl(path);
+    if (!publicData || !publicData.publicUrl) {
+      throw new Error("사진 주소를 만들지 못했어요. 다시 시도해 주세요.");
+    }
+
+    const avatarUrl = publicData.publicUrl + "?v=" + Date.now();
+    const { data, error } = await client
+      .from("melonitor_profiles")
+      .update({ avatar_url: avatarUrl })
+      .eq("user_id", currentUser.id)
+      .select("nickname, avatar_url")
+      .single();
+
+    if (error) {
+      console.warn("프로필 사진 주소 저장 실패:", error.message);
+      throw new Error("사진은 업로드했지만 계정에 저장하지 못했어요. 다시 시도해 주세요.");
+    }
+
+    currentProfile = data;
+    notifyAuthChange("AVATAR_UPDATED");
+    return currentProfile;
+  }
+
+  async function removeAvatar() {
+    if (!client || !currentUser || !isEmailVerified(currentUser) || !isReady()) {
+      throw new Error("프로필 사진을 삭제하려면 먼저 로그인해 주세요.");
+    }
+
+    const path = currentUser.id + "/avatar";
+    const { data, error } = await client
+      .from("melonitor_profiles")
+      .update({ avatar_url: null })
+      .eq("user_id", currentUser.id)
+      .select("nickname, avatar_url")
+      .single();
+
+    if (error) {
+      console.warn("프로필 사진 정보 삭제 실패:", error.message);
+      throw new Error("프로필 사진을 삭제하지 못했어요. 다시 시도해 주세요.");
+    }
+
+    currentProfile = data;
+    notifyAuthChange("AVATAR_REMOVED");
+
+    const { error: storageError } = await client.storage.from("profile-avatars").remove([path]);
+    if (storageError) {
+      // The profile no longer points at the object, so a stale storage copy is not shown.
+      console.warn("프로필 사진 파일 정리 실패:", storageError.message);
+    }
+
     return currentProfile;
   }
 
@@ -532,6 +616,7 @@
     getUser: () => currentUser,
     getProfile: () => currentProfile,
     getNickname: () => currentProfile ? currentProfile.nickname : "",
+    getAvatarUrl,
     hasNickname,
     isReady,
     getSearches,
@@ -546,6 +631,8 @@
     completeSignup,
     saveNickname,
     updateNickname,
+    uploadAvatar,
+    removeAvatar,
     updatePassword,
     getNicknameValidationError,
     signOut
