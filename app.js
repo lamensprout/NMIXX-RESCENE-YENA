@@ -803,6 +803,30 @@ function formatChartUpdateTime(updatedAt) {
   });
 }
 
+let chartStatusHideTimer = null;
+
+function setChartStatus(message, hideAfterMs = 0) {
+  if (!chartStatus) return;
+  if (chartStatusHideTimer) clearTimeout(chartStatusHideTimer);
+  chartStatusHideTimer = null;
+
+  chartStatus.textContent = message || "";
+  chartStatus.hidden = !message;
+  chartStatus.title = message || "";
+
+  if (message && hideAfterMs > 0) {
+    const currentMessage = message;
+    chartStatusHideTimer = setTimeout(() => {
+      if (chartStatus.textContent === currentMessage) {
+        chartStatus.textContent = "";
+        chartStatus.hidden = true;
+        chartStatus.title = "";
+      }
+      chartStatusHideTimer = null;
+    }, hideAfterMs);
+  }
+}
+
 async function loadChartData(manual = false, silent = false) {
   if (chartLoadInProgress) return;
   chartLoadInProgress = true;
@@ -811,8 +835,10 @@ async function loadChartData(manual = false, silent = false) {
     refreshChartButton.disabled = true;
     refreshChartButton.textContent = manual ? "↻ TOP100 수집 중..." : "↻ 차트 불러오는 중...";
   }
-  if (!silent && chartStatus) {
-    chartStatus.textContent = manual ? "멜론 TOP100을 새로 수집하고 있어요..." : "최신 차트 불러오는 중...";
+  if (manual) {
+    setChartStatus("멜론 TOP100을 새로 수집하고 있어요...");
+  } else if (!silent) {
+    setChartStatus("");
   }
 
   try {
@@ -844,26 +870,28 @@ async function loadChartData(manual = false, silent = false) {
       results.innerHTML = "";
     }
 
-    if (!silent && chartStatus) {
+    if (manual) {
       const updatedTime = formatChartUpdateTime(data.updated_at);
-      if (manual && data.refresh_status === "refreshed") {
-        chartStatus.textContent = "멜론 TOP100 갱신 완료" + (updatedTime ? " · " + updatedTime : "");
-      } else if (manual && data.refresh_status === "recently_updated") {
-        chartStatus.textContent = "최근 갱신된 최신 차트를 표시 중" + (updatedTime ? " · " + updatedTime : "");
-      } else if (manual) {
-        chartStatus.textContent = "최신 차트를 불러왔어요" + (updatedTime ? " · " + updatedTime : "");
+      let message;
+      if (data.refresh_status === "refreshed") {
+        message = "멜론 TOP100 갱신 완료" + (updatedTime ? " · " + updatedTime : "");
+      } else if (data.refresh_status === "recently_updated") {
+        message = "최근 갱신된 최신 차트를 표시 중" + (updatedTime ? " · " + updatedTime : "");
       } else {
-        chartStatus.textContent = "";
+        message = "최신 차트를 불러왔어요" + (updatedTime ? " · " + updatedTime : "");
       }
-      chartStatus.title = manual ? "차트 새로고침 요청 결과" : "";
+      setChartStatus(message, 5500);
+    } else if (!silent) {
+      setChartStatus("");
     }
   } catch (error) {
     console.error("차트 갱신 실패:", error);
     if (!silent) {
       const errorMessage = String(error && error.message ? error.message : "알 수 없는 오류").slice(0, 180);
-      if (chartStatus) {
-        chartStatus.textContent = (chartHasLoaded ? "갱신 실패" : "차트 로딩 실패") + " · " + errorMessage;
-        chartStatus.title = errorMessage;
+      if (manual) {
+        setChartStatus((chartHasLoaded ? "갱신 실패" : "차트 로딩 실패") + " · " + errorMessage, 5500);
+      } else {
+        setChartStatus("");
       }
 
       if (!chartHasLoaded) {
