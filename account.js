@@ -75,8 +75,9 @@
       status.hidden = false;
       status.textContent = "이메일 인증이 완료됐어요. 닉네임과 비밀번호를 설정해 주세요.";
     } else if (hasNickname) {
-      status.hidden = false;
-      status.textContent = "로그인됐어요. 이제 Melonitor를 이용할 수 있어요.";
+      // Keep the account settings page quiet for signed-in users.
+      status.hidden = true;
+      status.textContent = "";
       signedInNickname.textContent = MonitorStore.getNickname();
       signedInEmail.textContent = user.email || "";
     } else if (!configured) {
@@ -196,11 +197,14 @@
       );
       if (error) throw error;
 
-      showSignedIn(data.user);
       passwordInput.value = "";
-      setMessage(MonitorStore.hasNickname()
-        ? "로그인됐어요. 저장된 검색 기록과 즐겨찾기를 불러왔어요."
-        : "이메일 인증이 확인됐어요. 닉네임과 비밀번호 설정을 완료해 주세요.");
+      if (MonitorStore.hasNickname()) {
+        // Existing members return directly to the homepage after login.
+        window.location.replace("/");
+        return;
+      }
+      showSignedIn(data.user);
+      setMessage("이메일 인증이 확인됐어요. 닉네임과 비밀번호 설정을 완료해 주세요.");
     } catch (error) {
       setMessage(error.message || "로그인에 실패했어요. 이메일과 비밀번호를 확인해 주세요.", true);
     } finally {
