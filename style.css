@@ -1906,3 +1906,30 @@ body.dark-mode .main-nav a:focus-visible { color: #8ed69e; }
   }
   .chart-refresh-controls { width: 150px; min-height: 60px; }
 }
+
+/* Active Google Forms error-report link */
+.report-form-button[href] {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #168a35;
+  color: #ffffff;
+  border-color: #168a35;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 140ms ease, border-color 140ms ease;
+}
+.report-form-button[href]:hover,
+.report-form-button[href]:focus-visible {
+  background: #0f742b;
+  border-color: #0f742b;
+}
+.report-form-button[href]:focus-visible {
+  outline: 2px solid #168a35;
+  outline-offset: 3px;
+}
+body.dark-mode .report-form-button[href] {
+  background: #168a35;
+  color: #ffffff;
+  border-color: #168a35;
+}
