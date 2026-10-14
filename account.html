@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>계정 | Melonitor</title>
-  <link rel="stylesheet" href="style.css?v=20261014-7">
+  <link rel="stylesheet" href="style.css?v=20261014-8">
 </head>
 <body>
   <main class="container account-container">
@@ -82,8 +82,24 @@
         <p>로그인 완료</p>
         <strong id="signedInNickname"></strong>
         <p id="signedInEmail" class="signed-in-email"></p>
-        <p class="signed-in-explainer">이메일 인증과 닉네임·비밀번호 설정이 완료됐어요. 검색 기록과 즐겨찾기가 계정에 저장됩니다.</p>
-        <button id="signOutButton" type="button" class="secondary-button">로그아웃</button>
+        <p class="signed-in-explainer">계정 정보와 로그인 보안 설정을 여기에서 관리할 수 있어요.</p>
+
+        <section class="account-settings-panel" aria-labelledby="accountSettingsTitle">
+          <h3 id="accountSettingsTitle">계정 설정</h3>
+          <form id="nicknameChangeForm" class="auth-form account-settings-form">
+            <label for="accountNicknameInput">닉네임</label>
+            <input id="accountNicknameInput" name="accountNickname" type="text" minlength="2" maxlength="16" pattern="[가-힣A-Za-z0-9_]{2,16}" autocomplete="nickname" aria-describedby="accountNicknameHelp" required>
+            <small id="accountNicknameHelp" class="nickname-help">2~16자. 한글·영어를 사용할 수 있고, 숫자와 밑줄(_)도 가능해요.</small>
+            <button id="updateNicknameButton" type="submit" class="primary-button">닉네임 변경</button>
+          </form>
+
+          <form id="passwordChangeForm" class="auth-form account-settings-form">
+            <label for="newAccountPassword">새 비밀번호</label>
+            <input id="newAccountPassword" name="newAccountPassword" type="password" minlength="8" maxlength="72" autocomplete="new-password" placeholder="새 비밀번호 8~72자" required>
+            <button id="updatePasswordButton" type="submit" class="primary-button">비밀번호 변경</button>
+          </form>
+        </section>
+        <button id="signOutButton" type="button" class="secondary-button account-signout-button">로그아웃</button>
       </div>
 
       <p id="accountMessage" class="account-message" aria-live="polite"></p>
@@ -92,8 +108,8 @@
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="supabase-config.js?v=1"></script>
-  <script src="monitor-store.js?v=10"></script>
-  <script src="account.js?v=8"></script>
+  <script src="monitor-store.js?v=11"></script>
+  <script src="account.js?v=9"></script>
   <script src="theme.js?v=6"></script>
 </body>
 </html>
