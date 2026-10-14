@@ -1621,8 +1621,19 @@ body.dark-mode .user-menu-divider { background: #37414a; }
   cursor: pointer;
   transition: background .16s ease, color .16s ease, border-color .16s ease;
 }
-.theme-mode-option:hover { background: #e3e7ea; color: #17212b; }
+.theme-mode-option:hover { filter: brightness(.97); }
 .theme-mode-option:focus-visible { outline: 2px solid #526b7b; outline-offset: 1px; }
+/* AUTO and Dark keep their mode colors even when not selected. */
+.theme-mode-option[data-theme-mode="auto"] {
+  background: #ecd25b;
+  border-color: #d8be48;
+  color: #262514;
+}
+.theme-mode-option[data-theme-mode="dark"] {
+  background: #60bd6c;
+  border-color: #60bd6c;
+  color: #102514;
+}
 .theme-mode-control[data-active-mode="light"] .theme-mode-option[data-theme-mode="light"] {
   background: #fff; border-color: #d5dce1; color: #17212b; box-shadow: 0 1px 2px rgb(0 0 0 / 8%);
 }
