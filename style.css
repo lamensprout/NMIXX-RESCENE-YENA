@@ -1743,3 +1743,32 @@ body.dark-mode .theme-mode-control[data-active-mode="dark"] .theme-mode-option[d
 body.dark-mode .account-settings-panel { border-top-color: #35413a; }
 body.dark-mode .account-settings-panel h3 { color: #edf0f5; }
 body.dark-mode .account-settings-form { border-bottom-color: #303a43; }
+
+
+/* Prevent the header controls from shifting when refresh status text appears. */
+.hero-tools {
+  align-items: flex-start;
+}
+.chart-refresh-controls {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 5px;
+  width: max-content;
+  min-height: 60px;
+}
+.chart-status {
+  display: block;
+  box-sizing: border-box;
+  width: min(320px, 80vw);
+  height: 17px;
+  min-height: 17px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.chart-status[hidden] {
+  display: block !important;
+  visibility: hidden;
+}
