@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>🍈 Melon Artist Chart</title>
-  <link rel="stylesheet" href="style.css?v=20261014-10">
+  <link rel="stylesheet" href="style.css?v=20261014-11">
 </head>
 <body>
   <main class="container">
@@ -41,7 +41,7 @@
         </div>
         <div class="chart-refresh-controls">
           <button id="refreshChartButton" class="refresh-chart-button" type="button" disabled title="멜론 TOP100을 다시 수집합니다">↻ 차트 새로고침</button>
-          <span id="chartStatus" class="chart-status" role="status" aria-live="polite">차트 불러오는 중...</span>
+          <span id="chartStatus" class="chart-status" role="status" aria-live="polite" hidden></span>
         </div>
       </div>
     </header>
@@ -107,7 +107,7 @@
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="supabase-config.js?v=1"></script>
   <script src="monitor-store.js?v=11"></script>
-  <script src="app.js?v=20261014-6"></script>
+  <script src="app.js?v=20261014-7"></script>
   <script src="theme.js?v=5"></script>
   <script>
     (() => {
