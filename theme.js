@@ -2,8 +2,6 @@
   const legacySwitch = document.getElementById("themeToggle");
   const modeControl = document.getElementById("themeModeControl");
   const modeButtons = Array.from(document.querySelectorAll("[data-theme-mode]"));
-  if (!legacySwitch && modeButtons.length === 0) return;
-
   const storageKey = "melonitor-theme";
   const media = typeof window.matchMedia === "function"
     ? window.matchMedia("(prefers-color-scheme: dark)")
