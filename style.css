@@ -526,14 +526,33 @@ body.dark-mode .board-back-link { color: #8ed69e; }
   padding: 0 12px;
   border: 1px solid #17a13c;
   border-radius: 10px;
-  background: #17a13c;
-  color: #fff;
+  background: transparent;
+  color: #168a35;
   font-size: 12px;
   font-weight: 700;
   text-decoration: none;
   white-space: nowrap;
+  transition: color .15s ease, border-color .15s ease;
 }
-.account-link:hover { background: #11842f; }
+.account-link:hover {
+  background: transparent;
+  color: #0f762b;
+  border-color: #0f9d34;
+}
+.account-link:focus-visible {
+  outline: 2px solid #17a13c;
+  outline-offset: 2px;
+}
+body.dark-mode .account-link {
+  color: #8ed69e;
+  background: transparent;
+  border-color: #426d4a;
+}
+body.dark-mode .account-link:hover {
+  background: transparent;
+  color: #b5f0bf;
+  border-color: #68a875;
+}
 .favorites-panel,
 .account-card {
   border: 1px solid #e5e7eb;
