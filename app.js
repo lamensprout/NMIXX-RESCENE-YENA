@@ -798,15 +798,15 @@ function formatChartUpdateTime(updatedAt) {
   });
 }
 
-async function loadChartData(manual = false) {
+async function loadChartData(manual = false, silent = false) {
   if (chartLoadInProgress) return;
   chartLoadInProgress = true;
 
-  if (refreshChartButton) {
+  if (!silent && refreshChartButton) {
     refreshChartButton.disabled = true;
     refreshChartButton.textContent = manual ? "↻ TOP100 수집 중..." : "↻ 차트 불러오는 중...";
   }
-  if (chartStatus) {
+  if (!silent && chartStatus) {
     chartStatus.textContent = manual ? "멜론 TOP100을 새로 수집하고 있어요..." : "최신 차트 불러오는 중...";
   }
 
@@ -839,7 +839,7 @@ async function loadChartData(manual = false) {
       results.innerHTML = "";
     }
 
-    if (chartStatus) {
+    if (!silent && chartStatus) {
       const updatedTime = formatChartUpdateTime(data.updated_at);
       if (manual && data.refresh_status === "refreshed") {
         chartStatus.textContent = "멜론 TOP100 갱신 완료" + (updatedTime ? " · " + updatedTime : "");
@@ -848,27 +848,30 @@ async function loadChartData(manual = false) {
       } else if (manual) {
         chartStatus.textContent = "최신 차트를 불러왔어요" + (updatedTime ? " · " + updatedTime : "");
       } else {
-        chartStatus.textContent = "";
+        chartStatus.textContent = "자동 갱신: 60초마다";
       }
+      chartStatus.title = "공용 TOP100은 서버에서 60초마다 갱신되며, 이 화면도 60초마다 최신 데이터를 확인합니다.";
     }
   } catch (error) {
     console.error("차트 갱신 실패:", error);
-    const errorMessage = String(error && error.message ? error.message : "알 수 없는 오류").slice(0, 180);
-    if (chartStatus) {
-      chartStatus.textContent = (chartHasLoaded ? "갱신 실패" : "차트 로딩 실패") + " · " + errorMessage;
-      chartStatus.title = errorMessage;
-    }
+    if (!silent) {
+      const errorMessage = String(error && error.message ? error.message : "알 수 없는 오류").slice(0, 180);
+      if (chartStatus) {
+        chartStatus.textContent = (chartHasLoaded ? "갱신 실패" : "차트 로딩 실패") + " · " + errorMessage;
+        chartStatus.title = errorMessage;
+      }
 
-    if (!chartHasLoaded) {
-      summary.textContent = errorMessage || "차트를 불러오지 못했습니다.";
-    } else if (manual) {
-      summary.textContent = (input.value.trim()
-        ? "멜론 TOP100을 갱신하지 못했어요. 이전 차트를 계속 표시합니다."
-        : "멜론 TOP100을 갱신하지 못했어요. 이전 차트 데이터를 계속 표시합니다.") + " (원인: " + errorMessage + ")";
+      if (!chartHasLoaded) {
+        summary.textContent = errorMessage || "차트를 불러오지 못했습니다.";
+      } else if (manual) {
+        summary.textContent = (input.value.trim()
+          ? "멜론 TOP100을 갱신하지 못했어요. 이전 차트를 계속 표시합니다."
+          : "멜론 TOP100을 갱신하지 못했어요. 이전 차트 데이터를 계속 표시합니다.") + " (원인: " + errorMessage + ")";
+      }
     }
   } finally {
     chartLoadInProgress = false;
-    if (refreshChartButton) {
+    if (!silent && refreshChartButton) {
       refreshChartButton.disabled = false;
       refreshChartButton.textContent = "↻ 차트 새로고침";
     }
@@ -892,6 +895,21 @@ if (refreshChartButton) {
     loadChartData(true);
   });
 }
+
+// 서버의 공용 TOP100은 서버 스케줄러가 매분 수집합니다.
+// 이 화면도 매분 최신 캐시를 다시 읽어 열어 둔 페이지를 갱신합니다.
+const CHART_AUTO_REFRESH_MS = 60_000;
+setInterval(function() {
+  if (document.visibilityState === "visible" && !chartLoadInProgress) {
+    loadChartData(false, true);
+  }
+}, CHART_AUTO_REFRESH_MS);
+
+document.addEventListener("visibilitychange", function() {
+  if (document.visibilityState === "visible" && chartHasLoaded && !chartLoadInProgress) {
+    loadChartData(false, true);
+  }
+});
 
 window.addEventListener("melonitor-auth-change", async function() {
   updatePersonalPanels();
