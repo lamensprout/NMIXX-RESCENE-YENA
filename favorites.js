@@ -301,10 +301,29 @@ function getCanonicalChartArtist(artist) {
     }
   });
 
-  // 차트 순서대로 먼저 등장한 멜론 표기를 대표 이름으로 사용합니다.
+  // 멜론 차트에 실제 표시된 이름을 대표 표기로 사용합니다.
   return chartArtists.find(function(candidate) {
-    return areSameArtist(candidate, artist);
+    return normalize(candidate) === normalize(artist) || areSameArtist(candidate, artist);
   }) || artist;
+}
+
+function canonicalizeChartSongs(chartSongs) {
+  const representatives = [];
+  chartSongs.forEach(function(song) {
+    const artist = String(song && song.artist || "").trim();
+    if (!artist) return;
+    if (!representatives.some(function(name) {
+      return normalize(name) === normalize(artist) || areSameArtist(name, artist);
+    })) representatives.push(artist);
+  });
+  return chartSongs.map(function(song) {
+    const artist = String(song && song.artist || "").trim();
+    if (!artist) return song;
+    const canonical = representatives.find(function(name) {
+      return normalize(name) === normalize(artist) || areSameArtist(name, artist);
+    }) || artist;
+    return Object.assign({}, song, { artist: canonical });
+  });
 }
 
 function matchesArtist(artist, query) {
@@ -350,50 +369,51 @@ function buildMelonArtistCatalog() {
   )).sort().join("|");
   if (signature && signature === melonArtistCatalogSignature && melonArtistCatalog.length) return;
 
-  const candidates = new Map();
+  const candidates = [];
 
   function addCandidate(canonical, forms) {
-    const displayName = String(canonical || "").trim();
-    const key = normalize(displayName);
-    if (!key) return;
+    const requestedName = String(canonical || "").trim();
+    if (!requestedName) return;
+    const displayName = getCanonicalChartArtist(requestedName);
 
-    let item = candidates.get(key);
+    let item = candidates.find(function(candidate) {
+      return normalize(candidate.canonical) === normalize(displayName) ||
+        areSameArtist(candidate.canonical, displayName);
+    });
+
     if (!item) {
       item = { canonical: displayName, forms: new Set() };
-      candidates.set(key, item);
+      candidates.push(item);
+    } else if (songs.some(function(song) {
+      return song.artist && normalize(song.artist) === normalize(displayName);
+    })) {
+      item.canonical = displayName;
     }
 
-    const allForms = [displayName].concat(forms || []);
-    allForms.forEach(function(form) {
+    [requestedName, displayName].concat(forms || []).forEach(function(form) {
       const normalized = normalize(form);
       if (normalized) item.forms.add(normalized);
-    });
-    getSearchNames(displayName).forEach(function(form) {
-      const normalized = normalize(form);
-      if (normalized) item.forms.add(normalized);
+      getSearchNames(form).forEach(function(searchName) {
+        const searchable = normalize(searchName);
+        if (searchable) item.forms.add(searchable);
+      });
     });
   }
 
-  const chartArtists = Array.from(new Set(
-    songs.map(function(song) { return song.artist; }).filter(Boolean)
-  ));
-  chartArtists.forEach(function(artist) {
-    addCandidate(artist, [artist].concat(getSearchNames(artist)));
-  });
+  Array.from(new Set(songs.map(function(song) { return song.artist; }).filter(Boolean)))
+    .forEach(function(artist) {
+      addCandidate(artist, [artist].concat(getSearchNames(artist)));
+    });
 
   Object.entries(artistAliases).forEach(function(entry) {
     const name = entry[0];
     const aliases = entry[1] || [];
     const bareName = name.replace(/\s*\([^()]*\)\s*/g, " ").trim();
-    const canonical = getCanonicalChartArtist(name);
-    addCandidate(canonical, [name, bareName].concat(getParenthesizedNames(name), aliases, getSearchNames(name)));
+    addCandidate(name, [bareName].concat(getParenthesizedNames(name), aliases, getSearchNames(name)));
   });
 
-  melonArtistCatalog = Array.from(candidates.values()).map(function(item) {
-    return {
-      canonical: item.canonical,
-      forms: Array.from(item.forms)
-    };
+  melonArtistCatalog = candidates.map(function(item) {
+    return { canonical: item.canonical, forms: Array.from(item.forms) };
   });
   melonArtistCatalogSignature = signature;
 }
@@ -509,7 +529,7 @@ async function loadArtistCatalog() {
       console.warn("저장된 아티스트 목록을 불러오지 못했어요:", error);
     }
   }
-  songs = data && Array.isArray(data.songs) ? data.songs : [];
+  songs = data && Array.isArray(data.songs) ? canonicalizeChartSongs(data.songs) : [];
   buildMelonArtistCatalog();
 }
 
@@ -537,21 +557,33 @@ async function renderFavorites() {
     console.warn("즐겨찾기를 불러오지 못했습니다:", error);
   }
 
-  const seen = new Set();
-  names = names.map(getCanonicalPopularArtist).filter(name => {
-    const key = normalize(name);
-    if (!key || seen.has(key)) return false;
-    seen.add(key);
-    return true;
+  // 예전에 다른 표기로 저장된 같은 아티스트도 한 개의 즐겨찾기로 묶습니다.
+  const groups = [];
+  names.forEach(function(storedName) {
+    const canonical = getCanonicalPopularArtist(storedName);
+    const key = normalize(canonical);
+    if (!key) return;
+    const existing = groups.find(function(group) {
+      return normalize(group.canonical) === key || areSameArtist(group.canonical, canonical);
+    });
+    if (existing) {
+      if (!existing.storedNames.includes(storedName)) existing.storedNames.push(storedName);
+      // 멜론 차트에 존재하는 아티스트명은 항상 그 표기를 대표 이름으로 유지합니다.
+      const chartName = getCanonicalChartArtist(canonical);
+      if (songs.some(song => normalize(song.artist) === normalize(chartName))) existing.canonical = chartName;
+    } else {
+      groups.push({ canonical: getCanonicalChartArtist(canonical), storedNames: [storedName] });
+    }
   });
 
   if (favoritesNote) {
-    favoritesNote.textContent = names.length
+    favoritesNote.textContent = groups.length
       ? "계정에 저장된 즐겨찾기예요. 아티스트를 누르면 해당 아티스트의 차트로 이동합니다."
       : "아직 등록한 아티스트가 없어요. 위에서 좋아하는 아티스트를 검색해 추가해 보세요.";
   }
 
-  names.forEach(artist => {
+  groups.forEach(group => {
+    const artist = group.canonical;
     const wrap = document.createElement("span");
     wrap.className = "favorite-item";
 
@@ -572,12 +604,12 @@ async function renderFavorites() {
     remove.title = "즐겨찾기에서 삭제";
     remove.addEventListener("click", async () => {
       remove.disabled = true;
-      const result = await MonitorStore.removeFavorite(artist);
-      if (result && result.ok) {
+      const results = await Promise.all(group.storedNames.map(name => MonitorStore.removeFavorite(name)));
+      if (results.every(result => result && result.ok)) {
         await renderFavorites();
       } else {
         remove.disabled = false;
-        if (favoritesNote) favoritesNote.textContent = "삭제하지 못했어요. 잠시 후 다시 시도해 주세요.";
+        if (favoritesNote) favoritesNote.textContent = "일부 항목을 삭제하지 못했어요. 다시 시도해 주세요.";
       }
     });
 
