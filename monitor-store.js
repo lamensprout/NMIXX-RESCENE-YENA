@@ -231,6 +231,9 @@
         console.warn("기존 데이터 이전 중 오류:", migrationError);
       }
     }
+    window.dispatchEvent(new CustomEvent("melonitor-profile-ready", {
+      detail: { user: currentUser, profile: currentProfile }
+    }));
     return currentUser;
   }
 
