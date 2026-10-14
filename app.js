@@ -22,6 +22,8 @@ let songs = [];
 let popularSearches = {};
 let popularityTimer = null;
 let selectedFavoriteArtist = "";
+let melonArtistCatalog = [];
+let favoriteSearchComposing = false;
 
 const artistAliases = {
   "NMIXX": ["엔믹스", "믹스"],
@@ -348,6 +350,66 @@ function getCanonicalPopularArtist(artist) {
   return aliasEntry ? aliasEntry[0] : value;
 }
 
+// Build a local, pre-normalized list of known Melon artist names and aliases.
+// This keeps favorite-artist suggestions responsive while typing.
+function buildMelonArtistCatalog() {
+  const candidates = new Map();
+
+  function addCandidate(canonical, forms) {
+    const displayName = String(canonical || "").trim();
+    const key = normalize(displayName);
+    if (!key) return;
+
+    let item = candidates.get(key);
+    if (!item) {
+      item = { canonical: displayName, forms: new Set() };
+      candidates.set(key, item);
+    }
+
+    const allForms = [displayName].concat(forms || []);
+    allForms.forEach(function(form) {
+      const normalized = normalize(form);
+      if (normalized) item.forms.add(normalized);
+    });
+    getSearchNames(displayName).forEach(function(form) {
+      const normalized = normalize(form);
+      if (normalized) item.forms.add(normalized);
+    });
+  }
+
+  const chartArtists = Array.from(new Set(
+    songs.map(function(song) { return song.artist; }).filter(Boolean)
+  ));
+  chartArtists.forEach(function(artist) {
+    addCandidate(getCanonicalChartArtist(artist), [artist].concat(getSearchNames(artist)));
+  });
+
+  Object.entries(artistAliases).forEach(function(entry) {
+    const name = entry[0];
+    const aliases = entry[1] || [];
+    const bareName = name.replace(/\\s*\\([^()]*\\)\\s*/g, " ").trim();
+    const canonical = getCanonicalChartArtist(name);
+    addCandidate(canonical, [name, bareName].concat(getParenthesizedNames(name), aliases, getSearchNames(name)));
+  });
+
+  melonArtistCatalog = Array.from(candidates.values()).map(function(item) {
+    return {
+      canonical: item.canonical,
+      forms: Array.from(item.forms)
+    };
+  });
+}
+
+function resolveKnownMelonArtist(query) {
+  const normalizedQuery = normalize(query);
+  if (!normalizedQuery) return "";
+
+  const match = melonArtistCatalog.find(function(item) {
+    return item.forms.indexOf(normalizedQuery) !== -1;
+  });
+  return match ? match.canonical : "";
+}
+
 function updateAccountMenuLabel() {
   if (!accountLinkLabel) return;
   const hasUser = !!(window.MonitorStore && MonitorStore.getUser());
@@ -372,25 +434,18 @@ function updatePersonalPanels() {
 }
 
 function findFavoriteArtistMatches(query) {
-  const q = String(query || "").trim();
-  if (normalize(q).length < 1) return [];
+  const q = normalize(String(query || "").trim());
+  if (!q) return [];
 
-  const names = [];
-  songs.forEach(function(song) {
-    if (song.artist && matchesArtist(song.artist, q)) {
-      const canonical = getCanonicalChartArtist(song.artist);
-      if (!names.some(function(name) { return areSameArtist(name, canonical); })) names.push(canonical);
-    }
-  });
-
-  Object.keys(artistAliases).forEach(function(name) {
-    if (matchesArtist(name, q)) {
-      const canonical = getCanonicalChartArtist(name);
-      if (!names.some(function(existing) { return areSameArtist(existing, canonical); })) names.push(canonical);
-    }
-  });
-
-  return names.sort(function(a, b) { return a.localeCompare(b, "ko"); }).slice(0, 8);
+  // Search cached normalized names instead of repeatedly walking the alias table
+  // for every keystroke (especially helpful with Korean IME input).
+  return melonArtistCatalog
+    .filter(function(item) {
+      return item.forms.some(function(form) { return form.indexOf(q) !== -1; });
+    })
+    .map(function(item) { return item.canonical; })
+    .sort(function(a, b) { return a.localeCompare(b, "ko"); })
+    .slice(0, 8);
 }
 
 function renderFavoriteSearchResults() {
@@ -464,7 +519,8 @@ function renderPopularSearches() {
 
   const canonicalCounts = new Map();
   Object.entries(popularSearches).forEach(function(entry) {
-    const artist = getCanonicalPopularArtist(entry[0]);
+    // Hide legacy free-text entries and merge aliases under Melon's known artist name.
+    const artist = resolveKnownMelonArtist(entry[0]);
     const count = Number(entry[1]) || 0;
     if (!artist || count <= 0) return;
     canonicalCounts.set(artist, (canonicalCounts.get(artist) || 0) + count);
@@ -580,7 +636,17 @@ async function renderFavoriteArtists() {
 }
 
 if (favoriteInput) {
-  favoriteInput.addEventListener("input", renderFavoriteSearchResults);
+  favoriteInput.addEventListener("compositionstart", function() {
+    favoriteSearchComposing = true;
+  });
+  favoriteInput.addEventListener("compositionend", function() {
+    favoriteSearchComposing = false;
+    renderFavoriteSearchResults();
+  });
+  favoriteInput.addEventListener("input", function(event) {
+    if (favoriteSearchComposing || event.isComposing) return;
+    renderFavoriteSearchResults();
+  });
 }
 
 if (favoriteForm) {
@@ -618,14 +684,9 @@ async function recordPopularSearch(query) {
   const q = String(query || "").trim();
   if (normalize(q).length < 2) return;
 
-  const matchedSong = songs.find(function(song) {
-    return matchesArtist(song.artist, q);
-  });
-
-  // 차트에서 찾으면 멜론 표기를, 없으면 입력한 아티스트/별칭을 기록합니다.
-  const canonicalArtist = matchedSong
-    ? getCanonicalChartArtist(matchedSong.artist)
-    : getCanonicalPopularArtist(q);
+  // Only record a full known Melon artist name or a recognized alias.
+  // Arbitrary free-text searches must never become popular artist entries.
+  const canonicalArtist = resolveKnownMelonArtist(q);
   if (!canonicalArtist) return;
 
   if (window.MonitorStore) {
@@ -859,6 +920,10 @@ async function loadChartData(manual = false, silent = false) {
 
     songs = data.songs;
     chartHasLoaded = true;
+    buildMelonArtistCatalog();
+    if (favoriteInput && favoriteInput.value.trim()) {
+      renderFavoriteSearchResults();
+    }
 
     await loadPopularSearches();
     await renderFavoriteArtists();
