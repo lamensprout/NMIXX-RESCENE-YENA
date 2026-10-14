@@ -4,15 +4,20 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>🍈 Melon Artist Chart</title>
-  <link rel="stylesheet" href="style.css?v=20261014-13">
+  <link rel="stylesheet" href="style.css?v=20261014-14">
 </head>
 <body>
   <main class="container">
-    <header class="hero">
-      <div>
+    <header class="hero site-header">
+      <div class="header-brand">
         <a id="homeLink" class="brand-link" href="/" aria-label="Melonitor 첫 화면으로"><h1>🍈 Melon Artist Chart</h1></a>
-        <p>아티스트를 검색하면 현재 멜론 TOP100 순위를 보여드립니다.</p>
+        <p>멜론 TOP100 아티스트 검색</p>
       </div>
+      <nav class="main-nav" aria-label="주요 메뉴">
+        <a id="favoritesNavLink" href="#favoritesPanel">좋아하는 아티스트</a>
+        <a href="/errors.html">오류 제보</a>
+        <a href="https://www.melon.com/" target="_blank" rel="noopener noreferrer">멜론 공식 사이트 <span aria-hidden="true">↗</span></a>
+      </nav>
       <div class="hero-tools">
         <div class="user-menu">
           <button id="userMenuToggle" class="user-menu-trigger" type="button" aria-label="사용자 메뉴 열기" aria-expanded="false" aria-controls="userMenuPanel">
@@ -59,7 +64,7 @@
       </div>
     </section>
 
-    <section id="favoritesPanel" class="favorites-panel" aria-labelledby="favoriteTitle" hidden>
+    <section id="favoritesPanel" class="favorites-panel" aria-labelledby="favoriteTitle" tabindex="-1" hidden>
       <div class="favorites-heading">
         <div>
           <h2 id="favoriteTitle">내가 좋아하는 아티스트</h2>
@@ -107,7 +112,7 @@
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="supabase-config.js?v=1"></script>
   <script src="monitor-store.js?v=11"></script>
-  <script src="app.js?v=20261014-9"></script>
+  <script src="app.js?v=20261014-10"></script>
   <script src="theme.js?v=5"></script>
   <script>
     (() => {
