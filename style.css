@@ -1714,3 +1714,26 @@ body.dark-mode .theme-mode-control[data-active-mode="dark"] .theme-mode-option[d
   color: #17212b;
   box-shadow: 0 1px 3px rgb(0 0 0 / 15%);
 }
+
+
+/* Signed-in account settings */
+.account-settings-panel {
+  margin: 18px 0 16px;
+  padding-top: 17px;
+  border-top: 1px solid #dce5de;
+}
+.account-settings-panel h3 {
+  margin: 0 0 15px;
+  font-size: 17px;
+  letter-spacing: -.02em;
+}
+.account-settings-form {
+  padding: 14px 0;
+  border-bottom: 1px solid #e4e9e5;
+}
+.account-settings-form:last-child { border-bottom: 0; }
+.account-settings-form .primary-button { margin-top: 4px; }
+.account-signout-button { margin-top: 3px; }
+body.dark-mode .account-settings-panel { border-top-color: #35413a; }
+body.dark-mode .account-settings-panel h3 { color: #edf0f5; }
+body.dark-mode .account-settings-form { border-bottom-color: #303a43; }
