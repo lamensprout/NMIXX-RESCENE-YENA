@@ -348,17 +348,22 @@ function getCanonicalPopularArtist(artist) {
   return aliasEntry ? aliasEntry[0] : value;
 }
 
-function updatePersonalPanels() {
+function updateAccountMenuLabel() {
+  if (!accountLinkLabel) return;
   const hasUser = !!(window.MonitorStore && MonitorStore.getUser());
+  const ready = !!(window.MonitorStore && MonitorStore.isReady());
+  const nickname = ready && window.MonitorStore ? MonitorStore.getNickname() : "";
+  accountLinkLabel.textContent = !hasUser
+    ? "로그인 / 회원가입"
+    : (ready ? (nickname || "내 계정") : "닉네임 설정하기");
+}
+
+function updatePersonalPanels() {
   const signedIn = !!(window.MonitorStore && MonitorStore.isReady());
 
   if (personalSearchPanel) personalSearchPanel.hidden = !signedIn;
   if (favoritesPanel) favoritesPanel.hidden = !signedIn;
-  if (accountLinkLabel) {
-    accountLinkLabel.textContent = !hasUser
-      ? "로그인 / 회원가입"
-      : (signedIn ? "내 계정" : "닉네임 설정하기");
-  }
+  updateAccountMenuLabel();
 
   if (!signedIn) {
     if (popular) popular.innerHTML = "";
@@ -538,7 +543,7 @@ async function renderFavoriteArtists() {
         : "이 브라우저에 저장된 즐겨찾기예요. 계정에 저장하려면 로그인해 주세요.";
     }
   }
-  if (accountLinkLabel) accountLinkLabel.textContent = signedIn ? "내 계정" : "로그인 / 회원가입";
+  updateAccountMenuLabel();
 
   if (!names.length) return;
 
