@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>🍈 Melon Artist Chart</title>
-  <link rel="stylesheet" href="style.css?v=20261014-3">
+  <link rel="stylesheet" href="style.css?v=20261014-4">
 </head>
 <body>
   <main class="container">
@@ -14,8 +14,27 @@
         <p>아티스트를 검색하면 현재 멜론 TOP100 순위를 보여드립니다.</p>
       </div>
       <div class="hero-tools">
-        <a id="accountLink" class="account-link" href="/account.html">로그인 / 회원가입</a>
-        <button id="themeToggle" class="theme-toggle" type="button" role="switch" aria-checked="false" aria-label="다크 모드" title="다크 모드 꺼짐 · 다크 모드로 전환"></button>
+        <div class="user-menu">
+          <button id="userMenuToggle" class="user-menu-trigger" type="button" aria-label="사용자 메뉴 열기" aria-expanded="false" aria-controls="userMenuPanel">
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <circle cx="12" cy="7" r="4"></circle>
+              <path d="M3.5 21c.2-4.6 3.9-7.7 8.5-7.7s8.3 3.1 8.5 7.7H3.5Z"></path>
+            </svg>
+          </button>
+          <div id="userMenuPanel" class="user-menu-panel" role="menu" aria-label="사용자 설정" hidden>
+            <a id="accountLink" class="user-menu-item" href="/account.html" role="menuitem">
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path d="M10 3H4.8A1.8 1.8 0 0 0 3 4.8v14.4A1.8 1.8 0 0 0 4.8 21H10v-2H5V5h5V3Zm4.6 4.4-1.4 1.4 2.2 2.2H9v2h6.4l-2.2 2.2 1.4 1.4 4.6-4.6-4.6-4.6Z"></path>
+              </svg>
+              <span id="accountLinkLabel">로그인 / 회원가입</span>
+            </a>
+            <div class="user-menu-divider" role="separator"></div>
+            <button id="themeMenuToggle" class="user-menu-item" type="button" role="menuitem">
+              <span id="themeMenuSymbol" class="user-menu-symbol" aria-hidden="true">☾</span>
+              <span id="themeMenuLabel">어두운 화면으로</span>
+            </button>
+          </div>
+        </div>
         <div class="chart-refresh-controls">
           <button id="refreshChartButton" class="refresh-chart-button" type="button" disabled title="멜론 TOP100을 다시 수집합니다">↻ 차트 새로고침</button>
           <span id="chartStatus" class="chart-status" role="status" aria-live="polite">차트 불러오는 중...</span>
@@ -84,7 +103,40 @@
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="supabase-config.js?v=1"></script>
   <script src="monitor-store.js?v=10"></script>
-  <script src="app.js?v=20261014-2"></script>
-  <script src="theme.js?v=3"></script>
+  <script src="app.js?v=20261014-3"></script>
+  <script src="theme.js?v=4"></script>
+  <script>
+    (() => {
+      const toggle = document.getElementById("userMenuToggle");
+      const panel = document.getElementById("userMenuPanel");
+      const account = document.getElementById("accountLink");
+      const theme = document.getElementById("themeMenuToggle");
+      if (!toggle || !panel) return;
+
+      function closeMenu() {
+        panel.hidden = true;
+        toggle.setAttribute("aria-expanded", "false");
+        toggle.setAttribute("aria-label", "사용자 메뉴 열기");
+      }
+      function openMenu() {
+        panel.hidden = false;
+        toggle.setAttribute("aria-expanded", "true");
+        toggle.setAttribute("aria-label", "사용자 메뉴 닫기");
+      }
+
+      toggle.addEventListener("click", () => panel.hidden ? openMenu() : closeMenu());
+      document.addEventListener("click", event => {
+        if (!panel.hidden && !event.target.closest(".user-menu")) closeMenu();
+      });
+      document.addEventListener("keydown", event => {
+        if (event.key === "Escape" && !panel.hidden) {
+          closeMenu();
+          toggle.focus();
+        }
+      });
+      if (account) account.addEventListener("click", closeMenu);
+      if (theme) theme.addEventListener("click", closeMenu);
+    })();
+  </script>
 </body>
 </html>
