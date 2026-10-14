@@ -1933,3 +1933,52 @@ body.dark-mode .report-form-button[href] {
   color: #ffffff;
   border-color: #168a35;
 }
+
+/* Dedicated favorites page */
+.favorite-page-panel {
+  margin-top: 2px;
+  padding: clamp(20px, 3vw, 30px);
+  min-height: 220px;
+}
+.favorite-page-panel .favorites-heading h2 {
+  margin: 0;
+}
+.favorite-page-panel .favorites-heading p {
+  max-width: 680px;
+}
+.favorites-login-gate {
+  margin-top: 22px;
+  padding-top: 18px;
+  border-top: 1px solid #e5e9ed;
+}
+.favorites-login-gate p {
+  margin: 0 0 14px;
+  color: #68737d;
+  font-size: 13px;
+  line-height: 1.7;
+}
+.favorites-login-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 42px;
+  padding: 0 16px;
+  color: #fff;
+  text-decoration: none;
+}
+.favorites-back-link {
+  display: inline-block;
+  margin-top: 18px;
+}
+#favoriteForm[hidden],
+#favoriteSearchResults[hidden],
+#favoriteArtists[hidden],
+#favoritesLoginGate[hidden] {
+  display: none !important;
+}
+body.dark-mode .favorites-login-gate {
+  border-color: #303844;
+}
+body.dark-mode .favorites-login-gate p {
+  color: #aab3c1;
+}
