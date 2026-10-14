@@ -464,6 +464,57 @@
     return currentProfile;
   }
 
+  async function updateNickname(rawNickname) {
+    if (!client || !currentUser || !isEmailVerified(currentUser) || !isReady()) {
+      throw new Error("닉네임을 변경하려면 로그인하고 가입 설정을 완료해 주세요.");
+    }
+
+    const nickname = String(rawNickname || "").trim();
+    const nicknameError = getNicknameValidationError(nickname);
+    if (nicknameError) throw new Error(nicknameError);
+    if (currentProfile && currentProfile.nickname === nickname) return currentProfile;
+
+    const { data, error } = await client
+      .from("melonitor_profiles")
+      .update({ nickname })
+      .eq("user_id", currentUser.id)
+      .select("nickname")
+      .single();
+
+    if (error) {
+      if (error.code === "23505") {
+        throw new Error("이미 사용 중인 닉네임이에요. 다른 닉네임을 선택해 주세요.");
+      }
+      if (error.code === "23514") {
+        throw new Error("닉네임 형식이 올바르지 않거나 부적절한 표현이 포함되어 있어요.");
+      }
+      throw new Error("닉네임을 변경하지 못했어요. 잠시 후 다시 시도해 주세요.");
+    }
+
+    currentProfile = data;
+    notifyAuthChange("NICKNAME_UPDATED");
+    return currentProfile;
+  }
+
+  async function updatePassword(rawPassword) {
+    if (!client || !currentUser || !isEmailVerified(currentUser) || !isReady()) {
+      throw new Error("비밀번호를 변경하려면 먼저 로그인해 주세요.");
+    }
+
+    const password = String(rawPassword || "");
+    if (password.length < 8 || password.length > 72) {
+      throw new Error("새 비밀번호는 8~72자로 설정해 주세요.");
+    }
+
+    const { data, error } = await client.auth.updateUser({ password });
+    if (error) {
+      throw new Error(error.message || "비밀번호를 변경하지 못했어요. 다시 시도해 주세요.");
+    }
+    if (data && data.user) currentUser = data.user;
+    notifyAuthChange("PASSWORD_UPDATED");
+    return currentUser;
+  }
+
   async function signOut() {
     if (!client) return { error: new Error("계정 기능 설정이 아직 완료되지 않았습니다.") };
     const result = await client.auth.signOut();
@@ -494,6 +545,8 @@
     signIn,
     completeSignup,
     saveNickname,
+    updateNickname,
+    updatePassword,
     getNicknameValidationError,
     signOut
   };
