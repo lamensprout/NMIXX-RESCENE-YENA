@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-14T20:23:50.711905+00:00",
+  "updated_at": "2026-10-14T21:23:35.412304+00:00",
   "songs": [
     {
       "rank": 1,
@@ -570,30 +570,30 @@
     },
     {
       "rank": 64,
-      "title": "미장센",
-      "artist": "에픽하이 (EPIK HIGH)",
-      "album": "미장센",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/146/44/789/14644789_20261012141149_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 64,
-      "change": 0
-    },
-    {
-      "rank": 65,
       "title": "like JENNIE",
       "artist": "제니 (JENNIE)",
       "album": "Ruby",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/117/30/946/11730946_20250307173452_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 65,
-      "change": 0
+      "change": 1
     },
     {
-      "rank": 66,
+      "rank": 65,
       "title": "입춘",
       "artist": "한로로",
       "album": "입춘",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/108/90/163/10890163_20220311160155_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 66,
-      "change": 0
+      "change": 1
+    },
+    {
+      "rank": 66,
+      "title": "미장센",
+      "artist": "에픽하이 (EPIK HIGH)",
+      "album": "미장센",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/146/44/789/14644789_20261012141149_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 64,
+      "change": -2
     },
     {
       "rank": 67,
