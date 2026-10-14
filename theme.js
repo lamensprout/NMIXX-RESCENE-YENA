@@ -1,46 +1,58 @@
 (() => {
-  const switchButton = document.getElementById("themeToggle");
-  const menuButton = document.getElementById("themeMenuToggle");
-  const menuLabel = document.getElementById("themeMenuLabel");
-  const menuSymbol = document.getElementById("themeMenuSymbol");
-  if (!switchButton && !menuButton) return;
+  const legacySwitch = document.getElementById("themeToggle");
+  const modeControl = document.getElementById("themeModeControl");
+  const modeButtons = Array.from(document.querySelectorAll("[data-theme-mode]"));
+  if (!legacySwitch && modeButtons.length === 0) return;
 
   const storageKey = "melonitor-theme";
-
-  function setTheme(theme) {
-    const dark = theme === "dark";
+  const media = typeof window.matchMedia === "function"
+    ? window.matchMedia("(prefers-color-scheme: dark)")
+    : { matches: false, addEventListener: null, addListener: null };
+  const validModes = ["light", "auto", "dark"];
+  let selectedMode = "auto";
+  function nextMode(mode) {
+    const i = validModes.indexOf(mode);
+    return validModes[(i + 1) % validModes.length];
+  }
+  function applyMode(mode, persist = false) {
+    if (!validModes.includes(mode)) mode = "auto";
+    selectedMode = mode;
+    const dark = mode === "dark" || (mode === "auto" && !!media.matches);
     document.documentElement.classList.toggle("dark-mode", dark);
-    document.body.classList.toggle("dark-mode", dark);
-
-    if (switchButton) {
-      switchButton.textContent = "";
-      switchButton.setAttribute("role", "switch");
-      switchButton.setAttribute("aria-checked", String(dark));
-      switchButton.setAttribute("aria-label", "다크 모드");
-      switchButton.title = dark ? "다크 모드 켜짐 · 라이트 모드로 전환" : "다크 모드 꺼짐 · 다크 모드로 전환";
+    if (document.body) document.body.classList.toggle("dark-mode", dark);
+    document.documentElement.dataset.themeMode = mode;
+    if (document.body) document.body.dataset.themeMode = mode;
+    if (modeControl) modeControl.setAttribute("data-active-mode", mode);
+    modeButtons.forEach(button => {
+      const active = button.dataset.themeMode === mode;
+      button.classList.toggle("is-active", active);
+      button.setAttribute("aria-pressed", String(active));
+    });
+    if (legacySwitch) {
+      legacySwitch.dataset.themeMode = mode;
+      legacySwitch.textContent = "";
+      legacySwitch.setAttribute("role", "button");
+      legacySwitch.setAttribute("aria-label", "화면 모드: " + mode.toUpperCase() + ". 다음 모드로 변경");
+      legacySwitch.title = "현재 " + mode.toUpperCase() + " · 클릭하면 " + nextMode(mode).toUpperCase() + " 모드";
     }
-
-    if (menuButton) {
-      if (menuLabel) menuLabel.textContent = dark ? "밝은 화면으로" : "어두운 화면으로";
-      if (menuSymbol) menuSymbol.textContent = dark ? "☼" : "☾";
-      menuButton.setAttribute("aria-label", dark ? "밝은 화면으로 전환" : "어두운 화면으로 전환");
+    if (persist) {
+      try { localStorage.setItem(storageKey, mode); } catch (_) {}
     }
   }
-
-  let saved = "light";
   try {
-    saved = localStorage.getItem(storageKey) || "light";
-  } catch (_) {}
-  setTheme(saved);
-
-  function toggleTheme() {
-    const next = document.body.classList.contains("dark-mode") ? "light" : "dark";
-    setTheme(next);
-    try {
-      localStorage.setItem(storageKey, next);
-    } catch (_) {}
+    const saved = localStorage.getItem(storageKey);
+    selectedMode = validModes.includes(saved) ? saved : "auto";
+  } catch (_) { selectedMode = "auto"; }
+  applyMode(selectedMode);
+  modeButtons.forEach(button => {
+    button.addEventListener("click", () => applyMode(button.dataset.themeMode, true));
+  });
+  if (legacySwitch) {
+    legacySwitch.addEventListener("click", () => applyMode(nextMode(selectedMode), true));
   }
-
-  if (switchButton) switchButton.addEventListener("click", toggleTheme);
-  if (menuButton) menuButton.addEventListener("click", toggleTheme);
+  const onSystemThemeChange = () => {
+    if (selectedMode === "auto") applyMode("auto");
+  };
+  if (typeof media.addEventListener === "function") media.addEventListener("change", onSystemThemeChange);
+  else if (typeof media.addListener === "function") media.addListener(onSystemThemeChange);
 })();
