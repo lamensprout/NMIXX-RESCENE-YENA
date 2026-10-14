@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-14T19:28:59.336719+00:00",
+  "updated_at": "2026-10-14T20:23:50.711905+00:00",
   "songs": [
     {
       "rank": 1,
@@ -628,8 +628,8 @@
       "artist": "도경수(D.O.)",
       "album": "DOPAMINE - The 4th Mini Album",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/145/26/395/14526395_20260907104149_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 71,
-      "change": 1
+      "previous_rank": 70,
+      "change": 0
     },
     {
       "rank": 71,
@@ -637,8 +637,8 @@
       "artist": "이무진",
       "album": "청혼하지 않을 이유를 못 찾았어",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/114/55/285/11455285_20240401151801_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 70,
-      "change": -1
+      "previous_rank": 71,
+      "change": 0
     },
     {
       "rank": 72,
