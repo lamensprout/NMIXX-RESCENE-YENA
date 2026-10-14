@@ -28,6 +28,13 @@
   const message = document.getElementById("accountMessage");
   const signInButton = document.getElementById("signInButton");
   const signOutButton = document.getElementById("signOutButton");
+  const accountTitle = document.getElementById("accountTitle");
+  const accountNicknameInput = document.getElementById("accountNicknameInput");
+  const nicknameChangeForm = document.getElementById("nicknameChangeForm");
+  const updateNicknameButton = document.getElementById("updateNicknameButton");
+  const passwordChangeForm = document.getElementById("passwordChangeForm");
+  const newAccountPasswordInput = document.getElementById("newAccountPassword");
+  const updatePasswordButton = document.getElementById("updatePasswordButton");
   let authMode = "login";
 
   function setAuthMode(mode) {
@@ -52,6 +59,12 @@
     const hasNickname = signedIn && MonitorStore.hasNickname();
 
     setupNotice.hidden = configured;
+    if (accountTitle) accountTitle.textContent = hasNickname ? "계정 설정" : "계정";
+    if (accountNicknameInput && document.activeElement !== accountNicknameInput) {
+      accountNicknameInput.value = hasNickname ? MonitorStore.getNickname() : "";
+    }
+    if (updateNicknameButton) updateNicknameButton.disabled = !configured || !hasNickname;
+    if (updatePasswordButton) updatePasswordButton.disabled = !configured || !hasNickname;
     if (authChoice) authChoice.hidden = !configured || signedIn;
     setAuthMode(authMode);
     nicknamePanel.hidden = !configured || !signedIn || hasNickname;
@@ -225,6 +238,59 @@
       completeSignupButton.disabled = !MonitorStore.isConfigured() || MonitorStore.hasNickname();
     }
   });
+
+  if (nicknameChangeForm) {
+    nicknameChangeForm.addEventListener("submit", async event => {
+      event.preventDefault();
+      if (!nicknameChangeForm.reportValidity()) return;
+      const nickname = accountNicknameInput.value.trim();
+      const nicknameError = MonitorStore.getNicknameValidationError(nickname);
+      if (nicknameError) {
+        setMessage(nicknameError, true);
+        return;
+      }
+      if (nickname === MonitorStore.getNickname()) {
+        setMessage("이미 사용 중인 닉네임이에요.");
+        return;
+      }
+
+      updateNicknameButton.disabled = true;
+      setMessage("닉네임을 변경하고 있어요.");
+      try {
+        await MonitorStore.updateNickname(nickname);
+        showSignedIn(MonitorStore.getUser());
+        setMessage("닉네임이 변경됐어요.");
+      } catch (error) {
+        setMessage(error.message || "닉네임을 변경하지 못했어요. 다시 시도해 주세요.", true);
+      } finally {
+        updateNicknameButton.disabled = !MonitorStore.isConfigured() || !MonitorStore.hasNickname();
+      }
+    });
+  }
+
+  if (passwordChangeForm) {
+    passwordChangeForm.addEventListener("submit", async event => {
+      event.preventDefault();
+      if (!passwordChangeForm.reportValidity()) return;
+      const password = newAccountPasswordInput.value;
+      if (password.length < 8 || password.length > 72) {
+        setMessage("새 비밀번호는 8~72자로 설정해 주세요.", true);
+        return;
+      }
+
+      updatePasswordButton.disabled = true;
+      setMessage("비밀번호를 변경하고 있어요.");
+      try {
+        await MonitorStore.updatePassword(password);
+        newAccountPasswordInput.value = "";
+        setMessage("비밀번호가 변경됐어요. 다음 로그인부터 새 비밀번호를 사용해 주세요.");
+      } catch (error) {
+        setMessage(error.message || "비밀번호를 변경하지 못했어요. 다시 시도해 주세요.", true);
+      } finally {
+        updatePasswordButton.disabled = !MonitorStore.isConfigured() || !MonitorStore.hasNickname();
+      }
+    });
+  }
 
   signOutButton.addEventListener("click", async () => {
     setMessage("로그아웃하고 있어요.");
