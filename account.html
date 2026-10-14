@@ -86,6 +86,24 @@
 
         <section class="account-settings-panel" aria-labelledby="accountSettingsTitle">
           <h3 id="accountSettingsTitle">계정 설정</h3>
+
+          <section class="profile-avatar-settings" aria-labelledby="profileAvatarTitle">
+            <div class="profile-avatar-preview">
+              <img id="profileAvatarPreview" alt="현재 프로필 사진" hidden>
+              <span id="profileAvatarPlaceholder" aria-hidden="true">👤</span>
+            </div>
+            <div class="profile-avatar-details">
+              <h4 id="profileAvatarTitle">프로필 사진</h4>
+              <p>JPG, PNG, WEBP · 2MB 이하</p>
+              <input id="profileAvatarFileInput" class="profile-avatar-file-input" type="file" accept="image/jpeg,image/png,image/webp" aria-label="프로필 사진 파일 선택">
+              <div class="profile-avatar-actions">
+                <button id="chooseProfileAvatarButton" type="button" class="secondary-button">사진 추가 / 변경</button>
+                <button id="removeProfileAvatarButton" type="button" class="secondary-button" hidden>사진 삭제</button>
+              </div>
+              <p id="profileAvatarStatus" class="profile-avatar-status" role="status" aria-live="polite"></p>
+            </div>
+          </section>
+
           <form id="nicknameChangeForm" class="auth-form account-settings-form">
             <label for="accountNicknameInput">닉네임</label>
             <input id="accountNicknameInput" name="accountNickname" type="text" minlength="2" maxlength="16" pattern="[가-힣A-Za-z0-9_]{2,16}" autocomplete="nickname" aria-describedby="accountNicknameHelp" required>
@@ -108,8 +126,8 @@
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="supabase-config.js?v=1"></script>
-  <script src="monitor-store.js?v=11"></script>
-  <script src="account.js?v=10"></script>
+  <script src="monitor-store.js?v=12"></script>
+  <script src="account.js?v=11"></script>
   <script src="theme.js?v=6"></script>
 </body>
 </html>
