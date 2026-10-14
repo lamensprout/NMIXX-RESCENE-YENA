@@ -314,10 +314,33 @@ function getCanonicalChartArtist(artist) {
     }
   });
 
-  // 차트 순서대로 먼저 등장한 멜론 표기를 대표 이름으로 사용합니다.
+  // 차트에 실제 표시된 멜론 아티스트명을 대표 이름으로 사용합니다.
   return chartArtists.find(function(candidate) {
     return areSameArtist(candidate, artist);
   }) || artist;
+}
+
+// 차트 곡마다 표기가 조금씩 다른 아티스트를 멜론 차트의 대표 표기로 통일합니다.
+function canonicalizeChartSongs(chartSongs) {
+  const representatives = [];
+  chartSongs.forEach(function(song) {
+    const artist = String(song && song.artist || "").trim();
+    if (!artist) return;
+    if (!representatives.some(function(name) {
+      return normalize(name) === normalize(artist) || areSameArtist(name, artist);
+    })) {
+      representatives.push(artist);
+    }
+  });
+
+  return chartSongs.map(function(song) {
+    const artist = String(song && song.artist || "").trim();
+    if (!artist) return song;
+    const canonical = representatives.find(function(name) {
+      return normalize(name) === normalize(artist) || areSameArtist(name, artist);
+    }) || artist;
+    return Object.assign({}, song, { artist: canonical });
+  });
 }
 
 function matchesArtist(artist, query) {
@@ -360,46 +383,54 @@ function buildMelonArtistCatalog() {
   )).sort().join("|");
   if (signature && signature === melonArtistCatalogSignature && melonArtistCatalog.length) return;
 
-  const candidates = new Map();
+  const candidates = [];
 
   function addCandidate(canonical, forms) {
-    const displayName = String(canonical || "").trim();
-    const key = normalize(displayName);
-    if (!key) return;
+    const requestedName = String(canonical || "").trim();
+    if (!requestedName) return;
 
-    let item = candidates.get(key);
+    // 차트에 존재하는 이름이 있으면 무조건 그 공식 표기를 우선합니다.
+    const displayName = getCanonicalChartArtist(requestedName);
+    let item = candidates.find(function(candidate) {
+      return normalize(candidate.canonical) === normalize(displayName) ||
+        areSameArtist(candidate.canonical, displayName);
+    });
+
     if (!item) {
       item = { canonical: displayName, forms: new Set() };
-      candidates.set(key, item);
+      candidates.push(item);
+    } else if (songs.some(function(song) {
+      return song.artist && normalize(song.artist) === normalize(displayName);
+    })) {
+      item.canonical = displayName;
     }
 
-    const allForms = [displayName].concat(forms || []);
-    allForms.forEach(function(form) {
+    [requestedName, displayName].concat(forms || []).forEach(function(form) {
       const normalized = normalize(form);
       if (normalized) item.forms.add(normalized);
-    });
-    getSearchNames(displayName).forEach(function(form) {
-      const normalized = normalize(form);
-      if (normalized) item.forms.add(normalized);
+      getSearchNames(form).forEach(function(searchName) {
+        const searchable = normalize(searchName);
+        if (searchable) item.forms.add(searchable);
+      });
     });
   }
 
-  const chartArtists = Array.from(new Set(
-    songs.map(function(song) { return song.artist; }).filter(Boolean)
-  ));
-  chartArtists.forEach(function(artist) {
-    addCandidate(artist, [artist].concat(getSearchNames(artist)));
-  });
+  // 가장 먼저 실제 멜론 차트에서 확인한 이름을 우선 등록합니다.
+  Array.from(new Set(songs.map(function(song) { return song.artist; }).filter(Boolean)))
+    .forEach(function(artist) {
+      addCandidate(artist, [artist].concat(getSearchNames(artist)));
+    });
 
+  // TOP100 밖의 아티스트도 검색 가능하도록 별칭은 보조 검색어로만 연결합니다.
+  // 같은 아티스트를 가리키는 별칭들은 후보를 새로 만들지 않고 기존 후보에 합칩니다.
   Object.entries(artistAliases).forEach(function(entry) {
     const name = entry[0];
     const aliases = entry[1] || [];
     const bareName = name.replace(/\s*\([^()]*\)\s*/g, " ").trim();
-    const canonical = getCanonicalChartArtist(name);
-    addCandidate(canonical, [name, bareName].concat(getParenthesizedNames(name), aliases, getSearchNames(name)));
+    addCandidate(name, [bareName].concat(getParenthesizedNames(name), aliases, getSearchNames(name)));
   });
 
-  melonArtistCatalog = Array.from(candidates.values()).map(function(item) {
+  melonArtistCatalog = candidates.map(function(item) {
     return {
       canonical: item.canonical,
       forms: Array.from(item.forms)
@@ -926,7 +957,7 @@ async function loadChartData(manual = false, silent = false) {
       }
     }
 
-    songs = data.songs;
+    songs = canonicalizeChartSongs(data.songs);
     chartHasLoaded = true;
     buildMelonArtistCatalog();
     if (favoriteInput && favoriteInput.value.trim()) {
