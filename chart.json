@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-15T19:26:34.304505+00:00",
+  "updated_at": "2026-10-15T20:21:32.037178+00:00",
   "songs": [
     {
       "rank": 1,
@@ -579,21 +579,21 @@
     },
     {
       "rank": 65,
-      "title": "입춘",
-      "artist": "한로로",
-      "album": "입춘",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/108/90/163/10890163_20220311160155_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 65,
-      "change": 0
-    },
-    {
-      "rank": 66,
       "title": "like JENNIE",
       "artist": "제니 (JENNIE)",
       "album": "Ruby",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/117/30/946/11730946_20250307173452_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 66,
-      "change": 0
+      "change": 1
+    },
+    {
+      "rank": 66,
+      "title": "입춘",
+      "artist": "한로로",
+      "album": "입춘",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/108/90/163/10890163_20220311160155_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 65,
+      "change": -1
     },
     {
       "rank": 67,
@@ -651,19 +651,19 @@
     },
     {
       "rank": 73,
-      "title": "APT.",
-      "artist": "로제 (ROSÉ)",
-      "album": "APT.",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/116/19/809/11619809_20241018103507_500.jpg/melon/resize/120/quality/80/optimize",
+      "title": "Guitarist",
+      "artist": "도경수(D.O.)",
+      "album": "DOPAMINE - The 4th Mini Album",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/145/26/395/14526395_20260907104149_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 74,
       "change": 1
     },
     {
       "rank": 74,
-      "title": "Guitarist",
-      "artist": "도경수(D.O.)",
-      "album": "DOPAMINE - The 4th Mini Album",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/145/26/395/14526395_20260907104149_500.jpg/melon/resize/120/quality/80/optimize",
+      "title": "APT.",
+      "artist": "로제 (ROSÉ)",
+      "album": "APT.",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/116/19/809/11619809_20241018103507_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 73,
       "change": -1
     },
