@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-15T18:25:49.022945+00:00",
+  "updated_at": "2026-10-15T19:26:34.304505+00:00",
   "songs": [
     {
       "rank": 1,
@@ -241,8 +241,8 @@
       "artist": "로이킴",
       "album": "내게 사랑이 뭐냐고 물어본다면",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/116/16/312/11616312_20241015135802_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 29,
-      "change": 2
+      "previous_rank": 27,
+      "change": 0
     },
     {
       "rank": 28,
@@ -250,8 +250,8 @@
       "artist": "아이유",
       "album": "이 별로부터",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/145/35/765/14535765_20260909154035_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 27,
-      "change": -1
+      "previous_rank": 28,
+      "change": 0
     },
     {
       "rank": 29,
@@ -259,8 +259,8 @@
       "artist": "ALLDAY PROJECT",
       "album": "CRASH",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/145/75/403/14575403_20260922162806_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 28,
-      "change": -1
+      "previous_rank": 29,
+      "change": 0
     },
     {
       "rank": 30,
@@ -538,8 +538,8 @@
       "artist": "DAY6 (데이식스)",
       "album": "Fourever",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/114/44/397/11444397_20240318115810_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 61,
-      "change": 1
+      "previous_rank": 60,
+      "change": 0
     },
     {
       "rank": 61,
@@ -547,8 +547,8 @@
       "artist": "카더가든",
       "album": "부재",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/105/54/647/10554647_20210127173809_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 60,
-      "change": -1
+      "previous_rank": 61,
+      "change": 0
     },
     {
       "rank": 62,
@@ -583,8 +583,8 @@
       "artist": "한로로",
       "album": "입춘",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/108/90/163/10890163_20220311160155_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 66,
-      "change": 1
+      "previous_rank": 65,
+      "change": 0
     },
     {
       "rank": 66,
@@ -592,8 +592,8 @@
       "artist": "제니 (JENNIE)",
       "album": "Ruby",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/117/30/946/11730946_20250307173452_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 67,
-      "change": 1
+      "previous_rank": 66,
+      "change": 0
     },
     {
       "rank": 67,
@@ -601,8 +601,8 @@
       "artist": "멜로망스",
       "album": "사랑인가 봐 (사내맞선 OST 스페셜 트랙)",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/108/71/162/10871162_20220217162422_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 65,
-      "change": -2
+      "previous_rank": 67,
+      "change": 0
     },
     {
       "rank": 68,
@@ -651,21 +651,21 @@
     },
     {
       "rank": 73,
-      "title": "Guitarist",
-      "artist": "도경수(D.O.)",
-      "album": "DOPAMINE - The 4th Mini Album",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/145/26/395/14526395_20260907104149_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 73,
-      "change": 0
-    },
-    {
-      "rank": 74,
       "title": "APT.",
       "artist": "로제 (ROSÉ)",
       "album": "APT.",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/116/19/809/11619809_20241018103507_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 74,
-      "change": 0
+      "change": 1
+    },
+    {
+      "rank": 74,
+      "title": "Guitarist",
+      "artist": "도경수(D.O.)",
+      "album": "DOPAMINE - The 4th Mini Album",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/145/26/395/14526395_20260907104149_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 73,
+      "change": -1
     },
     {
       "rank": 75,
