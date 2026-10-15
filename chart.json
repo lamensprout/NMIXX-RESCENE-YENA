@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-15T21:25:15.641561+00:00",
+  "updated_at": "2026-10-15T22:23:01.948940+00:00",
   "songs": [
     {
       "rank": 1,
@@ -160,8 +160,8 @@
       "artist": "BIG Naughty (서동현)",
       "album": "노스탈지아",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/144/94/275/14494275_20260828144050_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 19,
-      "change": 1
+      "previous_rank": 18,
+      "change": 0
     },
     {
       "rank": 19,
@@ -169,8 +169,8 @@
       "artist": "AKMU (악뮤)",
       "album": "항해",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/103/31/947/10331947_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 18,
-      "change": -1
+      "previous_rank": 19,
+      "change": 0
     },
     {
       "rank": 20,
@@ -237,21 +237,21 @@
     },
     {
       "rank": 27,
+      "title": "CRASH",
+      "artist": "ALLDAY PROJECT",
+      "album": "CRASH",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/145/75/403/14575403_20260922162806_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 28,
+      "change": 1
+    },
+    {
+      "rank": 28,
       "title": "내게 사랑이 뭐냐고 물어본다면",
       "artist": "로이킴",
       "album": "내게 사랑이 뭐냐고 물어본다면",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/116/16/312/11616312_20241015135802_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 27,
-      "change": 0
-    },
-    {
-      "rank": 28,
-      "title": "CRASH",
-      "artist": "ALLDAY PROJECT",
-      "album": "CRASH",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/145/75/403/14575403_20260922162806_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 29,
-      "change": 1
+      "change": -1
     },
     {
       "rank": 29,
@@ -259,8 +259,8 @@
       "artist": "아이유",
       "album": "이 별로부터",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/145/35/765/14535765_20260909154035_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 28,
-      "change": -1
+      "previous_rank": 29,
+      "change": 0
     },
     {
       "rank": 30,
@@ -403,8 +403,8 @@
       "artist": "KiiiKiii (키키)",
       "album": "Delulu Pack",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/128/06/237/12806237_20260126145002_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 46,
-      "change": 1
+      "previous_rank": 45,
+      "change": 0
     },
     {
       "rank": 46,
@@ -412,8 +412,8 @@
       "artist": "잔나비",
       "album": "전설",
       "album_image": "https://cdnimg.melon.co.kr/cm/album/images/102/60/858/10260858_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 45,
-      "change": -1
+      "previous_rank": 46,
+      "change": 0
     },
     {
       "rank": 47,
@@ -516,21 +516,21 @@
     },
     {
       "rank": 58,
-      "title": "Runaway",
-      "artist": "RESCENE (리센느)",
-      "album": "Runaway",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/133/12/413/13312413_20260406143448_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 58,
-      "change": 0
-    },
-    {
-      "rank": 59,
       "title": "I SPY",
       "artist": "NCT WISH",
       "album": "I SPY - The 4th Mini Album",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/145/82/521/14582521_20261002114945_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 59,
-      "change": 0
+      "change": 1
+    },
+    {
+      "rank": 59,
+      "title": "Runaway",
+      "artist": "RESCENE (리센느)",
+      "album": "Runaway",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/133/12/413/13312413_20260406143448_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 58,
+      "change": -1
     },
     {
       "rank": 60,
@@ -588,21 +588,21 @@
     },
     {
       "rank": 66,
-      "title": "입춘",
-      "artist": "한로로",
-      "album": "입춘",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/108/90/163/10890163_20220311160155_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 66,
-      "change": 0
-    },
-    {
-      "rank": 67,
       "title": "사랑인가 봐",
       "artist": "멜로망스",
       "album": "사랑인가 봐 (사내맞선 OST 스페셜 트랙)",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/108/71/162/10871162_20220217162422_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 67,
-      "change": 0
+      "change": 1
+    },
+    {
+      "rank": 67,
+      "title": "입춘",
+      "artist": "한로로",
+      "album": "입춘",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/108/90/163/10890163_20220311160155_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 66,
+      "change": -1
     },
     {
       "rank": 68,
