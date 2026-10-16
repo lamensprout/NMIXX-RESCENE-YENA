@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-16T18:24:05.978967+00:00",
+  "updated_at": "2026-10-16T19:23:24.933512+00:00",
   "songs": [
     {
       "rank": 1,
@@ -628,8 +628,8 @@
       "artist": "Lady Gaga",
       "album": "Die With A Smile",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/115/68/901/11568901_20240816130602_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 71,
-      "change": 1
+      "previous_rank": 70,
+      "change": 0
     },
     {
       "rank": 71,
@@ -637,8 +637,8 @@
       "artist": "경서예지",
       "album": "다정히 내 이름을 부르면 (경서예지 x 전건호)",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/106/10/525/10610525_20210518143433_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 70,
-      "change": -1
+      "previous_rank": 71,
+      "change": 0
     },
     {
       "rank": 72,
