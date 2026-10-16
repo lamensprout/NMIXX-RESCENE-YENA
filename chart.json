@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-16T20:19:55.321960+00:00",
+  "updated_at": "2026-10-16T21:21:52.902450+00:00",
   "songs": [
     {
       "rank": 1,
@@ -619,26 +619,26 @@
       "artist": "경서예지",
       "album": "다정히 내 이름을 부르면 (경서예지 x 전건호)",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/106/10/525/10610525_20210518143433_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 71,
-      "change": 2
+      "previous_rank": 69,
+      "change": 0
     },
     {
       "rank": 70,
+      "title": "오늘만 I LOVE YOU",
+      "artist": "BOYNEXTDOOR",
+      "album": "오늘만 I LOVE YOU",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/116/85/070/11685070_20250106111631_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 71,
+      "change": 1
+    },
+    {
+      "rank": 71,
       "title": "Die With A Smile",
       "artist": "Lady Gaga",
       "album": "Die With A Smile",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/115/68/901/11568901_20240816130602_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 70,
-      "change": 0
-    },
-    {
-      "rank": 71,
-      "title": "오늘만 I LOVE YOU",
-      "artist": "BOYNEXTDOOR",
-      "album": "오늘만 I LOVE YOU",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/116/85/070/11685070_20250106111631_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 69,
-      "change": -2
+      "change": -1
     },
     {
       "rank": 72,
@@ -691,8 +691,8 @@
       "artist": "베스티",
       "album": "연애의 조건",
       "album_image": "https://cdnimg.melon.co.kr/cm/album/images/022/10/766/2210766_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 78,
-      "change": 1
+      "previous_rank": 77,
+      "change": 0
     },
     {
       "rank": 78,
@@ -700,8 +700,8 @@
       "artist": "DAY6 (데이식스)",
       "album": "Fourever",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/114/44/397/11444397_20240318115810_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 77,
-      "change": -1
+      "previous_rank": 78,
+      "change": 0
     },
     {
       "rank": 79,
