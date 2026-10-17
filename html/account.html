@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>계정 | Melonitor</title>
+  <link rel="stylesheet" href="style.css?v=20261014-20">
+</head>
+<body>
+  <main class="container account-container">
+    <header class="hero">
+      <div>
+        <a class="brand-link" href="/html/" aria-label="Melonitor 첫 화면으로"><h1>🍈 Melonitor</h1></a>
+        <p>회원가입은 이메일 인증부터 시작해요.</p>
+      </div>
+      <div class="hero-tools">
+      </div>
+    </header>
+
+    <section class="account-card" aria-labelledby="accountTitle">
+      <a class="account-back-link account-back-link-top" href="/html/">← 메인으로 돌아가기</a>
+      <h2 id="accountTitle">계정</h2>
+
+      <div id="accountSetupNotice" class="account-notice" role="status" hidden>
+        계정 기능을 연결하는 설정이 남아 있어요. Supabase 프로젝트 URL과 Publishable key를 등록하고, 이메일 인증 및 프로필 테이블을 설정해야 회원가입을 사용할 수 있습니다.
+      </div>
+      <div id="accountStatus" class="account-status" role="status" hidden></div>
+
+      <div id="authChoice" class="auth-choice" role="group" aria-label="계정 메뉴">
+        <button id="chooseLoginButton" class="auth-choice-button is-active" type="button" aria-pressed="true">로그인</button>
+        <button id="chooseSignupButton" class="auth-choice-button" type="button" aria-pressed="false">회원가입</button>
+      </div>
+
+      <section id="signupEmailPanel" class="signup-stage" aria-labelledby="signupEmailTitle" hidden>
+        <h3 id="signupEmailTitle">이메일 인증</h3>
+        <p>가입할 이메일 주소로 6자리 인증 코드를 보낼게요. 이메일에 도착한 코드를 아래에 입력해 주세요.</p>
+        <form id="signupEmailForm" class="auth-form">
+          <label for="signupEmailInput">가입할 이메일</label>
+          <input id="signupEmailInput" name="signupEmail" type="email" autocomplete="email" placeholder="이메일 주소" required>
+          <button id="sendVerificationButton" type="submit" class="primary-button">인증 코드 보내기</button>
+        </form>
+        <div id="verificationSentPanel" class="verification-sent" role="status" hidden>
+          <strong>이메일을 확인해 주세요.</strong>
+          <p>받은 메일의 6자리 코드를 입력하면 닉네임과 비밀번호 설정 단계로 넘어가요.</p>
+          <form id="verificationOtpForm" class="auth-form otp-form">
+            <label for="verificationCodeInput">6자리 인증 코드</label>
+            <input id="verificationCodeInput" class="verification-code" name="verificationCode" type="text" inputmode="numeric" autocomplete="one-time-code" pattern="[0-9]{6}" minlength="6" maxlength="6" placeholder="123456" aria-describedby="verificationCodeHelp" required>
+            <small id="verificationCodeHelp" class="nickname-help">이메일로 받은 숫자 6자리를 입력해 주세요.</small>
+            <button id="verifyOtpButton" type="submit" class="primary-button">인증 코드 확인</button>
+          </form>
+          <button id="resendVerificationButton" type="button" class="secondary-button">인증 코드 다시 보내기</button>
+        </div>
+      </section>
+
+      <section id="loginPanel" class="login-panel" hidden aria-labelledby="loginTitle">
+        <h3 id="loginTitle">로그인</h3>
+        <p>로그인은 이메일과 비밀번호만으로 진행해요.</p>
+        <form id="authForm" class="auth-form">
+          <label for="accountEmail">이메일</label>
+          <input id="accountEmail" name="email" type="email" autocomplete="username" placeholder="이메일 주소" required>
+          <label for="accountPassword">비밀번호</label>
+          <input id="accountPassword" name="password" type="password" autocomplete="current-password" placeholder="비밀번호" required>
+          <button id="signInButton" type="submit" class="primary-button">로그인</button>
+        </form>
+      </section>
+
+      <section id="nicknamePanel" class="nickname-panel" hidden aria-labelledby="nicknameTitle">
+        <h3 id="nicknameTitle">닉네임과 비밀번호 설정</h3>
+        <p>이메일 인증이 완료됐어요. 이용하려면 고유한 닉네임과 앞으로 로그인할 때 사용할 비밀번호를 정해 주세요.</p>
+        <form id="nicknameForm" class="auth-form">
+          <label for="nicknameInput">닉네임 (필수)</label>
+          <input id="nicknameInput" name="nickname" type="text" minlength="2" maxlength="16" pattern="[가-힣A-Za-z0-9_]{2,16}" autocomplete="nickname" placeholder="예: MelonFan, 멜론팬" aria-describedby="nicknameHelp" required>
+          <small id="nicknameHelp" class="nickname-help">한글·영어 2~16자. 숫자와 밑줄(_)은 가능해요. 욕설·성적·혐오 표현이나 운영진 사칭 닉네임은 사용할 수 없어요.</small>
+          <label for="signupPassword">비밀번호 (필수)</label>
+          <input id="signupPassword" name="signupPassword" type="password" minlength="8" maxlength="72" autocomplete="new-password" placeholder="8~72자" required>
+          <small class="nickname-help">이 비밀번호를 나중에 이메일과 함께 사용해 로그인해요.</small>
+          <button id="completeSignupButton" type="submit" class="primary-button">닉네임과 비밀번호 저장</button>
+        </form>
+      </section>
+
+      <div id="signedInPanel" class="signed-in-panel" hidden>
+        <p>로그인 완료</p>
+        <strong id="signedInNickname"></strong>
+        <p id="signedInEmail" class="signed-in-email"></p>
+        <p class="signed-in-explainer">계정 정보와 로그인 보안 설정을 여기에서 관리할 수 있어요.</p>
+
+        <section class="account-settings-panel" aria-labelledby="accountSettingsTitle">
+          <h3 id="accountSettingsTitle">계정 설정</h3>
+
+          <section class="profile-avatar-settings" aria-labelledby="profileAvatarTitle">
+            <div class="profile-avatar-preview">
+              <img id="profileAvatarPreview" alt="현재 프로필 사진" hidden>
+              <span id="profileAvatarPlaceholder" aria-hidden="true">👤</span>
+            </div>
+            <div class="profile-avatar-details">
+              <h4 id="profileAvatarTitle">프로필 사진</h4>
+              <p>JPG, PNG, WEBP · 2MB 이하</p>
+              <input id="profileAvatarFileInput" class="profile-avatar-file-input" type="file" accept="image/jpeg,image/png,image/webp" aria-label="프로필 사진 파일 선택">
+              <div class="profile-avatar-actions">
+                <button id="chooseProfileAvatarButton" type="button" class="secondary-button">사진 추가 / 변경</button>
+                <button id="removeProfileAvatarButton" type="button" class="secondary-button" hidden>사진 삭제</button>
+              </div>
+              <p id="profileAvatarStatus" class="profile-avatar-status" role="status" aria-live="polite"></p>
+            </div>
+          </section>
+
+          <form id="nicknameChangeForm" class="auth-form account-settings-form">
+            <label for="accountNicknameInput">닉네임</label>
+            <input id="accountNicknameInput" name="accountNickname" type="text" minlength="2" maxlength="16" pattern="[가-힣A-Za-z0-9_]{2,16}" autocomplete="nickname" aria-describedby="accountNicknameHelp" required>
+            <small id="accountNicknameHelp" class="nickname-help">2~16자. 한글·영어를 사용할 수 있고, 숫자와 밑줄(_)도 가능해요.</small>
+            <button id="updateNicknameButton" type="submit" class="primary-button">닉네임 변경</button>
+          </form>
+
+          <form id="passwordChangeForm" class="auth-form account-settings-form">
+            <label for="newAccountPassword">새 비밀번호</label>
+            <input id="newAccountPassword" name="newAccountPassword" type="password" minlength="8" maxlength="72" autocomplete="new-password" placeholder="새 비밀번호 8~72자" required>
+            <button id="updatePasswordButton" type="submit" class="primary-button">비밀번호 변경</button>
+          </form>
+        </section>
+        <button id="signOutButton" type="button" class="secondary-button account-signout-button">로그아웃</button>
+      </div>
+
+      <p id="accountMessage" class="account-message" aria-live="polite"></p>
+    </section>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="supabase-config.js?v=1"></script>
+  <script src="monitor-store.js?v=12"></script>
+  <script src="account.js?v=12"></script>
+  <script src="theme.js?v=6"></script>
+</body>
+</html>
