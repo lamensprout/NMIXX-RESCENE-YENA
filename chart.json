@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-17T21:18:20.485814+00:00",
+  "updated_at": "2026-10-17T22:16:34.432871+00:00",
   "songs": [
     {
       "rank": 1,
@@ -390,12 +390,12 @@
     },
     {
       "rank": 44,
-      "title": "모든 날, 모든 순간 (Every day, Every Moment)",
-      "artist": "폴킴",
-      "album": "'키스 먼저 할까요?' OST Part.3",
-      "album_image": "https://cdnimg.melon.co.kr/cm/album/images/101/49/492/10149492_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 44,
-      "change": 0
+      "title": "404 (New Era)",
+      "artist": "KiiiKiii (키키)",
+      "album": "Delulu Pack",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/128/06/237/12806237_20260126145002_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 46,
+      "change": 2
     },
     {
       "rank": 45,
@@ -408,12 +408,12 @@
     },
     {
       "rank": 46,
-      "title": "404 (New Era)",
-      "artist": "KiiiKiii (키키)",
-      "album": "Delulu Pack",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/128/06/237/12806237_20260126145002_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 46,
-      "change": 0
+      "title": "모든 날, 모든 순간 (Every day, Every Moment)",
+      "artist": "폴킴",
+      "album": "'키스 먼저 할까요?' OST Part.3",
+      "album_image": "https://cdnimg.melon.co.kr/cm/album/images/101/49/492/10149492_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 44,
+      "change": -2
     },
     {
       "rank": 47,
@@ -421,8 +421,8 @@
       "artist": "Hearts2Hearts (하츠투하츠)",
       "album": "Lemon Tang - The 2nd Mini Album",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/137/50/428/13750428_20260619162731_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 48,
-      "change": 1
+      "previous_rank": 47,
+      "change": 0
     },
     {
       "rank": 48,
@@ -430,8 +430,8 @@
       "artist": "조째즈",
       "album": "모르시나요",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/116/85/729/11685729_20250106160640_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 47,
-      "change": -1
+      "previous_rank": 48,
+      "change": 0
     },
     {
       "rank": 49,
@@ -484,8 +484,8 @@
       "artist": "이무진",
       "album": "만화 (滿花)",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/116/08/521/11608521_20241004161722_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 55,
-      "change": 1
+      "previous_rank": 54,
+      "change": 0
     },
     {
       "rank": 55,
@@ -493,8 +493,8 @@
       "artist": "이클립스 (ECLIPSE)",
       "album": "선재 업고 튀어 OST Part 1",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/114/59/325/11459325_20240405171054_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 54,
-      "change": -1
+      "previous_rank": 55,
+      "change": 0
     },
     {
       "rank": 56,
@@ -561,21 +561,21 @@
     },
     {
       "rank": 63,
-      "title": "나는 반딧불",
-      "artist": "황가람",
-      "album": "나는 반딧불",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/116/20/541/11620541_20241018183253_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 63,
-      "change": 0
-    },
-    {
-      "rank": 64,
       "title": "Star Trace",
       "artist": "PLAVE",
       "album": "HYPERDRIVE",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/146/29/242/14629242_20261007150642_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 64,
-      "change": 0
+      "change": 1
+    },
+    {
+      "rank": 64,
+      "title": "나는 반딧불",
+      "artist": "황가람",
+      "album": "나는 반딧불",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/116/20/541/11620541_20241018183253_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 63,
+      "change": -1
     },
     {
       "rank": 65,
@@ -682,26 +682,26 @@
       "artist": "DAY6 (데이식스)",
       "album": "Fourever",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/114/44/397/11444397_20240318115810_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 77,
-      "change": 1
+      "previous_rank": 76,
+      "change": 0
     },
     {
       "rank": 77,
-      "title": "Love Love Love (Feat. Yoong Jin Of Casker)",
-      "artist": "에픽하이 (EPIK HIGH)",
-      "album": "Remapping The Human Soul",
-      "album_image": "https://cdnimg.melon.co.kr/cm/album/images/003/42/967/342967_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 76,
-      "change": -1
-    },
-    {
-      "rank": 78,
       "title": "Guitarist",
       "artist": "도경수(D.O.)",
       "album": "DOPAMINE - The 4th Mini Album",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/145/26/395/14526395_20260907104149_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 78,
-      "change": 0
+      "change": 1
+    },
+    {
+      "rank": 78,
+      "title": "Love Love Love (Feat. Yoong Jin Of Casker)",
+      "artist": "에픽하이 (EPIK HIGH)",
+      "album": "Remapping The Human Soul",
+      "album_image": "https://cdnimg.melon.co.kr/cm/album/images/003/42/967/342967_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 77,
+      "change": -1
     },
     {
       "rank": 79,
@@ -831,21 +831,21 @@
     },
     {
       "rank": 93,
-      "title": "Vitamin ME",
-      "artist": "프로미스나인",
-      "album": "Glow ME",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/138/16/948/13816948_20260720140607_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 93,
-      "change": 0
-    },
-    {
-      "rank": 94,
       "title": "꾼",
       "artist": "PLAVE",
       "album": "HYPERDRIVE",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/146/29/242/14629242_20261007150642_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 94,
-      "change": 0
+      "change": 1
+    },
+    {
+      "rank": 94,
+      "title": "Vitamin ME",
+      "artist": "프로미스나인",
+      "album": "Glow ME",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/138/16/948/13816948_20260720140607_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 93,
+      "change": -1
     },
     {
       "rank": 95,
