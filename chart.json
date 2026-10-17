@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-17T17:17:52.233789+00:00",
+  "updated_at": "2026-10-17T18:18:14.198257+00:00",
   "songs": [
     {
       "rank": 1,
@@ -574,8 +574,8 @@
       "artist": "카더가든",
       "album": "부재",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/105/54/647/10554647_20210127173809_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 65,
-      "change": 1
+      "previous_rank": 64,
+      "change": 0
     },
     {
       "rank": 65,
@@ -583,8 +583,8 @@
       "artist": "PLAVE",
       "album": "HYPERDRIVE",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/146/29/242/14629242_20261007150642_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 64,
-      "change": -1
+      "previous_rank": 65,
+      "change": 0
     },
     {
       "rank": 66,
@@ -736,8 +736,8 @@
       "artist": "RESCENE (리센느)",
       "album": "SCENEDROME",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/115/75/849/11575849_20240826152240_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 83,
-      "change": 1
+      "previous_rank": 82,
+      "change": 0
     },
     {
       "rank": 83,
@@ -745,8 +745,8 @@
       "artist": "정국",
       "album": "Seven (feat. Latto) - Clean Ver.",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/112/86/070/11286070_20230713181059_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 82,
-      "change": -1
+      "previous_rank": 83,
+      "change": 0
     },
     {
       "rank": 84,
