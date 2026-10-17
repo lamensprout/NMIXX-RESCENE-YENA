@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-17T19:18:02.437830+00:00",
+  "updated_at": "2026-10-17T20:16:44.164899+00:00",
   "songs": [
     {
       "rank": 1,
@@ -417,19 +417,19 @@
     },
     {
       "rank": 47,
-      "title": "Lemon Tang",
-      "artist": "Hearts2Hearts (하츠투하츠)",
-      "album": "Lemon Tang - The 2nd Mini Album",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/137/50/428/13750428_20260619162731_500.jpg/melon/resize/120/quality/80/optimize",
+      "title": "모르시나요(PROD.로코베리)",
+      "artist": "조째즈",
+      "album": "모르시나요",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/116/85/729/11685729_20250106160640_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 48,
       "change": 1
     },
     {
       "rank": 48,
-      "title": "모르시나요(PROD.로코베리)",
-      "artist": "조째즈",
-      "album": "모르시나요",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/116/85/729/11685729_20250106160640_500.jpg/melon/resize/120/quality/80/optimize",
+      "title": "Lemon Tang",
+      "artist": "Hearts2Hearts (하츠투하츠)",
+      "album": "Lemon Tang - The 2nd Mini Album",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/137/50/428/13750428_20260619162731_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 47,
       "change": -1
     },
@@ -574,8 +574,8 @@
       "artist": "PLAVE",
       "album": "HYPERDRIVE",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/146/29/242/14629242_20261007150642_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 65,
-      "change": 1
+      "previous_rank": 64,
+      "change": 0
     },
     {
       "rank": 65,
@@ -583,8 +583,8 @@
       "artist": "카더가든",
       "album": "부재",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/105/54/647/10554647_20210127173809_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 64,
-      "change": -1
+      "previous_rank": 65,
+      "change": 0
     },
     {
       "rank": 66,
@@ -637,8 +637,8 @@
       "artist": "한로로",
       "album": "입춘",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/108/90/163/10890163_20220311160155_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 72,
-      "change": 1
+      "previous_rank": 71,
+      "change": 0
     },
     {
       "rank": 72,
@@ -646,8 +646,8 @@
       "artist": "로제 (ROSÉ)",
       "album": "APT.",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/116/19/809/11619809_20241018103507_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 71,
-      "change": -1
+      "previous_rank": 72,
+      "change": 0
     },
     {
       "rank": 73,
@@ -678,21 +678,21 @@
     },
     {
       "rank": 76,
+      "title": "Love Love Love (Feat. Yoong Jin Of Casker)",
+      "artist": "에픽하이 (EPIK HIGH)",
+      "album": "Remapping The Human Soul",
+      "album_image": "https://cdnimg.melon.co.kr/cm/album/images/003/42/967/342967_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 77,
+      "change": 1
+    },
+    {
+      "rank": 77,
       "title": "Welcome to the Show",
       "artist": "DAY6 (데이식스)",
       "album": "Fourever",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/114/44/397/11444397_20240318115810_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 76,
-      "change": 0
-    },
-    {
-      "rank": 77,
-      "title": "Love Love Love (Feat. Yoong Jin Of Casker)",
-      "artist": "에픽하이 (EPIK HIGH)",
-      "album": "Remapping The Human Soul",
-      "album_image": "https://cdnimg.melon.co.kr/cm/album/images/003/42/967/342967_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 78,
-      "change": 1
+      "change": -1
     },
     {
       "rank": 78,
@@ -700,8 +700,8 @@
       "artist": "도경수(D.O.)",
       "album": "DOPAMINE - The 4th Mini Album",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/145/26/395/14526395_20260907104149_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 77,
-      "change": -1
+      "previous_rank": 78,
+      "change": 0
     },
     {
       "rank": 79,
