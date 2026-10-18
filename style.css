@@ -2244,3 +2244,33 @@ body.dark-mode .user-menu-avatar { border-color: #3c4853; }
   .profile-avatar-actions { align-items: stretch; flex-direction: column; }
   .profile-avatar-actions .secondary-button { width: 100%; }
 }
+
+
+/* Test environment badge: shown only on the test branch. */
+.environment-badge {
+  display: inline-flex;
+  align-items: center;
+  flex: 0 0 auto;
+  margin-left: 9px;
+  padding: 4px 7px;
+  border: 1px solid #d8be48;
+  border-radius: 6px;
+  background: #fff8d7;
+  color: #6d5b00;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: .04em;
+  line-height: 1.2;
+}
+body.dark-mode .environment-badge {
+  border-color: #8b7730;
+  background: #3a3218;
+  color: #f3dc75;
+}
+@media (max-width: 640px) {
+  .environment-badge {
+    margin-left: 6px;
+    padding: 3px 6px;
+    font-size: 9px;
+  }
+}
