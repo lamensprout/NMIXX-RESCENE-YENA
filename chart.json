@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-18T17:19:28.220908+00:00",
+  "updated_at": "2026-10-18T18:18:38.003546+00:00",
   "songs": [
     {
       "rank": 1,
@@ -385,8 +385,8 @@
       "artist": "Hearts2Hearts (하츠투하츠)",
       "album": "Lemon Tang - The 2nd Mini Album",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/137/50/428/13750428_20260619162731_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 44,
-      "change": 1
+      "previous_rank": 43,
+      "change": 0
     },
     {
       "rank": 44,
@@ -394,8 +394,8 @@
       "artist": "폴킴",
       "album": "'키스 먼저 할까요?' OST Part.3",
       "album_image": "https://cdnimg.melon.co.kr/cm/album/images/101/49/492/10149492_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 43,
-      "change": -1
+      "previous_rank": 44,
+      "change": 0
     },
     {
       "rank": 45,
@@ -502,8 +502,8 @@
       "artist": "RESCENE (리센느)",
       "album": "Runaway",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/133/12/413/13312413_20260406143448_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 57,
-      "change": 1
+      "previous_rank": 56,
+      "change": 0
     },
     {
       "rank": 57,
@@ -511,26 +511,26 @@
       "artist": "DAY6 (데이식스)",
       "album": "The Book of Us : Gravity",
       "album_image": "https://cdnimg.melon.co.kr/cm/album/images/103/07/346/10307346_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 56,
-      "change": -1
-    },
-    {
-      "rank": 58,
-      "title": "Whiplash",
-      "artist": "aespa",
-      "album": "Whiplash - The 5th Mini Album",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/116/20/540/11620540_20241018183208_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 58,
+      "previous_rank": 57,
       "change": 0
     },
     {
-      "rank": 59,
+      "rank": 58,
       "title": "Golden",
       "artist": "HUNTR/X",
       "album": "KPop Demon Hunters (Soundtrack from the Netflix Film)",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/118/59/863/11859863_20250620104512_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 59,
-      "change": 0
+      "change": 1
+    },
+    {
+      "rank": 59,
+      "title": "Whiplash",
+      "artist": "aespa",
+      "album": "Whiplash - The 5th Mini Album",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/116/20/540/11620540_20241018183208_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 58,
+      "change": -1
     },
     {
       "rank": 60,
@@ -624,21 +624,21 @@
     },
     {
       "rank": 70,
-      "title": "오늘만 I LOVE YOU",
-      "artist": "BOYNEXTDOOR",
-      "album": "오늘만 I LOVE YOU",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/116/85/070/11685070_20250106111631_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 70,
-      "change": 0
-    },
-    {
-      "rank": 71,
       "title": "사랑인가 봐",
       "artist": "멜로망스",
       "album": "사랑인가 봐 (사내맞선 OST 스페셜 트랙)",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/108/71/162/10871162_20220217162422_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 71,
-      "change": 0
+      "change": 1
+    },
+    {
+      "rank": 71,
+      "title": "오늘만 I LOVE YOU",
+      "artist": "BOYNEXTDOOR",
+      "album": "오늘만 I LOVE YOU",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/116/85/070/11685070_20250106111631_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 70,
+      "change": -1
     },
     {
       "rank": 72,
