@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-18T19:17:29.553583+00:00",
+  "updated_at": "2026-10-18T20:16:05.013730+00:00",
   "songs": [
     {
       "rank": 1,
@@ -255,21 +255,21 @@
     },
     {
       "rank": 29,
-      "title": "내게 사랑이 뭐냐고 물어본다면",
-      "artist": "로이킴",
-      "album": "내게 사랑이 뭐냐고 물어본다면",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/116/16/312/11616312_20241015135802_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 29,
-      "change": 0
-    },
-    {
-      "rank": 30,
       "title": "소문의 낙원",
       "artist": "AKMU (악뮤)",
       "album": "개화",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/133/12/398/13312398_20260406142544_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 30,
-      "change": 0
+      "change": 1
+    },
+    {
+      "rank": 30,
+      "title": "내게 사랑이 뭐냐고 물어본다면",
+      "artist": "로이킴",
+      "album": "내게 사랑이 뭐냐고 물어본다면",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/116/16/312/11616312_20241015135802_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 29,
+      "change": -1
     },
     {
       "rank": 31,
@@ -340,8 +340,8 @@
       "artist": "너드커넥션 (Nerd Connection)",
       "album": "그대만 있다면 (여름날 우리 X 너드커넥션 (Nerd Connection))",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/113/05/759/11305759_20230814111006_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 39,
-      "change": 1
+      "previous_rank": 38,
+      "change": 0
     },
     {
       "rank": 39,
@@ -349,8 +349,8 @@
       "artist": "소녀시대-효리수 (Girls' Generation-HRS)",
       "album": "Skibidi",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/144/94/370/14494370_20260828152343_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 38,
-      "change": -1
+      "previous_rank": 39,
+      "change": 0
     },
     {
       "rank": 40,
@@ -516,21 +516,21 @@
     },
     {
       "rank": 58,
-      "title": "Golden",
-      "artist": "HUNTR/X",
-      "album": "KPop Demon Hunters (Soundtrack from the Netflix Film)",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/118/59/863/11859863_20250620104512_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 58,
-      "change": 0
-    },
-    {
-      "rank": 59,
       "title": "Whiplash",
       "artist": "aespa",
       "album": "Whiplash - The 5th Mini Album",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/116/20/540/11620540_20241018183208_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 59,
-      "change": 0
+      "change": 1
+    },
+    {
+      "rank": 59,
+      "title": "Golden",
+      "artist": "HUNTR/X",
+      "album": "KPop Demon Hunters (Soundtrack from the Netflix Film)",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/118/59/863/11859863_20250620104512_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 58,
+      "change": -1
     },
     {
       "rank": 60,
@@ -709,8 +709,8 @@
       "artist": "RESCENE (리센느)",
       "album": "SCENEDROME",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/115/75/849/11575849_20240826152240_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 80,
-      "change": 1
+      "previous_rank": 79,
+      "change": 0
     },
     {
       "rank": 80,
@@ -718,8 +718,8 @@
       "artist": "DAY6 (데이식스)",
       "album": "Fourever",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/114/44/397/11444397_20240318115810_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 79,
-      "change": -1
+      "previous_rank": 80,
+      "change": 0
     },
     {
       "rank": 81,
