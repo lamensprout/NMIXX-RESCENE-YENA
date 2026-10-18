@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-18T21:17:54.330144+00:00",
+  "updated_at": "2026-10-18T22:17:03.400703+00:00",
   "songs": [
     {
       "rank": 1,
@@ -259,8 +259,8 @@
       "artist": "로이킴",
       "album": "내게 사랑이 뭐냐고 물어본다면",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/116/16/312/11616312_20241015135802_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 30,
-      "change": 1
+      "previous_rank": 29,
+      "change": 0
     },
     {
       "rank": 30,
@@ -268,8 +268,8 @@
       "artist": "AKMU (악뮤)",
       "album": "개화",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/133/12/398/13312398_20260406142544_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 29,
-      "change": -1
+      "previous_rank": 30,
+      "change": 0
     },
     {
       "rank": 31,
@@ -345,21 +345,21 @@
     },
     {
       "rank": 39,
-      "title": "Skibidi",
-      "artist": "소녀시대-효리수 (Girls' Generation-HRS)",
-      "album": "Skibidi",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/144/94/370/14494370_20260828152343_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 39,
-      "change": 0
-    },
-    {
-      "rank": 40,
       "title": "천상연",
       "artist": "이창섭",
       "album": "천상연 (웹툰 '선녀외전' X 이창섭 (LEE CHANGSUB))",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/114/21/941/11421941_20240220105008_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 40,
-      "change": 0
+      "change": 1
+    },
+    {
+      "rank": 40,
+      "title": "Skibidi",
+      "artist": "소녀시대-효리수 (Girls' Generation-HRS)",
+      "album": "Skibidi",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/144/94/370/14494370_20260828152343_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 39,
+      "change": -1
     },
     {
       "rank": 41,
@@ -385,8 +385,8 @@
       "artist": "폴킴",
       "album": "'키스 먼저 할까요?' OST Part.3",
       "album_image": "https://cdnimg.melon.co.kr/cm/album/images/101/49/492/10149492_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 44,
-      "change": 1
+      "previous_rank": 43,
+      "change": 0
     },
     {
       "rank": 44,
@@ -394,26 +394,26 @@
       "artist": "Hearts2Hearts (하츠투하츠)",
       "album": "Lemon Tang - The 2nd Mini Album",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/137/50/428/13750428_20260619162731_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 43,
-      "change": -1
-    },
-    {
-      "rank": 45,
-      "title": "멸종위기사랑",
-      "artist": "이찬혁",
-      "album": "EROS",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/118/91/198/11891198_20250714145747_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 45,
+      "previous_rank": 44,
       "change": 0
     },
     {
-      "rank": 46,
+      "rank": 45,
       "title": "모르시나요(PROD.로코베리)",
       "artist": "조째즈",
       "album": "모르시나요",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/116/85/729/11685729_20250106160640_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 46,
-      "change": 0
+      "change": 1
+    },
+    {
+      "rank": 46,
+      "title": "멸종위기사랑",
+      "artist": "이찬혁",
+      "album": "EROS",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/118/91/198/11891198_20250714145747_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 45,
+      "change": -1
     },
     {
       "rank": 47,
@@ -520,8 +520,8 @@
       "artist": "BLACKPINK",
       "album": "뛰어(JUMP)",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/118/90/480/11890480_20250711095238_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 60,
-      "change": 2
+      "previous_rank": 58,
+      "change": 0
     },
     {
       "rank": 59,
@@ -538,8 +538,8 @@
       "artist": "aespa",
       "album": "Whiplash - The 5th Mini Album",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/116/20/540/11620540_20241018183208_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 58,
-      "change": -2
+      "previous_rank": 60,
+      "change": 0
     },
     {
       "rank": 61,
@@ -777,21 +777,21 @@
     },
     {
       "rank": 87,
-      "title": "봄날",
-      "artist": "방탄소년단",
-      "album": "YOU NEVER WALK ALONE",
-      "album_image": "https://cdnimg.melon.co.kr/cm/album/images/100/37/969/10037969_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 87,
-      "change": 0
-    },
-    {
-      "rank": 88,
       "title": "STYLE",
       "artist": "Hearts2Hearts (하츠투하츠)",
       "album": "STYLE",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/118/58/555/11858555_20250618105530_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 88,
-      "change": 0
+      "change": 1
+    },
+    {
+      "rank": 88,
+      "title": "봄날",
+      "artist": "방탄소년단",
+      "album": "YOU NEVER WALK ALONE",
+      "album_image": "https://cdnimg.melon.co.kr/cm/album/images/100/37/969/10037969_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 87,
+      "change": -1
     },
     {
       "rank": 89,
@@ -831,12 +831,12 @@
     },
     {
       "rank": 93,
-      "title": "The Answer Is Yes",
-      "artist": "PLAVE",
-      "album": "HYPERDRIVE",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/146/29/242/14629242_20261007150642_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 93,
-      "change": 0
+      "title": "미장센",
+      "artist": "에픽하이 (EPIK HIGH)",
+      "album": "미장센",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/146/44/789/14644789_20261012141149_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 95,
+      "change": 2
     },
     {
       "rank": 94,
@@ -849,12 +849,12 @@
     },
     {
       "rank": 95,
-      "title": "미장센",
-      "artist": "에픽하이 (EPIK HIGH)",
-      "album": "미장센",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/146/44/789/14644789_20261012141149_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 95,
-      "change": 0
+      "title": "The Answer Is Yes",
+      "artist": "PLAVE",
+      "album": "HYPERDRIVE",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/146/29/242/14629242_20261007150642_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 93,
+      "change": -2
     },
     {
       "rank": 96,
@@ -876,21 +876,21 @@
     },
     {
       "rank": 98,
-      "title": "UPGRADE",
-      "artist": "NCT WISH",
-      "album": "I SPY - The 4th Mini Album",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/145/82/521/14582521_20261002114945_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 98,
-      "change": 0
-    },
-    {
-      "rank": 99,
       "title": "REBEL HEART",
       "artist": "IVE (아이브)",
       "album": "IVE EMPATHY",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/116/89/783/11689783_20250203110601_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 99,
-      "change": 0
+      "change": 1
+    },
+    {
+      "rank": 99,
+      "title": "UPGRADE",
+      "artist": "NCT WISH",
+      "album": "I SPY - The 4th Mini Album",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/145/82/521/14582521_20261002114945_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 98,
+      "change": -1
     },
     {
       "rank": 100,
