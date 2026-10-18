@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-18T18:18:38.003546+00:00",
+  "updated_at": "2026-10-18T19:17:29.553583+00:00",
   "songs": [
     {
       "rank": 1,
@@ -336,21 +336,21 @@
     },
     {
       "rank": 38,
-      "title": "Skibidi",
-      "artist": "소녀시대-효리수 (Girls' Generation-HRS)",
-      "album": "Skibidi",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/144/94/370/14494370_20260828152343_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 38,
-      "change": 0
-    },
-    {
-      "rank": 39,
       "title": "그대만 있다면 (여름날 우리 X 너드커넥션 (Nerd Connection))",
       "artist": "너드커넥션 (Nerd Connection)",
       "album": "그대만 있다면 (여름날 우리 X 너드커넥션 (Nerd Connection))",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/113/05/759/11305759_20230814111006_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 39,
-      "change": 0
+      "change": 1
+    },
+    {
+      "rank": 39,
+      "title": "Skibidi",
+      "artist": "소녀시대-효리수 (Girls' Generation-HRS)",
+      "album": "Skibidi",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/144/94/370/14494370_20260828152343_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 38,
+      "change": -1
     },
     {
       "rank": 40,
@@ -520,8 +520,8 @@
       "artist": "HUNTR/X",
       "album": "KPop Demon Hunters (Soundtrack from the Netflix Film)",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/118/59/863/11859863_20250620104512_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 59,
-      "change": 1
+      "previous_rank": 58,
+      "change": 0
     },
     {
       "rank": 59,
@@ -529,8 +529,8 @@
       "artist": "aespa",
       "album": "Whiplash - The 5th Mini Album",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/116/20/540/11620540_20241018183208_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 58,
-      "change": -1
+      "previous_rank": 59,
+      "change": 0
     },
     {
       "rank": 60,
@@ -628,8 +628,8 @@
       "artist": "멜로망스",
       "album": "사랑인가 봐 (사내맞선 OST 스페셜 트랙)",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/108/71/162/10871162_20220217162422_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 71,
-      "change": 1
+      "previous_rank": 70,
+      "change": 0
     },
     {
       "rank": 71,
@@ -637,8 +637,8 @@
       "artist": "BOYNEXTDOOR",
       "album": "오늘만 I LOVE YOU",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/116/85/070/11685070_20250106111631_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 70,
-      "change": -1
+      "previous_rank": 71,
+      "change": 0
     },
     {
       "rank": 72,
@@ -705,21 +705,21 @@
     },
     {
       "rank": 79,
-      "title": "Welcome to the Show",
-      "artist": "DAY6 (데이식스)",
-      "album": "Fourever",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/114/44/397/11444397_20240318115810_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 79,
-      "change": 0
-    },
-    {
-      "rank": 80,
       "title": "Pinball",
       "artist": "RESCENE (리센느)",
       "album": "SCENEDROME",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/115/75/849/11575849_20240826152240_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 80,
-      "change": 0
+      "change": 1
+    },
+    {
+      "rank": 80,
+      "title": "Welcome to the Show",
+      "artist": "DAY6 (데이식스)",
+      "album": "Fourever",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/114/44/397/11444397_20240318115810_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 79,
+      "change": -1
     },
     {
       "rank": 81,
