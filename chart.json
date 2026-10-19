@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-19T18:26:02.604194+00:00",
+  "updated_at": "2026-10-19T19:27:52.447056+00:00",
   "songs": [
     {
       "rank": 1,
@@ -286,8 +286,8 @@
       "artist": "NMIXX",
       "album": "Blue Valentine",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/121/49/391/12149391_20251013150421_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 33,
-      "change": 1
+      "previous_rank": 32,
+      "change": 0
     },
     {
       "rank": 33,
@@ -295,8 +295,8 @@
       "artist": "AKMU (악뮤)",
       "album": "개화",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/133/12/398/13312398_20260406142544_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 32,
-      "change": -1
+      "previous_rank": 33,
+      "change": 0
     },
     {
       "rank": 34,
@@ -367,8 +367,8 @@
       "artist": "G-DRAGON",
       "album": "HOME SWEET HOME (feat. 태양, 대성)",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/116/47/670/11647670_20241121150855_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 42,
-      "change": 1
+      "previous_rank": 41,
+      "change": 0
     },
     {
       "rank": 42,
@@ -376,8 +376,8 @@
       "artist": "NCT WISH",
       "album": "I SPY - The 4th Mini Album",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/145/82/521/14582521_20261002114945_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 41,
-      "change": -1
+      "previous_rank": 42,
+      "change": 0
     },
     {
       "rank": 43,
@@ -849,30 +849,30 @@
     },
     {
       "rank": 95,
-      "title": "Vitamin ME",
-      "artist": "프로미스나인",
-      "album": "Glow ME",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/138/16/948/13816948_20260720140607_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 95,
-      "change": 0
-    },
-    {
-      "rank": 96,
-      "title": "우리들의 블루스",
-      "artist": "임영웅",
-      "album": "IM HERO",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/109/23/444/10923444_20220502140600_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 96,
-      "change": 0
-    },
-    {
-      "rank": 97,
       "title": "긴 소원 (Birthday Wish)",
       "artist": "NMIXX",
       "album": "Strange Muse",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/148/01/628/14801628_20261016112418_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 97,
-      "change": 0
+      "change": 2
+    },
+    {
+      "rank": 96,
+      "title": "Vitamin ME",
+      "artist": "프로미스나인",
+      "album": "Glow ME",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/138/16/948/13816948_20260720140607_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 95,
+      "change": -1
+    },
+    {
+      "rank": 97,
+      "title": "우리들의 블루스",
+      "artist": "임영웅",
+      "album": "IM HERO",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/109/23/444/10923444_20220502140600_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 96,
+      "change": -1
     },
     {
       "rank": 98,
