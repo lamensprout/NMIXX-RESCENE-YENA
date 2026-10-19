@@ -2,7 +2,14 @@
   "use strict";
 
   // 테스트 버전용 간단한 화면 잠금입니다. 정식 보안 인증 수단은 아닙니다.
-  const ACCESS_PIN = "583104";
+  const PIN_DIGEST = "bec5857f6527ad7e28fa934f6f581fd5a6a646d512740570547359de4b7c30c6";
+  async function matchesPin(value) {
+    if (!globalThis.crypto || !crypto.subtle || typeof TextEncoder === "undefined") return false;
+    const bytes = new TextEncoder().encode("melonitor-test-v1:" + value);
+    const digest = await crypto.subtle.digest("SHA-256", bytes);
+    const hex = Array.from(new Uint8Array(digest), function (b) { return b.toString(16).padStart(2, "0"); }).join("");
+    return hex === PIN_DIGEST;
+  }
   const SESSION_KEY = "melonitor-test-access-v1";
   const root = document.documentElement;
 
@@ -56,9 +63,13 @@
       status.textContent = "";
     });
 
-    form.addEventListener("submit", function (event) {
+    form.addEventListener("submit", async function (event) {
       event.preventDefault();
-      if (pin.value === ACCESS_PIN) {
+      const button = form.querySelector("button");
+      button.disabled = true;
+      button.textContent = "확인 중...";
+      const matched = await matchesPin(pin.value);
+      if (matched) {
         try { sessionStorage.setItem(SESSION_KEY, "unlocked"); } catch (_) {}
         root.classList.remove("melonitor-test-locked");
         gate.remove();
@@ -67,6 +78,8 @@
         pin.value = "";
         pin.focus();
       }
+      button.disabled = false;
+      button.textContent = "입장하기";
     });
 
     pin.focus();
