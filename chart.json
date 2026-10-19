@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-19T20:25:46.495986+00:00",
+  "updated_at": "2026-10-19T21:23:06.611756+00:00",
   "songs": [
     {
       "rank": 1,
@@ -291,21 +291,21 @@
     },
     {
       "rank": 33,
-      "title": "소문의 낙원",
-      "artist": "AKMU (악뮤)",
-      "album": "개화",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/133/12/398/13312398_20260406142544_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 33,
-      "change": 0
-    },
-    {
-      "rank": 34,
       "title": "봄 내음보다 너를",
       "artist": "김나영",
       "album": "봄 내음보다 너를",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/105/92/109/10592109_20210413181735_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 34,
-      "change": 0
+      "change": 1
+    },
+    {
+      "rank": 34,
+      "title": "소문의 낙원",
+      "artist": "AKMU (악뮤)",
+      "album": "개화",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/133/12/398/13312398_20260406142544_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 33,
+      "change": -1
     },
     {
       "rank": 35,
@@ -516,19 +516,19 @@
     },
     {
       "rank": 58,
-      "title": "뛰어(JUMP)",
-      "artist": "BLACKPINK",
-      "album": "뛰어(JUMP)",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/118/90/480/11890480_20250711095238_500.jpg/melon/resize/120/quality/80/optimize",
+      "title": "연애의 조건 (Love Options)",
+      "artist": "베스티",
+      "album": "연애의 조건",
+      "album_image": "https://cdnimg.melon.co.kr/cm/album/images/022/10/766/2210766_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 59,
       "change": 1
     },
     {
       "rank": 59,
-      "title": "연애의 조건 (Love Options)",
-      "artist": "베스티",
-      "album": "연애의 조건",
-      "album_image": "https://cdnimg.melon.co.kr/cm/album/images/022/10/766/2210766_500.jpg/melon/resize/120/quality/80/optimize",
+      "title": "뛰어(JUMP)",
+      "artist": "BLACKPINK",
+      "album": "뛰어(JUMP)",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/118/90/480/11890480_20250711095238_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 58,
       "change": -1
     },
@@ -583,8 +583,8 @@
       "artist": "HUNTR/X",
       "album": "KPop Demon Hunters (Soundtrack from the Netflix Film)",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/118/59/863/11859863_20250620104512_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 66,
-      "change": 1
+      "previous_rank": 65,
+      "change": 0
     },
     {
       "rank": 66,
@@ -592,8 +592,8 @@
       "artist": "황가람",
       "album": "나는 반딧불",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/116/20/541/11620541_20241018183253_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 65,
-      "change": -1
+      "previous_rank": 66,
+      "change": 0
     },
     {
       "rank": 67,
@@ -844,8 +844,8 @@
       "artist": "NMIXX",
       "album": "Strange Muse",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/148/01/628/14801628_20261016112418_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 95,
-      "change": 1
+      "previous_rank": 94,
+      "change": 0
     },
     {
       "rank": 95,
@@ -853,8 +853,8 @@
       "artist": "NCT WISH",
       "album": "I SPY - The 4th Mini Album",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/145/82/521/14582521_20261002114945_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 94,
-      "change": -1
+      "previous_rank": 95,
+      "change": 0
     },
     {
       "rank": 96,
