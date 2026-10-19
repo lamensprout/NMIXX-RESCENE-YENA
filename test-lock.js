@@ -6,8 +6,61 @@
   function matchesPin(value) {
     return value === ACCESS_PIN;
   }
-  const SESSION_KEY = "melonitor-test-access-v4";
+  const SESSION_KEY = "melonitor-test-access-v5";
   const root = document.documentElement;
+
+  let internalNavigationPending = false;
+
+  function clearStoredAccess() {
+    try { sessionStorage.removeItem(SESSION_KEY); } catch (_) {}
+  }
+
+  function noteNavigation(destinationUrl) {
+    try {
+      const destination = new URL(destinationUrl, window.location.href);
+      if (destination.origin === window.location.origin) {
+        internalNavigationPending = true;
+      } else {
+        internalNavigationPending = false;
+        clearStoredAccess();
+      }
+    } catch (_) {
+      internalNavigationPending = false;
+      clearStoredAccess();
+    }
+  }
+
+  // Keep access during navigation inside Melonitor, but forget it when this tab leaves the site.
+  document.addEventListener("click", function (event) {
+    if (event.defaultPrevented || event.button !== 0 ||
+        event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    const target = event.target instanceof Element ? event.target.closest("a[href]") : null;
+    if (!target || target.hasAttribute("download") ||
+        (target.target && target.target.toLowerCase() === "_blank")) return;
+    noteNavigation(target.href);
+  });
+
+  // Chromium's Navigation API also catches address-bar changes and script-driven redirects.
+  if (window.navigation && typeof window.navigation.addEventListener === "function") {
+    window.navigation.addEventListener("navigate", function (event) {
+      if (event.destination && event.destination.url) noteNavigation(event.destination.url);
+    });
+  }
+
+  window.__melonitorMarkInternalNavigation = function (url) {
+    noteNavigation(new URL(url, window.location.href).href);
+  };
+
+  window.addEventListener("pagehide", function () {
+    if (!internalNavigationPending) clearStoredAccess();
+  });
+
+  window.addEventListener("pageshow", function (event) {
+    if (!event.persisted) return;
+    let unlocked = false;
+    try { unlocked = sessionStorage.getItem(SESSION_KEY) === "unlocked"; } catch (_) {}
+    if (!unlocked) window.location.reload();
+  });
 
   try {
     if (sessionStorage.getItem(SESSION_KEY) === "unlocked") return;
