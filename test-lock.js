@@ -2,7 +2,7 @@
   "use strict";
 
   // 테스트 버전용 간단한 화면 잠금입니다. 정식 보안 인증 수단은 아닙니다.
-  const PIN_DIGEST = "bec5857f6527ad7e28fa934f6f581fd5a6a646d512740570547359de4b7c30c6";
+  const PIN_DIGEST = "acce8a8ca803d2cb39ab9f806e746e5f4fa4d09b0dc601029f44ac4e26af2ba4";
   async function matchesPin(value) {
     if (!globalThis.crypto || !crypto.subtle || typeof TextEncoder === "undefined") return false;
     const bytes = new TextEncoder().encode("melonitor-test-v1:" + value);
