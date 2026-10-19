@@ -918,7 +918,7 @@ window.addEventListener("melonitor-auth-change", async () => {
 });
 
 setInterval(async function() {
-  if (document.visibilityState !== "visible" || !MonitorStore || !MonitorStore.isReady()) return;
+  if (document.visibilityState !== "visible" || !window.MonitorStore || !MonitorStore.isReady()) return;
   await loadRankHistory();
   await renderFavorites();
 }, 15 * 60 * 1000);
