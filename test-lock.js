@@ -10,27 +10,40 @@
   const root = document.documentElement;
 
   let internalNavigationPending = false;
+  let reloadPending = false;
 
   function clearStoredAccess() {
     try { sessionStorage.removeItem(SESSION_KEY); } catch (_) {}
   }
 
-  function noteNavigation(destinationUrl) {
+  function noteNavigation(destinationUrl, navigationType) {
     try {
       const destination = new URL(destinationUrl, window.location.href);
       if (destination.origin === window.location.origin) {
         internalNavigationPending = true;
+        if (navigationType === "reload") reloadPending = true;
       } else {
         internalNavigationPending = false;
+        reloadPending = false;
         clearStoredAccess();
       }
     } catch (_) {
       internalNavigationPending = false;
+      reloadPending = false;
       clearStoredAccess();
     }
   }
 
-  // Keep access during navigation inside Melonitor, but forget it when this tab leaves the site.
+  // Keyboard refresh must not be treated as leaving the site.
+  window.addEventListener("keydown", function (event) {
+    const key = String(event.key || "").toLowerCase();
+    if (key === "f5" || ((event.ctrlKey || event.metaKey) && key === "r")) {
+      reloadPending = true;
+      internalNavigationPending = true;
+    }
+  }, true);
+
+  // Keep access while navigating inside Melonitor, but clear it when navigating to another site.
   document.addEventListener("click", function (event) {
     if (event.defaultPrevented || event.button !== 0 ||
         event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
@@ -40,10 +53,16 @@
     noteNavigation(target.href);
   });
 
-  // Chromium's Navigation API also catches address-bar changes and script-driven redirects.
+  // This also detects browser-toolbar refresh and script-triggered reloads.
   if (window.navigation && typeof window.navigation.addEventListener === "function") {
     window.navigation.addEventListener("navigate", function (event) {
-      if (event.destination && event.destination.url) noteNavigation(event.destination.url);
+      if (!event.destination || !event.destination.url) return;
+      if (event.navigationType === "reload") {
+        reloadPending = true;
+        internalNavigationPending = true;
+        return;
+      }
+      noteNavigation(event.destination.url, event.navigationType);
     });
   }
 
@@ -51,8 +70,12 @@
     noteNavigation(new URL(url, window.location.href).href);
   };
 
+  window.addEventListener("beforeunload", function () {
+    if (reloadPending) internalNavigationPending = true;
+  });
+
   window.addEventListener("pagehide", function () {
-    if (!internalNavigationPending) clearStoredAccess();
+    if (!internalNavigationPending && !reloadPending) clearStoredAccess();
   });
 
   window.addEventListener("pageshow", function (event) {
