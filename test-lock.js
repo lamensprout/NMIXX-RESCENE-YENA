@@ -2,13 +2,9 @@
   "use strict";
 
   // 테스트 버전용 간단한 화면 잠금입니다. 정식 보안 인증 수단은 아닙니다.
-  const PIN_DIGEST = "acce8a8ca803d2cb39ab9f806e746e5f4fa4d09b0dc601029f44ac4e26af2ba4";
-  async function matchesPin(value) {
-    if (!globalThis.crypto || !crypto.subtle || typeof TextEncoder === "undefined") return false;
-    const bytes = new TextEncoder().encode("melonitor-test-v1:" + value);
-    const digest = await crypto.subtle.digest("SHA-256", bytes);
-    const hex = Array.from(new Uint8Array(digest), function (b) { return b.toString(16).padStart(2, "0"); }).join("");
-    return hex === PIN_DIGEST;
+  const ACCESS_PIN = "518001";
+  function matchesPin(value) {
+    return value === ACCESS_PIN;
   }
   const SESSION_KEY = "melonitor-test-access-v1";
   const root = document.documentElement;
