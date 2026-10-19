@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-19T19:27:52.447056+00:00",
+  "updated_at": "2026-10-19T20:25:46.495986+00:00",
   "songs": [
     {
       "rank": 1,
@@ -516,21 +516,21 @@
     },
     {
       "rank": 58,
-      "title": "연애의 조건 (Love Options)",
-      "artist": "베스티",
-      "album": "연애의 조건",
-      "album_image": "https://cdnimg.melon.co.kr/cm/album/images/022/10/766/2210766_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 58,
-      "change": 0
-    },
-    {
-      "rank": 59,
       "title": "뛰어(JUMP)",
       "artist": "BLACKPINK",
       "album": "뛰어(JUMP)",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/118/90/480/11890480_20250711095238_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 59,
-      "change": 0
+      "change": 1
+    },
+    {
+      "rank": 59,
+      "title": "연애의 조건 (Love Options)",
+      "artist": "베스티",
+      "album": "연애의 조건",
+      "album_image": "https://cdnimg.melon.co.kr/cm/album/images/022/10/766/2210766_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 58,
+      "change": -1
     },
     {
       "rank": 60,
@@ -579,21 +579,21 @@
     },
     {
       "rank": 65,
-      "title": "나는 반딧불",
-      "artist": "황가람",
-      "album": "나는 반딧불",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/116/20/541/11620541_20241018183253_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 65,
-      "change": 0
-    },
-    {
-      "rank": 66,
       "title": "Golden",
       "artist": "HUNTR/X",
       "album": "KPop Demon Hunters (Soundtrack from the Netflix Film)",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/118/59/863/11859863_20250620104512_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 66,
-      "change": 0
+      "change": 1
+    },
+    {
+      "rank": 66,
+      "title": "나는 반딧불",
+      "artist": "황가람",
+      "album": "나는 반딧불",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/116/20/541/11620541_20241018183253_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 65,
+      "change": -1
     },
     {
       "rank": 67,
@@ -840,21 +840,21 @@
     },
     {
       "rank": 94,
+      "title": "긴 소원 (Birthday Wish)",
+      "artist": "NMIXX",
+      "album": "Strange Muse",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/148/01/628/14801628_20261016112418_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 95,
+      "change": 1
+    },
+    {
+      "rank": 95,
       "title": "꿈결 (Like A Dream)",
       "artist": "NCT WISH",
       "album": "I SPY - The 4th Mini Album",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/145/82/521/14582521_20261002114945_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 94,
-      "change": 0
-    },
-    {
-      "rank": 95,
-      "title": "긴 소원 (Birthday Wish)",
-      "artist": "NMIXX",
-      "album": "Strange Muse",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/148/01/628/14801628_20261016112418_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 97,
-      "change": 2
+      "change": -1
     },
     {
       "rank": 96,
@@ -862,8 +862,8 @@
       "artist": "프로미스나인",
       "album": "Glow ME",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/138/16/948/13816948_20260720140607_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 95,
-      "change": -1
+      "previous_rank": 96,
+      "change": 0
     },
     {
       "rank": 97,
@@ -871,8 +871,8 @@
       "artist": "임영웅",
       "album": "IM HERO",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/109/23/444/10923444_20220502140600_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 96,
-      "change": -1
+      "previous_rank": 97,
+      "change": 0
     },
     {
       "rank": 98,
