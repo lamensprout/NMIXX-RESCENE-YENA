@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-19T21:23:06.611756+00:00",
+  "updated_at": "2026-10-19T22:22:51.091290+00:00",
   "songs": [
     {
       "rank": 1,
@@ -295,8 +295,8 @@
       "artist": "김나영",
       "album": "봄 내음보다 너를",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/105/92/109/10592109_20210413181735_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 34,
-      "change": 1
+      "previous_rank": 33,
+      "change": 0
     },
     {
       "rank": 34,
@@ -304,8 +304,8 @@
       "artist": "AKMU (악뮤)",
       "album": "개화",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/133/12/398/13312398_20260406142544_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 33,
-      "change": -1
+      "previous_rank": 34,
+      "change": 0
     },
     {
       "rank": 35,
@@ -354,39 +354,39 @@
     },
     {
       "rank": 40,
-      "title": "여름아 부탁해",
-      "artist": "볼빨간사춘기",
-      "album": "여름아 부탁해",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/138/23/274/13823274_20260721152311_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 40,
-      "change": 0
-    },
-    {
-      "rank": 41,
       "title": "HOME SWEET HOME (feat. 태양, 대성)",
       "artist": "G-DRAGON",
       "album": "HOME SWEET HOME (feat. 태양, 대성)",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/116/47/670/11647670_20241121150855_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 41,
-      "change": 0
+      "change": 1
+    },
+    {
+      "rank": 41,
+      "title": "여름아 부탁해",
+      "artist": "볼빨간사춘기",
+      "album": "여름아 부탁해",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/138/23/274/13823274_20260721152311_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 40,
+      "change": -1
     },
     {
       "rank": 42,
-      "title": "I SPY",
-      "artist": "NCT WISH",
-      "album": "I SPY - The 4th Mini Album",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/145/82/521/14582521_20261002114945_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 42,
-      "change": 0
-    },
-    {
-      "rank": 43,
       "title": "toxic till the end",
       "artist": "로제 (ROSÉ)",
       "album": "rosie",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/116/59/696/11659696_20241205141243_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 43,
-      "change": 0
+      "change": 1
+    },
+    {
+      "rank": 43,
+      "title": "I SPY",
+      "artist": "NCT WISH",
+      "album": "I SPY - The 4th Mini Album",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/145/82/521/14582521_20261002114945_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 42,
+      "change": -1
     },
     {
       "rank": 44,
@@ -417,39 +417,39 @@
     },
     {
       "rank": 47,
-      "title": "모르시나요(PROD.로코베리)",
-      "artist": "조째즈",
-      "album": "모르시나요",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/116/85/729/11685729_20250106160640_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 47,
-      "change": 0
-    },
-    {
-      "rank": 48,
       "title": "BANG BANG",
       "artist": "IVE (아이브)",
       "album": "REVIVE+",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/128/45/274/12845274_20260223113048_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 48,
-      "change": 0
+      "change": 1
+    },
+    {
+      "rank": 48,
+      "title": "모르시나요(PROD.로코베리)",
+      "artist": "조째즈",
+      "album": "모르시나요",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/116/85/729/11685729_20250106160640_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 47,
+      "change": -1
     },
     {
       "rank": 49,
-      "title": "주저하는 연인들을 위해",
-      "artist": "잔나비",
-      "album": "전설",
-      "album_image": "https://cdnimg.melon.co.kr/cm/album/images/102/60/858/10260858_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 49,
-      "change": 0
-    },
-    {
-      "rank": 50,
       "title": "404 (New Era)",
       "artist": "KiiiKiii (키키)",
       "album": "Delulu Pack",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/128/06/237/12806237_20260126145002_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 50,
-      "change": 0
+      "change": 1
+    },
+    {
+      "rank": 50,
+      "title": "주저하는 연인들을 위해",
+      "artist": "잔나비",
+      "album": "전설",
+      "album_image": "https://cdnimg.melon.co.kr/cm/album/images/102/60/858/10260858_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 49,
+      "change": -1
     },
     {
       "rank": 51,
@@ -520,8 +520,8 @@
       "artist": "베스티",
       "album": "연애의 조건",
       "album_image": "https://cdnimg.melon.co.kr/cm/album/images/022/10/766/2210766_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 59,
-      "change": 1
+      "previous_rank": 58,
+      "change": 0
     },
     {
       "rank": 59,
@@ -529,8 +529,8 @@
       "artist": "BLACKPINK",
       "album": "뛰어(JUMP)",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/118/90/480/11890480_20250711095238_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 58,
-      "change": -1
+      "previous_rank": 59,
+      "change": 0
     },
     {
       "rank": 60,
@@ -543,30 +543,30 @@
     },
     {
       "rank": 61,
-      "title": "Star Trace",
-      "artist": "PLAVE",
-      "album": "HYPERDRIVE",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/146/29/242/14629242_20261007150642_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 61,
-      "change": 0
-    },
-    {
-      "rank": 62,
       "title": "그대 작은 나의 세상이 되어",
       "artist": "카더가든",
       "album": "부재",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/105/54/647/10554647_20210127173809_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 62,
-      "change": 0
+      "change": 1
     },
     {
-      "rank": 63,
+      "rank": 62,
       "title": "HAPPY",
       "artist": "DAY6 (데이식스)",
       "album": "Fourever",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/114/44/397/11444397_20240318115810_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 63,
-      "change": 0
+      "change": 1
+    },
+    {
+      "rank": 63,
+      "title": "Star Trace",
+      "artist": "PLAVE",
+      "album": "HYPERDRIVE",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/146/29/242/14629242_20261007150642_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 61,
+      "change": -2
     },
     {
       "rank": 64,
@@ -633,21 +633,21 @@
     },
     {
       "rank": 71,
-      "title": "Guitarist",
-      "artist": "도경수(D.O.)",
-      "album": "DOPAMINE - The 4th Mini Album",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/145/26/395/14526395_20260907104149_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 71,
-      "change": 0
-    },
-    {
-      "rank": 72,
       "title": "오늘만 I LOVE YOU",
       "artist": "BOYNEXTDOOR",
       "album": "오늘만 I LOVE YOU",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/116/85/070/11685070_20250106111631_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 72,
-      "change": 0
+      "change": 1
+    },
+    {
+      "rank": 72,
+      "title": "Guitarist",
+      "artist": "도경수(D.O.)",
+      "album": "DOPAMINE - The 4th Mini Album",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/145/26/395/14526395_20260907104149_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 71,
+      "change": -1
     },
     {
       "rank": 73,
@@ -687,21 +687,21 @@
     },
     {
       "rank": 77,
-      "title": "Love wins all",
-      "artist": "아이유",
-      "album": "The Winning",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/114/04/142/11404142_20240220141548_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 77,
-      "change": 0
-    },
-    {
-      "rank": 78,
       "title": "APT.",
       "artist": "로제 (ROSÉ)",
       "album": "APT.",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/116/19/809/11619809_20241018103507_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 78,
-      "change": 0
+      "change": 1
+    },
+    {
+      "rank": 78,
+      "title": "Love wins all",
+      "artist": "아이유",
+      "album": "The Winning",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/114/04/142/11404142_20240220141548_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 77,
+      "change": -1
     },
     {
       "rank": 79,
@@ -822,30 +822,30 @@
     },
     {
       "rank": 92,
-      "title": "REBEL HEART",
-      "artist": "IVE (아이브)",
-      "album": "IVE EMPATHY",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/116/89/783/11689783_20250203110601_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 92,
-      "change": 0
-    },
-    {
-      "rank": 93,
-      "title": "꾼",
-      "artist": "PLAVE",
-      "album": "HYPERDRIVE",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/146/29/242/14629242_20261007150642_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 93,
-      "change": 0
-    },
-    {
-      "rank": 94,
       "title": "긴 소원 (Birthday Wish)",
       "artist": "NMIXX",
       "album": "Strange Muse",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/148/01/628/14801628_20261016112418_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 94,
-      "change": 0
+      "change": 2
+    },
+    {
+      "rank": 93,
+      "title": "REBEL HEART",
+      "artist": "IVE (아이브)",
+      "album": "IVE EMPATHY",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/116/89/783/11689783_20250203110601_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 92,
+      "change": -1
+    },
+    {
+      "rank": 94,
+      "title": "꾼",
+      "artist": "PLAVE",
+      "album": "HYPERDRIVE",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/146/29/242/14629242_20261007150642_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 93,
+      "change": -1
     },
     {
       "rank": 95,
