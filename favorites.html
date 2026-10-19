@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>좋아하는 아티스트 | Melonitor</title>
-  <link rel="stylesheet" href="style.css?v=20261014-20">
+  <link rel="stylesheet" href="style.css?v=20261019-1">
 </head>
 <body>
   <main class="container">
@@ -53,9 +53,16 @@
       <div class="favorites-heading">
         <div>
           <h2 id="favoriteTitle">좋아하는 아티스트</h2>
-          <p>자주 찾는 아티스트를 저장해 두고, 이름을 누르면 해당 아티스트의 TOP100 순위를 확인할 수 있어요.</p>
+          <p>아티스트별 현재 TOP100 최고 순위와 최근 24시간 순위 변화를 확인할 수 있어요. 아티스트명을 누르면 해당 아티스트의 곡만 볼 수 있습니다.</p>
         </div>
       </div>
+
+      <div class="rank-graph-settings">
+        <label for="rankGraphColor">순위 그래프 색상</label>
+        <input id="rankGraphColor" type="color" value="#168a35" aria-label="순위 그래프 색상 선택">
+        <span id="rankGraphColorValue">#168A35</span>
+      </div>
+      <p id="rankHistoryStatus" class="rank-history-status" role="status" aria-live="polite">순위 기록을 불러오는 중...</p>
 
       <form id="favoriteForm" class="favorite-form" hidden>
         <label class="visually-hidden" for="favoriteInput">즐겨찾기 아티스트 이름</label>
@@ -79,7 +86,7 @@
   <script src="supabase-config.js?v=1"></script>
   <script src="monitor-store.js?v=12"></script>
   <script src="profile-avatar.js?v=2"></script>
-  <script src="favorites.js?v=3"></script>
+  <script src="favorites.js?v=4"></script>
   <script src="theme.js?v=5"></script>
   <script>
     (() => {
