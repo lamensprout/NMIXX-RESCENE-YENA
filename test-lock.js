@@ -117,7 +117,7 @@
         "<span class='test-lock-badge'>베타 테스트 Ver.</span>" +
         "<p class='test-lock-description'>테스트 버전에 접속하려면<br>6자리 암호를 입력해 주세요.</p>" +
         "<form id='testLockForm'>" +
-          "<input id='testLockPin' type='text' inputmode='numeric' maxlength='6' autocomplete='off' autocapitalize='off' spellcheck='false' aria-label='6자리 암호' placeholder='숫자 6자리'>" +
+          "<input id='testLockPin' type='text' inputmode='numeric' maxlength='6' autocomplete='off' autocapitalize='off' spellcheck='false' aria-label='6자리 암호' placeholder='숫자 6자리' style='display:block!important;visibility:visible!important;opacity:1!important;color:#111111!important;-webkit-text-fill-color:#111111!important;background:#ffffff!important;font-size:24px!important;letter-spacing:5px!important;'>" +
           "<button type='submit'>입장하기</button>" +
         "</form>" +
         "<p id='testLockStatus' class='test-lock-status' role='alert' aria-live='polite'></p>" +
@@ -130,9 +130,8 @@
     const pin = gate.querySelector("#testLockPin");
     const status = gate.querySelector("#testLockStatus");
 
+    // Do not rewrite pin.value while the user is typing; let the browser display every keystroke.
     pin.addEventListener("input", function () {
-      const cleaned = pin.value.replace(/[^0-9]/g, "").slice(0, 6);
-      if (pin.value !== cleaned) pin.value = cleaned;
       status.textContent = "";
     });
 
