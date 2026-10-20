@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-20T18:27:24.453302+00:00",
+  "updated_at": "2026-10-20T19:28:34.465816+00:00",
   "songs": [
     {
       "rank": 1,
@@ -538,8 +538,8 @@
       "artist": "박재정",
       "album": "1집 Alone",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/112/27/533/11227533_20230419162238_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 61,
-      "change": 1
+      "previous_rank": 60,
+      "change": 0
     },
     {
       "rank": 61,
@@ -547,8 +547,8 @@
       "artist": "BLACKPINK",
       "album": "뛰어(JUMP)",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/118/90/480/11890480_20250711095238_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 62,
-      "change": 1
+      "previous_rank": 61,
+      "change": 0
     },
     {
       "rank": 62,
@@ -556,8 +556,8 @@
       "artist": "NMIXX",
       "album": "Strange Muse",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/148/01/628/14801628_20261016112418_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 60,
-      "change": -2
+      "previous_rank": 62,
+      "change": 0
     },
     {
       "rank": 63,
@@ -691,8 +691,8 @@
       "artist": "도경수(D.O.)",
       "album": "DOPAMINE - The 4th Mini Album",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/145/26/395/14526395_20260907104149_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 78,
-      "change": 1
+      "previous_rank": 77,
+      "change": 0
     },
     {
       "rank": 78,
@@ -700,8 +700,8 @@
       "artist": "Lady Gaga",
       "album": "Die With A Smile",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/115/68/901/11568901_20240816130602_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 77,
-      "change": -1
+      "previous_rank": 78,
+      "change": 0
     },
     {
       "rank": 79,
