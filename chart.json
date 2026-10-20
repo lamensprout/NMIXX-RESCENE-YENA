@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-20T21:24:30.595149+00:00",
+  "updated_at": "2026-10-20T22:23:04.167783+00:00",
   "songs": [
     {
       "rank": 1,
@@ -421,44 +421,44 @@
       "artist": "잔나비",
       "album": "전설",
       "album_image": "https://cdnimg.melon.co.kr/cm/album/images/102/60/858/10260858_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 48,
-      "change": 1
+      "previous_rank": 47,
+      "change": 0
     },
     {
       "rank": 48,
-      "title": "Looks Can Kill",
-      "artist": "IVE (아이브)",
-      "album": "Looks Can Kill",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/148/09/931/14809931_20261016152744_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 47,
-      "change": -1
-    },
-    {
-      "rank": 49,
       "title": "이 별로부터",
       "artist": "아이유",
       "album": "이 별로부터",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/145/35/765/14535765_20260909154035_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 49,
-      "change": 0
+      "change": 1
+    },
+    {
+      "rank": 49,
+      "title": "Looks Can Kill",
+      "artist": "IVE (아이브)",
+      "album": "Looks Can Kill",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/148/09/931/14809931_20261016152744_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 48,
+      "change": -1
     },
     {
       "rank": 50,
-      "title": "404 (New Era)",
-      "artist": "KiiiKiii (키키)",
-      "album": "Delulu Pack",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/128/06/237/12806237_20260126145002_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 50,
-      "change": 0
-    },
-    {
-      "rank": 51,
       "title": "소나기",
       "artist": "이클립스 (ECLIPSE)",
       "album": "선재 업고 튀어 OST Part 1",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/114/59/325/11459325_20240405171054_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 51,
-      "change": 0
+      "change": 1
+    },
+    {
+      "rank": 51,
+      "title": "404 (New Era)",
+      "artist": "KiiiKiii (키키)",
+      "album": "Delulu Pack",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/128/06/237/12806237_20260126145002_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 50,
+      "change": -1
     },
     {
       "rank": 52,
