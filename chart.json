@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-20T17:37:43.775504+00:00",
+  "updated_at": "2026-10-20T18:27:24.453302+00:00",
   "songs": [
     {
       "rank": 1,
@@ -412,8 +412,8 @@
       "artist": "이찬혁",
       "album": "EROS",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/118/91/198/11891198_20250714145747_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 47,
-      "change": 1
+      "previous_rank": 46,
+      "change": 0
     },
     {
       "rank": 47,
@@ -421,8 +421,8 @@
       "artist": "IVE (아이브)",
       "album": "Looks Can Kill",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/148/09/931/14809931_20261016152744_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 46,
-      "change": -1
+      "previous_rank": 47,
+      "change": 0
     },
     {
       "rank": 48,
@@ -534,30 +534,30 @@
     },
     {
       "rank": 60,
-      "title": "긴 소원 (Birthday Wish)",
-      "artist": "NMIXX",
-      "album": "Strange Muse",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/148/01/628/14801628_20261016112418_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 60,
-      "change": 0
-    },
-    {
-      "rank": 61,
       "title": "헤어지자 말해요",
       "artist": "박재정",
       "album": "1집 Alone",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/112/27/533/11227533_20230419162238_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 61,
-      "change": 0
+      "change": 1
     },
     {
-      "rank": 62,
+      "rank": 61,
       "title": "뛰어(JUMP)",
       "artist": "BLACKPINK",
       "album": "뛰어(JUMP)",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/118/90/480/11890480_20250711095238_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 62,
-      "change": 0
+      "change": 1
+    },
+    {
+      "rank": 62,
+      "title": "긴 소원 (Birthday Wish)",
+      "artist": "NMIXX",
+      "album": "Strange Muse",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/148/01/628/14801628_20261016112418_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 60,
+      "change": -2
     },
     {
       "rank": 63,
@@ -687,21 +687,21 @@
     },
     {
       "rank": 77,
-      "title": "Die With A Smile",
-      "artist": "Lady Gaga",
-      "album": "Die With A Smile",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/115/68/901/11568901_20240816130602_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 77,
-      "change": 0
-    },
-    {
-      "rank": 78,
       "title": "Guitarist",
       "artist": "도경수(D.O.)",
       "album": "DOPAMINE - The 4th Mini Album",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/145/26/395/14526395_20260907104149_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 78,
-      "change": 0
+      "change": 1
+    },
+    {
+      "rank": 78,
+      "title": "Die With A Smile",
+      "artist": "Lady Gaga",
+      "album": "Die With A Smile",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/115/68/901/11568901_20240816130602_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 77,
+      "change": -1
     },
     {
       "rank": 79,
@@ -880,8 +880,8 @@
       "artist": "로이킴",
       "album": "달리 표현할 수 없어요",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/121/76/812/12176812_20251024184132_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 99,
-      "change": 1
+      "previous_rank": 98,
+      "change": 0
     },
     {
       "rank": 99,
@@ -889,8 +889,8 @@
       "artist": "NCT WISH",
       "album": "I SPY - The 4th Mini Album",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/145/82/521/14582521_20261002114945_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 98,
-      "change": -1
+      "previous_rank": 99,
+      "change": 0
     },
     {
       "rank": 100,
