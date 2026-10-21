@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-21T18:26:15.939105+00:00",
+  "updated_at": "2026-10-21T19:28:13.580779+00:00",
   "songs": [
     {
       "rank": 1,
@@ -241,8 +241,8 @@
       "artist": "로이킴",
       "album": "내게 사랑이 뭐냐고 물어본다면",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/116/16/312/11616312_20241015135802_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 28,
-      "change": 1
+      "previous_rank": 27,
+      "change": 0
     },
     {
       "rank": 28,
@@ -250,8 +250,8 @@
       "artist": "AKMU (악뮤)",
       "album": "개화",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/133/12/398/13312398_20260406142544_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 27,
-      "change": -1
+      "previous_rank": 28,
+      "change": 0
     },
     {
       "rank": 29,
@@ -880,8 +880,8 @@
       "artist": "로이킴",
       "album": "달리 표현할 수 없어요",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/121/76/812/12176812_20251024184132_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 99,
-      "change": 1
+      "previous_rank": 98,
+      "change": 0
     },
     {
       "rank": 99,
@@ -889,8 +889,8 @@
       "artist": "PLAVE",
       "album": "HYPERDRIVE",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/146/29/242/14629242_20261007150642_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 98,
-      "change": -1
+      "previous_rank": 99,
+      "change": 0
     },
     {
       "rank": 100,
