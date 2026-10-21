@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-21T21:24:02.658883+00:00",
+  "updated_at": "2026-10-21T22:23:32.008281+00:00",
   "songs": [
     {
       "rank": 1,
@@ -435,21 +435,21 @@
     },
     {
       "rank": 49,
-      "title": "소나기",
-      "artist": "이클립스 (ECLIPSE)",
-      "album": "선재 업고 튀어 OST Part 1",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/114/59/325/11459325_20240405171054_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 49,
-      "change": 0
-    },
-    {
-      "rank": 50,
       "title": "404 (New Era)",
       "artist": "KiiiKiii (키키)",
       "album": "Delulu Pack",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/128/06/237/12806237_20260126145002_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 50,
-      "change": 0
+      "change": 1
+    },
+    {
+      "rank": 50,
+      "title": "소나기",
+      "artist": "이클립스 (ECLIPSE)",
+      "album": "선재 업고 튀어 OST Part 1",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/114/59/325/11459325_20240405171054_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 49,
+      "change": -1
     },
     {
       "rank": 51,
@@ -480,21 +480,21 @@
     },
     {
       "rank": 54,
-      "title": "그대 작은 나의 세상이 되어",
-      "artist": "카더가든",
-      "album": "부재",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/105/54/647/10554647_20210127173809_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 54,
-      "change": 0
-    },
-    {
-      "rank": 55,
       "title": "한 페이지가 될 수 있게",
       "artist": "DAY6 (데이식스)",
       "album": "The Book of Us : Gravity",
       "album_image": "https://cdnimg.melon.co.kr/cm/album/images/103/07/346/10307346_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 55,
-      "change": 0
+      "change": 1
+    },
+    {
+      "rank": 55,
+      "title": "그대 작은 나의 세상이 되어",
+      "artist": "카더가든",
+      "album": "부재",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/105/54/647/10554647_20210127173809_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 54,
+      "change": -1
     },
     {
       "rank": 56,
@@ -876,30 +876,30 @@
     },
     {
       "rank": 98,
+      "title": "삐그덕 (Feat. 아이유)",
+      "artist": "Crush",
+      "album": "삐그덕 (Feat. 아이유)",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/149/55/418/14955418_20261019111743_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": null,
+      "change": 0
+    },
+    {
+      "rank": 99,
       "title": "달리 표현할 수 없어요",
       "artist": "로이킴",
       "album": "달리 표현할 수 없어요",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/121/76/812/12176812_20251024184132_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 98,
-      "change": 0
+      "change": -1
     },
     {
-      "rank": 99,
+      "rank": 100,
       "title": "The Answer Is Yes",
       "artist": "PLAVE",
       "album": "HYPERDRIVE",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/146/29/242/14629242_20261007150642_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 99,
-      "change": 0
-    },
-    {
-      "rank": 100,
-      "title": "Rewind",
-      "artist": "PLAVE",
-      "album": "HYPERDRIVE",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/146/29/242/14629242_20261007150642_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 100,
-      "change": 0
+      "change": -1
     }
   ]
 }
