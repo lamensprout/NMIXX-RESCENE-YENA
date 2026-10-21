@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-21T17:24:39.123592+00:00",
+  "updated_at": "2026-10-21T18:26:15.939105+00:00",
   "songs": [
     {
       "rank": 1,
@@ -237,21 +237,21 @@
     },
     {
       "rank": 27,
-      "title": "기쁨, 슬픔, 아름다운 마음",
-      "artist": "AKMU (악뮤)",
-      "album": "개화",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/133/12/398/13312398_20260406142544_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 27,
-      "change": 0
-    },
-    {
-      "rank": 28,
       "title": "내게 사랑이 뭐냐고 물어본다면",
       "artist": "로이킴",
       "album": "내게 사랑이 뭐냐고 물어본다면",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/116/16/312/11616312_20241015135802_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 28,
-      "change": 0
+      "change": 1
+    },
+    {
+      "rank": 28,
+      "title": "기쁨, 슬픔, 아름다운 마음",
+      "artist": "AKMU (악뮤)",
+      "album": "개화",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/133/12/398/13312398_20260406142544_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 27,
+      "change": -1
     },
     {
       "rank": 29,
@@ -529,8 +529,8 @@
       "artist": "aespa",
       "album": "Whiplash - The 5th Mini Album",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/116/20/540/11620540_20241018183208_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 60,
-      "change": 1
+      "previous_rank": 59,
+      "change": 0
     },
     {
       "rank": 60,
@@ -538,8 +538,8 @@
       "artist": "NCT WISH",
       "album": "I SPY - The 4th Mini Album",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/145/82/521/14582521_20261002114945_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 59,
-      "change": -1
+      "previous_rank": 60,
+      "change": 0
     },
     {
       "rank": 61,
@@ -664,8 +664,8 @@
       "artist": "아이유",
       "album": "The Winning",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/114/04/142/11404142_20240220141548_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 75,
-      "change": 1
+      "previous_rank": 74,
+      "change": 0
     },
     {
       "rank": 75,
@@ -673,8 +673,8 @@
       "artist": "BOYNEXTDOOR",
       "album": "오늘만 I LOVE YOU",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/116/85/070/11685070_20250106111631_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 76,
-      "change": 1
+      "previous_rank": 75,
+      "change": 0
     },
     {
       "rank": 76,
@@ -682,8 +682,8 @@
       "artist": "Lady Gaga",
       "album": "Die With A Smile",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/115/68/901/11568901_20240816130602_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 74,
-      "change": -2
+      "previous_rank": 76,
+      "change": 0
     },
     {
       "rank": 77,
@@ -709,8 +709,8 @@
       "artist": "RESCENE (리센느)",
       "album": "SCENEDROME",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/115/75/849/11575849_20240826152240_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 80,
-      "change": 1
+      "previous_rank": 79,
+      "change": 0
     },
     {
       "rank": 80,
@@ -718,8 +718,8 @@
       "artist": "에픽하이 (EPIK HIGH)",
       "album": "Remapping The Human Soul",
       "album_image": "https://cdnimg.melon.co.kr/cm/album/images/003/42/967/342967_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 79,
-      "change": -1
+      "previous_rank": 80,
+      "change": 0
     },
     {
       "rank": 81,
@@ -876,21 +876,21 @@
     },
     {
       "rank": 98,
-      "title": "The Answer Is Yes",
-      "artist": "PLAVE",
-      "album": "HYPERDRIVE",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/146/29/242/14629242_20261007150642_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 98,
-      "change": 0
-    },
-    {
-      "rank": 99,
       "title": "달리 표현할 수 없어요",
       "artist": "로이킴",
       "album": "달리 표현할 수 없어요",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/121/76/812/12176812_20251024184132_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 99,
-      "change": 0
+      "change": 1
+    },
+    {
+      "rank": 99,
+      "title": "The Answer Is Yes",
+      "artist": "PLAVE",
+      "album": "HYPERDRIVE",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/146/29/242/14629242_20261007150642_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 98,
+      "change": -1
     },
     {
       "rank": 100,
