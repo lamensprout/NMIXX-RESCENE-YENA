@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-21T20:22:36.935760+00:00",
+  "updated_at": "2026-10-21T21:24:02.658883+00:00",
   "songs": [
     {
       "rank": 1,
@@ -241,8 +241,8 @@
       "artist": "AKMU (악뮤)",
       "album": "개화",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/133/12/398/13312398_20260406142544_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 28,
-      "change": 1
+      "previous_rank": 27,
+      "change": 0
     },
     {
       "rank": 28,
@@ -250,8 +250,8 @@
       "artist": "로이킴",
       "album": "내게 사랑이 뭐냐고 물어본다면",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/116/16/312/11616312_20241015135802_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 27,
-      "change": -1
+      "previous_rank": 28,
+      "change": 0
     },
     {
       "rank": 29,
@@ -673,8 +673,8 @@
       "artist": "Lady Gaga",
       "album": "Die With A Smile",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/115/68/901/11568901_20240816130602_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 76,
-      "change": 1
+      "previous_rank": 75,
+      "change": 0
     },
     {
       "rank": 76,
@@ -682,8 +682,8 @@
       "artist": "BOYNEXTDOOR",
       "album": "오늘만 I LOVE YOU",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/116/85/070/11685070_20250106111631_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 75,
-      "change": -1
+      "previous_rank": 76,
+      "change": 0
     },
     {
       "rank": 77,
