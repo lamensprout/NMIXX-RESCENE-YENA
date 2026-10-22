@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-22T17:25:04.773904+00:00",
+  "updated_at": "2026-10-22T18:25:20.942902+00:00",
   "songs": [
     {
       "rank": 1,
@@ -241,8 +241,8 @@
       "artist": "AKMU (악뮤)",
       "album": "개화",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/133/12/398/13312398_20260406142544_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 28,
-      "change": 1
+      "previous_rank": 27,
+      "change": 0
     },
     {
       "rank": 28,
@@ -250,8 +250,8 @@
       "artist": "로이킴",
       "album": "내게 사랑이 뭐냐고 물어본다면",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/116/16/312/11616312_20241015135802_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 27,
-      "change": -1
+      "previous_rank": 28,
+      "change": 0
     },
     {
       "rank": 29,
@@ -300,21 +300,21 @@
     },
     {
       "rank": 34,
-      "title": "삐그덕 (Feat. 아이유)",
-      "artist": "Crush",
-      "album": "삐그덕 (Feat. 아이유)",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/149/55/418/14955418_20261019111743_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 34,
-      "change": 0
-    },
-    {
-      "rank": 35,
       "title": "Heavy Serenade",
       "artist": "NMIXX",
       "album": "Heavy Serenade",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/133/57/541/13357541_20260511133217_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 35,
-      "change": 0
+      "change": 1
+    },
+    {
+      "rank": 35,
+      "title": "삐그덕 (Feat. 아이유)",
+      "artist": "Crush",
+      "album": "삐그덕 (Feat. 아이유)",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/149/55/418/14955418_20261019111743_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 34,
+      "change": -1
     },
     {
       "rank": 36,
@@ -390,21 +390,21 @@
     },
     {
       "rank": 44,
-      "title": "멸종위기사랑",
-      "artist": "이찬혁",
-      "album": "EROS",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/118/91/198/11891198_20250714145747_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 44,
-      "change": 0
-    },
-    {
-      "rank": 45,
       "title": "모르시나요(PROD.로코베리)",
       "artist": "조째즈",
       "album": "모르시나요",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/116/85/729/11685729_20250106160640_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 45,
-      "change": 0
+      "change": 1
+    },
+    {
+      "rank": 45,
+      "title": "멸종위기사랑",
+      "artist": "이찬혁",
+      "album": "EROS",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/118/91/198/11891198_20250714145747_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 44,
+      "change": -1
     },
     {
       "rank": 46,
@@ -444,21 +444,21 @@
     },
     {
       "rank": 50,
+      "title": "이 별로부터",
+      "artist": "아이유",
+      "album": "이 별로부터",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/145/35/765/14535765_20260909154035_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 51,
+      "change": 1
+    },
+    {
+      "rank": 51,
       "title": "너에게 닿기를",
       "artist": "10CM",
       "album": "너에게 닿기를",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/117/30/411/11730411_20250306095101_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 50,
-      "change": 0
-    },
-    {
-      "rank": 51,
-      "title": "이 별로부터",
-      "artist": "아이유",
-      "album": "이 별로부터",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/145/35/765/14535765_20260909154035_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 52,
-      "change": 1
+      "change": -1
     },
     {
       "rank": 52,
@@ -466,8 +466,8 @@
       "artist": "KiiiKiii (키키)",
       "album": "Delulu Pack",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/128/06/237/12806237_20260126145002_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 51,
-      "change": -1
+      "previous_rank": 52,
+      "change": 0
     },
     {
       "rank": 53,
