@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-23T17:24:18.783894+00:00",
+  "updated_at": "2026-10-23T18:25:36.396403+00:00",
   "songs": [
     {
       "rank": 1,
@@ -133,8 +133,8 @@
       "artist": "화사 (HWASA)",
       "album": "Good Goodbye",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/121/60/000/12160000_20251014164646_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 16,
-      "change": 1
+      "previous_rank": 15,
+      "change": 0
     },
     {
       "rank": 16,
@@ -142,8 +142,8 @@
       "artist": "아일릿(ILLIT)",
       "album": "MAMIHLAPINATAPAI",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/133/62/401/13362401_20260430094059_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 15,
-      "change": -1
+      "previous_rank": 16,
+      "change": 0
     },
     {
       "rank": 17,
@@ -462,21 +462,21 @@
     },
     {
       "rank": 52,
-      "title": "이 별로부터",
-      "artist": "아이유",
-      "album": "이 별로부터",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/145/35/765/14535765_20260909154035_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 52,
-      "change": 0
-    },
-    {
-      "rank": 53,
       "title": "404 (New Era)",
       "artist": "KiiiKiii (키키)",
       "album": "Delulu Pack",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/128/06/237/12806237_20260126145002_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 53,
-      "change": 0
+      "change": 1
+    },
+    {
+      "rank": 53,
+      "title": "이 별로부터",
+      "artist": "아이유",
+      "album": "이 별로부터",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/145/35/765/14535765_20260909154035_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 52,
+      "change": -1
     },
     {
       "rank": 54,
@@ -561,21 +561,21 @@
     },
     {
       "rank": 63,
-      "title": "나는 반딧불",
-      "artist": "황가람",
-      "album": "나는 반딧불",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/116/20/541/11620541_20241018183253_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 63,
-      "change": 0
-    },
-    {
-      "rank": 64,
       "title": "HAPPY",
       "artist": "DAY6 (데이식스)",
       "album": "Fourever",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/114/44/397/11444397_20240318115810_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 64,
-      "change": 0
+      "change": 1
+    },
+    {
+      "rank": 64,
+      "title": "나는 반딧불",
+      "artist": "황가람",
+      "album": "나는 반딧불",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/116/20/541/11620541_20241018183253_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 63,
+      "change": -1
     },
     {
       "rank": 65,
@@ -673,8 +673,8 @@
       "artist": "Lady Gaga",
       "album": "Die With A Smile",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/115/68/901/11568901_20240816130602_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 76,
-      "change": 1
+      "previous_rank": 75,
+      "change": 0
     },
     {
       "rank": 76,
@@ -682,8 +682,8 @@
       "artist": "아이유",
       "album": "The Winning",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/114/04/142/11404142_20240220141548_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 75,
-      "change": -1
+      "previous_rank": 76,
+      "change": 0
     },
     {
       "rank": 77,
