@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-23T18:25:36.396403+00:00",
+  "updated_at": "2026-10-23T19:28:32.112962+00:00",
   "songs": [
     {
       "rank": 1,
@@ -466,8 +466,8 @@
       "artist": "KiiiKiii (키키)",
       "album": "Delulu Pack",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/128/06/237/12806237_20260126145002_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 53,
-      "change": 1
+      "previous_rank": 52,
+      "change": 0
     },
     {
       "rank": 53,
@@ -475,8 +475,8 @@
       "artist": "아이유",
       "album": "이 별로부터",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/145/35/765/14535765_20260909154035_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 52,
-      "change": -1
+      "previous_rank": 53,
+      "change": 0
     },
     {
       "rank": 54,
@@ -565,8 +565,8 @@
       "artist": "DAY6 (데이식스)",
       "album": "Fourever",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/114/44/397/11444397_20240318115810_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 64,
-      "change": 1
+      "previous_rank": 63,
+      "change": 0
     },
     {
       "rank": 64,
@@ -574,8 +574,8 @@
       "artist": "황가람",
       "album": "나는 반딧불",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/116/20/541/11620541_20241018183253_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 63,
-      "change": -1
+      "previous_rank": 64,
+      "change": 0
     },
     {
       "rank": 65,
