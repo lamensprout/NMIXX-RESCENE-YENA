@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-23T19:28:32.112962+00:00",
+  "updated_at": "2026-10-23T20:21:42.418906+00:00",
   "songs": [
     {
       "rank": 1,
@@ -453,21 +453,21 @@
     },
     {
       "rank": 51,
-      "title": "소나기",
-      "artist": "이클립스 (ECLIPSE)",
-      "album": "선재 업고 튀어 OST Part 1",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/114/59/325/11459325_20240405171054_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 51,
-      "change": 0
-    },
-    {
-      "rank": 52,
       "title": "404 (New Era)",
       "artist": "KiiiKiii (키키)",
       "album": "Delulu Pack",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/128/06/237/12806237_20260126145002_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 52,
-      "change": 0
+      "change": 1
+    },
+    {
+      "rank": 52,
+      "title": "소나기",
+      "artist": "이클립스 (ECLIPSE)",
+      "album": "선재 업고 튀어 OST Part 1",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/114/59/325/11459325_20240405171054_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 51,
+      "change": -1
     },
     {
       "rank": 53,
@@ -597,21 +597,21 @@
     },
     {
       "rank": 67,
-      "title": "삐그덕 (Feat. 아이유)",
-      "artist": "Crush",
-      "album": "삐그덕 (Feat. 아이유)",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/149/55/418/14955418_20261019111743_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 67,
-      "change": 0
-    },
-    {
-      "rank": 68,
       "title": "사랑인가 봐",
       "artist": "멜로망스",
       "album": "사랑인가 봐 (사내맞선 OST 스페셜 트랙)",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/108/71/162/10871162_20220217162422_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 68,
-      "change": 0
+      "change": 1
+    },
+    {
+      "rank": 68,
+      "title": "삐그덕 (Feat. 아이유)",
+      "artist": "Crush",
+      "album": "삐그덕 (Feat. 아이유)",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/149/55/418/14955418_20261019111743_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 67,
+      "change": -1
     },
     {
       "rank": 69,
