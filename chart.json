@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-23T21:23:27.308081+00:00",
+  "updated_at": "2026-10-23T22:23:25.768215+00:00",
   "songs": [
     {
       "rank": 1,
@@ -133,8 +133,8 @@
       "artist": "아일릿(ILLIT)",
       "album": "MAMIHLAPINATAPAI",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/133/62/401/13362401_20260430094059_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 16,
-      "change": 1
+      "previous_rank": 15,
+      "change": 0
     },
     {
       "rank": 16,
@@ -142,8 +142,8 @@
       "artist": "화사 (HWASA)",
       "album": "Good Goodbye",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/121/60/000/12160000_20251014164646_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 15,
-      "change": -1
+      "previous_rank": 16,
+      "change": 0
     },
     {
       "rank": 17,
@@ -453,19 +453,19 @@
     },
     {
       "rank": 51,
-      "title": "소나기",
-      "artist": "이클립스 (ECLIPSE)",
-      "album": "선재 업고 튀어 OST Part 1",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/114/59/325/11459325_20240405171054_500.jpg/melon/resize/120/quality/80/optimize",
+      "title": "404 (New Era)",
+      "artist": "KiiiKiii (키키)",
+      "album": "Delulu Pack",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/128/06/237/12806237_20260126145002_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 52,
       "change": 1
     },
     {
       "rank": 52,
-      "title": "404 (New Era)",
-      "artist": "KiiiKiii (키키)",
-      "album": "Delulu Pack",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/128/06/237/12806237_20260126145002_500.jpg/melon/resize/120/quality/80/optimize",
+      "title": "소나기",
+      "artist": "이클립스 (ECLIPSE)",
+      "album": "선재 업고 튀어 OST Part 1",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/114/59/325/11459325_20240405171054_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 51,
       "change": -1
     },
@@ -484,8 +484,8 @@
       "artist": "이무진",
       "album": "만화 (滿花)",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/116/08/521/11608521_20241004161722_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 55,
-      "change": 1
+      "previous_rank": 54,
+      "change": 0
     },
     {
       "rank": 55,
@@ -493,8 +493,8 @@
       "artist": "RESCENE (리센느)",
       "album": "Runaway",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/133/12/413/13312413_20260406143448_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 54,
-      "change": -1
+      "previous_rank": 55,
+      "change": 0
     },
     {
       "rank": 56,
@@ -511,8 +511,8 @@
       "artist": "카더가든",
       "album": "부재",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/105/54/647/10554647_20210127173809_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 58,
-      "change": 1
+      "previous_rank": 57,
+      "change": 0
     },
     {
       "rank": 58,
@@ -520,8 +520,8 @@
       "artist": "Hearts2Hearts (하츠투하츠)",
       "album": "Lemon Tang - The 2nd Mini Album",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/137/50/428/13750428_20260619162731_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 57,
-      "change": -1
+      "previous_rank": 58,
+      "change": 0
     },
     {
       "rank": 59,
@@ -606,21 +606,21 @@
     },
     {
       "rank": 68,
-      "title": "삐그덕 (Feat. 아이유)",
-      "artist": "Crush",
-      "album": "삐그덕 (Feat. 아이유)",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/149/55/418/14955418_20261019111743_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 68,
-      "change": 0
-    },
-    {
-      "rank": 69,
       "title": "Golden",
       "artist": "HUNTR/X",
       "album": "KPop Demon Hunters (Soundtrack from the Netflix Film)",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/118/59/863/11859863_20250620104512_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 69,
-      "change": 0
+      "change": 1
+    },
+    {
+      "rank": 69,
+      "title": "삐그덕 (Feat. 아이유)",
+      "artist": "Crush",
+      "album": "삐그덕 (Feat. 아이유)",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/149/55/418/14955418_20261019111743_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 68,
+      "change": -1
     },
     {
       "rank": 70,
