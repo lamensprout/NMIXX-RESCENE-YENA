@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-24T20:16:29.065608+00:00",
+  "updated_at": "2026-10-24T21:19:15.359185+00:00",
   "songs": [
     {
       "rank": 1,
@@ -268,8 +268,8 @@
       "artist": "NMIXX",
       "album": "Blue Valentine",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/121/49/391/12149391_20251013150421_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 31,
-      "change": 1
+      "previous_rank": 30,
+      "change": 0
     },
     {
       "rank": 31,
@@ -277,8 +277,8 @@
       "artist": "우디 (Woody)",
       "album": "어제보다 슬픈 오늘",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/117/56/010/11756010_20250331135525_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 30,
-      "change": -1
+      "previous_rank": 31,
+      "change": 0
     },
     {
       "rank": 32,
@@ -372,39 +372,39 @@
     },
     {
       "rank": 42,
-      "title": "모르시나요(PROD.로코베리)",
-      "artist": "조째즈",
-      "album": "모르시나요",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/116/85/729/11685729_20250106160640_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 42,
-      "change": 0
-    },
-    {
-      "rank": 43,
       "title": "주저하는 연인들을 위해",
       "artist": "잔나비",
       "album": "전설",
       "album_image": "https://cdnimg.melon.co.kr/cm/album/images/102/60/858/10260858_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 43,
-      "change": 0
+      "change": 1
+    },
+    {
+      "rank": 43,
+      "title": "모르시나요(PROD.로코베리)",
+      "artist": "조째즈",
+      "album": "모르시나요",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/116/85/729/11685729_20250106160640_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 42,
+      "change": -1
     },
     {
       "rank": 44,
-      "title": "HOME SWEET HOME (feat. 태양, 대성)",
-      "artist": "G-DRAGON",
-      "album": "HOME SWEET HOME (feat. 태양, 대성)",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/116/47/670/11647670_20241121150855_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 44,
-      "change": 0
-    },
-    {
-      "rank": 45,
       "title": "멸종위기사랑",
       "artist": "이찬혁",
       "album": "EROS",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/118/91/198/11891198_20250714145747_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 45,
-      "change": 0
+      "change": 1
+    },
+    {
+      "rank": 45,
+      "title": "HOME SWEET HOME (feat. 태양, 대성)",
+      "artist": "G-DRAGON",
+      "album": "HOME SWEET HOME (feat. 태양, 대성)",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/116/47/670/11647670_20241121150855_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 44,
+      "change": -1
     },
     {
       "rank": 46,
@@ -462,21 +462,21 @@
     },
     {
       "rank": 52,
-      "title": "청춘만화",
-      "artist": "이무진",
-      "album": "만화 (滿花)",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/116/08/521/11608521_20241004161722_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 52,
-      "change": 0
-    },
-    {
-      "rank": 53,
       "title": "그대 작은 나의 세상이 되어",
       "artist": "카더가든",
       "album": "부재",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/105/54/647/10554647_20210127173809_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 53,
-      "change": 0
+      "change": 1
+    },
+    {
+      "rank": 53,
+      "title": "청춘만화",
+      "artist": "이무진",
+      "album": "만화 (滿花)",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/116/08/521/11608521_20241004161722_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 52,
+      "change": -1
     },
     {
       "rank": 54,
@@ -556,8 +556,8 @@
       "artist": "BLACKPINK",
       "album": "뛰어(JUMP)",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/118/90/480/11890480_20250711095238_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 63,
-      "change": 1
+      "previous_rank": 62,
+      "change": 0
     },
     {
       "rank": 63,
@@ -565,8 +565,8 @@
       "artist": "황가람",
       "album": "나는 반딧불",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/116/20/541/11620541_20241018183253_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 62,
-      "change": -1
+      "previous_rank": 63,
+      "change": 0
     },
     {
       "rank": 64,
@@ -597,37 +597,37 @@
     },
     {
       "rank": 67,
-      "title": "사랑은 늘 도망가",
-      "artist": "임영웅",
-      "album": "신사와 아가씨 OST Part.2",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/107/35/654/10735654_20211008114339_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 67,
-      "change": 0
-    },
-    {
-      "rank": 68,
       "title": "사랑인가 봐",
       "artist": "멜로망스",
       "album": "사랑인가 봐 (사내맞선 OST 스페셜 트랙)",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/108/71/162/10871162_20220217162422_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 68,
-      "change": 0
+      "change": 1
+    },
+    {
+      "rank": 68,
+      "title": "사랑은 늘 도망가",
+      "artist": "임영웅",
+      "album": "신사와 아가씨 OST Part.2",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/107/35/654/10735654_20211008114339_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 67,
+      "change": -1
     },
     {
       "rank": 69,
-      "title": "예뻤어",
-      "artist": "DAY6 (데이식스)",
-      "album": "Every DAY6 February",
-      "album_image": "https://cdnimg.melon.co.kr/cm/album/images/100/36/099/10036099_500.jpg/melon/resize/120/quality/80/optimize",
+      "title": "청혼하지 않을 이유를 못 찾았어",
+      "artist": "이무진",
+      "album": "청혼하지 않을 이유를 못 찾았어",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/114/55/285/11455285_20240401151801_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 70,
       "change": 1
     },
     {
       "rank": 70,
-      "title": "청혼하지 않을 이유를 못 찾았어",
-      "artist": "이무진",
-      "album": "청혼하지 않을 이유를 못 찾았어",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/114/55/285/11455285_20240401151801_500.jpg/melon/resize/120/quality/80/optimize",
+      "title": "예뻤어",
+      "artist": "DAY6 (데이식스)",
+      "album": "Every DAY6 February",
+      "album_image": "https://cdnimg.melon.co.kr/cm/album/images/100/36/099/10036099_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 69,
       "change": -1
     },
@@ -768,21 +768,21 @@
     },
     {
       "rank": 86,
-      "title": "Dynamite",
-      "artist": "방탄소년단",
-      "album": "Dynamite (DayTime Version)",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/104/79/150/10479150_20200918102847_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 86,
-      "change": 0
-    },
-    {
-      "rank": 87,
       "title": "봄날",
       "artist": "방탄소년단",
       "album": "YOU NEVER WALK ALONE",
       "album_image": "https://cdnimg.melon.co.kr/cm/album/images/100/37/969/10037969_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 87,
-      "change": 0
+      "change": 1
+    },
+    {
+      "rank": 87,
+      "title": "Dynamite",
+      "artist": "방탄소년단",
+      "album": "Dynamite (DayTime Version)",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/104/79/150/10479150_20200918102847_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 86,
+      "change": -1
     },
     {
       "rank": 88,
