@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-24T21:19:15.359185+00:00",
+  "updated_at": "2026-10-24T22:18:28.378161+00:00",
   "songs": [
     {
       "rank": 1,
@@ -376,8 +376,8 @@
       "artist": "잔나비",
       "album": "전설",
       "album_image": "https://cdnimg.melon.co.kr/cm/album/images/102/60/858/10260858_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 43,
-      "change": 1
+      "previous_rank": 42,
+      "change": 0
     },
     {
       "rank": 43,
@@ -385,8 +385,8 @@
       "artist": "조째즈",
       "album": "모르시나요",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/116/85/729/11685729_20250106160640_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 42,
-      "change": -1
+      "previous_rank": 43,
+      "change": 0
     },
     {
       "rank": 44,
@@ -394,8 +394,8 @@
       "artist": "이찬혁",
       "album": "EROS",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/118/91/198/11891198_20250714145747_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 45,
-      "change": 1
+      "previous_rank": 44,
+      "change": 0
     },
     {
       "rank": 45,
@@ -403,8 +403,8 @@
       "artist": "G-DRAGON",
       "album": "HOME SWEET HOME (feat. 태양, 대성)",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/116/47/670/11647670_20241121150855_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 44,
-      "change": -1
+      "previous_rank": 45,
+      "change": 0
     },
     {
       "rank": 46,
@@ -466,8 +466,8 @@
       "artist": "카더가든",
       "album": "부재",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/105/54/647/10554647_20210127173809_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 53,
-      "change": 1
+      "previous_rank": 52,
+      "change": 0
     },
     {
       "rank": 53,
@@ -475,8 +475,8 @@
       "artist": "이무진",
       "album": "만화 (滿花)",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/116/08/521/11608521_20241004161722_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 52,
-      "change": -1
+      "previous_rank": 53,
+      "change": 0
     },
     {
       "rank": 54,
@@ -516,21 +516,21 @@
     },
     {
       "rank": 58,
-      "title": "이 별로부터",
-      "artist": "아이유",
-      "album": "이 별로부터",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/145/35/765/14535765_20260909154035_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 58,
-      "change": 0
-    },
-    {
-      "rank": 59,
       "title": "Star Trace",
       "artist": "PLAVE",
       "album": "HYPERDRIVE",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/146/29/242/14629242_20261007150642_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 59,
-      "change": 0
+      "change": 1
+    },
+    {
+      "rank": 59,
+      "title": "이 별로부터",
+      "artist": "아이유",
+      "album": "이 별로부터",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/145/35/765/14535765_20260909154035_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 58,
+      "change": -1
     },
     {
       "rank": 60,
@@ -543,21 +543,21 @@
     },
     {
       "rank": 61,
-      "title": "Whiplash",
-      "artist": "aespa",
-      "album": "Whiplash - The 5th Mini Album",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/116/20/540/11620540_20241018183208_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 61,
-      "change": 0
-    },
-    {
-      "rank": 62,
       "title": "뛰어(JUMP)",
       "artist": "BLACKPINK",
       "album": "뛰어(JUMP)",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/118/90/480/11890480_20250711095238_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 62,
-      "change": 0
+      "change": 1
+    },
+    {
+      "rank": 62,
+      "title": "Whiplash",
+      "artist": "aespa",
+      "album": "Whiplash - The 5th Mini Album",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/116/20/540/11620540_20241018183208_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 61,
+      "change": -1
     },
     {
       "rank": 63,
@@ -601,8 +601,8 @@
       "artist": "멜로망스",
       "album": "사랑인가 봐 (사내맞선 OST 스페셜 트랙)",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/108/71/162/10871162_20220217162422_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 68,
-      "change": 1
+      "previous_rank": 67,
+      "change": 0
     },
     {
       "rank": 68,
@@ -610,8 +610,8 @@
       "artist": "임영웅",
       "album": "신사와 아가씨 OST Part.2",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/107/35/654/10735654_20211008114339_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 67,
-      "change": -1
+      "previous_rank": 68,
+      "change": 0
     },
     {
       "rank": 69,
@@ -619,8 +619,8 @@
       "artist": "이무진",
       "album": "청혼하지 않을 이유를 못 찾았어",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/114/55/285/11455285_20240401151801_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 70,
-      "change": 1
+      "previous_rank": 69,
+      "change": 0
     },
     {
       "rank": 70,
@@ -628,8 +628,8 @@
       "artist": "DAY6 (데이식스)",
       "album": "Every DAY6 February",
       "album_image": "https://cdnimg.melon.co.kr/cm/album/images/100/36/099/10036099_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 69,
-      "change": -1
+      "previous_rank": 70,
+      "change": 0
     },
     {
       "rank": 71,
@@ -768,19 +768,19 @@
     },
     {
       "rank": 86,
-      "title": "봄날",
+      "title": "Dynamite",
       "artist": "방탄소년단",
-      "album": "YOU NEVER WALK ALONE",
-      "album_image": "https://cdnimg.melon.co.kr/cm/album/images/100/37/969/10037969_500.jpg/melon/resize/120/quality/80/optimize",
+      "album": "Dynamite (DayTime Version)",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/104/79/150/10479150_20200918102847_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 87,
       "change": 1
     },
     {
       "rank": 87,
-      "title": "Dynamite",
+      "title": "봄날",
       "artist": "방탄소년단",
-      "album": "Dynamite (DayTime Version)",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/104/79/150/10479150_20200918102847_500.jpg/melon/resize/120/quality/80/optimize",
+      "album": "YOU NEVER WALK ALONE",
+      "album_image": "https://cdnimg.melon.co.kr/cm/album/images/100/37/969/10037969_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 86,
       "change": -1
     },
@@ -795,21 +795,21 @@
     },
     {
       "rank": 89,
-      "title": "Hype Boy",
-      "artist": "NewJeans",
-      "album": "NewJeans 1st EP 'New Jeans'",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/110/11/565/11011565_20220801102637_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 89,
-      "change": 0
-    },
-    {
-      "rank": 90,
       "title": "SWIM",
       "artist": "방탄소년단",
       "album": "ARIRANG",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/129/27/820/12927820_20260320091310_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 90,
-      "change": 0
+      "change": 1
+    },
+    {
+      "rank": 90,
+      "title": "Hype Boy",
+      "artist": "NewJeans",
+      "album": "NewJeans 1st EP 'New Jeans'",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/110/11/565/11011565_20220801102637_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 89,
+      "change": -1
     },
     {
       "rank": 91,
