@@ -515,7 +515,7 @@ async function loadArtistCatalog() {
   try {
     const config = window.MELONITOR_SUPABASE_CONFIG || {};
     if (config.projectUrl && config.publishableKey) {
-      const response = await fetch(config.projectUrl.replace(/\/+$/, "") + "/functions/v1/melon-chart", {
+      const response = await fetch("/api/melon-chart", {
         headers: { apikey: config.publishableKey },
         cache: "no-store"
       });
@@ -572,7 +572,7 @@ async function loadRankHistory() {
   try {
     const config = window.MELONITOR_SUPABASE_CONFIG || {};
     if (!config.projectUrl || !config.publishableKey) throw new Error("차트 서버 설정을 찾을 수 없어요.");
-    const url = new URL(String(config.projectUrl).replace(/\/+$/, "") + "/functions/v1/melon-chart");
+    const url = new URL("/api/melon-chart", window.location.origin);
     url.searchParams.set("history", "1");
     url.searchParams.set("hours", "24");
     const response = await fetch(url.toString(), {
