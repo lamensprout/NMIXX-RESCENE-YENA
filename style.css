@@ -2244,3 +2244,44 @@ body.dark-mode .user-menu-avatar { border-color: #3c4853; }
   .profile-avatar-actions { align-items: stretch; flex-direction: column; }
   .profile-avatar-actions .secondary-button { width: 100%; }
 }
+
+
+/* Clear, consistent back navigation at the top-left of secondary pages. */
+.page-back-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 40px;
+  margin: 0 0 14px;
+  padding: 0 13px;
+  border: 1px solid #cbd6dc;
+  border-radius: 10px;
+  background: #ffffff;
+  color: #31596c;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.4;
+  text-decoration: none;
+  transition: background 140ms ease, border-color 140ms ease, color 140ms ease;
+}
+.page-back-link:hover,
+.page-back-link:focus-visible {
+  background: #f1f7f9;
+  border-color: #8eabb9;
+  color: #203f50;
+}
+.page-back-link:focus-visible {
+  outline: 2px solid #00cd3b;
+  outline-offset: 3px;
+}
+body.dark-mode .page-back-link {
+  background: #202731;
+  border-color: #3a4553;
+  color: #b1cbd8;
+}
+body.dark-mode .page-back-link:hover,
+body.dark-mode .page-back-link:focus-visible {
+  background: #252d37;
+  border-color: #536c7a;
+  color: #e0edf3;
+}
