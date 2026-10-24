@@ -511,7 +511,7 @@ async function loadArtistCatalog() {
   try {
     const config = window.MELONITOR_SUPABASE_CONFIG || {};
     if (config.projectUrl && config.publishableKey) {
-      const response = await fetch(config.projectUrl.replace(/\/+$/, "") + "/functions/v1/melon-chart", {
+      const response = await fetch("/api/melon-chart", {
         headers: { apikey: config.publishableKey },
         cache: "no-store"
       });
