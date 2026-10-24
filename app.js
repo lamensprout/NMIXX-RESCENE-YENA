@@ -843,7 +843,7 @@ function getChartFunctionConfig() {
     throw new Error("최신 차트 수집 서버 설정을 찾을 수 없습니다.");
   }
   return {
-    endpoint: "/api/melon-chart",
+    endpoint: config.projectUrl.replace(/\/+$/, "") + "/functions/v1/melon-chart",
     publishableKey: config.publishableKey
   };
 }
