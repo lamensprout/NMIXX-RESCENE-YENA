@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-24T18:19:50.440869+00:00",
+  "updated_at": "2026-10-24T19:19:54.298378+00:00",
   "songs": [
     {
       "rank": 1,
@@ -385,8 +385,8 @@
       "artist": "잔나비",
       "album": "전설",
       "album_image": "https://cdnimg.melon.co.kr/cm/album/images/102/60/858/10260858_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 44,
-      "change": 1
+      "previous_rank": 43,
+      "change": 0
     },
     {
       "rank": 44,
@@ -394,8 +394,8 @@
       "artist": "G-DRAGON",
       "album": "HOME SWEET HOME (feat. 태양, 대성)",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/116/47/670/11647670_20241121150855_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 43,
-      "change": -1
+      "previous_rank": 44,
+      "change": 0
     },
     {
       "rank": 45,
@@ -615,21 +615,21 @@
     },
     {
       "rank": 69,
-      "title": "예뻤어",
-      "artist": "DAY6 (데이식스)",
-      "album": "Every DAY6 February",
-      "album_image": "https://cdnimg.melon.co.kr/cm/album/images/100/36/099/10036099_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 69,
-      "change": 0
-    },
-    {
-      "rank": 70,
       "title": "청혼하지 않을 이유를 못 찾았어",
       "artist": "이무진",
       "album": "청혼하지 않을 이유를 못 찾았어",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/114/55/285/11455285_20240401151801_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 70,
-      "change": 0
+      "change": 1
+    },
+    {
+      "rank": 70,
+      "title": "예뻤어",
+      "artist": "DAY6 (데이식스)",
+      "album": "Every DAY6 February",
+      "album_image": "https://cdnimg.melon.co.kr/cm/album/images/100/36/099/10036099_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 69,
+      "change": -1
     },
     {
       "rank": 71,
@@ -736,8 +736,8 @@
       "artist": "정국",
       "album": "Seven (feat. Latto) - Clean Ver.",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/112/86/070/11286070_20230713181059_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 83,
-      "change": 1
+      "previous_rank": 82,
+      "change": 0
     },
     {
       "rank": 83,
@@ -745,8 +745,8 @@
       "artist": "Crush",
       "album": "삐그덕 (Feat. 아이유)",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/149/55/418/14955418_20261019111743_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 82,
-      "change": -1
+      "previous_rank": 83,
+      "change": 0
     },
     {
       "rank": 84,
@@ -768,21 +768,21 @@
     },
     {
       "rank": 86,
-      "title": "봄날",
-      "artist": "방탄소년단",
-      "album": "YOU NEVER WALK ALONE",
-      "album_image": "https://cdnimg.melon.co.kr/cm/album/images/100/37/969/10037969_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 86,
-      "change": 0
-    },
-    {
-      "rank": 87,
       "title": "Dynamite",
       "artist": "방탄소년단",
       "album": "Dynamite (DayTime Version)",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/104/79/150/10479150_20200918102847_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 87,
-      "change": 0
+      "change": 1
+    },
+    {
+      "rank": 87,
+      "title": "봄날",
+      "artist": "방탄소년단",
+      "album": "YOU NEVER WALK ALONE",
+      "album_image": "https://cdnimg.melon.co.kr/cm/album/images/100/37/969/10037969_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 86,
+      "change": -1
     },
     {
       "rank": 88,
