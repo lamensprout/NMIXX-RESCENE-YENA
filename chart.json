@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-24T19:19:54.298378+00:00",
+  "updated_at": "2026-10-24T20:16:29.065608+00:00",
   "songs": [
     {
       "rank": 1,
@@ -264,21 +264,21 @@
     },
     {
       "rank": 30,
-      "title": "어제보다 슬픈 오늘",
-      "artist": "우디 (Woody)",
-      "album": "어제보다 슬픈 오늘",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/117/56/010/11756010_20250331135525_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 30,
-      "change": 0
-    },
-    {
-      "rank": 31,
       "title": "Blue Valentine",
       "artist": "NMIXX",
       "album": "Blue Valentine",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/121/49/391/12149391_20251013150421_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 31,
-      "change": 0
+      "change": 1
+    },
+    {
+      "rank": 31,
+      "title": "어제보다 슬픈 오늘",
+      "artist": "우디 (Woody)",
+      "album": "어제보다 슬픈 오늘",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/117/56/010/11756010_20250331135525_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 30,
+      "change": -1
     },
     {
       "rank": 32,
@@ -552,21 +552,21 @@
     },
     {
       "rank": 62,
-      "title": "나는 반딧불",
-      "artist": "황가람",
-      "album": "나는 반딧불",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/116/20/541/11620541_20241018183253_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 62,
-      "change": 0
-    },
-    {
-      "rank": 63,
       "title": "뛰어(JUMP)",
       "artist": "BLACKPINK",
       "album": "뛰어(JUMP)",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/118/90/480/11890480_20250711095238_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 63,
-      "change": 0
+      "change": 1
+    },
+    {
+      "rank": 63,
+      "title": "나는 반딧불",
+      "artist": "황가람",
+      "album": "나는 반딧불",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/116/20/541/11620541_20241018183253_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 62,
+      "change": -1
     },
     {
       "rank": 64,
@@ -615,19 +615,19 @@
     },
     {
       "rank": 69,
-      "title": "청혼하지 않을 이유를 못 찾았어",
-      "artist": "이무진",
-      "album": "청혼하지 않을 이유를 못 찾았어",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/114/55/285/11455285_20240401151801_500.jpg/melon/resize/120/quality/80/optimize",
+      "title": "예뻤어",
+      "artist": "DAY6 (데이식스)",
+      "album": "Every DAY6 February",
+      "album_image": "https://cdnimg.melon.co.kr/cm/album/images/100/36/099/10036099_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 70,
       "change": 1
     },
     {
       "rank": 70,
-      "title": "예뻤어",
-      "artist": "DAY6 (데이식스)",
-      "album": "Every DAY6 February",
-      "album_image": "https://cdnimg.melon.co.kr/cm/album/images/100/36/099/10036099_500.jpg/melon/resize/120/quality/80/optimize",
+      "title": "청혼하지 않을 이유를 못 찾았어",
+      "artist": "이무진",
+      "album": "청혼하지 않을 이유를 못 찾았어",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/114/55/285/11455285_20240401151801_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 69,
       "change": -1
     },
@@ -772,8 +772,8 @@
       "artist": "방탄소년단",
       "album": "Dynamite (DayTime Version)",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/104/79/150/10479150_20200918102847_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 87,
-      "change": 1
+      "previous_rank": 86,
+      "change": 0
     },
     {
       "rank": 87,
@@ -781,8 +781,8 @@
       "artist": "방탄소년단",
       "album": "YOU NEVER WALK ALONE",
       "album_image": "https://cdnimg.melon.co.kr/cm/album/images/100/37/969/10037969_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 86,
-      "change": -1
+      "previous_rank": 87,
+      "change": 0
     },
     {
       "rank": 88,
