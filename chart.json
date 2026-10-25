@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-25T18:20:55.135515+00:00",
+  "updated_at": "2026-10-25T19:20:19.698499+00:00",
   "songs": [
     {
       "rank": 1,
@@ -327,21 +327,21 @@
     },
     {
       "rank": 37,
-      "title": "그대만 있다면 (여름날 우리 X 너드커넥션 (Nerd Connection))",
-      "artist": "너드커넥션 (Nerd Connection)",
-      "album": "그대만 있다면 (여름날 우리 X 너드커넥션 (Nerd Connection))",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/113/05/759/11305759_20230814111006_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 37,
-      "change": 0
-    },
-    {
-      "rank": 38,
       "title": "천상연",
       "artist": "이창섭",
       "album": "천상연 (웹툰 '선녀외전' X 이창섭 (LEE CHANGSUB))",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/114/21/941/11421941_20240220105008_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 38,
-      "change": 0
+      "change": 1
+    },
+    {
+      "rank": 38,
+      "title": "그대만 있다면 (여름날 우리 X 너드커넥션 (Nerd Connection))",
+      "artist": "너드커넥션 (Nerd Connection)",
+      "album": "그대만 있다면 (여름날 우리 X 너드커넥션 (Nerd Connection))",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/113/05/759/11305759_20230814111006_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 37,
+      "change": -1
     },
     {
       "rank": 39,
@@ -493,8 +493,8 @@
       "artist": "RESCENE (리센느)",
       "album": "Runaway",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/133/12/413/13312413_20260406143448_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 56,
-      "change": 1
+      "previous_rank": 55,
+      "change": 0
     },
     {
       "rank": 56,
@@ -502,8 +502,8 @@
       "artist": "10CM",
       "album": "너에게 닿기를",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/117/30/411/11730411_20250306095101_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 55,
-      "change": -1
+      "previous_rank": 56,
+      "change": 0
     },
     {
       "rank": 57,
@@ -556,8 +556,8 @@
       "artist": "아이유",
       "album": "이 별로부터",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/145/35/765/14535765_20260909154035_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 63,
-      "change": 1
+      "previous_rank": 62,
+      "change": 0
     },
     {
       "rank": 63,
@@ -565,8 +565,8 @@
       "artist": "HUNTR/X",
       "album": "KPop Demon Hunters (Soundtrack from the Netflix Film)",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/118/59/863/11859863_20250620104512_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 62,
-      "change": -1
+      "previous_rank": 63,
+      "change": 0
     },
     {
       "rank": 64,
@@ -628,8 +628,8 @@
       "artist": "DAY6 (데이식스)",
       "album": "Every DAY6 February",
       "album_image": "https://cdnimg.melon.co.kr/cm/album/images/100/36/099/10036099_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 71,
-      "change": 1
+      "previous_rank": 70,
+      "change": 0
     },
     {
       "rank": 71,
@@ -637,8 +637,8 @@
       "artist": "멜로망스",
       "album": "사랑인가 봐 (사내맞선 OST 스페셜 트랙)",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/108/71/162/10871162_20220217162422_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 70,
-      "change": -1
+      "previous_rank": 71,
+      "change": 0
     },
     {
       "rank": 72,
@@ -660,28 +660,28 @@
     },
     {
       "rank": 74,
+      "title": "APT.",
+      "artist": "로제 (ROSÉ)",
+      "album": "APT.",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/116/19/809/11619809_20241018103507_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 76,
+      "change": 2
+    },
+    {
+      "rank": 75,
       "title": "다정히 내 이름을 부르면",
       "artist": "경서예지",
       "album": "다정히 내 이름을 부르면 (경서예지 x 전건호)",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/106/10/525/10610525_20210518143433_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 74,
-      "change": 0
+      "change": -1
     },
     {
-      "rank": 75,
+      "rank": 76,
       "title": "오늘만 I LOVE YOU",
       "artist": "BOYNEXTDOOR",
       "album": "오늘만 I LOVE YOU",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/116/85/070/11685070_20250106111631_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 76,
-      "change": 1
-    },
-    {
-      "rank": 76,
-      "title": "APT.",
-      "artist": "로제 (ROSÉ)",
-      "album": "APT.",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/116/19/809/11619809_20241018103507_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 75,
       "change": -1
     },
@@ -709,8 +709,8 @@
       "artist": "NMIXX",
       "album": "Strange Muse",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/148/01/628/14801628_20261016112418_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 82,
-      "change": 3
+      "previous_rank": 79,
+      "change": 0
     },
     {
       "rank": 80,
@@ -718,8 +718,8 @@
       "artist": "Lady Gaga",
       "album": "Die With A Smile",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/115/68/901/11568901_20240816130602_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 79,
-      "change": -1
+      "previous_rank": 80,
+      "change": 0
     },
     {
       "rank": 81,
@@ -736,8 +736,8 @@
       "artist": "제니 (JENNIE)",
       "album": "Ruby",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/117/30/946/11730946_20250307173452_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 80,
-      "change": -2
+      "previous_rank": 82,
+      "change": 0
     },
     {
       "rank": 83,
