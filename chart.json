@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-25T20:16:24.905733+00:00",
+  "updated_at": "2026-10-25T21:19:29.242978+00:00",
   "songs": [
     {
       "rank": 1,
@@ -273,21 +273,21 @@
     },
     {
       "rank": 31,
-      "title": "소문의 낙원",
-      "artist": "AKMU (악뮤)",
-      "album": "개화",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/133/12/398/13312398_20260406142544_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 31,
-      "change": 0
-    },
-    {
-      "rank": 32,
       "title": "어제보다 슬픈 오늘",
       "artist": "우디 (Woody)",
       "album": "어제보다 슬픈 오늘",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/117/56/010/11756010_20250331135525_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 32,
-      "change": 0
+      "change": 1
+    },
+    {
+      "rank": 32,
+      "title": "소문의 낙원",
+      "artist": "AKMU (악뮤)",
+      "album": "개화",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/133/12/398/13312398_20260406142544_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 31,
+      "change": -1
     },
     {
       "rank": 33,
@@ -381,21 +381,21 @@
     },
     {
       "rank": 43,
-      "title": "BANG BANG",
-      "artist": "IVE (아이브)",
-      "album": "REVIVE+",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/128/45/274/12845274_20260223113048_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 43,
-      "change": 0
-    },
-    {
-      "rank": 44,
       "title": "Skibidi",
       "artist": "소녀시대-효리수 (Girls' Generation-HRS)",
       "album": "Skibidi",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/144/94/370/14494370_20260828152343_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 44,
-      "change": 0
+      "change": 1
+    },
+    {
+      "rank": 44,
+      "title": "BANG BANG",
+      "artist": "IVE (아이브)",
+      "album": "REVIVE+",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/128/45/274/12845274_20260223113048_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 43,
+      "change": -1
     },
     {
       "rank": 45,
@@ -462,21 +462,21 @@
     },
     {
       "rank": 52,
-      "title": "Lemon Tang",
-      "artist": "Hearts2Hearts (하츠투하츠)",
-      "album": "Lemon Tang - The 2nd Mini Album",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/137/50/428/13750428_20260619162731_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 52,
-      "change": 0
-    },
-    {
-      "rank": 53,
       "title": "소나기",
       "artist": "이클립스 (ECLIPSE)",
       "album": "선재 업고 튀어 OST Part 1",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/114/59/325/11459325_20240405171054_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 53,
-      "change": 0
+      "change": 1
+    },
+    {
+      "rank": 53,
+      "title": "Lemon Tang",
+      "artist": "Hearts2Hearts (하츠투하츠)",
+      "album": "Lemon Tang - The 2nd Mini Album",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/137/50/428/13750428_20260619162731_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 52,
+      "change": -1
     },
     {
       "rank": 54,
@@ -588,21 +588,21 @@
     },
     {
       "rank": 66,
-      "title": "HAPPY",
-      "artist": "DAY6 (데이식스)",
-      "album": "Fourever",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/114/44/397/11444397_20240318115810_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 66,
-      "change": 0
-    },
-    {
-      "rank": 67,
       "title": "나는 반딧불",
       "artist": "황가람",
       "album": "나는 반딧불",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/116/20/541/11620541_20241018183253_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 67,
-      "change": 0
+      "change": 1
+    },
+    {
+      "rank": 67,
+      "title": "HAPPY",
+      "artist": "DAY6 (데이식스)",
+      "album": "Fourever",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/114/44/397/11444397_20240318115810_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 66,
+      "change": -1
     },
     {
       "rank": 68,
@@ -660,21 +660,21 @@
     },
     {
       "rank": 74,
-      "title": "APT.",
-      "artist": "로제 (ROSÉ)",
-      "album": "APT.",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/116/19/809/11619809_20241018103507_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 74,
-      "change": 0
-    },
-    {
-      "rank": 75,
       "title": "다정히 내 이름을 부르면",
       "artist": "경서예지",
       "album": "다정히 내 이름을 부르면 (경서예지 x 전건호)",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/106/10/525/10610525_20210518143433_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 75,
-      "change": 0
+      "change": 1
+    },
+    {
+      "rank": 75,
+      "title": "APT.",
+      "artist": "로제 (ROSÉ)",
+      "album": "APT.",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/116/19/809/11619809_20241018103507_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 74,
+      "change": -1
     },
     {
       "rank": 76,
@@ -714,21 +714,21 @@
     },
     {
       "rank": 80,
-      "title": "Die With A Smile",
-      "artist": "Lady Gaga",
-      "album": "Die With A Smile",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/115/68/901/11568901_20240816130602_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 80,
-      "change": 0
-    },
-    {
-      "rank": 81,
       "title": "Love Love Love (Feat. Yoong Jin Of Casker)",
       "artist": "에픽하이 (EPIK HIGH)",
       "album": "Remapping The Human Soul",
       "album_image": "https://cdnimg.melon.co.kr/cm/album/images/003/42/967/342967_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 81,
-      "change": 0
+      "change": 1
+    },
+    {
+      "rank": 81,
+      "title": "Die With A Smile",
+      "artist": "Lady Gaga",
+      "album": "Die With A Smile",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/115/68/901/11568901_20240816130602_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 80,
+      "change": -1
     },
     {
       "rank": 82,
