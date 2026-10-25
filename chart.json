@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-25T19:20:19.698499+00:00",
+  "updated_at": "2026-10-25T20:16:24.905733+00:00",
   "songs": [
     {
       "rank": 1,
@@ -331,8 +331,8 @@
       "artist": "이창섭",
       "album": "천상연 (웹툰 '선녀외전' X 이창섭 (LEE CHANGSUB))",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/114/21/941/11421941_20240220105008_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 38,
-      "change": 1
+      "previous_rank": 37,
+      "change": 0
     },
     {
       "rank": 38,
@@ -340,8 +340,8 @@
       "artist": "너드커넥션 (Nerd Connection)",
       "album": "그대만 있다면 (여름날 우리 X 너드커넥션 (Nerd Connection))",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/113/05/759/11305759_20230814111006_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 37,
-      "change": -1
+      "previous_rank": 38,
+      "change": 0
     },
     {
       "rank": 39,
@@ -664,8 +664,8 @@
       "artist": "로제 (ROSÉ)",
       "album": "APT.",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/116/19/809/11619809_20241018103507_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 76,
-      "change": 2
+      "previous_rank": 74,
+      "change": 0
     },
     {
       "rank": 75,
@@ -673,8 +673,8 @@
       "artist": "경서예지",
       "album": "다정히 내 이름을 부르면 (경서예지 x 전건호)",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/106/10/525/10610525_20210518143433_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 74,
-      "change": -1
+      "previous_rank": 75,
+      "change": 0
     },
     {
       "rank": 76,
@@ -682,8 +682,8 @@
       "artist": "BOYNEXTDOOR",
       "album": "오늘만 I LOVE YOU",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/116/85/070/11685070_20250106111631_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 75,
-      "change": -1
+      "previous_rank": 76,
+      "change": 0
     },
     {
       "rank": 77,
