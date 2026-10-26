@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-26T17:32:12.201645+00:00",
+  "updated_at": "2026-10-26T18:35:01.028120+00:00",
   "songs": [
     {
       "rank": 1,
@@ -286,8 +286,8 @@
       "artist": "우디 (Woody)",
       "album": "어제보다 슬픈 오늘",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/117/56/010/11756010_20250331135525_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 33,
-      "change": 1
+      "previous_rank": 32,
+      "change": 0
     },
     {
       "rank": 33,
@@ -295,8 +295,8 @@
       "artist": "김나영",
       "album": "봄 내음보다 너를",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/105/92/109/10592109_20210413181735_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 32,
-      "change": -1
+      "previous_rank": 33,
+      "change": 0
     },
     {
       "rank": 34,
@@ -385,8 +385,8 @@
       "artist": "G-DRAGON",
       "album": "HOME SWEET HOME (feat. 태양, 대성)",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/116/47/670/11647670_20241121150855_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 44,
-      "change": 1
+      "previous_rank": 43,
+      "change": 0
     },
     {
       "rank": 44,
@@ -394,8 +394,8 @@
       "artist": "이찬혁",
       "album": "EROS",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/118/91/198/11891198_20250714145747_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 43,
-      "change": -1
+      "previous_rank": 44,
+      "change": 0
     },
     {
       "rank": 45,
@@ -511,8 +511,8 @@
       "artist": "아이유",
       "album": "이 별로부터",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/145/35/765/14535765_20260909154035_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 58,
-      "change": 1
+      "previous_rank": 57,
+      "change": 0
     },
     {
       "rank": 58,
@@ -520,8 +520,8 @@
       "artist": "NCT WISH",
       "album": "I SPY - The 4th Mini Album",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/145/82/521/14582521_20261002114945_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 57,
-      "change": -1
+      "previous_rank": 58,
+      "change": 0
     },
     {
       "rank": 59,
