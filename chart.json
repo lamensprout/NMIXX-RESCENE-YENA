@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-26T19:35:39.251513+00:00",
+  "updated_at": "2026-10-26T20:24:50.570655+00:00",
   "songs": [
     {
       "rank": 1,
@@ -160,8 +160,8 @@
       "artist": "AKMU (악뮤)",
       "album": "항해",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/103/31/947/10331947_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 19,
-      "change": 1
+      "previous_rank": 18,
+      "change": 0
     },
     {
       "rank": 19,
@@ -169,8 +169,8 @@
       "artist": "BIG Naughty (서동현)",
       "album": "노스탈지아",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/144/94/275/14494275_20260828144050_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 18,
-      "change": -1
+      "previous_rank": 19,
+      "change": 0
     },
     {
       "rank": 20,
@@ -282,21 +282,21 @@
     },
     {
       "rank": 32,
-      "title": "어제보다 슬픈 오늘",
-      "artist": "우디 (Woody)",
-      "album": "어제보다 슬픈 오늘",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/117/56/010/11756010_20250331135525_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 32,
-      "change": 0
-    },
-    {
-      "rank": 33,
       "title": "봄 내음보다 너를",
       "artist": "김나영",
       "album": "봄 내음보다 너를",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/105/92/109/10592109_20210413181735_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 33,
-      "change": 0
+      "change": 1
+    },
+    {
+      "rank": 33,
+      "title": "어제보다 슬픈 오늘",
+      "artist": "우디 (Woody)",
+      "album": "어제보다 슬픈 오늘",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/117/56/010/11756010_20250331135525_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 32,
+      "change": -1
     },
     {
       "rank": 34,
@@ -363,19 +363,19 @@
     },
     {
       "rank": 41,
-      "title": "주저하는 연인들을 위해",
-      "artist": "잔나비",
-      "album": "전설",
-      "album_image": "https://cdnimg.melon.co.kr/cm/album/images/102/60/858/10260858_500.jpg/melon/resize/120/quality/80/optimize",
+      "title": "모든 날, 모든 순간 (Every day, Every Moment)",
+      "artist": "폴킴",
+      "album": "'키스 먼저 할까요?' OST Part.3",
+      "album_image": "https://cdnimg.melon.co.kr/cm/album/images/101/49/492/10149492_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 42,
       "change": 1
     },
     {
       "rank": 42,
-      "title": "모든 날, 모든 순간 (Every day, Every Moment)",
-      "artist": "폴킴",
-      "album": "'키스 먼저 할까요?' OST Part.3",
-      "album_image": "https://cdnimg.melon.co.kr/cm/album/images/101/49/492/10149492_500.jpg/melon/resize/120/quality/80/optimize",
+      "title": "주저하는 연인들을 위해",
+      "artist": "잔나비",
+      "album": "전설",
+      "album_image": "https://cdnimg.melon.co.kr/cm/album/images/102/60/858/10260858_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 41,
       "change": -1
     },
@@ -385,8 +385,8 @@
       "artist": "이찬혁",
       "album": "EROS",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/118/91/198/11891198_20250714145747_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 44,
-      "change": 1
+      "previous_rank": 43,
+      "change": 0
     },
     {
       "rank": 44,
@@ -394,8 +394,8 @@
       "artist": "G-DRAGON",
       "album": "HOME SWEET HOME (feat. 태양, 대성)",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/116/47/670/11647670_20241121150855_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 43,
-      "change": -1
+      "previous_rank": 44,
+      "change": 0
     },
     {
       "rank": 45,
@@ -588,19 +588,19 @@
     },
     {
       "rank": 66,
-      "title": "나는 반딧불",
-      "artist": "황가람",
-      "album": "나는 반딧불",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/116/20/541/11620541_20241018183253_500.jpg/melon/resize/120/quality/80/optimize",
+      "title": "Golden",
+      "artist": "HUNTR/X",
+      "album": "KPop Demon Hunters (Soundtrack from the Netflix Film)",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/118/59/863/11859863_20250620104512_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 67,
       "change": 1
     },
     {
       "rank": 67,
-      "title": "Golden",
-      "artist": "HUNTR/X",
-      "album": "KPop Demon Hunters (Soundtrack from the Netflix Film)",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/118/59/863/11859863_20250620104512_500.jpg/melon/resize/120/quality/80/optimize",
+      "title": "나는 반딧불",
+      "artist": "황가람",
+      "album": "나는 반딧불",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/116/20/541/11620541_20241018183253_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 66,
       "change": -1
     },
@@ -831,21 +831,21 @@
     },
     {
       "rank": 93,
-      "title": "우리들의 블루스",
-      "artist": "임영웅",
-      "album": "IM HERO",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/109/23/444/10923444_20220502140600_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 93,
-      "change": 0
-    },
-    {
-      "rank": 94,
       "title": "Magnetic",
       "artist": "아일릿(ILLIT)",
       "album": "SUPER REAL ME",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/114/50/069/11450069_20240325110702_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 94,
-      "change": 0
+      "change": 1
+    },
+    {
+      "rank": 94,
+      "title": "우리들의 블루스",
+      "artist": "임영웅",
+      "album": "IM HERO",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/109/23/444/10923444_20220502140600_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 93,
+      "change": -1
     },
     {
       "rank": 95,
@@ -894,11 +894,11 @@
     },
     {
       "rank": 100,
-      "title": "Rewind",
-      "artist": "PLAVE",
-      "album": "HYPERDRIVE",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/146/29/242/14629242_20261007150642_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 100,
+      "title": "체포하겠어",
+      "artist": "아일릿(ILLIT)",
+      "album": "BREAK EVEN",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/150/81/373/15081373_20261026102240_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": null,
       "change": 0
     }
   ]
