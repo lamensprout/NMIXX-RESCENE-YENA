@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-26T20:24:50.570655+00:00",
+  "updated_at": "2026-10-26T21:26:21.867175+00:00",
   "songs": [
     {
       "rank": 1,
@@ -286,8 +286,8 @@
       "artist": "김나영",
       "album": "봄 내음보다 너를",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/105/92/109/10592109_20210413181735_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 33,
-      "change": 1
+      "previous_rank": 32,
+      "change": 0
     },
     {
       "rank": 33,
@@ -295,8 +295,8 @@
       "artist": "우디 (Woody)",
       "album": "어제보다 슬픈 오늘",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/117/56/010/11756010_20250331135525_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 32,
-      "change": -1
+      "previous_rank": 33,
+      "change": 0
     },
     {
       "rank": 34,
@@ -367,8 +367,8 @@
       "artist": "폴킴",
       "album": "'키스 먼저 할까요?' OST Part.3",
       "album_image": "https://cdnimg.melon.co.kr/cm/album/images/101/49/492/10149492_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 42,
-      "change": 1
+      "previous_rank": 41,
+      "change": 0
     },
     {
       "rank": 42,
@@ -376,8 +376,8 @@
       "artist": "잔나비",
       "album": "전설",
       "album_image": "https://cdnimg.melon.co.kr/cm/album/images/102/60/858/10260858_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 41,
-      "change": -1
+      "previous_rank": 42,
+      "change": 0
     },
     {
       "rank": 43,
@@ -435,21 +435,21 @@
     },
     {
       "rank": 49,
-      "title": "소나기",
-      "artist": "이클립스 (ECLIPSE)",
-      "album": "선재 업고 튀어 OST Part 1",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/114/59/325/11459325_20240405171054_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 49,
-      "change": 0
-    },
-    {
-      "rank": 50,
       "title": "여름아 부탁해",
       "artist": "볼빨간사춘기",
       "album": "여름아 부탁해",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/138/23/274/13823274_20260721152311_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 50,
-      "change": 0
+      "change": 1
+    },
+    {
+      "rank": 50,
+      "title": "소나기",
+      "artist": "이클립스 (ECLIPSE)",
+      "album": "선재 업고 튀어 OST Part 1",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/114/59/325/11459325_20240405171054_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 49,
+      "change": -1
     },
     {
       "rank": 51,
@@ -592,8 +592,8 @@
       "artist": "HUNTR/X",
       "album": "KPop Demon Hunters (Soundtrack from the Netflix Film)",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/118/59/863/11859863_20250620104512_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 67,
-      "change": 1
+      "previous_rank": 66,
+      "change": 0
     },
     {
       "rank": 67,
@@ -601,8 +601,8 @@
       "artist": "황가람",
       "album": "나는 반딧불",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/116/20/541/11620541_20241018183253_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 66,
-      "change": -1
+      "previous_rank": 67,
+      "change": 0
     },
     {
       "rank": 68,
@@ -835,8 +835,8 @@
       "artist": "아일릿(ILLIT)",
       "album": "SUPER REAL ME",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/114/50/069/11450069_20240325110702_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 94,
-      "change": 1
+      "previous_rank": 93,
+      "change": 0
     },
     {
       "rank": 94,
@@ -844,8 +844,8 @@
       "artist": "임영웅",
       "album": "IM HERO",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/109/23/444/10923444_20220502140600_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 93,
-      "change": -1
+      "previous_rank": 94,
+      "change": 0
     },
     {
       "rank": 95,
@@ -885,21 +885,21 @@
     },
     {
       "rank": 99,
+      "title": "체포하겠어",
+      "artist": "아일릿(ILLIT)",
+      "album": "BREAK EVEN",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/150/81/373/15081373_20261026102240_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 100,
+      "change": 1
+    },
+    {
+      "rank": 100,
       "title": "The Answer Is Yes",
       "artist": "PLAVE",
       "album": "HYPERDRIVE",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/146/29/242/14629242_20261007150642_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 99,
-      "change": 0
-    },
-    {
-      "rank": 100,
-      "title": "체포하겠어",
-      "artist": "아일릿(ILLIT)",
-      "album": "BREAK EVEN",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/150/81/373/15081373_20261026102240_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": null,
-      "change": 0
+      "change": -1
     }
   ]
 }
