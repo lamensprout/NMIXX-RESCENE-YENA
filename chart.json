@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-26T21:26:21.867175+00:00",
+  "updated_at": "2026-10-26T22:26:39.207311+00:00",
   "songs": [
     {
       "rank": 1,
@@ -93,21 +93,21 @@
     },
     {
       "rank": 11,
-      "title": "만찬가",
-      "artist": "태연 (TAEYEON)",
-      "album": "J-POP REMAKE Vol.1",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/137/65/551/13765551_20260626112146_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 11,
-      "change": 0
-    },
-    {
-      "rank": 12,
       "title": "Looks Can Kill",
       "artist": "IVE (아이브)",
       "album": "Looks Can Kill",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/148/09/931/14809931_20261026105712_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 12,
-      "change": 0
+      "change": 1
+    },
+    {
+      "rank": 12,
+      "title": "만찬가",
+      "artist": "태연 (TAEYEON)",
+      "album": "J-POP REMAKE Vol.1",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/137/65/551/13765551_20260626112146_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 11,
+      "change": -1
     },
     {
       "rank": 13,
@@ -282,21 +282,21 @@
     },
     {
       "rank": 32,
-      "title": "봄 내음보다 너를",
-      "artist": "김나영",
-      "album": "봄 내음보다 너를",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/105/92/109/10592109_20210413181735_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 32,
-      "change": 0
-    },
-    {
-      "rank": 33,
       "title": "어제보다 슬픈 오늘",
       "artist": "우디 (Woody)",
       "album": "어제보다 슬픈 오늘",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/117/56/010/11756010_20250331135525_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 33,
-      "change": 0
+      "change": 1
+    },
+    {
+      "rank": 33,
+      "title": "봄 내음보다 너를",
+      "artist": "김나영",
+      "album": "봄 내음보다 너를",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/105/92/109/10592109_20210413181735_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 32,
+      "change": -1
     },
     {
       "rank": 34,
@@ -363,21 +363,21 @@
     },
     {
       "rank": 41,
-      "title": "모든 날, 모든 순간 (Every day, Every Moment)",
-      "artist": "폴킴",
-      "album": "'키스 먼저 할까요?' OST Part.3",
-      "album_image": "https://cdnimg.melon.co.kr/cm/album/images/101/49/492/10149492_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 41,
-      "change": 0
-    },
-    {
-      "rank": 42,
       "title": "주저하는 연인들을 위해",
       "artist": "잔나비",
       "album": "전설",
       "album_image": "https://cdnimg.melon.co.kr/cm/album/images/102/60/858/10260858_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 42,
-      "change": 0
+      "change": 1
+    },
+    {
+      "rank": 42,
+      "title": "모든 날, 모든 순간 (Every day, Every Moment)",
+      "artist": "폴킴",
+      "album": "'키스 먼저 할까요?' OST Part.3",
+      "album_image": "https://cdnimg.melon.co.kr/cm/album/images/101/49/492/10149492_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 41,
+      "change": -1
     },
     {
       "rank": 43,
@@ -435,19 +435,19 @@
     },
     {
       "rank": 49,
-      "title": "여름아 부탁해",
-      "artist": "볼빨간사춘기",
-      "album": "여름아 부탁해",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/138/23/274/13823274_20260721152311_500.jpg/melon/resize/120/quality/80/optimize",
+      "title": "소나기",
+      "artist": "이클립스 (ECLIPSE)",
+      "album": "선재 업고 튀어 OST Part 1",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/114/59/325/11459325_20240405171054_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 50,
       "change": 1
     },
     {
       "rank": 50,
-      "title": "소나기",
-      "artist": "이클립스 (ECLIPSE)",
-      "album": "선재 업고 튀어 OST Part 1",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/114/59/325/11459325_20240405171054_500.jpg/melon/resize/120/quality/80/optimize",
+      "title": "여름아 부탁해",
+      "artist": "볼빨간사춘기",
+      "album": "여름아 부탁해",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/138/23/274/13823274_20260721152311_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 49,
       "change": -1
     },
@@ -867,30 +867,30 @@
     },
     {
       "rank": 97,
+      "title": "체포하겠어",
+      "artist": "아일릿(ILLIT)",
+      "album": "BREAK EVEN",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/150/81/373/15081373_20261026102240_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 99,
+      "change": 2
+    },
+    {
+      "rank": 98,
       "title": "Insomnia",
       "artist": "RIIZE",
       "album": "Insomnia",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/150/74/721/15074721_20261023150339_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 97,
-      "change": 0
+      "change": -1
     },
     {
-      "rank": 98,
+      "rank": 99,
       "title": "REBEL HEART",
       "artist": "IVE (아이브)",
       "album": "IVE EMPATHY",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/116/89/783/11689783_20250203110601_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 98,
-      "change": 0
-    },
-    {
-      "rank": 99,
-      "title": "체포하겠어",
-      "artist": "아일릿(ILLIT)",
-      "album": "BREAK EVEN",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/150/81/373/15081373_20261026102240_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 100,
-      "change": 1
+      "change": -1
     },
     {
       "rank": 100,
@@ -898,8 +898,8 @@
       "artist": "PLAVE",
       "album": "HYPERDRIVE",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/146/29/242/14629242_20261007150642_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 99,
-      "change": -1
+      "previous_rank": 100,
+      "change": 0
     }
   ]
 }
