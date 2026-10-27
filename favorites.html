@@ -136,7 +136,8 @@
         if (duration > 0) {
           closeTimer = window.setTimeout(() => {
             status.hidden = true;
-            status.dataset.message = "";\n            status.replaceChildren();
+            status.dataset.message = "";
+            status.replaceChildren();
             status.classList.remove("is-loading", "is-success", "is-error");
             if (backdrop) backdrop.hidden = true;
             document.body.classList.remove("chart-refresh-active");
