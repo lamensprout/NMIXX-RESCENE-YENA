@@ -2556,42 +2556,20 @@ html.dark-mode .brand-logo-light { display:none; }
 html.dark-mode .brand-logo-dark { display:block; }
 @media (max-width:640px) { .brand-logo { width:min(230px,100%); max-height:42px; } }
 
-
-/* Match the header controls in light mode to their dark-mode appearance. */
-body:not(.dark-mode) .user-menu-trigger {
-  color: #f0f3f6;
-  background: #151b21;
-  border-color: #303a43;
-}
-body:not(.dark-mode) .user-menu-trigger:hover,
-body:not(.dark-mode) .user-menu-trigger[aria-expanded="true"] {
-  background: #202830;
-  border-color: #46525d;
-}
-body:not(.dark-mode) .refresh-chart-button {
-  background: transparent;
-  color: #8ed69e;
-  border-color: #426d4a;
-}
-body:not(.dark-mode) .refresh-chart-button:hover:not(:disabled) {
-  background: transparent;
-  color: #b5f0bf;
-  border-color: #68a875;
-}
-
-
-/* Light-mode header controls: outline only, transparent inside. */
+/* Light-mode header controls: transparent fill, visible outline only. */
 body:not(.dark-mode) .user-menu-trigger {
   color: #17212b;
-  background: transparent;
-  border-color: transparent;
+  background: transparent !important;
+  border: 1px solid #d8dde2;
 }
 body:not(.dark-mode) .user-menu-trigger:hover,
 body:not(.dark-mode) .user-menu-trigger[aria-expanded="true"] {
-  background: transparent;
-  border-color: #d8dde2;
+  background: transparent !important;
+  border-color: #aeb8c1;
 }
 body:not(.dark-mode) .refresh-chart-button,
 body:not(.dark-mode) .refresh-chart-button:hover:not(:disabled) {
-  background: transparent;
+  background: transparent !important;
+  color: #168a35;
+  border: 1px solid #17a13c;
 }
