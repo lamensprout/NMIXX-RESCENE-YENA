@@ -1049,7 +1049,7 @@ async function loadChartData(manual = false, silent = false) {
     refreshChartButton.textContent = manual ? "↻ TOP100 수집 중..." : "↻ 차트 불러오는 중...";
   }
   if (manual) {
-    setChartStatus("차트를 불러오는 중입니다.\\n잠시만 기다려주세요.", 0, true);
+    setChartStatus("차트를 불러오는 중입니다.\n잠시만 기다려주세요.", 0, true);
   } else if (!silent) {
     setChartStatus("");
   }
