@@ -2246,7 +2246,268 @@ body.dark-mode .user-menu-avatar { border-color: #3c4853; }
 }
 
 
-/* Clear, consistent back navigation at the top-left of secondary pages. */
+/* Test environment badge: shown only on the test branch. */
+.environment-badge {
+  display: inline-flex;
+  align-items: center;
+  flex: 0 0 auto;
+  margin-left: 9px;
+  padding: 4px 7px;
+  border: 1px solid #d8be48;
+  border-radius: 6px;
+  background: #fff8d7;
+  color: #6d5b00;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: .04em;
+  line-height: 1.2;
+}
+body.dark-mode .environment-badge {
+  border-color: #8b7730;
+  background: #3a3218;
+  color: #f3dc75;
+}
+@media (max-width: 640px) {
+  .environment-badge {
+    margin-left: 6px;
+    padding: 3px 6px;
+    font-size: 9px;
+  }
+}
+
+/* Beta favorite-rank dashboard */
+.rank-graph-settings {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 18px 0 4px;
+  padding: 12px 14px;
+  border: 1px solid #dce3e7;
+  border-radius: 8px;
+  background: transparent;
+}
+.rank-graph-settings label {
+  color: #34434d;
+  font-size: 13px;
+  font-weight: 700;
+}
+.rank-graph-settings input[type="color"] {
+  flex: 0 0 42px;
+  width: 42px;
+  min-width: 42px;
+  height: 32px;
+  padding: 2px;
+  border: 1px solid #bcc7ce;
+  border-radius: 5px;
+  background: transparent;
+  cursor: pointer;
+}
+#rankGraphColorValue {
+  color: #71808a;
+  font-size: 12px;
+  font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+}
+.rank-history-status {
+  min-height: 18px;
+  margin: 8px 2px 12px;
+  color: #6d7983;
+  font-size: 12px;
+  line-height: 1.6;
+}
+#favoriteArtists.favorite-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 16px;
+}
+.favorite-rank-card {
+  min-width: 0;
+  border: 1px solid #dfe6ea;
+  border-radius: 8px;
+  padding: 16px;
+  background: transparent;
+}
+.favorite-rank-card-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+.favorite-rank-name {
+  min-width: 0;
+  padding: 5px 0;
+  border: 0;
+  border-bottom: 1px solid #168a35;
+  border-radius: 0;
+  background: transparent !important;
+  color: #17212b;
+  font-size: 16px;
+  font-weight: 750;
+  text-align: left;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  cursor: pointer;
+}
+.favorite-rank-name:hover,
+.favorite-rank-name:focus-visible {
+  background: transparent !important;
+  color: #168a35;
+}
+.favorite-current-rank {
+  flex: 0 0 auto;
+  color: #168a35;
+  font-size: 18px;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -.03em;
+}
+.favorite-current-rank.is-outside-chart {
+  color: #7b8790;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0;
+}
+.favorite-top-song {
+  min-height: 34px;
+  margin: 7px 0 14px;
+  color: #64717c;
+  font-size: 12px;
+  line-height: 1.55;
+}
+.rank-graph-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 2px;
+  color: #52616c;
+  font-size: 11px;
+  font-weight: 700;
+}
+.rank-graph-heading span:last-child {
+  color: #89949c;
+  font-size: 10px;
+  font-weight: 500;
+}
+.rank-graph-wrap {
+  min-width: 0;
+  width: 100%;
+}
+.rank-graph {
+  display: block;
+  width: 100%;
+  height: 88px;
+  overflow: visible;
+}
+.rank-graph-grid {
+  stroke: #e5eaed;
+  stroke-width: 1;
+  stroke-dasharray: 3 3;
+}
+.rank-graph-axis-label {
+  fill: #88949d;
+  font-size: 7px;
+}
+.rank-graph-time-labels {
+  margin-top: 0;
+  color: #89949c;
+  font-size: 10px;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+.rank-graph-empty {
+  display: grid;
+  place-items: center;
+  min-height: 75px;
+  margin: 6px 0 0;
+  padding: 12px;
+  border: 1px dashed #d8e0e5;
+  border-radius: 6px;
+  color: #7e8a93;
+  font-size: 11px;
+  line-height: 1.55;
+  text-align: center;
+}
+.favorite-list-empty {
+  grid-column: 1 / -1;
+}
+.favorite-rank-card-footer {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 7px;
+}
+.favorite-rank-card .favorite-remove {
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border: 1px solid #cbd4da;
+  border-radius: 5px;
+  background: transparent !important;
+  color: #65737d;
+  font-size: 18px;
+  line-height: 1;
+}
+.favorite-rank-card .favorite-remove:hover {
+  background: transparent !important;
+  border-color: #bd4c4c;
+  color: #bd4c4c;
+}
+body.dark-mode .rank-graph-settings {
+  border-color: #36414a;
+}
+body.dark-mode .rank-graph-settings label,
+body.dark-mode .favorite-rank-name {
+  color: #e7edf2;
+}
+body.dark-mode #rankGraphColorValue,
+body.dark-mode .rank-history-status,
+body.dark-mode .favorite-top-song,
+body.dark-mode .rank-graph-heading {
+  color: #a5b0ba;
+}
+body.dark-mode .favorite-rank-card {
+  border-color: #2a343e;
+}
+body.dark-mode .favorite-rank-name {
+  border-bottom-color: #68a875;
+}
+body.dark-mode .favorite-rank-name:hover,
+body.dark-mode .favorite-rank-name:focus-visible,
+body.dark-mode .favorite-current-rank {
+  color: #8ed69e;
+}
+body.dark-mode .rank-graph-grid {
+  stroke: #303b44;
+}
+body.dark-mode .rank-graph-axis-label,
+body.dark-mode .rank-graph-time-labels,
+body.dark-mode .rank-graph-heading span:last-child {
+  fill: #9ba8b1;
+  color: #9ba8b1;
+}
+body.dark-mode .rank-graph-empty {
+  border-color: #35414a;
+  color: #a5b0ba;
+}
+body.dark-mode .favorite-rank-card .favorite-remove {
+  color: #a5b0ba;
+  border-color: #45515b;
+}
+@media (max-width: 760px) {
+  #favoriteArtists.favorite-list {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+@media (max-width: 480px) {
+  .rank-graph-settings { gap: 8px; padding: 10px 12px; }
+  .favorite-rank-card { padding: 13px; }
+  .favorite-rank-name { font-size: 15px; }
+}
+
+
+/* Top-left return navigation for secondary pages. */
 .page-back-link {
   display: inline-flex;
   align-items: center;
