@@ -235,7 +235,7 @@
       showSignedIn(data.user);
       setMessage("이메일 인증이 확인됐어요. 닉네임과 비밀번호 설정을 완료해 주세요.");
     } catch (error) {
-      setMessage(error.message || "로그인에 실패했어요. 이메일과 비밀번호를 확인해 주세요.", true);
+      setMessage("이메일 또는 비밀번호가 일치하지 않습니다.", true);
     } finally {
       signInButton.disabled = !MonitorStore.isConfigured();
     }
