@@ -2750,3 +2750,50 @@ body.dark-mode .user-logout-button:focus-visible {
   background: #352328;
   border-color: #a9565c;
 }
+
+
+/* Refined refresh result animations inspired by the supplied GIFs:
+   a colored circle grows first, then the white mark is drawn in. */
+.chart-status.is-success::before,
+.chart-status.is-error::before {
+  content: "";
+  width: 76px;
+  height: 76px;
+  flex: 0 0 76px;
+  border-radius: 50%;
+  animation: refresh-result-circle .42s cubic-bezier(.2,.8,.2,1) both;
+}
+.chart-status.is-success::before { background: #2cda94; }
+.chart-status.is-error::before { background: #ff4747; }
+.chart-status.is-success::after,
+.chart-status.is-error::after {
+  position: absolute;
+  top: calc(50% - 49px);
+  left: 50%;
+  display: block;
+  color: #fff;
+  font-family: Arial, sans-serif;
+  font-weight: 800;
+  line-height: 1;
+  clip-path: inset(0 100% 0 0);
+  animation: refresh-result-mark .28s ease-out .38s forwards;
+}
+.chart-status.is-success::after {
+  content: "✓";
+  margin-left: -20px;
+  font-size: 49px;
+}
+.chart-status.is-error::after {
+  content: "×";
+  margin-left: -19px;
+  font-size: 51px;
+}
+@keyframes refresh-result-circle {
+  0% { transform: scale(.08); opacity: .35; }
+  65% { transform: scale(1.08); opacity: 1; }
+  100% { transform: scale(1); opacity: 1; }
+}
+@keyframes refresh-result-mark {
+  from { clip-path: inset(0 100% 0 0); }
+  to { clip-path: inset(0 0 0 0); }
+}
