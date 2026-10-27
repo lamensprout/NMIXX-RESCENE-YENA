@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>좋아하는 아티스트 | Melonitor</title>
-  <link rel="stylesheet" href="style.css?v=20261027-5">
+  <link rel="stylesheet" href="style.css?v=20261027-7">
 </head>
 <body>
   <main class="container">
@@ -91,25 +91,51 @@
   <script src="supabase-config.js?v=1"></script>
   <script src="monitor-store.js?v=12"></script>
   <script src="profile-avatar.js?v=2"></script>
-  <script src="favorites.js?v=20261027-1"></script>
+  <script src="favorites.js?v=20261027-2"></script>
   <script src="theme.js?v=5"></script>
   <script>
     (() => {
       const button = document.getElementById("refreshChartButton");
       const status = document.getElementById("chartStatus");
+      let backdrop = null;
+      let closeTimer = null;
       if (!button || !status) return;
+      function showPopup(message, state, duration) {
+        if (closeTimer) clearTimeout(closeTimer);
+        if (message) {
+          if (!backdrop) {
+            backdrop = document.createElement("div");
+            backdrop.className = "chart-refresh-backdrop";
+            backdrop.setAttribute("aria-hidden", "true");
+            document.body.appendChild(backdrop);
+          }
+          backdrop.hidden = false;
+          document.body.classList.add("chart-refresh-active");
+        }
+        status.classList.remove("is-loading", "is-success", "is-error");
+        if (state) status.classList.add("is-" + state);
+        status.textContent = message || "";
+        status.hidden = !message;
+        status.setAttribute("aria-busy", state === "loading" ? "true" : "false");
+        if (duration > 0) {
+          closeTimer = window.setTimeout(() => {
+            status.hidden = true;
+            status.textContent = "";
+            status.classList.remove("is-loading", "is-success", "is-error");
+            if (backdrop) backdrop.hidden = true;
+            document.body.classList.remove("chart-refresh-active");
+          }, duration);
+        }
+      }
       button.addEventListener("click", async () => {
         const config = window.MELONITOR_SUPABASE_CONFIG || {};
-        if (typeof config.projectUrl !== "string" || !config.projectUrl.startsWith("https://") || typeof config.publishableKey !== "string" || !config.publishableKey.trim()) {
-          status.textContent = "차트 서버 설정을 찾을 수 없습니다.";
-          status.hidden = false;
-          return;
-        }
         button.disabled = true;
         button.textContent = "↻ TOP100 수집 중...";
-        status.textContent = "멜론 TOP100을 새로 수집하고 있어요...";
-        status.hidden = false;
+        showPopup("차트를 불러오는 중입니다. 잠시만 기다려주세요.", "loading", 0);
         try {
+          if (typeof config.projectUrl !== "string" || !config.projectUrl.startsWith("https://") || typeof config.publishableKey !== "string" || !config.publishableKey.trim()) {
+            throw new Error("차트 서버 설정을 찾을 수 없습니다.");
+          }
           const endpoint = config.projectUrl.replace(/\\/+$/, "") + "/functions/v1/melon-chart";
           const response = await fetch(endpoint, {
             method: "POST",
@@ -119,11 +145,10 @@
           });
           const data = await response.json();
           if (!response.ok) throw new Error(data.error || data.message || ("요청 실패 (" + response.status + ")"));
-          const time = data.updated_at ? new Date(data.updated_at).toLocaleTimeString("ko-KR", { hour: "2-digit", minute: "2-digit" }) : "";
-          status.textContent = (data.refresh_status === "refreshed" ? "멜론 TOP100 갱신 완료" : "최신 차트를 불러왔어요") + (time ? " · " + time : "");
-          window.setTimeout(() => window.location.reload(), 1200);
+          showPopup("차트가 새로고침 되었습니다.", "success", 1600);
+          window.setTimeout(() => window.location.reload(), 1800);
         } catch (error) {
-          status.textContent = "차트 갱신 실패 · " + String(error.message || error).slice(0, 150);
+          showPopup("차트를 불러오지 못했습니다.", "error", 2200);
         } finally {
           button.disabled = false;
           button.textContent = "↻ 차트 새로고침";
