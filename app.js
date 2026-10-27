@@ -1028,7 +1028,8 @@ function setChartStatus(message, hideAfterMs = 0, loading = false, state = "") {
     const currentMessage = message;
     chartStatusHideTimer = setTimeout(() => {
       if (chartStatus.dataset.message === currentMessage) {
-        chartStatus.dataset.message = "";\n        chartStatus.replaceChildren();
+        chartStatus.dataset.message = "";
+        chartStatus.replaceChildren();
         chartStatus.hidden = true;
         chartStatus.classList.remove("is-loading", "is-success", "is-error");
         chartStatus.title = "";
