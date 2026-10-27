@@ -43,7 +43,7 @@
                 <button class="theme-mode-option" type="button" data-theme-mode="auto" aria-pressed="true">AUTO</button>
                 <button class="theme-mode-option" type="button" data-theme-mode="dark" aria-pressed="false">다크</button>
               </div>
-            </div>
+            <button id="userLogoutButton" class="user-logout-button" type="button" hidden>로그아웃</button>
           </div>
         </div>
         <div class="chart-refresh-controls">
@@ -95,6 +95,7 @@
       const toggle = document.getElementById("userMenuToggle");
       const panel = document.getElementById("userMenuPanel");
       const account = document.getElementById("accountLink");
+      const logoutButton = document.getElementById("userLogoutButton");
       const themeOptions = panel ? panel.querySelectorAll("[data-theme-mode]") : [];
       if (!toggle || !panel) return;
       function closeMenu() {
@@ -119,6 +120,27 @@
       });
       if (account) account.addEventListener("click", closeMenu);
       themeOptions.forEach(option => option.addEventListener("click", closeMenu));
+      async function syncLogoutVisibility() {
+        if (logoutButton) logoutButton.hidden = !(window.MonitorStore && MonitorStore.getUser());
+      }
+      if (logoutButton) {
+        logoutButton.addEventListener("click", async () => {
+          if (!window.MonitorStore || !MonitorStore.getUser()) return;
+          logoutButton.disabled = true;
+          logoutButton.textContent = "로그아웃 중...";
+          const result = await MonitorStore.signOut();
+          if (result && result.error) {
+            logoutButton.disabled = false;
+            logoutButton.textContent = "로그아웃";
+            alert("로그아웃하지 못했습니다. 잠시 후 다시 시도해 주세요.");
+            return;
+          }
+          closeMenu();
+          window.location.reload();
+        });
+      }
+      window.addEventListener("melonitor-auth-change", syncLogoutVisibility);
+      syncLogoutVisibility();
     })();
   </script>
 </body>
