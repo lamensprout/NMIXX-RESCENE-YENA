@@ -2578,3 +2578,20 @@ body:not(.dark-mode) .refresh-chart-button:hover:not(:disabled) {
   color: #b5f0bf;
   border-color: #68a875;
 }
+
+
+/* Light-mode header controls: outline only, transparent inside. */
+body:not(.dark-mode) .user-menu-trigger {
+  color: #17212b;
+  background: transparent;
+  border-color: transparent;
+}
+body:not(.dark-mode) .user-menu-trigger:hover,
+body:not(.dark-mode) .user-menu-trigger[aria-expanded="true"] {
+  background: transparent;
+  border-color: #d8dde2;
+}
+body:not(.dark-mode) .refresh-chart-button,
+body:not(.dark-mode) .refresh-chart-button:hover:not(:disabled) {
+  background: transparent;
+}
