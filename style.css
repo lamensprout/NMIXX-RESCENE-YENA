@@ -2617,3 +2617,98 @@ body.dark-mode .chart-status.is-loading::before {
 @media (max-width: 700px) {
   .chart-status.is-loading { max-width: 100%; text-align: center; }
 }
+
+
+/* Centered chart-refresh modal: block taps/clicks while allowing page scrolling. */
+.chart-refresh-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 9998;
+  background: rgba(12, 20, 16, .48);
+  touch-action: pan-y;
+}
+.chart-refresh-backdrop[hidden] { display: none !important; }
+body.chart-refresh-active { cursor: progress; }
+.chart-status.is-loading,
+.chart-status.is-success,
+.chart-status.is-error {
+  position: fixed !important;
+  z-index: 9999;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex !important;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  width: min(440px, calc(100vw - 36px));
+  min-height: 210px;
+  max-width: calc(100vw - 36px);
+  padding: 32px 28px;
+  border: 1px solid #dce6de;
+  border-radius: 24px;
+  background: #fff;
+  color: #1c2920;
+  box-shadow: 0 24px 80px rgba(0, 0, 0, .2);
+  font-size: 19px;
+  font-weight: 700;
+  line-height: 1.55;
+  text-align: center;
+  white-space: normal;
+}
+.chart-status.is-loading::before {
+  content: "";
+  width: 42px;
+  height: 42px;
+  flex: 0 0 42px;
+  border: 4px solid #e0eee3;
+  border-top-color: #168a35;
+  border-right-color: #168a35;
+  border-radius: 50%;
+  animation: melonitor-chart-spin .75s linear infinite;
+}
+.chart-status.is-success::before,
+.chart-status.is-error::before {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  font-size: 29px;
+  font-weight: 800;
+  animation: melonitor-result-pop .28s ease-out both;
+}
+.chart-status.is-success::before {
+  content: "✓";
+  color: #fff;
+  background: #168a35;
+}
+.chart-status.is-error::before {
+  content: "×";
+  color: #fff;
+  background: #d83b42;
+}
+@keyframes melonitor-result-pop {
+  0% { transform: scale(.55); opacity: 0; }
+  75% { transform: scale(1.12); opacity: 1; }
+  100% { transform: scale(1); opacity: 1; }
+}
+body.dark-mode .chart-status.is-loading,
+body.dark-mode .chart-status.is-success,
+body.dark-mode .chart-status.is-error {
+  background: #202731;
+  color: #f0f4f1;
+  border-color: #3b5142;
+}
+@media (max-width: 600px) {
+  .chart-status.is-loading,
+  .chart-status.is-success,
+  .chart-status.is-error {
+    width: calc(100vw - 32px);
+    min-height: 190px;
+    padding: 26px 20px;
+    font-size: 17px;
+  }
+}
