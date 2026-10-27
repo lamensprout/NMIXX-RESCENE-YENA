@@ -147,7 +147,7 @@
         const config = window.MELONITOR_SUPABASE_CONFIG || {};
         button.disabled = true;
         button.textContent = "↻ TOP100 수집 중...";
-        showPopup("차트를 불러오는 중입니다.\\n잠시만 기다려주세요.", "loading", 0);
+        showPopup("차트를 불러오는 중입니다.\n잠시만 기다려주세요.", "loading", 0);
         try {
           if (typeof config.projectUrl !== "string" || !config.projectUrl.startsWith("https://") || typeof config.publishableKey !== "string" || !config.publishableKey.trim()) {
             throw new Error("차트 서버 설정을 찾을 수 없습니다.");
