@@ -758,6 +758,80 @@ function formatChange(change) {
   return { text: "-", className: "same" };
 }
 
+const CHART_SONG_HISTORY_KEY = "melonitor-chart-song-history-v1";
+const CHART_SONG_HISTORY_DAYS = 7;
+
+function songHistoryKey(song) {
+  return normalize(song && song.title) + "|" + normalize(song && song.artist);
+}
+
+function readRecentSongHistory() {
+  const cutoff = Date.now() - CHART_SONG_HISTORY_DAYS * 24 * 60 * 60 * 1000;
+  try {
+    const stored = JSON.parse(localStorage.getItem(CHART_SONG_HISTORY_KEY) || "[]");
+    if (!Array.isArray(stored)) return [];
+    const valid = stored.filter(function(snapshot) {
+      return snapshot && Number(snapshot.capturedAt) >= cutoff && Array.isArray(snapshot.songs);
+    });
+    if (valid.length !== stored.length) {
+      localStorage.setItem(CHART_SONG_HISTORY_KEY, JSON.stringify(valid));
+    }
+    return valid;
+  } catch (_) {
+    return [];
+  }
+}
+
+function rememberChartSongs(chartSongs) {
+  if (!Array.isArray(chartSongs) || !chartSongs.length) return;
+  const now = Date.now();
+  const history = readRecentSongHistory();
+  const signature = chartSongs.map(songHistoryKey).sort().join(";");
+  const latest = history[history.length - 1];
+  // Avoid saving the same chart repeatedly during the one-minute refresh loop.
+  if (latest && latest.signature === signature && now - Number(latest.capturedAt) < 10 * 60 * 1000) return;
+  history.push({
+    capturedAt: now,
+    signature,
+    songs: chartSongs.map(function(song) {
+      return {
+        rank: Number(song.rank),
+        title: song.title || "",
+        artist: song.artist || "",
+        album: song.album || "",
+        album_image: song.album_image || "",
+        change: song.change || 0
+      };
+    })
+  });
+  const cutoff = now - CHART_SONG_HISTORY_DAYS * 24 * 60 * 60 * 1000;
+  const trimmed = history.filter(function(snapshot) {
+    return Number(snapshot.capturedAt) >= cutoff;
+  }).slice(-1000);
+  try { localStorage.setItem(CHART_SONG_HISTORY_KEY, JSON.stringify(trimmed)); } catch (_) {}
+}
+
+function getSearchableSongs() {
+  const currentKeys = new Set(songs.map(songHistoryKey));
+  const lastSeen = new Map();
+  readRecentSongHistory().forEach(function(snapshot) {
+    snapshot.songs.forEach(function(song) {
+      const key = songHistoryKey(song);
+      if (!key || currentKeys.has(key)) return;
+      const prior = lastSeen.get(key);
+      if (!prior || Number(snapshot.capturedAt) > prior.capturedAt) {
+        lastSeen.set(key, {
+          capturedAt: Number(snapshot.capturedAt),
+          song: Object.assign({}, song, { chartOut: true, lastRank: Number(song.rank), lastSeenAt: Number(snapshot.capturedAt) })
+        });
+      }
+    });
+  });
+  return songs.concat(Array.from(lastSeen.values()).map(function(entry) {
+    return entry.song;
+  }));
+}
+
 function render(list, query) {
   results.innerHTML = "";
 
@@ -779,12 +853,12 @@ function render(list, query) {
   list.forEach(function(song) {
     const node = template.content.cloneNode(true);
 
-    node.querySelector(".rank").textContent = song.rank;
+    node.querySelector(".rank").textContent = song.chartOut ? "아웃 (#" + song.lastRank + ")" : song.rank;
 
     const change = formatChange(song.change || 0);
     const changeEl = node.querySelector(".change");
-    changeEl.textContent = change.text;
-    changeEl.classList.add(change.className);
+    changeEl.textContent = song.chartOut ? "차트 아웃" : change.text;
+    changeEl.classList.add(song.chartOut ? "same" : change.className);
 
     const image = node.querySelector(".album-image");
 
@@ -808,7 +882,7 @@ function search(query) {
   const q = String(query || "").trim();
 
   const filtered = q
-    ? songs.filter(function(song) {
+    ? getSearchableSongs().filter(function(song) {
         return matchesArtist(song.artist, q);
       })
     : [];
@@ -958,6 +1032,7 @@ async function loadChartData(manual = false, silent = false) {
     }
 
     songs = canonicalizeChartSongs(data.songs);
+    rememberChartSongs(songs);
     chartHasLoaded = true;
     buildMelonArtistCatalog();
     if (favoriteInput && favoriteInput.value.trim()) {
