@@ -2801,7 +2801,23 @@ body.dark-mode .user-logout-button:focus-visible {
 
 /* Use the same SVG-drawn result marks as the supplied success/error GIFs. */
 .chart-status.is-loading { white-space: pre-line !important; }
-.chart-status.is-loading::before { content: none !important; display: none !important; }
+.chart-status.is-loading::before {
+  content: "" !important;
+  display: block !important;
+  width: 42px;
+  height: 42px;
+  flex: 0 0 42px;
+  border: 4px solid #e0eee3;
+  border-top-color: #168a35;
+  border-right-color: #168a35;
+  border-radius: 50%;
+  animation: melonitor-chart-spin .75s linear infinite !important;
+}
+body.dark-mode .chart-status.is-loading::before {
+  border-color: #3c4a40;
+  border-top-color: #62d989;
+  border-right-color: #62d989;
+}
 .chart-status.is-success::before,
 .chart-status.is-error::before,
 .chart-status.is-success::after,
