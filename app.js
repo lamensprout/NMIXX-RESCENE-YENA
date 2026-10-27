@@ -979,13 +979,31 @@ function formatChartUpdateTime(updatedAt) {
 
 let chartStatusHideTimer = null;
 
-function setChartStatus(message, hideAfterMs = 0, loading = false) {
+let chartRefreshBackdrop = null;
+
+function setChartStatus(message, hideAfterMs = 0, loading = false, state = "") {
   if (!chartStatus) return;
-  chartStatus.classList.toggle("is-loading", Boolean(loading));
-  chartStatus.setAttribute("aria-busy", loading ? "true" : "false");
   if (chartStatusHideTimer) clearTimeout(chartStatusHideTimer);
   chartStatusHideTimer = null;
 
+  if (message) {
+    if (!chartRefreshBackdrop) {
+      chartRefreshBackdrop = document.createElement("div");
+      chartRefreshBackdrop.className = "chart-refresh-backdrop";
+      chartRefreshBackdrop.setAttribute("aria-hidden", "true");
+      document.body.appendChild(chartRefreshBackdrop);
+    }
+    chartRefreshBackdrop.hidden = false;
+    document.body.classList.add("chart-refresh-active");
+  } else {
+    if (chartRefreshBackdrop) chartRefreshBackdrop.hidden = true;
+    document.body.classList.remove("chart-refresh-active");
+  }
+
+  chartStatus.classList.toggle("is-loading", Boolean(loading));
+  chartStatus.classList.toggle("is-success", state === "success");
+  chartStatus.classList.toggle("is-error", state === "error");
+  chartStatus.setAttribute("aria-busy", loading ? "true" : "false");
   chartStatus.textContent = message || "";
   chartStatus.hidden = !message;
   chartStatus.title = message || "";
@@ -996,7 +1014,10 @@ function setChartStatus(message, hideAfterMs = 0, loading = false) {
       if (chartStatus.textContent === currentMessage) {
         chartStatus.textContent = "";
         chartStatus.hidden = true;
+        chartStatus.classList.remove("is-loading", "is-success", "is-error");
         chartStatus.title = "";
+        if (chartRefreshBackdrop) chartRefreshBackdrop.hidden = true;
+        document.body.classList.remove("chart-refresh-active");
       }
       chartStatusHideTimer = null;
     }, hideAfterMs);
@@ -1012,7 +1033,7 @@ async function loadChartData(manual = false, silent = false) {
     refreshChartButton.textContent = manual ? "↻ TOP100 수집 중..." : "↻ 차트 불러오는 중...";
   }
   if (manual) {
-    setChartStatus("차트가 새로고침되고 있습니다. 잠시만 기다려주세요.", 0, true);
+    setChartStatus("차트를 불러오는 중입니다. 잠시만 기다려주세요.", 0, true);
   } else if (!silent) {
     setChartStatus("");
   }
@@ -1052,16 +1073,7 @@ async function loadChartData(manual = false, silent = false) {
     }
 
     if (manual) {
-      const updatedTime = formatChartUpdateTime(data.updated_at);
-      let message;
-      if (data.refresh_status === "refreshed") {
-        message = "멜론 TOP100 갱신 완료" + (updatedTime ? " · " + updatedTime : "");
-      } else if (data.refresh_status === "recently_updated") {
-        message = "최근 갱신된 최신 차트를 표시 중" + (updatedTime ? " · " + updatedTime : "");
-      } else {
-        message = "최신 차트를 불러왔어요" + (updatedTime ? " · " + updatedTime : "");
-      }
-      setChartStatus(message, 5500);
+      setChartStatus("차트가 새로고침 되었습니다.", 1800, false, "success");
     } else if (!silent) {
       setChartStatus("");
     }
@@ -1070,7 +1082,7 @@ async function loadChartData(manual = false, silent = false) {
     if (!silent) {
       const errorMessage = String(error && error.message ? error.message : "알 수 없는 오류").slice(0, 180);
       if (manual) {
-        setChartStatus((chartHasLoaded ? "갱신 실패" : "차트 로딩 실패") + " · " + errorMessage, 5500);
+        setChartStatus("차트를 불러오지 못했습니다.", 2200, false, "error");
       } else {
         setChartStatus("");
       }
