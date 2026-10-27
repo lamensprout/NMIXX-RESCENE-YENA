@@ -1073,7 +1073,7 @@ async function loadChartData(manual = false, silent = false) {
     }
 
     if (manual) {
-      setChartStatus("차트가 새로고침 되었습니다.", 1800, false, "success");
+      setChartStatus("차트가 새로고침되었습니다.", 1800, false, "success");
     } else if (!silent) {
       setChartStatus("");
     }
