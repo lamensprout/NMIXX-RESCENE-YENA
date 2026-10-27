@@ -979,8 +979,10 @@ function formatChartUpdateTime(updatedAt) {
 
 let chartStatusHideTimer = null;
 
-function setChartStatus(message, hideAfterMs = 0) {
+function setChartStatus(message, hideAfterMs = 0, loading = false) {
   if (!chartStatus) return;
+  chartStatus.classList.toggle("is-loading", Boolean(loading));
+  chartStatus.setAttribute("aria-busy", loading ? "true" : "false");
   if (chartStatusHideTimer) clearTimeout(chartStatusHideTimer);
   chartStatusHideTimer = null;
 
@@ -1010,7 +1012,7 @@ async function loadChartData(manual = false, silent = false) {
     refreshChartButton.textContent = manual ? "↻ TOP100 수집 중..." : "↻ 차트 불러오는 중...";
   }
   if (manual) {
-    setChartStatus("멜론 TOP100을 새로 수집하고 있어요...");
+    setChartStatus("차트가 새로고침되고 있습니다. 잠시만 기다려주세요.", 0, true);
   } else if (!silent) {
     setChartStatus("");
   }
