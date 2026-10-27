@@ -145,7 +145,7 @@
           });
           const data = await response.json();
           if (!response.ok) throw new Error(data.error || data.message || ("요청 실패 (" + response.status + ")"));
-          showPopup("차트가 새로고침 되었습니다.", "success", 1600);
+          showPopup("차트가 새로고침되었습니다.", "success", 1600);
           window.setTimeout(() => window.location.reload(), 1800);
         } catch (error) {
           showPopup("차트를 불러오지 못했습니다.", "error", 2200);
