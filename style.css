@@ -2853,3 +2853,35 @@ body.dark-mode .chart-status.is-loading::before {
   100% { transform: scale(1); opacity: 1; }
 }
 @keyframes status-mark-draw { to { stroke-dashoffset: 0; } }
+
+
+/* Place the chart refresh control beside the search heading. */
+.search-heading-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+.search-heading-row label { margin: 0; flex: 0 1 auto; }
+.search-heading-row .chart-refresh-controls {
+  width: auto;
+  min-height: 0;
+  align-items: flex-end;
+  gap: 0;
+}
+.search-heading-row .refresh-chart-button {
+  width: auto;
+  min-width: 0;
+  min-height: 30px;
+  padding: 0 9px;
+  font-size: 11px;
+}
+@media (max-width: 640px) {
+  .search-heading-row { gap: 6px; }
+  .search-heading-row .refresh-chart-button {
+    min-height: 28px;
+    padding: 0 7px;
+    font-size: 10px;
+  }
+}
