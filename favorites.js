@@ -7,7 +7,11 @@ const favoriteArtists = document.getElementById("favoriteArtists");
 const favoritesNote = document.getElementById("favoritesNote");
 const favoritesLoginGate = document.getElementById("favoritesLoginGate");
 const accountLinkLabel = document.getElementById("accountLinkLabel");
+const rankGraphColorInput = document.getElementById("rankGraphColor");
+const rankGraphColorValue = document.getElementById("rankGraphColorValue");
+const rankHistoryStatus = document.getElementById("rankHistoryStatus");
 
+let rankHistorySnapshots = [];
 let songs = [];
 let melonArtistCatalog = [];
 let melonArtistCatalogSignature = "";
@@ -547,6 +551,165 @@ function updateAccessView() {
   return ready;
 }
 
+function getRankGraphColorStorageKey() {
+  const user = window.MonitorStore && MonitorStore.getUser();
+  return "melonitor-test-rank-graph-color-" + (user && user.id ? user.id : "guest");
+}
+
+function loadSavedRankGraphColor() {
+  if (!rankGraphColorInput) return;
+  let color = "#168a35";
+  try {
+    const saved = localStorage.getItem(getRankGraphColorStorageKey()) || "";
+    if (/^#[0-9a-f]{6}$/i.test(saved)) color = saved;
+  } catch (_) {}
+  rankGraphColorInput.value = color;
+  if (rankGraphColorValue) rankGraphColorValue.textContent = color.toUpperCase();
+}
+
+async function loadRankHistory() {
+  if (rankHistoryStatus) rankHistoryStatus.textContent = "최근 24시간 순위 기록을 불러오는 중...";
+  try {
+    const config = window.MELONITOR_SUPABASE_CONFIG || {};
+    if (!config.projectUrl || !config.publishableKey) throw new Error("차트 서버 설정을 찾을 수 없어요.");
+    const url = new URL("/api/melon-chart", window.location.origin);
+    url.searchParams.set("history", "1");
+    url.searchParams.set("hours", "24");
+    const response = await fetch(url.toString(), {
+      headers: { apikey: config.publishableKey },
+      cache: "no-store"
+    });
+    if (!response.ok) {
+      let detail = "";
+      try { detail = (await response.json()).error || ""; } catch (_) {}
+      throw new Error(detail || "순위 기록 서버에 연결하지 못했어요.");
+    }
+    const payload = await response.json();
+    rankHistorySnapshots = Array.isArray(payload.snapshots) ? payload.snapshots : [];
+    if (rankHistoryStatus) {
+      if (!rankHistorySnapshots.length) {
+        rankHistoryStatus.textContent = "순위 기록을 모으는 중이에요. 첫 기록이 저장된 뒤 그래프가 표시됩니다.";
+      } else {
+        rankHistoryStatus.textContent = "최근 24시간 · " + rankHistorySnapshots.length + "회 기록 · 약 15분 간격";
+      }
+    }
+  } catch (error) {
+    rankHistorySnapshots = [];
+    if (rankHistoryStatus) {
+      rankHistoryStatus.textContent = "순위 기록을 불러오지 못했어요. 잠시 후 다시 열어 주세요.";
+    }
+    console.warn("순위 기록을 불러오지 못했습니다:", error);
+  }
+}
+
+function getCurrentArtistRank(artist) {
+  const matched = songs.filter(function(song) {
+    return song.artist && (normalize(song.artist) === normalize(artist) || areSameArtist(song.artist, artist));
+  }).sort(function(a, b) { return Number(a.rank) - Number(b.rank); });
+  return matched.length ? { rank: Number(matched[0].rank), title: matched[0].title } : null;
+}
+
+function getArtistRankInSnapshot(snapshot, artist) {
+  const entries = Array.isArray(snapshot && snapshot.artist_ranks) ? snapshot.artist_ranks : [];
+  const matches = entries.filter(function(entry) {
+    return entry && entry.artist && (normalize(entry.artist) === normalize(artist) || areSameArtist(entry.artist, artist));
+  }).sort(function(a, b) { return Number(a.rank) - Number(b.rank); });
+  return matches.length ? Number(matches[0].rank) : null;
+}
+
+function createArtistRankGraph(artist, color) {
+  const wrapper = document.createElement("div");
+  wrapper.className = "rank-graph-wrap";
+
+  if (!rankHistorySnapshots.length) {
+    const empty = document.createElement("p");
+    empty.className = "rank-graph-empty";
+    empty.textContent = "순위 기록이 쌓이면 여기에 그래프가 표시돼요.";
+    wrapper.appendChild(empty);
+    return wrapper;
+  }
+
+  const samples = rankHistorySnapshots.map(function(snapshot) {
+    return {
+      timestamp: snapshot.snapshot_at,
+      rank: getArtistRankInSnapshot(snapshot, artist)
+    };
+  });
+  const width = 320;
+  const height = 84;
+  const left = 6;
+  const right = 314;
+  const top = 8;
+  const bottom = 68;
+
+  function yForRank(rank) {
+    const safeRank = Math.max(1, Math.min(101, Number(rank) || 101));
+    return top + ((safeRank - 1) / 100) * (bottom - top);
+  }
+
+  const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+  svg.setAttribute("class", "rank-graph");
+  svg.setAttribute("viewBox", "0 0 " + width + " " + height);
+  svg.setAttribute("role", "img");
+  svg.setAttribute("aria-label", artist + " 최근 24시간 순위 변동 그래프");
+
+  [1, 50, 100].forEach(function(rank) {
+    const y = yForRank(rank);
+    const line = document.createElementNS(svg.namespaceURI, "line");
+    line.setAttribute("x1", String(left));
+    line.setAttribute("x2", String(right));
+    line.setAttribute("y1", String(y));
+    line.setAttribute("y2", String(y));
+    line.setAttribute("class", "rank-graph-grid");
+    svg.appendChild(line);
+    const label = document.createElementNS(svg.namespaceURI, "text");
+    label.setAttribute("x", "3");
+    label.setAttribute("y", String(y - 2));
+    label.setAttribute("class", "rank-graph-axis-label");
+    label.textContent = "#" + rank;
+    svg.appendChild(label);
+  });
+
+  const coordinates = samples.map(function(sample, index) {
+    const x = samples.length === 1 ? (left + right) / 2 : left + (index / (samples.length - 1)) * (right - left);
+    return { x, y: yForRank(sample.rank === null ? 101 : sample.rank), sample };
+  });
+
+  if (coordinates.length > 1) {
+    const line = document.createElementNS(svg.namespaceURI, "polyline");
+    line.setAttribute("class", "rank-graph-line");
+    line.setAttribute("fill", "none");
+    line.setAttribute("stroke", color);
+    line.setAttribute("stroke-width", "2.5");
+    line.setAttribute("stroke-linecap", "round");
+    line.setAttribute("stroke-linejoin", "round");
+    line.setAttribute("points", coordinates.map(function(point) {
+      return point.x.toFixed(2) + "," + point.y.toFixed(2);
+    }).join(" "));
+    svg.appendChild(line);
+  }
+
+  const lastPoint = coordinates[coordinates.length - 1];
+  const marker = document.createElementNS(svg.namespaceURI, "circle");
+  marker.setAttribute("class", "rank-graph-end");
+  marker.setAttribute("cx", String(lastPoint.x));
+  marker.setAttribute("cy", String(lastPoint.y));
+  marker.setAttribute("r", "3.6");
+  marker.setAttribute("fill", color);
+  svg.appendChild(marker);
+
+  wrapper.appendChild(svg);
+  const labels = document.createElement("div");
+  labels.className = "rank-graph-time-labels";
+  const firstTime = new Date(samples[0].timestamp);
+  const lastTime = new Date(samples[samples.length - 1].timestamp);
+  labels.textContent = firstTime.toLocaleTimeString("ko-KR", { hour: "2-digit", minute: "2-digit" }) +
+    " — " + lastTime.toLocaleTimeString("ko-KR", { hour: "2-digit", minute: "2-digit" }) +
+    (samples.length < 2 ? " · 기록 수집 중" : "");
+  wrapper.appendChild(labels);
+  return wrapper;
+}
+
 async function renderFavorites() {
   if (!favoriteArtists || !window.MonitorStore || !MonitorStore.isReady()) return;
   favoriteArtists.innerHTML = "";
@@ -557,7 +720,7 @@ async function renderFavorites() {
     console.warn("즐겨찾기를 불러오지 못했습니다:", error);
   }
 
-  // 예전에 다른 표기로 저장된 같은 아티스트도 한 개의 즐겨찾기로 묶습니다.
+  // Merge saved aliases under one representative Melon artist name.
   const groups = [];
   names.forEach(function(storedName) {
     const canonical = getCanonicalPopularArtist(storedName);
@@ -568,7 +731,6 @@ async function renderFavorites() {
     });
     if (existing) {
       if (!existing.storedNames.includes(storedName)) existing.storedNames.push(storedName);
-      // 멜론 차트에 존재하는 아티스트명은 항상 그 표기를 대표 이름으로 유지합니다.
       const chartName = getCanonicalChartArtist(canonical);
       if (songs.some(song => normalize(song.artist) === normalize(chartName))) existing.canonical = chartName;
     } else {
@@ -576,46 +738,98 @@ async function renderFavorites() {
     }
   });
 
+  groups.sort(function(a, b) {
+    const aRank = getCurrentArtistRank(a.canonical);
+    const bRank = getCurrentArtistRank(b.canonical);
+    if (aRank && bRank) return aRank.rank - bRank.rank;
+    if (aRank) return -1;
+    if (bRank) return 1;
+    return a.canonical.localeCompare(b.canonical, "ko");
+  });
+
   if (favoritesNote) {
     favoritesNote.textContent = groups.length
-      ? "계정에 저장된 즐겨찾기예요. 아티스트를 누르면 해당 아티스트의 차트로 이동합니다."
+      ? "아티스트별 멜론 TOP100 최고 순위를 표시해요. 이름을 누르면 해당 아티스트의 곡만 볼 수 있습니다."
       : "아직 등록한 아티스트가 없어요. 위에서 좋아하는 아티스트를 검색해 추가해 보세요.";
   }
 
-  groups.forEach(group => {
+  const color = rankGraphColorInput && /^#[0-9a-f]{6}$/i.test(rankGraphColorInput.value)
+    ? rankGraphColorInput.value
+    : "#168a35";
+
+  if (!groups.length) {
+    const empty = document.createElement("p");
+    empty.className = "rank-graph-empty favorite-list-empty";
+    empty.textContent = "좋아하는 아티스트를 추가하면 순위와 그래프가 여기에 표시됩니다.";
+    favoriteArtists.appendChild(empty);
+    return;
+  }
+
+  groups.forEach(function(group) {
     const artist = group.canonical;
-    const wrap = document.createElement("span");
-    wrap.className = "favorite-item";
+    const current = getCurrentArtistRank(artist);
+    const card = document.createElement("article");
+    card.className = "favorite-rank-card";
+
+    const header = document.createElement("div");
+    header.className = "favorite-rank-card-heading";
 
     const open = document.createElement("button");
-    open.className = "chip favorite-chip";
+    open.className = "favorite-rank-name";
     open.type = "button";
     open.textContent = artist;
-    open.title = artist + " 멜론차트 검색";
-    open.addEventListener("click", () => {
+    open.title = artist + "의 멜론 TOP100 곡만 보기";
+    open.addEventListener("click", function() {
       window.location.href = "/?artist=" + encodeURIComponent(artist);
     });
 
+    const rank = document.createElement("span");
+    rank.className = "favorite-current-rank" + (current ? "" : " is-outside-chart");
+    rank.textContent = current ? "#" + current.rank : "TOP100 밖";
+
+    header.appendChild(open);
+    header.appendChild(rank);
+    card.appendChild(header);
+
+    const songTitle = document.createElement("p");
+    songTitle.className = "favorite-top-song";
+    songTitle.textContent = current ? "최고 순위 곡: " + current.title : "현재 TOP100에 오른 곡이 없어요.";
+    card.appendChild(songTitle);
+
+    const graphHeader = document.createElement("div");
+    graphHeader.className = "rank-graph-heading";
+    const graphTitle = document.createElement("span");
+    graphTitle.textContent = "순위 변동";
+    const graphUnit = document.createElement("span");
+    graphUnit.textContent = "1위가 위쪽";
+    graphHeader.appendChild(graphTitle);
+    graphHeader.appendChild(graphUnit);
+    card.appendChild(graphHeader);
+    card.appendChild(createArtistRankGraph(artist, color));
+
+    const footer = document.createElement("div");
+    footer.className = "favorite-rank-card-footer";
     const remove = document.createElement("button");
     remove.className = "favorite-remove";
     remove.type = "button";
     remove.textContent = "×";
     remove.setAttribute("aria-label", artist + " 즐겨찾기 삭제");
     remove.title = "즐겨찾기에서 삭제";
-    remove.addEventListener("click", async () => {
+    remove.addEventListener("click", async function() {
       remove.disabled = true;
-      const results = await Promise.all(group.storedNames.map(name => MonitorStore.removeFavorite(name)));
-      if (results.every(result => result && result.ok)) {
+      const results = await Promise.all(group.storedNames.map(function(name) {
+        return MonitorStore.removeFavorite(name);
+      }));
+      if (results.every(function(result) { return result && result.ok; })) {
         await renderFavorites();
       } else {
         remove.disabled = false;
         if (favoritesNote) favoritesNote.textContent = "일부 항목을 삭제하지 못했어요. 다시 시도해 주세요.";
       }
     });
-
-    wrap.appendChild(open);
-    wrap.appendChild(remove);
-    favoriteArtists.appendChild(wrap);
+    footer.appendChild(remove);
+    card.appendChild(footer);
+    favoriteArtists.appendChild(card);
   });
 }
 
@@ -660,6 +874,20 @@ if (favoriteForm) {
   });
 }
 
+if (rankGraphColorInput) {
+  rankGraphColorInput.addEventListener("input", function() {
+    const color = /^#[0-9a-f]{6}$/i.test(rankGraphColorInput.value) ? rankGraphColorInput.value : "#168a35";
+    try { localStorage.setItem(getRankGraphColorStorageKey(), color); } catch (_) {}
+    if (rankGraphColorValue) rankGraphColorValue.textContent = color.toUpperCase();
+    document.querySelectorAll(".rank-graph-line").forEach(function(line) {
+      line.setAttribute("stroke", color);
+    });
+    document.querySelectorAll(".rank-graph-end").forEach(function(point) {
+      point.setAttribute("fill", color);
+    });
+  });
+}
+
 async function initializeFavoritesPage() {
   if (window.MonitorStore) {
     try {
@@ -671,8 +899,10 @@ async function initializeFavoritesPage() {
 
   const ready = updateAccessView();
   if (ready) {
+    loadSavedRankGraphColor();
     if (favoritesNote) favoritesNote.textContent = "아티스트 목록을 불러오는 중이에요...";
     await loadArtistCatalog();
+    await loadRankHistory();
     await renderFavorites();
   }
 }
@@ -680,9 +910,17 @@ async function initializeFavoritesPage() {
 window.addEventListener("melonitor-auth-change", async () => {
   const ready = updateAccessView();
   if (ready) {
+    loadSavedRankGraphColor();
     await loadArtistCatalog();
+    await loadRankHistory();
     await renderFavorites();
   }
 });
+
+setInterval(async function() {
+  if (document.visibilityState !== "visible" || !window.MonitorStore || !MonitorStore.isReady()) return;
+  await loadRankHistory();
+  await renderFavorites();
+}, 15 * 60 * 1000);
 
 initializeFavoritesPage();
