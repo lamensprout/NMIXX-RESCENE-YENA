@@ -2573,3 +2573,47 @@ body:not(.dark-mode) .refresh-chart-button:hover:not(:disabled) {
   color: #168a35;
   border: 1px solid #17a13c;
 }
+
+
+/* Clear, rounded loading panel shown during manual chart refresh. */
+.chart-status.is-loading {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 44px;
+  padding: 10px 16px;
+  border: 1px solid #d7e4d9;
+  border-radius: 14px;
+  background: transparent;
+  color: #27332a;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.45;
+  white-space: normal;
+}
+.chart-status.is-loading::before {
+  content: "";
+  width: 17px;
+  height: 17px;
+  flex: 0 0 17px;
+  border: 2px solid #d5e7d8;
+  border-top-color: #168a35;
+  border-right-color: #168a35;
+  border-radius: 50%;
+  animation: melonitor-chart-spin .75s linear infinite;
+}
+@keyframes melonitor-chart-spin { to { transform: rotate(360deg); } }
+body.dark-mode .chart-status.is-loading {
+  color: #e7eee9;
+  border-color: #3b5142;
+  background: transparent;
+}
+body.dark-mode .chart-status.is-loading::before {
+  border-color: #304b37;
+  border-top-color: #8ed69e;
+  border-right-color: #8ed69e;
+}
+@media (max-width: 700px) {
+  .chart-status.is-loading { max-width: 100%; text-align: center; }
+}
