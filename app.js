@@ -1004,15 +1004,31 @@ function setChartStatus(message, hideAfterMs = 0, loading = false, state = "") {
   chartStatus.classList.toggle("is-success", state === "success");
   chartStatus.classList.toggle("is-error", state === "error");
   chartStatus.setAttribute("aria-busy", loading ? "true" : "false");
-  chartStatus.textContent = message || "";
+  chartStatus.dataset.message = message || "";
+  chartStatus.replaceChildren();
+  if (message) {
+    if (state === "success" || state === "error") {
+      const icon = document.createElement("span");
+      icon.className = "chart-status-icon " + (state === "success" ? "success" : "error");
+      icon.setAttribute("aria-hidden", "true");
+      icon.innerHTML = state === "success"
+        ? '<svg viewBox="0 0 80 80"><circle class="status-icon-circle" cx="40" cy="40" r="38"/><path class="status-icon-mark" d="M22 41 L34 53 L59 27"/></svg>'
+        : '<svg viewBox="0 0 80 80"><circle class="status-icon-circle" cx="40" cy="40" r="38"/><path class="status-icon-mark" d="M27 27 L53 53 M53 27 L27 53"/></svg>';
+      chartStatus.appendChild(icon);
+    }
+    const label = document.createElement("span");
+    label.className = "chart-status-message";
+    label.textContent = message;
+    chartStatus.appendChild(label);
+  }
   chartStatus.hidden = !message;
   chartStatus.title = message || "";
 
   if (message && hideAfterMs > 0) {
     const currentMessage = message;
     chartStatusHideTimer = setTimeout(() => {
-      if (chartStatus.textContent === currentMessage) {
-        chartStatus.textContent = "";
+      if (chartStatus.dataset.message === currentMessage) {
+        chartStatus.dataset.message = "";\n        chartStatus.replaceChildren();
         chartStatus.hidden = true;
         chartStatus.classList.remove("is-loading", "is-success", "is-error");
         chartStatus.title = "";
@@ -1033,7 +1049,7 @@ async function loadChartData(manual = false, silent = false) {
     refreshChartButton.textContent = manual ? "↻ TOP100 수집 중..." : "↻ 차트 불러오는 중...";
   }
   if (manual) {
-    setChartStatus("차트를 불러오는 중입니다. 잠시만 기다려주세요.", 0, true);
+    setChartStatus("차트를 불러오는 중입니다.\\n잠시만 기다려주세요.", 0, true);
   } else if (!silent) {
     setChartStatus("");
   }
