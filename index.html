@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>🍈 Melon Artist Chart</title>
-  <link rel="stylesheet" href="style.css?v=20261027-12">
+  <link rel="stylesheet" href="style.css?v=20261028-13">
 </head>
 <body>
   <main class="container">
@@ -47,13 +47,15 @@
             <button id="userLogoutButton" class="user-logout-button" type="button" hidden>로그아웃</button>
           </div>
         </div>
+      </div>
+    </header><section class="search">
+      <div class="search-heading-row">
+        <label for="artistSearch">아티스트 검색</label>
         <div class="chart-refresh-controls">
           <button id="refreshChartButton" class="refresh-chart-button" type="button" disabled title="멜론 TOP100을 다시 수집합니다">↻ 차트 새로고침</button>
           <span id="chartStatus" class="chart-status" role="status" aria-live="polite" hidden></span>
         </div>
       </div>
-    </header><section class="search">
-      <label for="artistSearch">아티스트 검색</label>
       <div class="search-row">
         <input id="artistSearch" type="search" placeholder="예: NMIXX, 엔믹스, RESCENE, 리센느, 최예나" autocomplete="off">
         <button id="clearBtn" type="button">지우기</button>
