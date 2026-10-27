@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-27T20:29:54.096466+00:00",
+  "updated_at": "2026-10-27T21:26:58.576421+00:00",
   "songs": [
     {
       "rank": 1,
@@ -124,8 +124,8 @@
       "artist": "아일릿(ILLIT)",
       "album": "MAMIHLAPINATAPAI",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/133/62/401/13362401_20260430094059_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 15,
-      "change": 1
+      "previous_rank": 14,
+      "change": 0
     },
     {
       "rank": 15,
@@ -133,8 +133,8 @@
       "artist": "aespa",
       "album": "LEMONADE - The 2nd Album",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/133/84/085/13384085_20260528181046_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 14,
-      "change": -1
+      "previous_rank": 15,
+      "change": 0
     },
     {
       "rank": 16,
@@ -210,21 +210,21 @@
     },
     {
       "rank": 24,
-      "title": "너의 모든 순간",
-      "artist": "성시경",
-      "album": "별에서 온 그대 OST Part.7",
-      "album_image": "https://cdnimg.melon.co.kr/cm/album/images/022/32/505/2232505_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 24,
-      "change": 0
-    },
-    {
-      "rank": 25,
       "title": "RUDE!",
       "artist": "Hearts2Hearts (하츠투하츠)",
       "album": "RUDE!",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/128/69/629/12869629_20260219143819_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 25,
-      "change": 0
+      "change": 1
+    },
+    {
+      "rank": 25,
+      "title": "너의 모든 순간",
+      "artist": "성시경",
+      "album": "별에서 온 그대 OST Part.7",
+      "album_image": "https://cdnimg.melon.co.kr/cm/album/images/022/32/505/2232505_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 24,
+      "change": -1
     },
     {
       "rank": 26,
@@ -286,8 +286,8 @@
       "artist": "우디 (Woody)",
       "album": "어제보다 슬픈 오늘",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/117/56/010/11756010_20250331135525_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 33,
-      "change": 1
+      "previous_rank": 32,
+      "change": 0
     },
     {
       "rank": 33,
@@ -295,8 +295,8 @@
       "artist": "ALLDAY PROJECT",
       "album": "CRASH",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/145/75/403/14575403_20260922162806_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 32,
-      "change": -1
+      "previous_rank": 33,
+      "change": 0
     },
     {
       "rank": 34,
@@ -475,8 +475,8 @@
       "artist": "10CM",
       "album": "너에게 닿기를",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/117/30/411/11730411_20250306095101_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 54,
-      "change": 1
+      "previous_rank": 53,
+      "change": 0
     },
     {
       "rank": 54,
@@ -484,8 +484,8 @@
       "artist": "볼빨간사춘기",
       "album": "여름아 부탁해",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/138/23/274/13823274_20260721152311_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 53,
-      "change": -1
+      "previous_rank": 54,
+      "change": 0
     },
     {
       "rank": 55,
@@ -502,8 +502,8 @@
       "artist": "DAY6 (데이식스)",
       "album": "The Book of Us : Gravity",
       "album_image": "https://cdnimg.melon.co.kr/cm/album/images/103/07/346/10307346_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 57,
-      "change": 1
+      "previous_rank": 56,
+      "change": 0
     },
     {
       "rank": 57,
@@ -511,8 +511,8 @@
       "artist": "박재정",
       "album": "1집 Alone",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/112/27/533/11227533_20230419162238_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 56,
-      "change": -1
+      "previous_rank": 57,
+      "change": 0
     },
     {
       "rank": 58,
@@ -570,21 +570,21 @@
     },
     {
       "rank": 64,
-      "title": "HAPPY",
-      "artist": "DAY6 (데이식스)",
-      "album": "Fourever",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/114/44/397/11444397_20240318115810_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 64,
-      "change": 0
-    },
-    {
-      "rank": 65,
       "title": "나는 반딧불",
       "artist": "황가람",
       "album": "나는 반딧불",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/116/20/541/11620541_20241018183253_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 65,
-      "change": 0
+      "change": 1
+    },
+    {
+      "rank": 65,
+      "title": "HAPPY",
+      "artist": "DAY6 (데이식스)",
+      "album": "Fourever",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/114/44/397/11444397_20240318115810_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 64,
+      "change": -1
     },
     {
       "rank": 66,
@@ -628,8 +628,8 @@
       "artist": "HUNTR/X",
       "album": "KPop Demon Hunters (Soundtrack from the Netflix Film)",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/118/59/863/11859863_20250620104512_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 71,
-      "change": 1
+      "previous_rank": 70,
+      "change": 0
     },
     {
       "rank": 71,
@@ -637,8 +637,8 @@
       "artist": "멜로망스",
       "album": "사랑인가 봐 (사내맞선 OST 스페셜 트랙)",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/108/71/162/10871162_20220217162422_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 70,
-      "change": -1
+      "previous_rank": 71,
+      "change": 0
     },
     {
       "rank": 72,
@@ -660,19 +660,19 @@
     },
     {
       "rank": 74,
-      "title": "사랑은 늘 도망가",
-      "artist": "임영웅",
-      "album": "신사와 아가씨 OST Part.2",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/107/35/654/10735654_20211008114339_500.jpg/melon/resize/120/quality/80/optimize",
+      "title": "다정히 내 이름을 부르면",
+      "artist": "경서예지",
+      "album": "다정히 내 이름을 부르면 (경서예지 x 전건호)",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/106/10/525/10610525_20210518143433_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 75,
       "change": 1
     },
     {
       "rank": 75,
-      "title": "다정히 내 이름을 부르면",
-      "artist": "경서예지",
-      "album": "다정히 내 이름을 부르면 (경서예지 x 전건호)",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/106/10/525/10610525_20210518143433_500.jpg/melon/resize/120/quality/80/optimize",
+      "title": "사랑은 늘 도망가",
+      "artist": "임영웅",
+      "album": "신사와 아가씨 OST Part.2",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/107/35/654/10735654_20211008114339_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 74,
       "change": -1
     },
