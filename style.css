@@ -2986,3 +2986,14 @@ body.dark-mode .favorite-card-songs-heading { color: #b8c3cc; }
   .favorite-card-song-list { grid-template-columns: minmax(0, 1fr); }
   .favorite-card-songs { padding: 12px 8px; }
 }
+
+
+.rank-graph-legend {
+  display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 14px;
+  margin: 4px 0 8px; color: #65717b; font-size: 11px; font-weight: 650;
+}
+.rank-graph-legend-item { display: inline-flex; align-items: center; gap: 5px; min-width: 0; }
+.rank-graph-legend-item i { display: inline-block; width: 11px; height: 11px; flex: 0 0 11px; border-radius: 50%; }
+.rank-graph { display: block; width: 100%; height: clamp(190px, 28vw, 290px); overflow: visible; }
+.rank-graph-time-labels { text-align: center; }
+body.dark-mode .rank-graph-legend { color: #b8c3cc; }
