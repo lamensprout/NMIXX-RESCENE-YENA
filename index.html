@@ -4,11 +4,10 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>🍈 Melon Artist Chart</title>
-  <link rel="stylesheet" href="style.css?v=20261028-23">
+  <link rel="stylesheet" href="style.css?v=20261028-24">
 </head>
 <body>
   <div id="siteIntro" class="site-intro" role="status" aria-label="Melonitor 시작 화면">
-    <button id="siteIntroSkip" class="site-intro-skip" type="button" aria-label="인트로 건너뛰기">건너뛰기 <span aria-hidden="true">↗</span></button>
     <div class="site-intro-stage" aria-hidden="true">
       <div class="site-intro-rays"></div>
       <img class="site-intro-original-logo" src="assets/melonitor-intro-logo.png" alt="" aria-hidden="true" />
@@ -101,7 +100,7 @@
   <script src="supabase-config.js?v=1"></script>
   <script src="monitor-store.js?v=12"></script>
   <script src="profile-avatar.js?v=2"></script>
-  <script src="chart-popup.js?v=3"></script>
+  <script src="chart-popup.js?v=4"></script>
   <script src="app.js?v=20261028-28"></script>
   <script src="theme.js?v=5"></script>
   <script>
@@ -159,34 +158,30 @@
   <script>
     (() => {
       const intro = document.getElementById("siteIntro");
-      const skip = document.getElementById("siteIntroSkip");
       if (!intro) return;
       let alreadyShown = false;
       try {
         alreadyShown = sessionStorage.getItem("melonitorIntroShown") === "1";
         sessionStorage.setItem("melonitorIntroShown", "1");
       } catch (_) {}
+      const releasePopup = () => {
+        if (window.MelonitorChartPopup && typeof window.MelonitorChartPopup.releaseIntro === "function") {
+          window.MelonitorChartPopup.releaseIntro();
+        }
+      };
       const finish = () => {
         intro.classList.add("site-intro-finish");
-        window.setTimeout(() => intro.remove(), 650);
+        window.setTimeout(() => {
+          intro.remove();
+          releasePopup();
+        }, 650);
       };
       if (alreadyShown || window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
         intro.remove();
+        releasePopup();
         return;
       }
-      const timer = window.setTimeout(finish, 3300);
-      skip?.addEventListener("click", () => {
-        window.clearTimeout(timer);
-        finish();
-      });
-      const onKey = (event) => {
-        if (event.key === "Escape" || event.key === "Enter" || event.key === " ") {
-          window.clearTimeout(timer);
-          finish();
-          document.removeEventListener("keydown", onKey);
-        }
-      };
-      document.addEventListener("keydown", onKey);
+      window.setTimeout(finish, 3300);
     })();
   </script>
   </body>
