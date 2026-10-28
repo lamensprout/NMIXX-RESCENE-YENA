@@ -1052,7 +1052,7 @@ async function loadChartData(manual = false, silent = false) {
   if (manual) {
     setChartStatus("차트를 불러오는 중입니다.\n잠시만 기다려주세요.", 0, true);
   } else if (!silent) {
-    setChartStatus("차트를 불러오는 중입니다.\\n잠시만 기다려주세요.", 0, true);
+    setChartStatus("차트를 불러오는 중입니다.\n잠시만 기다려주세요.", 0, true);
   }
 
   try {
