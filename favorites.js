@@ -1026,6 +1026,41 @@ async function renderFavorites() {
     const current = getCurrentArtistRank(artist);
     const card = document.createElement("article");
     card.className = "favorite-rank-card";
+    card.draggable = true;
+    card.dataset.artistKey = normalize(artist);
+    card.title = "드래그해서 아티스트 순서를 바꿀 수 있어요.";
+    card.addEventListener("dragstart", function(event) {
+      draggedFavoriteArtist = card.dataset.artistKey;
+      card.classList.add("is-dragging");
+      if (event.dataTransfer) {
+        event.dataTransfer.effectAllowed = "move";
+        event.dataTransfer.setData("text/plain", draggedFavoriteArtist);
+      }
+    });
+    card.addEventListener("dragend", function() {
+      draggedFavoriteArtist = "";
+      card.classList.remove("is-dragging");
+      favoriteArtists.querySelectorAll(".favorite-rank-card").forEach(function(item) { item.classList.remove("is-drop-target"); });
+    });
+    card.addEventListener("dragover", function(event) {
+      event.preventDefault();
+      if (draggedFavoriteArtist && draggedFavoriteArtist !== card.dataset.artistKey) card.classList.add("is-drop-target");
+      if (event.dataTransfer) event.dataTransfer.dropEffect = "move";
+    });
+    card.addEventListener("dragleave", function() { card.classList.remove("is-drop-target"); });
+    card.addEventListener("drop", function(event) {
+      event.preventDefault();
+      card.classList.remove("is-drop-target");
+      const fromKey = draggedFavoriteArtist || (event.dataTransfer && event.dataTransfer.getData("text/plain"));
+      if (!fromKey || fromKey === card.dataset.artistKey) return;
+      const cards = Array.from(favoriteArtists.querySelectorAll(".favorite-rank-card"));
+      const moving = cards.find(function(item) { return item.dataset.artistKey === fromKey; });
+      if (!moving) return;
+      const rect = card.getBoundingClientRect();
+      favoriteArtists.insertBefore(moving, event.clientY > rect.top + rect.height / 2 ? card.nextSibling : card);
+      const order = Array.from(favoriteArtists.querySelectorAll(".favorite-rank-card")).map(function(item) { return item.dataset.artistKey; });
+      try { localStorage.setItem(FAVORITE_ARTIST_ORDER_KEY, JSON.stringify(order)); } catch (_) {}
+    });
 
     const header = document.createElement("div");
     header.className = "favorite-rank-card-heading";
