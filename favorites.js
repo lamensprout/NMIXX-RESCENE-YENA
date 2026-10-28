@@ -892,7 +892,7 @@ function renderFavoriteSongList() {
     row.style.setProperty("--favorite-song-color", colors[key] || "#168a35");
     const rank = document.createElement("span");
     rank.className = "favorite-song-rank";
-    rank.textContent = song.chartOut ? "이전 #" + (song.lastRank || song.rank || "?") : "#" + song.rank;
+    rank.textContent = song.chartOut ? "↓ " + (song.lastRank || song.rank || "?") + " OUT" : "#" + song.rank;
     const details = document.createElement("div");
     details.className = "favorite-song-details";
     const title = document.createElement("strong");
@@ -1110,7 +1110,7 @@ async function renderFavorites() {
         const rankLabel = document.createElement("span");
         rankLabel.className = "favorite-card-song-rank";
         rankLabel.textContent = song.chartOut
-          ? "이전 #" + (song.lastRank || song.rank || "?")
+          ? "↓ " + (song.lastRank || song.rank || "?") + " OUT"
           : "#" + song.rank;
         const titleLabel = document.createElement("span");
         titleLabel.className = "favorite-card-song-title";
