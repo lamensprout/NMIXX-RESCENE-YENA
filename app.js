@@ -933,11 +933,9 @@ async function loadChartData(manual = false, silent = false) {
 
   if (!silent && refreshChartButton) {
     refreshChartButton.disabled = true;
-    refreshChartButton.textContent = manual ? "↻ TOP100 수집 중..." : "↻ 차트 불러오는 중...";
+    refreshChartButton.textContent = "↻ 차트를 불러오는 중...";
   }
-  if (manual) {
-    setChartStatus("멜론 TOP100을 새로 수집하고 있어요...");
-  } else if (!silent) {
+  if (!silent) {
     setChartStatus("");
   }
 
