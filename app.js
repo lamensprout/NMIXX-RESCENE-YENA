@@ -938,9 +938,9 @@ async function loadChartData(manual = false, silent = false) {
   }
   if (!silent) {
     if (window.MelonitorChartPopup) {
-      window.MelonitorChartPopup.set("차트를 불러오는 중입니다.\\n잠시만 기다려주세요.", 0, true);
+      window.MelonitorChartPopup.set("차트를 불러오는 중입니다.\n잠시만 기다려주세요.", 0, true);
     } else {
-      setChartStatus("차트를 불러오는 중입니다.\\n잠시만 기다려주세요.");
+      setChartStatus("차트를 불러오는 중입니다.\n잠시만 기다려주세요.");
     }
   }
 
