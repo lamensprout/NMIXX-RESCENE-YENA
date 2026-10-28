@@ -265,6 +265,42 @@
     return { ok: false, synced: false, error };
   }
 
+  async function getColorPreferences() {
+    if (!isReady()) return null;
+    const { data, error } = await client
+      .from("melonitor_user_preferences")
+      .select("favorite_song_colors, rank_graph_color")
+      .eq("user_id", currentUser.id)
+      .maybeSingle();
+    if (error) {
+      console.warn("계정 색상 설정을 불러오지 못했습니다:", error.message);
+      return null;
+    }
+    return data || null;
+  }
+
+  async function saveColorPreferences(preferences) {
+    if (!isReady()) return { ok: false, synced: false };
+    const input = preferences && typeof preferences === "object" ? preferences : {};
+    const colors = input.favorite_song_colors && typeof input.favorite_song_colors === "object" && !Array.isArray(input.favorite_song_colors)
+      ? input.favorite_song_colors : {};
+    const graphColor = /^#[0-9a-f]{6}$/i.test(String(input.rank_graph_color || ""))
+      ? String(input.rank_graph_color).toUpperCase() : "#168A35";
+    const { error } = await client
+      .from("melonitor_user_preferences")
+      .upsert({
+        user_id: currentUser.id,
+        favorite_song_colors: colors,
+        rank_graph_color: graphColor,
+        updated_at: new Date().toISOString()
+      }, { onConflict: "user_id" });
+    if (error) {
+      console.warn("계정 색상 설정 저장 실패:", error.message);
+      return { ok: false, synced: false, error };
+    }
+    return { ok: true, synced: true };
+  }
+
   async function getFavorites() {
     if (!isReady()) return [];
     const { data, error } = await client
