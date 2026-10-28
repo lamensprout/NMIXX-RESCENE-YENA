@@ -4,6 +4,7 @@
   let pendingIntroPopup = null;
 
   function set(message, hideAfterMs = 0, loading = false, state = "") {
+    if (!message) pendingIntroPopup = null;
     const intro = document.getElementById("siteIntro");
     if (message && intro && !intro.classList.contains("site-intro-finish")) {
       pendingIntroPopup = [message, hideAfterMs, loading, state];
