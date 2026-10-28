@@ -810,11 +810,13 @@ function getFavoriteSongsWithRecentHistory() {
     }).sort(function(a, b) { return Number(a.capturedAt) - Number(b.capturedAt); });
   } catch (_) {}
   const latest = snapshots.length ? snapshots[snapshots.length - 1] : null;
-  const previousKeys = new Set(latest ? latest.songs.map(favoriteSongKey) : []);
+  const beforeLatest = snapshots.length > 1 ? snapshots[snapshots.length - 2] : null;
+  const latestKeys = new Set(latest ? latest.songs.map(favoriteSongKey) : []);
+  const previousKeys = new Set(beforeLatest ? beforeLatest.songs.map(favoriteSongKey) : []);
   const currentSongs = songs.map(function(song) {
     const key = favoriteSongKey(song);
     return Object.assign({}, song, {
-      chartIn: !!latest && !previousKeys.has(key)
+      chartIn: !!latest && !!beforeLatest && latestKeys.has(key) && !previousKeys.has(key)
     });
   });
   snapshots.forEach(function(snapshot) {
