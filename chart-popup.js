@@ -1,8 +1,14 @@
 (function () {
   let hideTimer = null;
   let backdrop = null;
+  let pendingIntroPopup = null;
 
   function set(message, hideAfterMs = 0, loading = false, state = "") {
+    const intro = document.getElementById("siteIntro");
+    if (message && intro && !intro.classList.contains("site-intro-finish")) {
+      pendingIntroPopup = [message, hideAfterMs, loading, state];
+      return;
+    }
     const status = document.getElementById("chartStatus");
     if (!status) return;
     if (hideTimer) clearTimeout(hideTimer);
@@ -69,5 +75,12 @@
     }
   }
 
-  window.MelonitorChartPopup = { set };
+  function releaseIntro() {
+    if (!pendingIntroPopup) return;
+    const args = pendingIntroPopup;
+    pendingIntroPopup = null;
+    set(args[0], args[1], args[2], args[3]);
+  }
+
+  window.MelonitorChartPopup = { set, releaseIntro };
 })();
