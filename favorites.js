@@ -625,98 +625,130 @@ function createArtistRankGraph(artist, color) {
   const wrapper = document.createElement("div");
   wrapper.className = "rank-graph-wrap";
 
-  if (!rankHistorySnapshots.length) {
+  const cutoff = Date.now() - 7 * 24 * 60 * 60 * 1000;
+  let localSnapshots = [];
+  try {
+    const saved = JSON.parse(localStorage.getItem(FAVORITE_SONG_HISTORY_KEY) || "[]");
+    if (Array.isArray(saved)) localSnapshots = saved.filter(function(snapshot) {
+      return snapshot && Number(snapshot.capturedAt) >= cutoff && Array.isArray(snapshot.songs);
+    });
+  } catch (_) {}
+
+  const currentArtistSongs = songs.filter(function(song) {
+    return song.artist && (normalize(song.artist) === normalize(artist) || areSameArtist(song.artist, artist));
+  });
+  const historicalArtistSongs = [];
+  localSnapshots.forEach(function(snapshot) {
+    snapshot.songs.forEach(function(song) {
+      if (song.artist && (normalize(song.artist) === normalize(artist) || areSameArtist(song.artist, artist)) &&
+          !historicalArtistSongs.some(function(existing) { return favoriteSongKey(existing) === favoriteSongKey(song); })) {
+        historicalArtistSongs.push(song);
+      }
+    });
+  });
+
+  const candidates = currentArtistSongs.concat(historicalArtistSongs.filter(function(oldSong) {
+    return !currentArtistSongs.some(function(currentSong) { return favoriteSongKey(currentSong) === favoriteSongKey(oldSong); });
+  })).sort(function(a, b) {
+    return (Number(a.rank) || 999) - (Number(b.rank) || 999);
+  }).slice(0, 5);
+
+  if (!candidates.length || localSnapshots.length < 2) {
     const empty = document.createElement("p");
     empty.className = "rank-graph-empty";
-    empty.textContent = "순위 기록이 쌓이면 여기에 그래프가 표시돼요.";
+    empty.textContent = localSnapshots.length < 2
+      ? "곡별 순위 기록이 쌓이면 여러 곡의 변화를 그래프로 보여드려요."
+      : "표시할 곡별 순위 기록이 없어요.";
     wrapper.appendChild(empty);
     return wrapper;
   }
 
-  const samples = rankHistorySnapshots.map(function(snapshot) {
-    return {
-      timestamp: snapshot.snapshot_at,
-      rank: getArtistRankInSnapshot(snapshot, artist)
-    };
+  const palette = ["#08b8d5", "#29245f", "#f2b400", "#f04498", "#20bd63"];
+  const width = 720, height = 250, left = 42, right = 704, top = 28, bottom = 194;
+  const snapshots = localSnapshots.slice(-7);
+  const series = candidates.map(function(song, index) {
+    const key = favoriteSongKey(song);
+    const points = snapshots.map(function(snapshot, snapshotIndex) {
+      const match = snapshot.songs.find(function(item) { return favoriteSongKey(item) === key; });
+      return {
+        x: snapshots.length === 1 ? (left + right) / 2 : left + snapshotIndex / (snapshots.length - 1) * (right - left),
+        rank: match ? Number(match.rank) : null,
+        timestamp: snapshot.capturedAt
+      };
+    });
+    const currentMatch = currentArtistSongs.find(function(item) { return favoriteSongKey(item) === key; });
+    if (currentMatch && points.length) {
+      points[points.length - 1].rank = Number(currentMatch.rank);
+    }
+    return { song: song, key: key, color: palette[index % palette.length], points: points };
   });
-  const width = 720;
-  const height = 230;
-  const left = 42;
-  const right = 704;
-  const top = 18;
-  const bottom = 190;
 
   function yForRank(rank) {
-    const safeRank = Math.max(1, Math.min(101, Number(rank) || 101));
-    return top + ((safeRank - 1) / 100) * (bottom - top);
+    return top + ((Math.max(1, Math.min(100, Number(rank) || 100)) - 1) / 99) * (bottom - top);
   }
-
   const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
   svg.setAttribute("class", "rank-graph");
   svg.setAttribute("viewBox", "0 0 " + width + " " + height);
   svg.setAttribute("role", "img");
-  svg.setAttribute("aria-label", artist + " 최근 24시간 순위 변동 그래프");
+  svg.setAttribute("aria-label", artist + "의 최근 7일 곡별 순위 변동 그래프");
 
   [1, 25, 50, 75, 100].forEach(function(rank) {
     const y = yForRank(rank);
-    const line = document.createElementNS(svg.namespaceURI, "line");
-    line.setAttribute("x1", String(left));
-    line.setAttribute("x2", String(right));
-    line.setAttribute("y1", String(y));
-    line.setAttribute("y2", String(y));
-    line.setAttribute("class", "rank-graph-grid");
-    svg.appendChild(line);
+    const grid = document.createElementNS(svg.namespaceURI, "line");
+    grid.setAttribute("x1", String(left)); grid.setAttribute("x2", String(right));
+    grid.setAttribute("y1", String(y)); grid.setAttribute("y2", String(y));
+    grid.setAttribute("class", "rank-graph-grid");
+    svg.appendChild(grid);
     const label = document.createElementNS(svg.namespaceURI, "text");
-    label.setAttribute("x", "0");
-    label.setAttribute("y", String(y - 2));
-    label.setAttribute("class", "rank-graph-axis-label");
-    label.textContent = String(rank);
+    label.setAttribute("x", "0"); label.setAttribute("y", String(y - 2));
+    label.setAttribute("class", "rank-graph-axis-label"); label.textContent = String(rank);
     svg.appendChild(label);
   });
 
-  const coordinates = samples.map(function(sample, index) {
-    const x = samples.length === 1 ? (left + right) / 2 : left + (index / (samples.length - 1)) * (right - left);
-    return { x, y: yForRank(sample.rank === null ? 101 : sample.rank), sample };
-  });
-
-  if (coordinates.length > 1) {
-    const line = document.createElementNS(svg.namespaceURI, "polyline");
-    line.setAttribute("class", "rank-graph-line");
-    line.setAttribute("fill", "none");
-    line.setAttribute("stroke", color);
-    line.setAttribute("stroke-width", "2.5");
-    line.setAttribute("stroke-linecap", "round");
-    line.setAttribute("stroke-linejoin", "round");
-    line.setAttribute("points", coordinates.map(function(point) {
-      return point.x.toFixed(2) + "," + point.y.toFixed(2);
-    }).join(" "));
-    svg.appendChild(line);
-  }
-
-  coordinates.forEach(function(point) {
-    const marker = document.createElementNS(svg.namespaceURI, "circle");
-    marker.setAttribute("class", "rank-graph-end");
-    marker.setAttribute("cx", String(point.x));
-    marker.setAttribute("cy", String(point.y));
-    marker.setAttribute("r", "4.2");
-    marker.setAttribute("fill", color);
-    marker.setAttribute("stroke", "#ffffff");
-    marker.setAttribute("stroke-width", "1.5");
-    const title = document.createElementNS(svg.namespaceURI, "title");
-    title.textContent = (point.sample.rank ? "#" + point.sample.rank : "TOP100 밖") + " · " +
-      new Date(point.sample.timestamp).toLocaleString("ko-KR");
-    marker.appendChild(title);
-    svg.appendChild(marker);
+  series.forEach(function(item) {
+    const valid = item.points.filter(function(point) { return point.rank !== null && Number.isFinite(point.rank); });
+    if (valid.length > 1) {
+      const line = document.createElementNS(svg.namespaceURI, "polyline");
+      line.setAttribute("class", "rank-graph-line");
+      line.setAttribute("fill", "none"); line.setAttribute("stroke", item.color);
+      line.setAttribute("stroke-width", "2.8"); line.setAttribute("stroke-linecap", "round");
+      line.setAttribute("stroke-linejoin", "round");
+      line.setAttribute("points", valid.map(function(point) {
+        return point.x.toFixed(2) + "," + yForRank(point.rank).toFixed(2);
+      }).join(" "));
+      svg.appendChild(line);
+    }
+    valid.forEach(function(point) {
+      const marker = document.createElementNS(svg.namespaceURI, "circle");
+      marker.setAttribute("class", "rank-graph-end");
+      marker.setAttribute("cx", String(point.x)); marker.setAttribute("cy", String(yForRank(point.rank)));
+      marker.setAttribute("r", "4"); marker.setAttribute("fill", item.color);
+      const title = document.createElementNS(svg.namespaceURI, "title");
+      title.textContent = item.song.title + " · #" + point.rank + " · " +
+        new Date(point.timestamp).toLocaleString("ko-KR");
+      marker.appendChild(title); svg.appendChild(marker);
+    });
   });
 
   wrapper.appendChild(svg);
+  const legend = document.createElement("div");
+  legend.className = "rank-graph-legend";
+  series.forEach(function(item) {
+    const entry = document.createElement("span");
+    entry.className = "rank-graph-legend-item";
+    const dot = document.createElement("i");
+    dot.style.backgroundColor = item.color;
+    const label = document.createElement("span");
+    label.textContent = item.song.title;
+    entry.append(dot, label); legend.appendChild(entry);
+  });
+  wrapper.appendChild(legend);
+
   const labels = document.createElement("div");
   labels.className = "rank-graph-time-labels";
-  const firstTime = new Date(samples[0].timestamp);
-  const lastTime = new Date(samples[samples.length - 1].timestamp);
-  labels.textContent = firstTime.toLocaleTimeString("ko-KR", { hour: "2-digit", minute: "2-digit" }) +
-    " — " + lastTime.toLocaleTimeString("ko-KR", { hour: "2-digit", minute: "2-digit" }) +
-    (samples.length < 2 ? " · 기록 수집 중" : "");
+  labels.textContent = new Date(snapshots[0].capturedAt).toLocaleDateString("ko-KR", { month: "numeric", day: "numeric" }) +
+    " — " + new Date(snapshots[snapshots.length - 1].capturedAt).toLocaleDateString("ko-KR", { month: "numeric", day: "numeric" }) +
+    " · 이 브라우저의 기록 기준";
   wrapper.appendChild(labels);
   return wrapper;
 }
