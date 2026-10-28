@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-28T20:33:07.768835+00:00",
+  "updated_at": "2026-10-28T21:30:00.152510+00:00",
   "songs": [
     {
       "rank": 1,
@@ -223,8 +223,8 @@
       "artist": "성시경",
       "album": "별에서 온 그대 OST Part.7",
       "album_image": "https://cdnimg.melon.co.kr/cm/album/images/022/32/505/2232505_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 26,
-      "change": 1
+      "previous_rank": 25,
+      "change": 0
     },
     {
       "rank": 26,
@@ -232,8 +232,8 @@
       "artist": "BIGBANG (빅뱅)",
       "album": "BiiiG",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/144/63/127/14463127_20260819092848_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 25,
-      "change": -1
+      "previous_rank": 26,
+      "change": 0
     },
     {
       "rank": 27,
@@ -714,21 +714,21 @@
     },
     {
       "rank": 80,
-      "title": "APT.",
-      "artist": "로제 (ROSÉ)",
-      "album": "APT.",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/116/19/809/11619809_20241018103507_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 80,
-      "change": 0
-    },
-    {
-      "rank": 81,
       "title": "첫 만남은 계획대로 되지 않아",
       "artist": "TWS (투어스)",
       "album": "Sparkling Blue",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/113/91/902/11391902_20250922111638_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 81,
-      "change": 0
+      "change": 1
+    },
+    {
+      "rank": 81,
+      "title": "APT.",
+      "artist": "로제 (ROSÉ)",
+      "album": "APT.",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/116/19/809/11619809_20241018103507_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 80,
+      "change": -1
     },
     {
       "rank": 82,
