@@ -91,7 +91,7 @@
   <script src="supabase-config.js?v=1"></script>
   <script src="monitor-store.js?v=12"></script>
   <script src="profile-avatar.js?v=2"></script>
-  <script src="favorites.js?v=20261027-2"></script>
+  <script src="favorites.js?v=20261028-3"></script>
   <script src="theme.js?v=5"></script>
   <script>
     (() => {
@@ -144,6 +144,9 @@
           }, duration);
         }
       }
+      window.addEventListener("melonitor-favorites-page-loaded", () => {
+        showPopup("차트 갱신에 성공했습니다.", "success", 1800);
+      }, { once: true });
       button.addEventListener("click", async () => {
         const config = window.MELONITOR_SUPABASE_CONFIG || {};
         button.disabled = true;
