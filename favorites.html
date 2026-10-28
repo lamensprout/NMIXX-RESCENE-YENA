@@ -7,47 +7,6 @@
   <link rel="stylesheet" href="style.css?v=20261028-19">
 </head>
 <body>
-  <style>
-    body.favorites-locked { overflow: hidden; }
-    .favorites-lock-backdrop {
-      position: fixed; inset: 0; z-index: 99999; display: grid; place-items: center;
-      padding: 24px; background: rgba(15, 23, 42, .68); backdrop-filter: blur(5px);
-    }
-    .favorites-lock-dialog {
-      width: min(440px, 100%); padding: 28px 24px; border-radius: 20px;
-      background: var(--panel-bg, #fff); color: var(--text-color, #202124);
-      box-shadow: 0 24px 80px rgba(0,0,0,.28); text-align: center;
-      border: 1px solid rgba(128,128,128,.22);
-    }
-    .favorites-lock-icon { font-size: 34px; line-height: 1; margin-bottom: 16px; }
-    .favorites-lock-dialog h2 { margin: 0 0 10px; font-size: 22px; }
-    .favorites-lock-dialog p { margin: 0; line-height: 1.7; color: var(--muted-text, #666); }
-    .favorites-lock-dialog .lock-note { margin-top: 10px; font-size: 13px; }
-    .favorites-lock-home {
-      display: inline-flex; justify-content: center; align-items: center; margin-top: 22px;
-      min-height: 44px; padding: 0 20px; border-radius: 12px; border: 0;
-      background: #168a35; color: white; text-decoration: none; font-weight: 700;
-    }
-  </style>
-  <div class="favorites-lock-backdrop" role="presentation">
-    <section class="favorites-lock-dialog" role="dialog" aria-modal="true" aria-labelledby="favoritesLockTitle" aria-describedby="favoritesLockDescription">
-      <div class="favorites-lock-icon" aria-hidden="true">📊</div>
-      <h2 id="favoritesLockTitle">좋아하는 아티스트 창 준비 중</h2>
-      <p id="favoritesLockDescription">아티스트별 순위 그래프를 준비하고 있어요. 그래프와 순위 기록이 모두 정상적으로 준비될 때까지 이 창은 잠시 잠겨 있어요.</p>
-      <p class="lock-note">준비가 완료되면 다시 이용할 수 있어요.</p>
-      <a class="favorites-lock-home" href="/">홈으로 돌아가기</a>
-    </section>
-  </div>
-  <script>
-    document.body.classList.add("favorites-locked");
-    document.addEventListener("keydown", event => {
-      if (event.key === "Escape") {
-        event.preventDefault();
-        event.stopPropagation();
-      }
-    }, true);
-  </script>
-
   <main class="container">
     <a class="page-back-link" href="/" aria-label="차트로 돌아가기">← 차트로 돌아가기</a>
     <header class="hero site-header">
@@ -193,8 +152,9 @@
         }
       }
       window.addEventListener("melonitor-favorites-page-loaded", () => {
-        showPopup("차트 갱신에 성공했습니다.", "success", 1800);
+        showPopup("순위 그래프 준비가 완료되었습니다.", "success", 1800);
       }, { once: true });
+      showPopup("아티스트 순위 그래프를 준비하는 중입니다.\n잠시만 기다려주세요.", "loading", 0);
       button.addEventListener("click", async () => {
         const config = window.MELONITOR_SUPABASE_CONFIG || {};
         button.disabled = true;
