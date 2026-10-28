@@ -98,58 +98,16 @@
   <script src="supabase-config.js?v=1"></script>
   <script src="monitor-store.js?v=13"></script>
   <script src="profile-avatar.js?v=2"></script>
-  <script src="favorites.js?v=20261028-13"></script>
+  <script src="chart-popup.js?v=1"></script>
+  <script src="favorites.js?v=20261028-14"></script>
   <script src="theme.js?v=5"></script>
   <script>
     (() => {
       const button = document.getElementById("refreshChartButton");
       const status = document.getElementById("chartStatus");
-      let backdrop = null;
-      let closeTimer = null;
-      if (!button || !status) return;
+      if (!button || !status || !window.MelonitorChartPopup) return;
       function showPopup(message, state, duration) {
-        if (closeTimer) clearTimeout(closeTimer);
-        if (message) {
-          if (!backdrop) {
-            backdrop = document.createElement("div");
-            backdrop.className = "chart-refresh-backdrop";
-            backdrop.setAttribute("aria-hidden", "true");
-            document.body.appendChild(backdrop);
-          }
-          backdrop.hidden = false;
-          document.body.classList.add("chart-refresh-active");
-        }
-        status.classList.remove("is-loading", "is-success", "is-error");
-        if (state) status.classList.add("is-" + state);
-        status.dataset.message = message || "";
-        status.replaceChildren();
-        if (message) {
-          if (state === "success" || state === "error") {
-            const icon = document.createElement("span");
-            icon.className = "chart-status-icon " + (state === "success" ? "success" : "error");
-            icon.setAttribute("aria-hidden", "true");
-            icon.innerHTML = state === "success"
-              ? '<svg viewBox="0 0 80 80"><circle class="status-icon-circle" cx="40" cy="40" r="38"/><path class="status-icon-mark" d="M22 41 L34 53 L59 27"/></svg>'
-              : '<svg viewBox="0 0 80 80"><circle class="status-icon-circle" cx="40" cy="40" r="38"/><path class="status-icon-mark" d="M27 27 L53 53 M53 27 L27 53"/></svg>';
-            status.appendChild(icon);
-          }
-          const label = document.createElement("span");
-          label.className = "chart-status-message";
-          label.textContent = message;
-          status.appendChild(label);
-        }
-        status.hidden = !message;
-        status.setAttribute("aria-busy", state === "loading" ? "true" : "false");
-        if (duration > 0) {
-          closeTimer = window.setTimeout(() => {
-            status.hidden = true;
-            status.dataset.message = "";
-            status.replaceChildren();
-            status.classList.remove("is-loading", "is-success", "is-error");
-            if (backdrop) backdrop.hidden = true;
-            document.body.classList.remove("chart-refresh-active");
-          }, duration);
-        }
+        window.MelonitorChartPopup.set(message, duration, state === "loading", state || "");
       }
       window.addEventListener("melonitor-favorites-page-loaded", () => {
         showPopup("순위 그래프 준비가 완료되었습니다.", "success", 1800);
