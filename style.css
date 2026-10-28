@@ -2997,3 +2997,8 @@ body.dark-mode .favorite-card-songs-heading { color: #b8c3cc; }
 .rank-graph { display: block; width: 100%; height: clamp(190px, 28vw, 290px); overflow: visible; }
 .rank-graph-time-labels { text-align: center; }
 body.dark-mode .rank-graph-legend { color: #b8c3cc; }
+
+.favorite-rank-card[draggable="true"] { cursor: grab; }
+.favorite-rank-card.is-dragging { opacity: .45; cursor: grabbing; }
+.favorite-rank-card.is-drop-target { outline: 2px dashed #168a35; outline-offset: 3px; }
+.favorite-rank-card[draggable="true"] .favorite-rank-name { cursor: grab; }
