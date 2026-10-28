@@ -718,6 +718,38 @@ function favoriteSongKey(song) {
   return normalize(song && song.title) + "|" + normalize(song && song.artist);
 }
 
+async function syncAccountColorPreferences() {
+  if (!window.MonitorStore || !MonitorStore.isReady() ||
+      typeof MonitorStore.getColorPreferences !== "function" ||
+      typeof MonitorStore.saveColorPreferences !== "function") return;
+
+  const localSongColors = getFavoriteSongColors();
+  let localGraphColor = "";
+  try { localGraphColor = localStorage.getItem(getRankGraphColorStorageKey()) || ""; } catch (_) {}
+  const remote = await MonitorStore.getColorPreferences();
+  const remoteColors = remote && remote.favorite_song_colors &&
+    typeof remote.favorite_song_colors === "object" && !Array.isArray(remote.favorite_song_colors)
+    ? remote.favorite_song_colors : {};
+  // Keep browser-only song colors that haven't been uploaded yet; account values win on conflicts.
+  const mergedColors = Object.assign({}, localSongColors, remoteColors);
+  const graphColor = remote && /^#[0-9a-f]{6}$/i.test(remote.rank_graph_color || "")
+    ? remote.rank_graph_color.toUpperCase()
+    : (/^#[0-9a-f]{6}$/i.test(localGraphColor) ? localGraphColor.toUpperCase() : "#168A35");
+
+  try { localStorage.setItem(FAVORITE_SONG_COLORS_KEY, JSON.stringify(mergedColors)); } catch (_) {}
+  try { localStorage.setItem(getRankGraphColorStorageKey(), graphColor); } catch (_) {}
+  if (!remote || Object.keys(mergedColors).length !== Object.keys(remoteColors).length ||
+      Object.keys(localSongColors).some(key => !Object.prototype.hasOwnProperty.call(remoteColors, key)) ||
+      !/^#[0-9a-f]{6}$/i.test(remote.rank_graph_color || "")) {
+    await MonitorStore.saveColorPreferences({
+      favorite_song_colors: mergedColors,
+      rank_graph_color: graphColor
+    });
+  }
+  if (rankGraphColorInput) rankGraphColorInput.value = graphColor;
+  if (rankGraphColorValue) rankGraphColorValue.textContent = graphColor;
+}
+
 function getFavoriteSongColors() {
   try {
     const value = JSON.parse(localStorage.getItem(FAVORITE_SONG_COLORS_KEY) || "{}");
@@ -773,6 +805,7 @@ function renderFavoriteSongExplorer() {
       if (checkbox.checked) selectedSongArtists.add(artist);
       else selectedSongArtists.delete(artist);
       renderFavoriteSongList();
+      renderFavoriteRankGraphs();
     });
     const text = document.createElement("span");
     text.textContent = artist;
@@ -858,6 +891,13 @@ function renderFavoriteSongList() {
       next[key] = normalizedColor;
       try { localStorage.setItem(FAVORITE_SONG_COLORS_KEY, JSON.stringify(next)); } catch (_) {}
       row.style.setProperty("--favorite-song-color", normalizedColor);
+      if (window.MonitorStore && MonitorStore.isReady() && typeof MonitorStore.saveColorPreferences === "function") {
+        MonitorStore.saveColorPreferences({
+          favorite_song_colors: next,
+          rank_graph_color: rankGraphColorInput && /^#[0-9a-f]{6}$/i.test(rankGraphColorInput.value)
+            ? rankGraphColorInput.value : "#168A35"
+        });
+      }
     }
     color.addEventListener("input", function() { saveSongColor(color.value); });
     hex.addEventListener("change", function() { saveSongColor(hex.value.trim()); });
@@ -1052,6 +1092,9 @@ if (rankGraphColorInput) {
     const color = /^#[0-9a-f]{6}$/i.test(rankGraphColorInput.value) ? rankGraphColorInput.value : "#168a35";
     try { localStorage.setItem(getRankGraphColorStorageKey(), color); } catch (_) {}
     if (rankGraphColorValue) rankGraphColorValue.textContent = color.toUpperCase();
+    if (window.MonitorStore && MonitorStore.isReady() && typeof MonitorStore.saveColorPreferences === "function") {
+      MonitorStore.saveColorPreferences({ favorite_song_colors: getFavoriteSongColors(), rank_graph_color: color });
+    }
     document.querySelectorAll(".rank-graph-line").forEach(function(line) {
       line.setAttribute("stroke", color);
     });
@@ -1072,6 +1115,7 @@ async function initializeFavoritesPage() {
 
   const ready = updateAccessView();
   if (ready) {
+    await syncAccountColorPreferences();
     loadSavedRankGraphColor();
     if (favoritesNote) favoritesNote.textContent = "아티스트 목록을 불러오는 중이에요...";
     await loadArtistCatalog();
@@ -1084,6 +1128,7 @@ async function initializeFavoritesPage() {
 window.addEventListener("melonitor-auth-change", async () => {
   const ready = updateAccessView();
   if (ready) {
+    await syncAccountColorPreferences();
     loadSavedRankGraphColor();
     await loadArtistCatalog();
     await loadRankHistory();
