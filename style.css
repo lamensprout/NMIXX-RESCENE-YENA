@@ -3012,3 +3012,63 @@ body.dark-mode .rank-graph-legend { color: #b8c3cc; }
 .favorite-rank-change.up { color: #e91e63; }
 .favorite-rank-change.down { color: #1976d2; }
 .favorite-card-song-list li.is-chart-out .favorite-card-song-rank { color: #1976d2; }
+
+
+/* Melonitor opening intro: always black, independent of the selected theme. */
+.site-intro {
+  position: fixed; inset: 0; z-index: 100000;
+  display: grid; place-items: center; overflow: hidden;
+  background: #000 !important; color: #fff;
+  isolation: isolate; opacity: 1;
+  transition: opacity .6s ease, visibility .6s ease;
+}
+.site-intro-finish { opacity: 0; visibility: hidden; pointer-events: none; }
+.site-intro-skip {
+  position: absolute; z-index: 3; top: max(22px, env(safe-area-inset-top));
+  right: max(22px, env(safe-area-inset-right)); padding: 9px 13px;
+  border: 1px solid rgba(255,255,255,.28); border-radius: 999px;
+  background: rgba(255,255,255,.06); color: rgba(255,255,255,.8);
+  font: 600 12px/1.2 inherit; letter-spacing: .04em; cursor: pointer;
+}
+.site-intro-skip:hover { border-color: #e50914; color: #fff; }
+.site-intro-stage {
+  position: relative; display: flex; flex-direction: column; align-items: center;
+  justify-content: center; width: min(90vw, 560px); text-align: center;
+  animation: intro-stage-in .7s ease both;
+}
+.site-intro-rays {
+  position: absolute; z-index: -1; width: 120%; height: 1px; top: 42%;
+  background: linear-gradient(90deg, transparent, rgba(229,9,20,.9), #fff, rgba(229,9,20,.9), transparent);
+  box-shadow: 0 0 24px 5px rgba(229,9,20,.3);
+  transform: scaleX(0); animation: intro-ray 1.3s .2s ease-out both;
+}
+.site-intro-mark { width: clamp(112px, 24vw, 178px); height: auto; overflow: visible; }
+.site-intro-mark-path {
+  fill: none; stroke: #e50914; stroke-width: 13; stroke-linecap: butt; stroke-linejoin: miter;
+  stroke-dasharray: 520; stroke-dashoffset: 520;
+  filter: drop-shadow(0 0 8px rgba(229,9,20,.85));
+  animation: intro-draw 1.45s .35s cubic-bezier(.6,0,.2,1) forwards;
+}
+.site-intro-wordmark {
+  margin-top: 17px; color: #f5f5f5; font-size: clamp(25px, 5.8vw, 42px);
+  font-weight: 850; letter-spacing: .2em; padding-left: .2em;
+  opacity: 0; transform: scaleX(.86); text-shadow: 0 0 22px rgba(229,9,20,.16);
+  animation: intro-wordmark .7s 1.35s ease-out forwards;
+}
+.site-intro-tagline {
+  margin-top: 13px; color: #9a9a9a; font-size: 10px; font-weight: 700;
+  letter-spacing: .34em; padding-left: .34em; opacity: 0;
+  animation: intro-tagline .55s 1.85s ease-out forwards;
+}
+@keyframes intro-stage-in { from { opacity: 0; transform: scale(1.06); } to { opacity: 1; transform: scale(1); } }
+@keyframes intro-ray { 0% { transform: scaleX(0); opacity: 0; } 35% { opacity: 1; } 100% { transform: scaleX(1); opacity: 0; } }
+@keyframes intro-draw { 0% { stroke-dashoffset: 520; opacity: .25; } 65% { opacity: 1; } 100% { stroke-dashoffset: 0; opacity: 1; } }
+@keyframes intro-wordmark { to { opacity: 1; transform: scaleX(1); } }
+@keyframes intro-tagline { to { opacity: 1; } }
+@media (max-width: 480px) {
+  .site-intro-wordmark { letter-spacing: .13em; padding-left: .13em; }
+  .site-intro-tagline { font-size: 8px; letter-spacing: .25em; padding-left: .25em; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .site-intro, .site-intro * { animation: none !important; transition: none !important; }
+}
