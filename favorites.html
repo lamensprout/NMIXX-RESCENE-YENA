@@ -99,7 +99,7 @@
   <script src="monitor-store.js?v=13"></script>
   <script src="profile-avatar.js?v=2"></script>
   <script src="chart-popup.js?v=1"></script>
-  <script src="favorites.js?v=20261028-15"></script>
+  <script src="favorites.js?v=20261028-16"></script>
   <script src="theme.js?v=5"></script>
   <script>
     (() => {
@@ -122,7 +122,7 @@
           if (typeof config.projectUrl !== "string" || !config.projectUrl.startsWith("https://") || typeof config.publishableKey !== "string" || !config.publishableKey.trim()) {
             throw new Error("차트 서버 설정을 찾을 수 없습니다.");
           }
-          const endpoint = config.projectUrl.replace(/\\/+$/, "") + "/functions/v1/melon-chart";
+          const endpoint = config.projectUrl.replace(/\/+$/, "") + "/functions/v1/melon-chart";
           const response = await fetch(endpoint, {
             method: "POST",
             headers: { apikey: config.publishableKey, "Content-Type": "application/json" },
