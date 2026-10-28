@@ -834,22 +834,45 @@ function renderFavoriteSongList() {
       note.textContent = "조회일 기준 차트 밖 · 최근 7일 기록";
       details.appendChild(note);
     }
-    const colorLabel = document.createElement("label");
+    const colorLabel = document.createElement("div");
     colorLabel.className = "favorite-song-color-label";
     colorLabel.title = "이 곡의 색상 변경";
     const color = document.createElement("input");
     color.type = "color";
     color.value = colors[key] || "#168a35";
-    color.setAttribute("aria-label", song.title + " 색상");
-    color.addEventListener("input", function() {
+    color.setAttribute("aria-label", song.title + " 색상 선택");
+    const hex = document.createElement("input");
+    hex.type = "text";
+    hex.className = "favorite-song-hex";
+    hex.value = color.value.toUpperCase();
+    hex.maxLength = 7;
+    hex.placeholder = "#168A35";
+    hex.setAttribute("aria-label", song.title + " HTML Color Code");
+    function saveSongColor(value) {
+      if (!/^#[0-9a-f]{6}$/i.test(value)) { hex.setAttribute("aria-invalid", "true"); return; }
+      hex.removeAttribute("aria-invalid");
+      const normalizedColor = value.toUpperCase();
+      color.value = normalizedColor;
+      hex.value = normalizedColor;
       const next = getFavoriteSongColors();
-      next[key] = color.value;
+      next[key] = normalizedColor;
       try { localStorage.setItem(FAVORITE_SONG_COLORS_KEY, JSON.stringify(next)); } catch (_) {}
-      row.style.setProperty("--favorite-song-color", color.value);
-    });
-    colorLabel.appendChild(color);
+      row.style.setProperty("--favorite-song-color", normalizedColor);
+    }
+    color.addEventListener("input", function() { saveSongColor(color.value); });
+    hex.addEventListener("change", function() { saveSongColor(hex.value.trim()); });
+    hex.addEventListener("keydown", function(event) { if (event.key === "Enter") { event.preventDefault(); saveSongColor(hex.value.trim()); hex.blur(); } });
+    colorLabel.append(color, hex);
     row.append(rank, details, colorLabel);
     list.appendChild(row);
+  });
+}
+
+function renderFavoriteRankGraphs() {
+  document.querySelectorAll("#favoriteArtists .favorite-rank-card").forEach(function(card) {
+    const button = card.querySelector(".favorite-rank-name");
+    const artist = button && button.textContent;
+    card.hidden = !artist || !selectedSongArtists.has(artist);
   });
 }
 
@@ -915,6 +938,7 @@ async function renderFavorites() {
 
   groups.forEach(function(group) {
     const artist = group.canonical;
+    if (!selectedSongArtists.has(artist)) return;
     const current = getCurrentArtistRank(artist);
     const card = document.createElement("article");
     card.className = "favorite-rank-card";
