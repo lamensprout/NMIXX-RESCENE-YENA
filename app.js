@@ -20,6 +20,7 @@ const accountLinkLabel = document.getElementById("accountLinkLabel");
 const favoritesNavLink = document.getElementById("favoritesNavLink");
 
 let songs = [];
+let chartReferenceTime = null;
 let popularSearches = {};
 let popularityTimer = null;
 let selectedFavoriteArtist = "";
@@ -847,8 +848,13 @@ function render(list, query) {
     return;
   }
 
+  const referenceDate = chartReferenceTime && !Number.isNaN(new Date(chartReferenceTime).getTime())
+    ? new Date(chartReferenceTime)
+    : new Date();
+  const referenceLabel = "(" + (referenceDate.getMonth() + 1) + "월 " +
+    referenceDate.getDate() + "일 " + referenceDate.getHours() + "시 기준.)";
   summary.textContent =
-    '"' + query + '" 검색 결과 ' + list.length + "곡입니다.";
+    '"' + query + '" 검색 결과 ' + list.length + "곡입니다. " + referenceLabel;
 
   list.forEach(function(song) {
     const node = template.content.cloneNode(true);
@@ -1072,6 +1078,7 @@ async function loadChartData(manual = false, silent = false) {
     }
 
     songs = canonicalizeChartSongs(data.songs);
+    chartReferenceTime = data.updated_at || data.updatedAt || data.fetched_at || data.fetchedAt || new Date().toISOString();
     rememberChartSongs(songs);
     chartHasLoaded = true;
     buildMelonArtistCatalog();
