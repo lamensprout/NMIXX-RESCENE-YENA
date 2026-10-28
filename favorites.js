@@ -802,25 +802,36 @@ function getFavoriteSongsWithRecentHistory() {
   const currentKeys = new Set(songs.map(favoriteSongKey));
   const recent = new Map();
   const cutoff = Date.now() - 7 * 24 * 60 * 60 * 1000;
+  let snapshots = [];
   try {
-    const snapshots = JSON.parse(localStorage.getItem(FAVORITE_SONG_HISTORY_KEY) || "[]");
-    if (Array.isArray(snapshots)) snapshots.forEach(function(snapshot) {
-      if (!snapshot || Number(snapshot.capturedAt) < cutoff || !Array.isArray(snapshot.songs)) return;
-      snapshot.songs.forEach(function(song) {
-        const key = favoriteSongKey(song);
-        if (!key || currentKeys.has(key)) return;
-        const previous = recent.get(key);
-        if (!previous || Number(snapshot.capturedAt) > previous.lastSeenAt) {
-          recent.set(key, Object.assign({}, song, {
-            chartOut: true,
-            lastRank: Number(song.rank) || 0,
-            lastSeenAt: Number(snapshot.capturedAt)
-          }));
-        }
-      });
-    });
+    const saved = JSON.parse(localStorage.getItem(FAVORITE_SONG_HISTORY_KEY) || "[]");
+    if (Array.isArray(saved)) snapshots = saved.filter(function(snapshot) {
+      return snapshot && Number(snapshot.capturedAt) >= cutoff && Array.isArray(snapshot.songs);
+    }).sort(function(a, b) { return Number(a.capturedAt) - Number(b.capturedAt); });
   } catch (_) {}
-  return songs.concat(Array.from(recent.values()));
+  const latest = snapshots.length ? snapshots[snapshots.length - 1] : null;
+  const previousKeys = new Set(latest ? latest.songs.map(favoriteSongKey) : []);
+  const currentSongs = songs.map(function(song) {
+    const key = favoriteSongKey(song);
+    return Object.assign({}, song, {
+      chartIn: !!latest && !previousKeys.has(key)
+    });
+  });
+  snapshots.forEach(function(snapshot) {
+    snapshot.songs.forEach(function(song) {
+      const key = favoriteSongKey(song);
+      if (!key || currentKeys.has(key)) return;
+      const previous = recent.get(key);
+      if (!previous || Number(snapshot.capturedAt) > previous.lastSeenAt) {
+        recent.set(key, Object.assign({}, song, {
+          chartOut: true,
+          lastRank: Number(song.rank) || 0,
+          lastSeenAt: Number(snapshot.capturedAt)
+        }));
+      }
+    });
+  });
+  return currentSongs.concat(Array.from(recent.values()));
 }
 
 function renderFavoriteSongExplorer() {
@@ -892,8 +903,31 @@ function renderFavoriteSongList() {
     row.style.setProperty("--favorite-song-color", colors[key] || "#168a35");
     const rank = document.createElement("span");
     rank.className = "favorite-song-rank";
-    rank.classList.add(song.chartOut ? "is-chart-out" : "is-chart-in");
-    rank.textContent = song.chartOut ? "▼ OUT" : "▲ IN";
+    if (song.chartOut) {
+      rank.classList.add("is-chart-out");
+      rank.textContent = "▼ OUT";
+    } else if (song.chartIn) {
+      rank.classList.add("is-chart-in");
+      rank.textContent = "▲ IN";
+    } else {
+      rank.textContent = String(song.rank || "?");
+      const change = Number(song.change) || 0;
+      if (change > 0) {
+        rank.appendChild(document.createTextNode(" "));
+        const movement = document.createElement("span");
+        movement.className = "favorite-rank-change up";
+        movement.textContent = "▲ " + change;
+        rank.appendChild(movement);
+      } else if (change < 0) {
+        rank.appendChild(document.createTextNode(" "));
+        const movement = document.createElement("span");
+        movement.className = "favorite-rank-change down";
+        movement.textContent = "▼ " + Math.abs(change);
+        rank.appendChild(movement);
+      } else {
+        rank.appendChild(document.createTextNode(" -"));
+      }
+    }
     const details = document.createElement("div");
     details.className = "favorite-song-details";
     const title = document.createElement("strong");
@@ -1110,7 +1144,31 @@ async function renderFavorites() {
         item.className = song.chartOut ? "is-chart-out" : "is-chart-in";
         const rankLabel = document.createElement("span");
         rankLabel.className = "favorite-card-song-rank";
-        rankLabel.textContent = song.chartOut ? "▼ OUT" : "▲ IN";
+        if (song.chartOut) {
+          rankLabel.classList.add("is-chart-out");
+          rankLabel.textContent = "▼ OUT";
+        } else if (song.chartIn) {
+          rankLabel.classList.add("is-chart-in");
+          rankLabel.textContent = "▲ IN";
+        } else {
+          rankLabel.textContent = String(song.rank || "?");
+          const change = Number(song.change) || 0;
+          if (change > 0) {
+            rankLabel.appendChild(document.createTextNode(" "));
+            const movement = document.createElement("span");
+            movement.className = "favorite-rank-change up";
+            movement.textContent = "▲ " + change;
+            rankLabel.appendChild(movement);
+          } else if (change < 0) {
+            rankLabel.appendChild(document.createTextNode(" "));
+            const movement = document.createElement("span");
+            movement.className = "favorite-rank-change down";
+            movement.textContent = "▼ " + Math.abs(change);
+            rankLabel.appendChild(movement);
+          } else {
+            rankLabel.appendChild(document.createTextNode(" -"));
+          }
+        }
         const titleLabel = document.createElement("span");
         titleLabel.className = "favorite-card-song-title";
         titleLabel.textContent = song.title || "제목 없음";
