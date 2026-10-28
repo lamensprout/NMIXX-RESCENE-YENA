@@ -1306,6 +1306,7 @@ async function initializeFavoritesPage() {
     await loadRankHistory();
     await renderFavorites();
   }
+  window.__melonitorFavoritesPageLoaded = true;
   window.dispatchEvent(new CustomEvent("melonitor-favorites-page-loaded"));
 }
 
