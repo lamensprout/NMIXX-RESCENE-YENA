@@ -1015,10 +1015,51 @@ async function renderFavorites() {
     header.appendChild(rank);
     card.appendChild(header);
 
-    const songTitle = document.createElement("p");
-    songTitle.className = "favorite-top-song";
-    songTitle.textContent = current ? "최고 순위 곡: " + current.title : "현재 TOP100에 오른 곡이 없어요.";
-    card.appendChild(songTitle);
+    const songSection = document.createElement("section");
+    songSection.className = "favorite-card-songs";
+    const songHeading = document.createElement("h3");
+    songHeading.className = "favorite-card-songs-heading";
+    songHeading.textContent = "현재 TOP100 곡 · 최근 7일 차트 이탈 곡";
+    songSection.appendChild(songHeading);
+
+    const artistSongs = getFavoriteSongsWithRecentHistory().filter(function(song) {
+      return song.artist && (normalize(song.artist) === normalize(artist) || areSameArtist(song.artist, artist));
+    }).sort(function(a, b) {
+      if (!!a.chartOut !== !!b.chartOut) return a.chartOut ? 1 : -1;
+      return (Number(a.rank) || Number(a.lastRank) || 999) - (Number(b.rank) || Number(b.lastRank) || 999);
+    });
+
+    if (!artistSongs.length) {
+      const emptySongs = document.createElement("p");
+      emptySongs.className = "favorite-card-songs-empty";
+      emptySongs.textContent = "현재 차트 곡이나 최근 7일 기록이 없어요.";
+      songSection.appendChild(emptySongs);
+    } else {
+      const songList = document.createElement("ul");
+      songList.className = "favorite-card-song-list";
+      artistSongs.forEach(function(song) {
+        const item = document.createElement("li");
+        item.className = song.chartOut ? "is-chart-out" : "is-chart-in";
+        const rankLabel = document.createElement("span");
+        rankLabel.className = "favorite-card-song-rank";
+        rankLabel.textContent = song.chartOut
+          ? "이전 #" + (song.lastRank || song.rank || "?")
+          : "#" + song.rank;
+        const titleLabel = document.createElement("span");
+        titleLabel.className = "favorite-card-song-title";
+        titleLabel.textContent = song.title || "제목 없음";
+        item.append(rankLabel, titleLabel);
+        if (song.chartOut) {
+          const outLabel = document.createElement("small");
+          outLabel.className = "favorite-card-song-out-label";
+          outLabel.textContent = "최근 7일 차트 이탈";
+          item.appendChild(outLabel);
+        }
+        songList.appendChild(item);
+      });
+      songSection.appendChild(songList);
+    }
+    card.appendChild(songSection);
 
     const graphHeader = document.createElement("div");
     graphHeader.className = "rank-graph-heading";
