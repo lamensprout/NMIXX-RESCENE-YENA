@@ -2885,3 +2885,39 @@ body.dark-mode .chart-status.is-loading::before {
     font-size: 10px;
   }
 }
+
+
+/* Multi-select favorite artists and per-song colors */
+.favorite-song-explorer {
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border-color, #e5e7eb);
+}
+.favorite-song-explorer h3 { margin: 0 0 6px; font-size: 17px; }
+.favorite-song-explorer-note { margin: 0 0 14px; color: #77828c; font-size: 12px; line-height: 1.5; }
+.favorite-artist-checkboxes { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
+.favorite-artist-checkbox {
+  display: inline-flex; align-items: center; gap: 7px; padding: 8px 10px;
+  border: 1px solid #dfe5e9; border-radius: 10px; background: #fff; font-size: 13px;
+  cursor: pointer;
+}
+.favorite-artist-checkbox input { width: 16px; height: 16px; margin: 0; flex: 0 0 auto; }
+.favorite-songs-list { display: grid; gap: 8px; }
+.favorite-song-row {
+  display: grid; grid-template-columns: 78px minmax(0, 1fr) 38px; align-items: center; gap: 10px;
+  padding: 10px 12px; border: 1px solid #e3e8ec; border-left: 4px solid var(--favorite-song-color, #168a35);
+  border-radius: 11px; background: #fff;
+}
+.favorite-song-rank { font-size: 12px; font-weight: 750; color: var(--favorite-song-color, #168a35); }
+.favorite-song-details { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+.favorite-song-details strong { overflow-wrap: anywhere; font-size: 14px; }
+.favorite-song-details > span { color: #77828c; font-size: 12px; }
+.favorite-song-out-note { color: #9a6b20; font-size: 11px; }
+.favorite-song-color-label { display: flex; align-items: center; justify-content: center; }
+.favorite-song-color-label input { width: 30px; height: 30px; padding: 2px; border: 0; background: transparent; cursor: pointer; }
+.favorite-song-empty { margin: 0; padding: 16px; color: #77828c; font-size: 13px; text-align: center; }
+body.dark-mode .favorite-artist-checkbox, body.dark-mode .favorite-song-row { background: #182027; border-color: #39434b; }
+body.dark-mode .favorite-song-details > span { color: #aab3c1; }
+@media (max-width: 540px) {
+  .favorite-song-row { grid-template-columns: 66px minmax(0, 1fr) 34px; gap: 7px; padding: 9px; }
+}
