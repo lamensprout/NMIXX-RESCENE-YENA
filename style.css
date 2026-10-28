@@ -2930,3 +2930,36 @@ body.dark-mode .favorite-song-details > span { color: #aab3c1; }
 .favorite-rank-card[hidden] { display:none !important; }
 body.dark-mode .favorite-song-color-label .favorite-song-hex { color:#f1f5f9; background:#182027; border-color:#39434b; }
 @media (max-width:540px) { .favorite-song-color-label { flex-wrap:wrap; } .favorite-song-color-label .favorite-song-hex { width:76px; } }
+
+
+/* Large, clean rank-history charts inspired by the supplied reference. */
+#favoriteArtists.favorite-list { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; }
+.favorite-rank-card {
+  width: 100%; box-sizing: border-box; padding: 20px 22px 18px;
+  border: 1px solid #dce5ec; border-radius: 16px; background: #fff;
+  box-shadow: 0 2px 5px rgba(24, 45, 60, .04);
+}
+.favorite-rank-card-heading { justify-content: flex-start; min-height: 30px; }
+.favorite-rank-name { position: relative; padding: 3px 0 3px 18px; border: 0; font-size: 17px; font-weight: 800; }
+.favorite-rank-name::before {
+  content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 9px;
+  border-radius: 9px; background: var(--artist-graph-color, #36bdf0);
+}
+.favorite-current-rank { margin-left: auto; }
+.favorite-top-song { margin: 8px 0 18px 18px; }
+.rank-graph-heading { display: none; }
+.rank-graph-wrap { padding: 0; }
+.rank-graph { height: clamp(190px, 28vw, 290px); overflow: visible; }
+.rank-graph-grid { stroke: #e7edf2; stroke-dasharray: 3 4; stroke-width: 1; }
+.rank-graph-axis-label { font-size: 11px; fill: #82909b; }
+.rank-graph-line { stroke-width: 3; }
+.rank-graph-end { transition: r .15s ease; }
+.rank-graph-time-labels { margin-top: 4px; padding-right: 8px; font-size: 11px; }
+.favorite-rank-card-footer { margin-top: 10px; }
+body.dark-mode .favorite-rank-card { background: #182027; border-color: #39434b; box-shadow: none; }
+body.dark-mode .rank-graph-grid { stroke: #303b44; }
+body.dark-mode .rank-graph-axis-label { fill: #a5b0ba; }
+@media (max-width: 640px) {
+  .favorite-rank-card { padding: 15px 12px 13px; border-radius: 13px; }
+  .rank-graph { height: 205px; }
+}
