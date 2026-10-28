@@ -3007,3 +3007,7 @@ body.dark-mode .rank-graph-legend { color: #b8c3cc; }
 .favorite-song-rank.is-chart-out { color: #1976d2; }
 .favorite-card-song-list li.is-chart-in .favorite-card-song-rank { color: #e91e63; }
 .favorite-card-song-list li.is-chart-out .favorite-card-song-rank { color: #1976d2; }
+
+.favorite-rank-change.up { color: #e91e63; }
+.favorite-rank-change.down { color: #1976d2; }
+.favorite-card-song-list li.is-chart-out .favorite-card-song-rank { color: #1976d2; }
