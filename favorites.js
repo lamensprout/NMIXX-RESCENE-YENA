@@ -16,6 +16,10 @@ let songs = [];
 let melonArtistCatalog = [];
 let melonArtistCatalogSignature = "";
 let selectedFavoriteArtist = "";
+let favoriteArtistNames = [];
+const selectedSongArtists = new Set();
+const FAVORITE_SONG_COLORS_KEY = "melonitor-favorite-song-colors-v1";
+const FAVORITE_SONG_HISTORY_KEY = "melonitor-chart-song-history-v1";
 let favoriteSearchComposing = false;
 
 const artistAliases = {
@@ -710,6 +714,145 @@ function createArtistRankGraph(artist, color) {
   return wrapper;
 }
 
+function favoriteSongKey(song) {
+  return normalize(song && song.title) + "|" + normalize(song && song.artist);
+}
+
+function getFavoriteSongColors() {
+  try {
+    const value = JSON.parse(localStorage.getItem(FAVORITE_SONG_COLORS_KEY) || "{}");
+    return value && typeof value === "object" ? value : {};
+  } catch (_) {
+    return {};
+  }
+}
+
+function getFavoriteSongsWithRecentHistory() {
+  const currentKeys = new Set(songs.map(favoriteSongKey));
+  const recent = new Map();
+  const cutoff = Date.now() - 7 * 24 * 60 * 60 * 1000;
+  try {
+    const snapshots = JSON.parse(localStorage.getItem(FAVORITE_SONG_HISTORY_KEY) || "[]");
+    if (Array.isArray(snapshots)) snapshots.forEach(function(snapshot) {
+      if (!snapshot || Number(snapshot.capturedAt) < cutoff || !Array.isArray(snapshot.songs)) return;
+      snapshot.songs.forEach(function(song) {
+        const key = favoriteSongKey(song);
+        if (!key || currentKeys.has(key)) return;
+        const previous = recent.get(key);
+        if (!previous || Number(snapshot.capturedAt) > previous.lastSeenAt) {
+          recent.set(key, Object.assign({}, song, {
+            chartOut: true,
+            lastRank: Number(song.rank) || 0,
+            lastSeenAt: Number(snapshot.capturedAt)
+          }));
+        }
+      });
+    });
+  } catch (_) {}
+  return songs.concat(Array.from(recent.values()));
+}
+
+function renderFavoriteSongExplorer() {
+  const explorer = document.getElementById("favoriteSongExplorer");
+  const checkboxWrap = document.getElementById("favoriteArtistCheckboxes");
+  const list = document.getElementById("favoriteSongsList");
+  if (!explorer || !checkboxWrap || !list) return;
+  explorer.hidden = !favoriteArtistNames.length;
+  checkboxWrap.replaceChildren();
+  list.replaceChildren();
+  if (!favoriteArtistNames.length) return;
+
+  favoriteArtistNames.forEach(function(artist) {
+    const label = document.createElement("label");
+    label.className = "favorite-artist-checkbox";
+    const checkbox = document.createElement("input");
+    checkbox.type = "checkbox";
+    checkbox.value = artist;
+    checkbox.checked = selectedSongArtists.has(artist);
+    checkbox.addEventListener("change", function() {
+      if (checkbox.checked) selectedSongArtists.add(artist);
+      else selectedSongArtists.delete(artist);
+      renderFavoriteSongList();
+    });
+    const text = document.createElement("span");
+    text.textContent = artist;
+    label.append(checkbox, text);
+    checkboxWrap.appendChild(label);
+  });
+  renderFavoriteSongList();
+}
+
+function renderFavoriteSongList() {
+  const list = document.getElementById("favoriteSongsList");
+  if (!list) return;
+  list.replaceChildren();
+  if (!selectedSongArtists.size) {
+    const note = document.createElement("p");
+    note.className = "favorite-song-empty";
+    note.textContent = "곡을 보려면 위에서 아티스트를 하나 이상 선택해 주세요.";
+    list.appendChild(note);
+    return;
+  }
+
+  const chosen = Array.from(selectedSongArtists);
+  const available = getFavoriteSongsWithRecentHistory().filter(function(song) {
+    return song.artist && chosen.some(function(artist) {
+      return areSameArtist(song.artist, artist) || normalize(song.artist) === normalize(artist);
+    });
+  });
+  available.sort(function(a, b) {
+    if (!!a.chartOut !== !!b.chartOut) return a.chartOut ? 1 : -1;
+    return (Number(a.rank) || Number(a.lastRank) || 999) - (Number(b.rank) || Number(b.lastRank) || 999);
+  });
+  if (!available.length) {
+    const note = document.createElement("p");
+    note.className = "favorite-song-empty";
+    note.textContent = "선택한 아티스트의 현재 차트 곡이나 최근 7일 기록이 없어요.";
+    list.appendChild(note);
+    return;
+  }
+
+  const colors = getFavoriteSongColors();
+  available.forEach(function(song) {
+    const key = favoriteSongKey(song);
+    const row = document.createElement("article");
+    row.className = "favorite-song-row";
+    row.style.setProperty("--favorite-song-color", colors[key] || "#168a35");
+    const rank = document.createElement("span");
+    rank.className = "favorite-song-rank";
+    rank.textContent = song.chartOut ? "이전 #" + (song.lastRank || song.rank || "?") : "#" + song.rank;
+    const details = document.createElement("div");
+    details.className = "favorite-song-details";
+    const title = document.createElement("strong");
+    title.textContent = song.title || "제목 없음";
+    const artist = document.createElement("span");
+    artist.textContent = song.artist || "";
+    details.append(title, artist);
+    if (song.chartOut) {
+      const note = document.createElement("small");
+      note.className = "favorite-song-out-note";
+      note.textContent = "조회일 기준 차트 밖 · 최근 7일 기록";
+      details.appendChild(note);
+    }
+    const colorLabel = document.createElement("label");
+    colorLabel.className = "favorite-song-color-label";
+    colorLabel.title = "이 곡의 색상 변경";
+    const color = document.createElement("input");
+    color.type = "color";
+    color.value = colors[key] || "#168a35";
+    color.setAttribute("aria-label", song.title + " 색상");
+    color.addEventListener("input", function() {
+      const next = getFavoriteSongColors();
+      next[key] = color.value;
+      try { localStorage.setItem(FAVORITE_SONG_COLORS_KEY, JSON.stringify(next)); } catch (_) {}
+      row.style.setProperty("--favorite-song-color", color.value);
+    });
+    colorLabel.appendChild(color);
+    row.append(rank, details, colorLabel);
+    list.appendChild(row);
+  });
+}
+
 async function renderFavorites() {
   if (!favoriteArtists || !window.MonitorStore || !MonitorStore.isReady()) return;
   favoriteArtists.innerHTML = "";
@@ -745,6 +888,11 @@ async function renderFavorites() {
     if (aRank) return -1;
     if (bRank) return 1;
     return a.canonical.localeCompare(b.canonical, "ko");
+  });
+  favoriteArtistNames = groups.map(function(group) { return group.canonical; });
+  favoriteArtistNames.forEach(function(artist) { selectedSongArtists.add(artist); });
+  Array.from(selectedSongArtists).forEach(function(artist) {
+    if (!favoriteArtistNames.includes(artist)) selectedSongArtists.delete(artist);
   });
 
   if (favoritesNote) {
@@ -831,6 +979,7 @@ async function renderFavorites() {
     card.appendChild(footer);
     favoriteArtists.appendChild(card);
   });
+  renderFavoriteSongExplorer();
 }
 
 if (favoriteInput) {
