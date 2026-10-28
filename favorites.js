@@ -905,6 +905,7 @@ async function initializeFavoritesPage() {
     await loadRankHistory();
     await renderFavorites();
   }
+  window.dispatchEvent(new CustomEvent("melonitor-favorites-page-loaded"));
 }
 
 window.addEventListener("melonitor-auth-change", async () => {
