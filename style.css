@@ -2963,3 +2963,26 @@ body.dark-mode .rank-graph-axis-label { fill: #a5b0ba; }
   .favorite-rank-card { padding: 15px 12px 13px; border-radius: 13px; }
   .rank-graph { height: 205px; }
 }
+
+
+.favorite-card-songs {
+  margin: 10px 0 18px;
+  padding: 14px 16px;
+  border-top: 1px solid #e8edf1;
+  border-bottom: 1px solid #e8edf1;
+}
+.favorite-card-songs-heading { margin: 0 0 10px; font-size: 13px; font-weight: 750; color: #53616c; }
+.favorite-card-song-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px 18px; margin: 0; padding: 0; list-style: none; }
+.favorite-card-song-list li { display: flex; align-items: baseline; gap: 8px; min-width: 0; font-size: 13px; }
+.favorite-card-song-rank { flex: 0 0 auto; min-width: 48px; color: #168a35; font-weight: 750; font-variant-numeric: tabular-nums; }
+.favorite-card-song-title { overflow-wrap: anywhere; }
+.favorite-card-song-list li.is-chart-out .favorite-card-song-rank { color: #87929b; }
+.favorite-card-song-list li.is-chart-out .favorite-card-song-title { color: #7b858e; }
+.favorite-card-song-out-label { flex: 0 0 auto; color: #89939c; font-size: 10px; }
+.favorite-card-songs-empty { margin: 0; color: #77838d; font-size: 13px; }
+body.dark-mode .favorite-card-songs { border-color: #39434b; }
+body.dark-mode .favorite-card-songs-heading { color: #b8c3cc; }
+@media (max-width: 640px) {
+  .favorite-card-song-list { grid-template-columns: minmax(0, 1fr); }
+  .favorite-card-songs { padding: 12px 8px; }
+}
