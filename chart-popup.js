@@ -47,8 +47,9 @@
     }
 
     status.hidden = !message;
-    if (message && hideAfterMs > 0) {
+    if (message && (hideAfterMs > 0 || loading)) {
       const currentMessage = message;
+      const effectiveHideAfterMs = hideAfterMs > 0 ? hideAfterMs : 12000;
       hideTimer = window.setTimeout(() => {
         if (status.dataset.message === currentMessage) {
           status.dataset.message = "";
@@ -60,7 +61,7 @@
           document.body.classList.remove("chart-refresh-active");
         }
         hideTimer = null;
-      }, hideAfterMs);
+      }, effectiveHideAfterMs);
     }
   }
 
