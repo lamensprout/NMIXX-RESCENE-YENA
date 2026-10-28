@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-28T17:38:06.263997+00:00",
+  "updated_at": "2026-10-28T18:35:56.858904+00:00",
   "songs": [
     {
       "rank": 1,
@@ -124,8 +124,8 @@
       "artist": "아일릿(ILLIT)",
       "album": "BREAK EVEN",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/150/81/373/15081373_20261026102240_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 15,
-      "change": 1
+      "previous_rank": 14,
+      "change": 0
     },
     {
       "rank": 15,
@@ -133,8 +133,8 @@
       "artist": "한로로",
       "album": "이상비행",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/113/12/872/11312872_20230823162414_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 14,
-      "change": -1
+      "previous_rank": 15,
+      "change": 0
     },
     {
       "rank": 16,
@@ -718,8 +718,8 @@
       "artist": "로제 (ROSÉ)",
       "album": "APT.",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/116/19/809/11619809_20241018103507_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 81,
-      "change": 1
+      "previous_rank": 80,
+      "change": 0
     },
     {
       "rank": 81,
@@ -727,8 +727,8 @@
       "artist": "TWS (투어스)",
       "album": "Sparkling Blue",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/113/91/902/11391902_20250922111638_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 80,
-      "change": -1
+      "previous_rank": 81,
+      "change": 0
     },
     {
       "rank": 82,
@@ -826,8 +826,8 @@
       "artist": "NewJeans",
       "album": "NewJeans 1st EP 'New Jeans'",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/110/11/565/11011565_20220801102637_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 93,
-      "change": 1
+      "previous_rank": 92,
+      "change": 0
     },
     {
       "rank": 93,
@@ -835,8 +835,8 @@
       "artist": "임영웅",
       "album": "IM HERO",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/109/23/444/10923444_20220502140600_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 92,
-      "change": -1
+      "previous_rank": 93,
+      "change": 0
     },
     {
       "rank": 94,
