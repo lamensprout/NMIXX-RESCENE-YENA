@@ -661,6 +661,8 @@
     getSearches,
     recordSearch,
     getFavorites,
+    getColorPreferences,
+    saveColorPreferences,
     addFavorite,
     removeFavorite,
     startSignup,
