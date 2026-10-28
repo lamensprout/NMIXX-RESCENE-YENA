@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>좋아하는 아티스트 | Melonitor</title>
-  <link rel="stylesheet" href="style.css?v=20261027-12">
+  <link rel="stylesheet" href="style.css?v=20261028-14">
 </head>
 <body>
   <main class="container">
@@ -78,6 +78,13 @@
       <p id="favoritesNote" class="favorites-note" role="status" aria-live="polite">계정 확인 중...</p>
       <div id="favoriteArtists" class="chips favorite-list" aria-label="좋아하는 아티스트 목록" hidden></div>
 
+      <section id="favoriteSongExplorer" class="favorite-song-explorer" aria-labelledby="favoriteSongExplorerTitle" hidden>
+        <h3 id="favoriteSongExplorerTitle">선택한 아티스트의 TOP100 곡</h3>
+        <p class="favorite-song-explorer-note">아티스트를 여러 명 선택할 수 있어요. 최근 7일 동안 이 브라우저에서 기록된 차트 곡도 함께 표시합니다.</p>
+        <div id="favoriteArtistCheckboxes" class="favorite-artist-checkboxes" aria-label="곡을 볼 아티스트 선택"></div>
+        <div id="favoriteSongsList" class="favorite-songs-list"></div>
+      </section>
+
       <div id="favoritesLoginGate" class="favorites-login-gate" hidden>
         <p>좋아하는 아티스트 목록을 보거나 수정하려면 로그인하고 가입 설정을 완료해 주세요.</p>
         <a class="primary-button favorites-login-button" href="/account.html">로그인 / 회원가입</a>
@@ -91,7 +98,7 @@
   <script src="supabase-config.js?v=1"></script>
   <script src="monitor-store.js?v=12"></script>
   <script src="profile-avatar.js?v=2"></script>
-  <script src="favorites.js?v=20261028-3"></script>
+  <script src="favorites.js?v=20261028-4"></script>
   <script src="theme.js?v=5"></script>
   <script>
     (() => {
