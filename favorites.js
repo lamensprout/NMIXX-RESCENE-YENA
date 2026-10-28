@@ -891,17 +891,22 @@ function renderFavoriteSongList() {
       next[key] = normalizedColor;
       try { localStorage.setItem(FAVORITE_SONG_COLORS_KEY, JSON.stringify(next)); } catch (_) {}
       row.style.setProperty("--favorite-song-color", normalizedColor);
+    }
+    function persistSongColors() {
       if (window.MonitorStore && MonitorStore.isReady() && typeof MonitorStore.saveColorPreferences === "function") {
         MonitorStore.saveColorPreferences({
-          favorite_song_colors: next,
+          favorite_song_colors: getFavoriteSongColors(),
           rank_graph_color: rankGraphColorInput && /^#[0-9a-f]{6}$/i.test(rankGraphColorInput.value)
             ? rankGraphColorInput.value : "#168A35"
         });
       }
     }
     color.addEventListener("input", function() { saveSongColor(color.value); });
-    hex.addEventListener("change", function() { saveSongColor(hex.value.trim()); });
-    hex.addEventListener("keydown", function(event) { if (event.key === "Enter") { event.preventDefault(); saveSongColor(hex.value.trim()); hex.blur(); } });
+    color.addEventListener("change", persistSongColors);
+    hex.addEventListener("change", function() { saveSongColor(hex.value.trim()); persistSongColors(); });
+    hex.addEventListener("keydown", function(event) {
+      if (event.key === "Enter") { event.preventDefault(); saveSongColor(hex.value.trim()); persistSongColors(); hex.blur(); }
+    });
     colorLabel.append(color, hex);
     row.append(rank, details, colorLabel);
     list.appendChild(row);
@@ -1088,13 +1093,18 @@ if (favoriteForm) {
 }
 
 if (rankGraphColorInput) {
+  rankGraphColorInput.addEventListener("change", function() {
+    if (window.MonitorStore && MonitorStore.isReady() && typeof MonitorStore.saveColorPreferences === "function") {
+      MonitorStore.saveColorPreferences({
+        favorite_song_colors: getFavoriteSongColors(),
+        rank_graph_color: rankGraphColorInput.value
+      });
+    }
+  });
   rankGraphColorInput.addEventListener("input", function() {
     const color = /^#[0-9a-f]{6}$/i.test(rankGraphColorInput.value) ? rankGraphColorInput.value : "#168a35";
     try { localStorage.setItem(getRankGraphColorStorageKey(), color); } catch (_) {}
     if (rankGraphColorValue) rankGraphColorValue.textContent = color.toUpperCase();
-    if (window.MonitorStore && MonitorStore.isReady() && typeof MonitorStore.saveColorPreferences === "function") {
-      MonitorStore.saveColorPreferences({ favorite_song_colors: getFavoriteSongColors(), rank_graph_color: color });
-    }
     document.querySelectorAll(".rank-graph-line").forEach(function(line) {
       line.setAttribute("stroke", color);
     });
