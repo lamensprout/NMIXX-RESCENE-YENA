@@ -3024,7 +3024,7 @@ body.dark-mode .rank-graph-legend { color: #b8c3cc; }
 @media(prefers-reduced-motion:reduce){.site-intro,.site-intro *{animation:none!important;transition:none!important}}
 
 /* Site intro: black screen fades away after the original logo is shown. */
-.site-intro{position:fixed;inset:0;z-index:100000;display:grid;place-items:center;overflow:hidden;background:#000!important;opacity:1;visibility:visible;pointer-events:auto;transition:opacity .65s ease,visibility .65s ease}
+.site-intro{position:fixed;inset:0;z-index:100000;display:grid;place-items:center;overflow:hidden;background:#000!important;opacity:1;visibility:visible;pointer-events:auto;transition:opacity 1.26s ease,visibility 1.26s ease}
 .site-intro.site-intro-finish{opacity:0;visibility:hidden;pointer-events:none}
 .site-intro-stage{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;width:min(90vw,560px);text-align:center}
 .site-intro-original-logo{display:block;width:clamp(250px,54vw,440px);height:auto;object-fit:contain}
