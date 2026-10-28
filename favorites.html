@@ -99,7 +99,7 @@
   <script src="monitor-store.js?v=13"></script>
   <script src="profile-avatar.js?v=2"></script>
   <script src="chart-popup.js?v=2"></script>
-  <script src="favorites.js?v=20261028-17"></script>
+  <script src="favorites.js?v=20261028-18"></script>
   <script src="theme.js?v=5"></script>
   <script>
     (() => {
@@ -111,7 +111,7 @@
       }
       const showFavoritesReady = () => showPopup("순위 그래프 준비가 완료되었습니다.", "success", 1800);
       window.addEventListener("melonitor-favorites-page-loaded", showFavoritesReady, { once: true });
-      showPopup("아티스트 순위 그래프를 준비하는 중입니다.\n잠시만 기다려주세요.", "loading", 0);
+      showPopup("차트를 불러오는 중입니다.\n잠시만 기다려주세요.", "loading", 0);
       if (window.__melonitorFavoritesPageLoaded) showFavoritesReady();
       button.addEventListener("click", async () => {
         const config = window.MELONITOR_SUPABASE_CONFIG || {};
