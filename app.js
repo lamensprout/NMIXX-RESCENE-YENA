@@ -906,6 +906,7 @@ function formatChartUpdateTime(updatedAt) {
 let chartStatusHideTimer = null;
 
 function setChartStatus(message, hideAfterMs = 0) {
+  if (window.MelonitorChartPopup) window.MelonitorChartPopup.set("", 0, false);
   if (!chartStatus) return;
   if (chartStatusHideTimer) clearTimeout(chartStatusHideTimer);
   chartStatusHideTimer = null;
@@ -936,7 +937,11 @@ async function loadChartData(manual = false, silent = false) {
     refreshChartButton.textContent = "↻ 차트를 불러오는 중...";
   }
   if (!silent) {
-    setChartStatus("");
+    if (window.MelonitorChartPopup) {
+      window.MelonitorChartPopup.set("차트를 불러오는 중입니다.\\n잠시만 기다려주세요.", 0, true);
+    } else {
+      setChartStatus("차트를 불러오는 중입니다.\\n잠시만 기다려주세요.");
+    }
   }
 
   try {
