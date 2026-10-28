@@ -3022,3 +3022,15 @@ body.dark-mode .rank-graph-legend { color: #b8c3cc; }
 @keyframes intro-tagline{to{opacity:1}}
 @media(max-width:480px){.site-intro-wordmark{letter-spacing:.13em;padding-left:.13em}.site-intro-tagline{font-size:8px;letter-spacing:.25em;padding-left:.25em}}
 @media(prefers-reduced-motion:reduce){.site-intro,.site-intro *{animation:none!important;transition:none!important}}
+
+/* Site intro: black screen fades away after the original logo is shown. */
+.site-intro{position:fixed;inset:0;z-index:100000;display:grid;place-items:center;overflow:hidden;background:#000!important;opacity:1;visibility:visible;pointer-events:auto;transition:opacity .65s ease,visibility .65s ease}
+.site-intro.site-intro-finish{opacity:0;visibility:hidden;pointer-events:none}
+.site-intro-stage{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;width:min(90vw,560px);text-align:center}
+.site-intro-original-logo{display:block;width:clamp(250px,54vw,440px);height:auto;object-fit:contain}
+.site-intro-wordmark{margin-top:30px;color:#f5f5f5;font-size:clamp(25px,5.8vw,42px);font-weight:850;letter-spacing:.2em;padding-left:.2em;opacity:0;transform:translateY(8px);animation:intro-wordmark .55s .65s ease-out forwards}
+.site-intro-tagline{margin-top:13px;color:#9a9a9a;font-size:10px;font-weight:700;letter-spacing:.34em;padding-left:.34em;opacity:0;animation:intro-tagline .45s .9s ease-out forwards}
+@keyframes intro-wordmark{to{opacity:1;transform:translateY(0)}}
+@keyframes intro-tagline{to{opacity:1}}
+@media(max-width:480px){.site-intro-wordmark{letter-spacing:.13em;padding-left:.13em}.site-intro-tagline{font-size:8px;letter-spacing:.25em;padding-left:.25em}}
+@media(prefers-reduced-motion:reduce){.site-intro,.site-intro *{animation:none!important;transition:none!important}}
