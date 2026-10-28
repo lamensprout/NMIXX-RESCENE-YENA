@@ -7,6 +7,18 @@
   <link rel="stylesheet" href="style.css?v=20261028-20">
 </head>
 <body>
+  <div id="siteIntro" class="site-intro" role="status" aria-label="Melonitor 시작 화면">
+    <button id="siteIntroSkip" class="site-intro-skip" type="button" aria-label="인트로 건너뛰기">건너뛰기 <span aria-hidden="true">↗</span></button>
+    <div class="site-intro-stage" aria-hidden="true">
+      <div class="site-intro-rays"></div>
+      <svg class="site-intro-mark" viewBox="0 0 180 180" role="presentation">
+        <path class="site-intro-mark-path" d="M24 142 V38 L90 126 L156 38 V142"></path>
+      </svg>
+      <div class="site-intro-wordmark">MELONITOR</div>
+      <div class="site-intro-tagline">YOUR CHART, YOUR MOMENT</div>
+    </div>
+  </div>
+
   <main class="container">
     <header class="hero site-header">
       <div class="header-brand">
@@ -146,5 +158,38 @@
       syncLogoutVisibility();
     })();
   </script>
-</body>
+  <script>
+    (() => {
+      const intro = document.getElementById("siteIntro");
+      const skip = document.getElementById("siteIntroSkip");
+      if (!intro) return;
+      let alreadyShown = false;
+      try {
+        alreadyShown = sessionStorage.getItem("melonitorIntroShown") === "1";
+        sessionStorage.setItem("melonitorIntroShown", "1");
+      } catch (_) {}
+      const finish = () => {
+        intro.classList.add("site-intro-finish");
+        window.setTimeout(() => intro.remove(), 650);
+      };
+      if (alreadyShown || window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        intro.remove();
+        return;
+      }
+      const timer = window.setTimeout(finish, 3300);
+      skip?.addEventListener("click", () => {
+        window.clearTimeout(timer);
+        finish();
+      });
+      const onKey = (event) => {
+        if (event.key === "Escape" || event.key === "Enter" || event.key === " ") {
+          window.clearTimeout(timer);
+          finish();
+          document.removeEventListener("keydown", onKey);
+        }
+      };
+      document.addEventListener("keydown", onKey);
+    })();
+  </script>
+  </body>
 </html>
