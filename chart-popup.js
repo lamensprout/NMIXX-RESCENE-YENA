@@ -42,8 +42,8 @@
       }
       const label = document.createElement("span");
       label.className = "chart-status-message";
-      const normalizedMessage = String(message).replace(/\\\\n|\\/n/g, "\\n");
-      normalizedMessage.split("\\n").forEach((line, index) => {
+      const normalizedMessage = String(message).replace(/\\n|\/n/g, "\n");
+      normalizedMessage.split("\n").forEach((line, index) => {
         if (index > 0) label.appendChild(document.createElement("br"));
         label.appendChild(document.createTextNode(line));
       });
