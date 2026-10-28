@@ -1092,7 +1092,7 @@ async function loadChartData(manual = false, silent = false) {
     if (manual) {
       setChartStatus("차트가 새로고침되었습니다.", 1800, false, "success");
     } else if (!silent) {
-      setChartStatus("");
+      setChartStatus("차트 갱신에 성공했습니다.", 1800, false, "success");
     }
   } catch (error) {
     console.error("차트 갱신 실패:", error);
