@@ -639,12 +639,12 @@ function createArtistRankGraph(artist, color) {
       rank: getArtistRankInSnapshot(snapshot, artist)
     };
   });
-  const width = 320;
-  const height = 84;
-  const left = 6;
-  const right = 314;
-  const top = 8;
-  const bottom = 68;
+  const width = 720;
+  const height = 230;
+  const left = 42;
+  const right = 704;
+  const top = 18;
+  const bottom = 190;
 
   function yForRank(rank) {
     const safeRank = Math.max(1, Math.min(101, Number(rank) || 101));
@@ -657,7 +657,7 @@ function createArtistRankGraph(artist, color) {
   svg.setAttribute("role", "img");
   svg.setAttribute("aria-label", artist + " 최근 24시간 순위 변동 그래프");
 
-  [1, 50, 100].forEach(function(rank) {
+  [1, 25, 50, 75, 100].forEach(function(rank) {
     const y = yForRank(rank);
     const line = document.createElementNS(svg.namespaceURI, "line");
     line.setAttribute("x1", String(left));
@@ -667,10 +667,10 @@ function createArtistRankGraph(artist, color) {
     line.setAttribute("class", "rank-graph-grid");
     svg.appendChild(line);
     const label = document.createElementNS(svg.namespaceURI, "text");
-    label.setAttribute("x", "3");
+    label.setAttribute("x", "0");
     label.setAttribute("y", String(y - 2));
     label.setAttribute("class", "rank-graph-axis-label");
-    label.textContent = "#" + rank;
+    label.textContent = String(rank);
     svg.appendChild(label);
   });
 
@@ -693,14 +693,21 @@ function createArtistRankGraph(artist, color) {
     svg.appendChild(line);
   }
 
-  const lastPoint = coordinates[coordinates.length - 1];
-  const marker = document.createElementNS(svg.namespaceURI, "circle");
-  marker.setAttribute("class", "rank-graph-end");
-  marker.setAttribute("cx", String(lastPoint.x));
-  marker.setAttribute("cy", String(lastPoint.y));
-  marker.setAttribute("r", "3.6");
-  marker.setAttribute("fill", color);
-  svg.appendChild(marker);
+  coordinates.forEach(function(point) {
+    const marker = document.createElementNS(svg.namespaceURI, "circle");
+    marker.setAttribute("class", "rank-graph-end");
+    marker.setAttribute("cx", String(point.x));
+    marker.setAttribute("cy", String(point.y));
+    marker.setAttribute("r", "4.2");
+    marker.setAttribute("fill", color);
+    marker.setAttribute("stroke", "#ffffff");
+    marker.setAttribute("stroke-width", "1.5");
+    const title = document.createElementNS(svg.namespaceURI, "title");
+    title.textContent = (point.sample.rank ? "#" + point.sample.rank : "TOP100 밖") + " · " +
+      new Date(point.sample.timestamp).toLocaleString("ko-KR");
+    marker.appendChild(title);
+    svg.appendChild(marker);
+  });
 
   wrapper.appendChild(svg);
   const labels = document.createElement("div");
