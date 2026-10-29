@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>🍈 Melon Artist Chart</title>
-  <link rel="stylesheet" href="style.css?v=20261029-25">
+  <link rel="stylesheet" href="style.css?v=20261029-26">
 </head>
 <body>
   <div id="siteIntro" class="site-intro" role="status" aria-label="Melonitor 시작 화면">
@@ -178,8 +178,7 @@
         releasePopup();
         return;
       }
-      const introDelay = Math.max(0, 2220 - (performance.now ? performance.now() : 0));
-      window.setTimeout(finish, introDelay);
+      window.setTimeout(finish, 2220);
     })();
   </script>
   </body>
