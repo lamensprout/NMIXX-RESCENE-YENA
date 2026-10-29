@@ -61,7 +61,6 @@
           <input id="accountEmail" name="email" type="email" autocomplete="username" placeholder="이메일 주소" required>
           <label for="accountPassword">비밀번호</label>
           <input id="accountPassword" name="password" type="password" autocomplete="current-password" placeholder="비밀번호" required>
-          <label class="remember-login-control" for="rememberLoginToggle"><span class="remember-login-copy"><strong>로그인 유지</strong><small>이 기기에서 다음에도 로그인 상태를 유지해요.</small></span><span class="switch-control"><input id="rememberLoginToggle" type="checkbox" checked><span class="switch-track" aria-hidden="true"></span></span></label>
           <button id="signInButton" type="submit" class="primary-button">로그인</button>
         </form>
       </section>
@@ -88,6 +87,8 @@
 
         <section class="account-settings-panel" aria-labelledby="accountSettingsTitle">
           <h3 id="accountSettingsTitle">계정 설정</h3>
+
+          <label class="remember-login-control" for="rememberLoginToggle"><span class="remember-login-copy"><strong>로그인 유지</strong><small>이 기기에서 다음에도 로그인 상태를 유지해요.</small></span><span class="switch-control"><input id="rememberLoginToggle" type="checkbox" checked><span class="switch-track" aria-hidden="true"></span></span></label>
 
           <section class="profile-avatar-settings" aria-labelledby="profileAvatarTitle">
             <div class="profile-avatar-preview">
@@ -129,7 +130,7 @@
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="supabase-config.js?v=1"></script>
   <script src="monitor-store.js?v=13"></script>
-  <script src="account.js?v=13"></script>
+  <script src="account.js?v=14"></script>
   <script src="theme.js?v=6"></script>
 </body>
 </html>
