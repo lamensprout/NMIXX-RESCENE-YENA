@@ -868,8 +868,11 @@ async function requestServerChart(method) {
   options.signal = controller.signal;
 
   let response;
+  let responseText;
   try {
     response = await fetch(config.endpoint, options);
+    // 응답 헤더뿐 아니라 본문을 읽는 시간까지 20초 제한에 포함합니다.
+    responseText = await response.text();
   } catch (error) {
     if (error && error.name === "AbortError") {
       throw new Error("차트 서버 응답 시간이 초과되었습니다. 잠시 후 다시 시도해 주세요.");
@@ -878,7 +881,6 @@ async function requestServerChart(method) {
   } finally {
     window.clearTimeout(timeoutId);
   }
-  const responseText = await response.text();
   let data = null;
   try {
     data = JSON.parse(responseText);
