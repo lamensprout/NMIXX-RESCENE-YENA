@@ -1050,7 +1050,8 @@ async function startAfterIntro() {
     document.body.classList.remove("modal-open");
     yesButton.removeEventListener("click", chooseYes);
     noButton.removeEventListener("click", chooseNo);
-    await loadChartData(shouldRefresh);
+    // '아니요'는 저장된 차트를 조용히 불러와 로딩 팝업을 띄우지 않습니다.
+    await loadChartData(shouldRefresh, !shouldRefresh);
   };
   const chooseYes = () => chooseRefresh(true);
   const chooseNo = () => chooseRefresh(false);
