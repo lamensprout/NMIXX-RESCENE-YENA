@@ -1032,10 +1032,22 @@ async function loadChartData(manual = false, silent = false) {
 }
 
 let startupPromptHandled = false;
+const STARTUP_PROMPT_SESSION_KEY = "melonitorStartupPromptHandled";
 
 async function startAfterIntro() {
   if (startupPromptHandled) return;
   startupPromptHandled = true;
+
+  // 첫 진입에서만 환영 팝업을 표시하고, 같은 탭에서 홈으로 돌아올 때는 다시 표시하지 않습니다.
+  try {
+    if (sessionStorage.getItem(STARTUP_PROMPT_SESSION_KEY) === "1") {
+      await loadChartData(false, true);
+      return;
+    }
+    sessionStorage.setItem(STARTUP_PROMPT_SESSION_KEY, "1");
+  } catch (storageError) {
+    console.warn("시작 팝업 표시 상태를 저장하지 못했습니다:", storageError);
+  }
 
   const initialArtist = new URLSearchParams(window.location.search).get("artist");
   if (initialArtist && input && !input.value.trim()) input.value = initialArtist;
