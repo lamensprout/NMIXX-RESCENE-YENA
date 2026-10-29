@@ -3014,7 +3014,7 @@ body.dark-mode .rank-graph-legend { color: #b8c3cc; }
 .favorite-card-song-list li.is-chart-out .favorite-card-song-rank { color: #1976d2; }
 
 
-.site-intro-original-logo{display:block;width:clamp(250px,54vw,440px);height:auto;object-fit:contain;opacity:0;transform:scale(.98);animation:intro-green-appear .8s .15s cubic-bezier(.2,.8,.2,1) forwards}
+.site-intro-original-logo{display:block;width:clamp(250px,54vw,440px);height:auto;object-fit:contain;opacity:1;transform:none;animation:none}
 .site-intro-wordmark{margin-top:30px;color:#f5f5f5;font-size:clamp(25px,5.8vw,42px);font-weight:850;letter-spacing:.2em;padding-left:.2em;opacity:0;transform:translateY(8px);animation:intro-wordmark .55s .65s ease-out forwards}
 .site-intro-tagline{margin-top:13px;color:#9a9a9a;font-size:10px;font-weight:700;letter-spacing:.34em;padding-left:.34em;opacity:0;animation:intro-tagline .45s .9s ease-out forwards}
 @keyframes intro-green-appear{0%{opacity:0;transform:scale(.98)}100%{opacity:1;transform:scale(1)}}
