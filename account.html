@@ -89,8 +89,6 @@
         <section class="account-settings-panel" aria-labelledby="accountSettingsTitle">
           <h3 id="accountSettingsTitle">계정 설정</h3>
 
-          <div class="remember-login-control"><span class="remember-login-copy"><strong>로그인 유지</strong><small>이 기기에서 다음에도 로그인 상태를 유지해요.</small></span><span class="switch-control"><input id="rememberLoginToggle" type="checkbox" checked><span class="switch-track" aria-hidden="true"></span></span></div>
-
           <section class="profile-avatar-settings" aria-labelledby="profileAvatarTitle">
             <div class="profile-avatar-preview">
               <img id="profileAvatarPreview" alt="현재 프로필 사진" hidden>
@@ -122,6 +120,9 @@
             <div class="password-field-wrap"><input id="confirmAccountPassword" name="confirmAccountPassword" type="password" minlength="8" maxlength="72" autocomplete="new-password" placeholder="비밀번호를 한 번 더 입력해 주세요" required><button class="password-visibility-toggle" type="button" data-password-toggle="confirmAccountPassword" aria-pressed="false">보기</button></div>
             <button id="updatePasswordButton" type="submit" class="primary-button">비밀번호 변경</button>
           </form>
+
+          <div class="account-settings-divider" role="separator" aria-hidden="true"></div>
+          <div class="remember-login-control"><span class="remember-login-copy"><strong>로그인 유지</strong><small>이 기기에서 다음에도 로그인 상태를 유지해요.</small></span><span class="switch-control"><input id="rememberLoginToggle" type="checkbox" checked><span class="switch-track" aria-hidden="true"></span></span></div>
         </section>
         <button id="signOutButton" type="button" class="secondary-button account-signout-button">로그아웃</button>
       </div>
