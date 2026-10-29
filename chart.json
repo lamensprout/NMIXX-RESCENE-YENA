@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-29T17:40:11.758971+00:00",
+  "updated_at": "2026-10-29T18:38:34.928623+00:00",
   "songs": [
     {
       "rank": 1,
@@ -444,19 +444,19 @@
     },
     {
       "rank": 50,
-      "title": "BANG BANG",
-      "artist": "IVE (아이브)",
-      "album": "REVIVE+",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/128/45/274/12845274_20260223113048_500.jpg/melon/resize/120/quality/80/optimize",
+      "title": "그대 작은 나의 세상이 되어",
+      "artist": "카더가든",
+      "album": "부재",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/105/54/647/10554647_20210127173809_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 51,
       "change": 1
     },
     {
       "rank": 51,
-      "title": "그대 작은 나의 세상이 되어",
-      "artist": "카더가든",
-      "album": "부재",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/105/54/647/10554647_20210127173809_500.jpg/melon/resize/120/quality/80/optimize",
+      "title": "BANG BANG",
+      "artist": "IVE (아이브)",
+      "album": "REVIVE+",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/128/45/274/12845274_20260223113048_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 50,
       "change": -1
     },
@@ -471,19 +471,19 @@
     },
     {
       "rank": 53,
-      "title": "404 (New Era)",
-      "artist": "KiiiKiii (키키)",
-      "album": "Delulu Pack",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/128/06/237/12806237_20260126145002_500.jpg/melon/resize/120/quality/80/optimize",
+      "title": "청춘만화",
+      "artist": "이무진",
+      "album": "만화 (滿花)",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/116/08/521/11608521_20241004161722_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 54,
       "change": 1
     },
     {
       "rank": 54,
-      "title": "청춘만화",
-      "artist": "이무진",
-      "album": "만화 (滿花)",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/116/08/521/11608521_20241004161722_500.jpg/melon/resize/120/quality/80/optimize",
+      "title": "404 (New Era)",
+      "artist": "KiiiKiii (키키)",
+      "album": "Delulu Pack",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/128/06/237/12806237_20260126145002_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 53,
       "change": -1
     },
