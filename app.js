@@ -977,18 +977,8 @@ async function loadChartData(manual = false, silent = false) {
       results.innerHTML = "";
     }
 
-    if (manual) {
-      const updatedTime = formatChartUpdateTime(data.updated_at);
-      let message;
-      if (data.refresh_status === "refreshed") {
-        message = "멜론 TOP100 갱신 완료" + (updatedTime ? " · " + updatedTime : "");
-      } else if (data.refresh_status === "recently_updated") {
-        message = "최근 갱신된 최신 차트를 표시 중" + (updatedTime ? " · " + updatedTime : "");
-      } else {
-        message = "최신 차트를 불러왔어요" + (updatedTime ? " · " + updatedTime : "");
-      }
-      setChartStatus(message, 5500);
-    } else if (!silent) {
+    // 성공 시 별도의 갱신 완료/최근 갱신/시간 안내 문구를 표시하지 않습니다.
+    if (!silent) {
       setChartStatus("");
     }
   } catch (error) {
