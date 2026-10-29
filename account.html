@@ -117,6 +117,8 @@
           <form id="passwordChangeForm" class="auth-form account-settings-form">
             <label for="newAccountPassword">새 비밀번호</label>
             <div class="password-field-wrap"><input id="newAccountPassword" name="newAccountPassword" type="password" minlength="8" maxlength="72" autocomplete="new-password" placeholder="새 비밀번호 8~72자" required><button class="password-visibility-toggle" type="button" data-password-toggle="newAccountPassword" aria-pressed="false">보기</button></div>
+            <label for="confirmAccountPassword">비밀번호 확인</label>
+            <div class="password-field-wrap"><input id="confirmAccountPassword" name="confirmAccountPassword" type="password" minlength="8" maxlength="72" autocomplete="new-password" placeholder="비밀번호를 한 번 더 입력해 주세요" required><button class="password-visibility-toggle" type="button" data-password-toggle="confirmAccountPassword" aria-pressed="false">보기</button></div>
             <button id="updatePasswordButton" type="submit" class="primary-button">비밀번호 변경</button>
           </form>
         </section>
@@ -130,7 +132,7 @@
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="supabase-config.js?v=1"></script>
   <script src="monitor-store.js?v=14"></script>
-  <script src="account.js?v=15"></script>
+  <script src="account.js?v=16"></script>
   <script src="theme.js?v=6"></script>
 </body>
 </html>

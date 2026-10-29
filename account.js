@@ -340,8 +340,15 @@
       event.preventDefault();
       if (!passwordChangeForm.reportValidity()) return;
       const password = newAccountPasswordInput.value;
+      const confirmPasswordInput = document.getElementById("confirmAccountPassword");
+      const confirmPassword = confirmPasswordInput ? confirmPasswordInput.value : "";
       if (password.length < 8 || password.length > 72) {
         setMessage("새 비밀번호는 8~72자로 설정해 주세요.", true);
+        return;
+      }
+      if (password !== confirmPassword) {
+        setMessage("비밀번호가 서로 일치하지 않아요. 다시 확인해 주세요.", true);
+        if (confirmPasswordInput) confirmPasswordInput.focus();
         return;
       }
 
