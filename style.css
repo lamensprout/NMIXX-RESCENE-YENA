@@ -3075,3 +3075,32 @@ body.dark-mode .welcome-modal{background:var(--card-bg,#171b19);color:var(--text
 body.dark-mode .welcome-modal-secondary{background:var(--surface-bg,#252b27);color:var(--text-color,#f2f5f3);border-color:var(--border-color,#3a423c)}
 @keyframes welcome-modal-in{from{opacity:0;transform:translateY(8px) scale(.98)}to{opacity:1;transform:translateY(0) scale(1)}}
 @media(prefers-reduced-motion:reduce){.welcome-modal{animation:none}}
+
+
+/* Signed-in account summary in the user menu */
+.user-menu-profile {
+  padding: 4px 11px 12px;
+  color: #26323b;
+}
+.user-menu-profile[hidden] { display: none !important; }
+.user-menu-profile-heading {
+  margin-bottom: 7px;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.3;
+  color: #6b747c;
+}
+.user-menu-nickname {
+  overflow-wrap: anywhere;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.45;
+  color: #111820;
+}
+.user-menu-panel .user-menu-profile + .user-menu-item {
+  min-height: 42px;
+}
+.user-menu-panel .user-menu-item svg[hidden] { display: none !important; }
+body.dark-mode .user-menu-profile { color: #e6ebef; }
+body.dark-mode .user-menu-profile-heading { color: #aeb8c1; }
+body.dark-mode .user-menu-nickname { color: #fff; }
