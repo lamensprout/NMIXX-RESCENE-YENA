@@ -207,7 +207,6 @@
   });
 
   async function init() {
-    restoreAccountScrollPosition();
     if (rememberLoginToggle && window.MonitorStore && typeof MonitorStore.getRememberLogin === "function") {
       rememberLoginToggle.checked = MonitorStore.getRememberLogin();
       rememberLoginToggle.addEventListener("change", () => {
@@ -218,6 +217,7 @@
     }
     if (window.MonitorStore) await MonitorStore.init();
     showSignedIn(MonitorStore.getUser());
+    restoreAccountScrollPosition();
 
     if (!MonitorStore.isConfigured()) {
       setMessage("계정 연결을 완료하면 이메일 인증, 회원가입, 닉네임 설정을 사용할 수 있어요.");
