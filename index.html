@@ -22,21 +22,22 @@
         alreadyShown = sessionStorage.getItem("melonitorIntroShown") === "1";
         sessionStorage.setItem("melonitorIntroShown", "1");
       } catch (_) {}
-      const releasePopup = () => {
-        if (window.MelonitorChartPopup && typeof window.MelonitorChartPopup.releaseIntro === "function") {
-          window.MelonitorChartPopup.releaseIntro();
+      const finishStartup = () => {
+        window.melonitorIntroFinished = true;
+        if (typeof window.startMelonitorAfterIntro === "function") {
+          window.startMelonitorAfterIntro();
         }
       };
       const finish = () => {
         intro.classList.add("site-intro-finish");
         window.setTimeout(() => {
           intro.remove();
-          releasePopup();
+          finishStartup();
         }, 1260);
       };
       if (alreadyShown || window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
         intro.remove();
-        releasePopup();
+        finishStartup();
         return;
       }
       window.setTimeout(finish, 2220);
