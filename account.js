@@ -17,6 +17,7 @@
   const authForm = document.getElementById("authForm");
   const emailInput = document.getElementById("accountEmail");
   const passwordInput = document.getElementById("accountPassword");
+  const rememberLoginToggle = document.getElementById("rememberLoginToggle");
   const nicknamePanel = document.getElementById("nicknamePanel");
   const nicknameForm = document.getElementById("nicknameForm");
   const nicknameInput = document.getElementById("nicknameInput");
@@ -182,6 +183,13 @@
   }
 
   async function init() {
+    if (rememberLoginToggle && window.MonitorStore && typeof MonitorStore.getRememberLogin === "function") {
+      rememberLoginToggle.checked = MonitorStore.getRememberLogin();
+      rememberLoginToggle.addEventListener("change", () => {
+        MonitorStore.setRememberLogin(rememberLoginToggle.checked);
+        window.location.reload();
+      });
+    }
     if (window.MonitorStore) await MonitorStore.init();
     showSignedIn(MonitorStore.getUser());
 

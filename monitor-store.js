@@ -1,5 +1,6 @@
 (() => {
   const SEARCH_KEY = "melonitor-popular-searches";
+  const REMEMBER_LOGIN_KEY = "melonitor-remember-login";
   const FAVORITE_KEY = "melonitor-favorite-artists";
   const CONFIG = window.MELONITOR_SUPABASE_CONFIG || {};
   const NICKNAME_PATTERN = /^[가-힣A-Za-z0-9_]{2,16}$/;
@@ -56,7 +57,7 @@
   ) {
     try {
       client = window.supabase.createClient(CONFIG.projectUrl, CONFIG.publishableKey, {
-        auth: { persistSession: true, autoRefreshToken: true, detectSessionInUrl: true }
+        auth: { persistSession: true, autoRefreshToken: true, detectSessionInUrl: true, storage: getRememberLogin() ? window.localStorage : window.sessionStorage }
       });
     } catch (error) {
       console.error("Melonitor 계정 연결 초기화 실패:", error);
@@ -91,6 +92,19 @@
 
   function writeLocalFavorites(value) {
     try { localStorage.setItem(FAVORITE_KEY, JSON.stringify(value)); } catch (_) {}
+  }
+
+  function getRememberLogin() {
+    try { return localStorage.getItem(REMEMBER_LOGIN_KEY) !== "false"; } catch (_) { return true; }
+  }
+
+  function setRememberLogin(enabled) {
+    const remember = !!enabled;
+    try {
+      localStorage.setItem(REMEMBER_LOGIN_KEY, remember ? "true" : "false");
+      if (!remember) localStorage.removeItem("sb-gyfhwndqmjmerjvpovmx-auth-token");
+    } catch (_) {}
+    return remember;
   }
 
   function isConfigured() {
@@ -669,6 +683,8 @@
     resendSignupVerification,
     verifySignupOtp,
     signIn,
+    getRememberLogin,
+    setRememberLogin,
     completeSignup,
     saveNickname,
     updateNickname,
