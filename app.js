@@ -1026,10 +1026,36 @@ async function startAfterIntro() {
   }
   updatePersonalPanels();
 
-  const shouldRefresh = window.confirm(
-    "인트로가 끝났어요.\n멜론 TOP100 차트를 새로고침할까요?\n\n확인: 멜론 차트 다시 수집\n취소: 저장된 최신 차트 불러오기"
-  );
-  await loadChartData(shouldRefresh);
+  const welcomeModal = document.getElementById("chartWelcomeModal");
+  const welcomeMessage = document.getElementById("chartWelcomeMessage");
+  const yesButton = document.getElementById("chartWelcomeYes");
+  const noButton = document.getElementById("chartWelcomeNo");
+  const user = window.MonitorStore && MonitorStore.getUser();
+  const nickname = user && window.MonitorStore && MonitorStore.getNickname();
+  const welcomeName = user ? (nickname || "회원") : "Guest";
+
+  if (!welcomeModal || !yesButton || !noButton) {
+    await loadChartData(false);
+    return;
+  }
+
+  if (welcomeMessage) {
+    welcomeMessage.textContent = welcomeName + "님 환영합니다!";
+  }
+  welcomeModal.hidden = false;
+  document.body.classList.add("modal-open");
+
+  const chooseRefresh = async (shouldRefresh) => {
+    welcomeModal.hidden = true;
+    document.body.classList.remove("modal-open");
+    yesButton.removeEventListener("click", chooseYes);
+    noButton.removeEventListener("click", chooseNo);
+    await loadChartData(shouldRefresh);
+  };
+  const chooseYes = () => chooseRefresh(true);
+  const chooseNo = () => chooseRefresh(false);
+  yesButton.addEventListener("click", chooseYes);
+  noButton.addEventListener("click", chooseNo);
 }
 
 window.startMelonitorAfterIntro = startAfterIntro;
@@ -1063,4 +1089,3 @@ window.addEventListener("melonitor-auth-change", async function() {
   await loadPopularSearches();
   await renderFavoriteArtists();
 });
-load();
