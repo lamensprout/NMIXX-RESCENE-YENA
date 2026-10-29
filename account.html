@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>계정 | Melonitor</title>
-  <link rel="stylesheet" href="style.css?v=20261029-1">
+  <link rel="stylesheet" href="style.css?v=20261029-2">
 </head>
 <body>
   <main class="container account-container">
@@ -60,7 +60,7 @@
           <label for="accountEmail">이메일</label>
           <input id="accountEmail" name="email" type="email" autocomplete="username" placeholder="이메일 주소" required>
           <label for="accountPassword">비밀번호</label>
-          <input id="accountPassword" name="password" type="password" autocomplete="current-password" placeholder="비밀번호" required>
+          <div class="password-field-wrap"><input id="accountPassword" name="password" type="password" autocomplete="current-password" placeholder="비밀번호" required><button class="password-visibility-toggle" type="button" data-password-toggle="accountPassword" aria-pressed="false">보기</button></div>
           <button id="signInButton" type="submit" class="primary-button">로그인</button>
         </form>
       </section>
@@ -73,7 +73,7 @@
           <input id="nicknameInput" name="nickname" type="text" minlength="2" maxlength="16" pattern="[가-힣A-Za-z0-9_]{2,16}" autocomplete="nickname" placeholder="예: MelonFan, 멜론팬" aria-describedby="nicknameHelp" required>
           <small id="nicknameHelp" class="nickname-help">한글·영어 2~16자. 숫자와 밑줄(_)은 가능해요. 욕설·성적·혐오 표현이나 운영진 사칭 닉네임은 사용할 수 없어요.</small>
           <label for="signupPassword">비밀번호 (필수)</label>
-          <input id="signupPassword" name="signupPassword" type="password" minlength="8" maxlength="72" autocomplete="new-password" placeholder="8~72자" required>
+          <div class="password-field-wrap"><input id="signupPassword" name="signupPassword" type="password" minlength="8" maxlength="72" autocomplete="new-password" placeholder="8~72자" required><button class="password-visibility-toggle" type="button" data-password-toggle="signupPassword" aria-pressed="false">보기</button></div>
           <small class="nickname-help">이 비밀번호를 나중에 이메일과 함께 사용해 로그인해요.</small>
           <button id="completeSignupButton" type="submit" class="primary-button">닉네임과 비밀번호 저장</button>
         </form>
@@ -116,7 +116,7 @@
 
           <form id="passwordChangeForm" class="auth-form account-settings-form">
             <label for="newAccountPassword">새 비밀번호</label>
-            <input id="newAccountPassword" name="newAccountPassword" type="password" minlength="8" maxlength="72" autocomplete="new-password" placeholder="새 비밀번호 8~72자" required>
+            <div class="password-field-wrap"><input id="newAccountPassword" name="newAccountPassword" type="password" minlength="8" maxlength="72" autocomplete="new-password" placeholder="새 비밀번호 8~72자" required><button class="password-visibility-toggle" type="button" data-password-toggle="newAccountPassword" aria-pressed="false">보기</button></div>
             <button id="updatePasswordButton" type="submit" class="primary-button">비밀번호 변경</button>
           </form>
         </section>
@@ -130,7 +130,7 @@
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="supabase-config.js?v=1"></script>
   <script src="monitor-store.js?v=14"></script>
-  <script src="account.js?v=14"></script>
+  <script src="account.js?v=15"></script>
   <script src="theme.js?v=6"></script>
 </body>
 </html>

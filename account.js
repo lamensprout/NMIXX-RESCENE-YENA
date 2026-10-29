@@ -182,10 +182,36 @@
     }
   }
 
+  function restoreAccountScrollPosition() {
+    const key = "melonitor-account-scroll-y";
+    try {
+      const saved = sessionStorage.getItem(key);
+      if (saved !== null) {
+        sessionStorage.removeItem(key);
+        const y = Number(saved);
+        if (Number.isFinite(y)) requestAnimationFrame(() => window.scrollTo(0, y));
+      }
+    } catch (_) {}
+  }
+
+  document.querySelectorAll("[data-password-toggle]").forEach(button => {
+    button.addEventListener("click", () => {
+      const input = document.getElementById(button.dataset.passwordToggle);
+      if (!input) return;
+      const reveal = input.type === "password";
+      input.type = reveal ? "text" : "password";
+      button.textContent = reveal ? "숨기기" : "보기";
+      button.setAttribute("aria-pressed", reveal ? "true" : "false");
+      button.setAttribute("aria-label", reveal ? "비밀번호 숨기기" : "비밀번호 표시");
+    });
+  });
+
   async function init() {
+    restoreAccountScrollPosition();
     if (rememberLoginToggle && window.MonitorStore && typeof MonitorStore.getRememberLogin === "function") {
       rememberLoginToggle.checked = MonitorStore.getRememberLogin();
       rememberLoginToggle.addEventListener("change", () => {
+        try { sessionStorage.setItem("melonitor-account-scroll-y", String(window.scrollY)); } catch (_) {}
         MonitorStore.setRememberLogin(rememberLoginToggle.checked);
         window.location.reload();
       });

@@ -3048,3 +3048,11 @@ body.dark-mode .rank-graph-legend { color: #b8c3cc; }
 .switch-control input:checked+.switch-track{background:#16a36a}
 .switch-control input:checked+.switch-track::after{transform:translateX(18px)}
 .switch-control input:focus-visible+.switch-track{outline:3px solid #78b7ff;outline-offset:3px}
+
+
+/* Password visibility controls */
+.password-field-wrap { display:flex; align-items:stretch; gap:8px; min-width:0; }
+.auth-form .password-field-wrap input { flex:1 1 auto; width:0; min-width:0; }
+.password-visibility-toggle { flex:0 0 auto; min-width:68px; padding:0 12px; border:1px solid #d9dfe6; border-radius:10px; background:#f7f8fa; color:#303640; font-size:12px; font-weight:700; }
+.password-visibility-toggle:focus-visible { outline:2px solid #00cd3b; outline-offset:2px; }
+body.dark-mode .password-visibility-toggle { color:#edf0f5; background:#252d37; border-color:#3a4553; }
