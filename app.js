@@ -1010,9 +1010,15 @@ async function loadChartData(manual = false, silent = false) {
       results.innerHTML = "";
     }
 
-    // 성공 시 별도의 갱신 완료/최근 갱신/시간 안내 문구를 표시하지 않습니다.
+    // 사용자가 새로고침 버튼을 눌렀을 때는 성공 팝업을 표시합니다.
     if (!silent) {
-      setChartStatus("");
+      if (manual && window.MelonitorChartPopup) {
+        window.MelonitorChartPopup.set("차트 갱신에 성공했습니다!", 2600, false, "success");
+      } else if (manual) {
+        setChartStatus("차트 갱신에 성공했습니다!", 2600);
+      } else {
+        setChartStatus("");
+      }
     }
   } catch (error) {
     console.error("차트 갱신 실패:", error);
