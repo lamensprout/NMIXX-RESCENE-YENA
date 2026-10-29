@@ -181,7 +181,8 @@
         releasePopup();
         return;
       }
-      window.setTimeout(finish, 2220);
+      const introDelay = Math.max(0, 2220 - (performance.now ? performance.now() : 0));
+      window.setTimeout(finish, introDelay);
     })();
   </script>
   </body>
