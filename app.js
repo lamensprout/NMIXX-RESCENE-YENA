@@ -944,19 +944,17 @@ function setChartStatus(message, hideAfterMs = 0) {
 }
 
 async function loadChartData(manual = false, silent = false) {
-  if (chartLoadInProgress) {
-    // 이미 실행 중인 요청이 있어도 버튼이 영구적으로 잠긴 상태로 남지 않게 합니다.
-    if (refreshChartButton && !manual) {
-      refreshChartButton.disabled = false;
-      refreshChartButton.textContent = "↻ 차트 새로고침";
-    }
-    return;
-  }
+  if (chartLoadInProgress) return;
   chartLoadInProgress = true;
 
-  if (!silent && refreshChartButton) {
-    refreshChartButton.disabled = true;
-    refreshChartButton.textContent = "↻ 차트를 불러오는 중...";
+  if (refreshChartButton) {
+    if (!silent) {
+      refreshChartButton.disabled = true;
+      refreshChartButton.textContent = "↻ 차트를 불러오는 중...";
+    } else if (!chartHasLoaded) {
+      // 시작 시 HTML에서 비활성화된 버튼은 첫 차트 로딩이 끝날 때까지 유지합니다.
+      refreshChartButton.disabled = true;
+    }
   }
   if (!silent) {
     if (window.MelonitorChartPopup) {
@@ -1023,7 +1021,8 @@ async function loadChartData(manual = false, silent = false) {
     }
   } finally {
     chartLoadInProgress = false;
-    if (!silent && refreshChartButton) {
+    // 일반 로딩/자동 로딩/오류 여부와 관계없이 버튼을 복구합니다.
+    if (refreshChartButton) {
       refreshChartButton.disabled = false;
       refreshChartButton.textContent = "↻ 차트 새로고침";
     }
