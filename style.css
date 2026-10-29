@@ -3037,7 +3037,7 @@ body.dark-mode .rank-graph-legend { color: #b8c3cc; }
 
 
 /* Remember-login toggle on the account sign-in form. */
-.remember-login-control{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:2px 0 4px;padding:12px 14px;border:1px solid var(--border-color,#d9dedb);border-radius:12px;cursor:pointer}
+.remember-login-control{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:2px 0 4px;padding:12px 14px;border:1px solid transparent;border-radius:12px;cursor:default}
 .remember-login-copy{display:flex;flex-direction:column;gap:4px}
 .remember-login-copy strong{font-size:14px;font-weight:700}
 .remember-login-copy small{font-size:12px;line-height:1.45;color:var(--muted-text,#777)}
