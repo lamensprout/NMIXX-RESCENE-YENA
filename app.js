@@ -1008,7 +1008,12 @@ async function loadChartData(manual = false, silent = false) {
   }
 }
 
-async function load() {
+let startupPromptHandled = false;
+
+async function startAfterIntro() {
+  if (startupPromptHandled) return;
+  startupPromptHandled = true;
+
   const initialArtist = new URLSearchParams(window.location.search).get("artist");
   if (initialArtist && input && !input.value.trim()) input.value = initialArtist;
 
@@ -1020,7 +1025,16 @@ async function load() {
     }
   }
   updatePersonalPanels();
-  await loadChartData(false);
+
+  const shouldRefresh = window.confirm(
+    "인트로가 끝났어요.\n멜론 TOP100 차트를 새로고침할까요?\n\n확인: 멜론 차트 다시 수집\n취소: 저장된 최신 차트 불러오기"
+  );
+  await loadChartData(shouldRefresh);
+}
+
+window.startMelonitorAfterIntro = startAfterIntro;
+if (window.melonitorIntroFinished) {
+  startAfterIntro();
 }
 
 if (refreshChartButton) {
