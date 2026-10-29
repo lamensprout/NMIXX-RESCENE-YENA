@@ -1055,20 +1055,10 @@ async function startAfterIntro() {
   if (startupPromptHandled) return;
   startupPromptHandled = true;
 
-  // 첫 진입에서만 환영 팝업을 표시하고, 같은 탭에서 홈으로 돌아올 때는 다시 표시하지 않습니다.
-  try {
-    if (sessionStorage.getItem(STARTUP_PROMPT_SESSION_KEY) === "1") {
-      await loadChartData(false, true);
-      return;
-    }
-    sessionStorage.setItem(STARTUP_PROMPT_SESSION_KEY, "1");
-  } catch (storageError) {
-    console.warn("시작 팝업 표시 상태를 저장하지 못했습니다:", storageError);
-  }
-
   const initialArtist = new URLSearchParams(window.location.search).get("artist");
   if (initialArtist && input && !input.value.trim()) input.value = initialArtist;
 
+  // 홈으로 다시 이동한 경우에도 계정 세션을 초기화하고 닉네임 메뉴를 갱신합니다.
   if (window.MonitorStore) {
     try {
       await MonitorStore.init();
@@ -1077,6 +1067,19 @@ async function startAfterIntro() {
     }
   }
   updatePersonalPanels();
+
+  // 환영 팝업은 탭에서 첫 진입할 때만 표시합니다. 계정 초기화는 매번 실행합니다.
+  let showWelcomePrompt = true;
+  try {
+    showWelcomePrompt = sessionStorage.getItem(STARTUP_PROMPT_SESSION_KEY) !== "1";
+    if (showWelcomePrompt) sessionStorage.setItem(STARTUP_PROMPT_SESSION_KEY, "1");
+  } catch (storageError) {
+    console.warn("시작 팝업 표시 상태를 저장하지 못했습니다:", storageError);
+  }
+  if (!showWelcomePrompt) {
+    await loadChartData(false, true);
+    return;
+  }
 
   const welcomeModal = document.getElementById("chartWelcomeModal");
   const welcomeMessage = document.getElementById("chartWelcomeMessage");
