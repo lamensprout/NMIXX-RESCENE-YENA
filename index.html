@@ -80,9 +80,16 @@
             </svg>
           </button>
           <div id="userMenuPanel" class="user-menu-panel" role="menu" aria-label="사용자 설정" hidden>
+            <div id="userMenuProfile" class="user-menu-profile" hidden>
+              <div class="user-menu-profile-heading">사용자</div>
+              <div id="userMenuNickname" class="user-menu-nickname"></div>
+            </div>
             <a id="accountLink" class="user-menu-item" href="/account.html" role="menuitem">
-              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <svg id="accountLoginIcon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
                 <path d="M10 3H4.8A1.8 1.8 0 0 0 3 4.8v14.4A1.8 1.8 0 0 0 4.8 21H10v-2H5V5h5V3Zm4.6 4.4-1.4 1.4 2.2 2.2H9v2h6.4l-2.2 2.2 1.4 1.4 4.6-4.6-4.6-4.6Z"></path>
+              </svg>
+              <svg id="accountSettingsIcon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" hidden>
+                <path d="M19.14 12.94c.04-.31.06-.62.06-.94s-.02-.63-.07-.94l2.03-1.58-2-3.46-2.39.96a7.1 7.1 0 0 0-1.63-.95L14.78 3h-4l-.36 3.03c-.59.22-1.13.54-1.63.95L6.4 6.02l-2 3.46 2.03 1.58a6.1 6.1 0 0 0 0 1.88L4.4 14.52l2 3.46 2.39-.96c.5.41 1.04.73 1.63.95L10.78 21h4l.36-3.03c.59-.22 1.13-.54 1.63-.95l2.39.96 2-3.46-2.02-1.58ZM12.78 15.5a3.5 3.5 0 1 1 0-7 3.5 3.5 0 0 1 0 7Z"></path>
               </svg>
               <span id="accountLinkLabel">로그인 / 회원가입</span>
             </a>
@@ -143,7 +150,7 @@
   <script src="monitor-store.js?v=12"></script>
   <script src="profile-avatar.js?v=2"></script>
   <script src="chart-popup.js?v=4"></script>
-  <script src="app.js?v=20261029-3"></script>
+  <script src="app.js?v=20261029-4"></script>
   <script src="theme.js?v=5"></script>
   <script>
     (() => {
