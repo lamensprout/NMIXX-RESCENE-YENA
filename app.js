@@ -862,7 +862,22 @@ async function requestServerChart(method) {
     options.body = "{}";
   }
 
-  const response = await fetch(config.endpoint, options);
+  // 서버 응답이 멈춰 새로고침 버튼이 계속 비활성화되는 상황을 막습니다.
+  const controller = new AbortController();
+  const timeoutId = window.setTimeout(() => controller.abort(), 20000);
+  options.signal = controller.signal;
+
+  let response;
+  try {
+    response = await fetch(config.endpoint, options);
+  } catch (error) {
+    if (error && error.name === "AbortError") {
+      throw new Error("차트 서버 응답 시간이 초과되었습니다. 잠시 후 다시 시도해 주세요.");
+    }
+    throw error;
+  } finally {
+    window.clearTimeout(timeoutId);
+  }
   const responseText = await response.text();
   let data = null;
   try {
@@ -929,7 +944,14 @@ function setChartStatus(message, hideAfterMs = 0) {
 }
 
 async function loadChartData(manual = false, silent = false) {
-  if (chartLoadInProgress) return;
+  if (chartLoadInProgress) {
+    // 이미 실행 중인 요청이 있어도 버튼이 영구적으로 잠긴 상태로 남지 않게 합니다.
+    if (refreshChartButton && !manual) {
+      refreshChartButton.disabled = false;
+      refreshChartButton.textContent = "↻ 차트 새로고침";
+    }
+    return;
+  }
   chartLoadInProgress = true;
 
   if (!silent && refreshChartButton) {
