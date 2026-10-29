@@ -13,6 +13,36 @@
     </div>
   </div>
 
+  <script>
+    (() => {
+      const intro = document.getElementById("siteIntro");
+      if (!intro) return;
+      let alreadyShown = false;
+      try {
+        alreadyShown = sessionStorage.getItem("melonitorIntroShown") === "1";
+        sessionStorage.setItem("melonitorIntroShown", "1");
+      } catch (_) {}
+      const releasePopup = () => {
+        if (window.MelonitorChartPopup && typeof window.MelonitorChartPopup.releaseIntro === "function") {
+          window.MelonitorChartPopup.releaseIntro();
+        }
+      };
+      const finish = () => {
+        intro.classList.add("site-intro-finish");
+        window.setTimeout(() => {
+          intro.remove();
+          releasePopup();
+        }, 1260);
+      };
+      if (alreadyShown || window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        intro.remove();
+        releasePopup();
+        return;
+      }
+      window.setTimeout(finish, 2220);
+    })();
+  </script>
+
   <main class="container">
     <header class="hero site-header">
       <div class="header-brand">
@@ -152,34 +182,6 @@
       syncLogoutVisibility();
     })();
   </script>
-  <script>
-    (() => {
-      const intro = document.getElementById("siteIntro");
-      if (!intro) return;
-      let alreadyShown = false;
-      try {
-        alreadyShown = sessionStorage.getItem("melonitorIntroShown") === "1";
-        sessionStorage.setItem("melonitorIntroShown", "1");
-      } catch (_) {}
-      const releasePopup = () => {
-        if (window.MelonitorChartPopup && typeof window.MelonitorChartPopup.releaseIntro === "function") {
-          window.MelonitorChartPopup.releaseIntro();
-        }
-      };
-      const finish = () => {
-        intro.classList.add("site-intro-finish");
-        window.setTimeout(() => {
-          intro.remove();
-          releasePopup();
-        }, 1260);
-      };
-      if (alreadyShown || window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-        intro.remove();
-        releasePopup();
-        return;
-      }
-      window.setTimeout(finish, 2220);
-    })();
-  </script>
+
   </body>
 </html>
