@@ -454,9 +454,20 @@ function updateAccountMenuLabel() {
   const hasUser = !!(window.MonitorStore && MonitorStore.getUser());
   const ready = !!(window.MonitorStore && MonitorStore.isReady());
   const nickname = ready && window.MonitorStore ? MonitorStore.getNickname() : "";
-  accountLinkLabel.textContent = !hasUser
-    ? "로그인 / 회원가입"
-    : (ready ? (nickname || "내 계정") : "닉네임 설정하기");
+  const profile = document.getElementById("userMenuProfile");
+  const nicknameLabel = document.getElementById("userMenuNickname");
+  const loginIcon = document.getElementById("accountLoginIcon");
+  const settingsIcon = document.getElementById("accountSettingsIcon");
+
+  if (profile) profile.hidden = !hasUser;
+  if (nicknameLabel) nicknameLabel.textContent = nickname || (hasUser ? "닉네임 설정 필요" : "");
+  if (loginIcon) loginIcon.hidden = hasUser;
+  if (settingsIcon) settingsIcon.hidden = !hasUser;
+
+  // 로그인 상태에서는 닉네임을 상단에 표시하고, 링크는 계정 설정으로 고정합니다.
+  accountLinkLabel.textContent = hasUser
+    ? "계정 설정"
+    : "로그인 / 회원가입";
 }
 
 function updatePersonalPanels() {
