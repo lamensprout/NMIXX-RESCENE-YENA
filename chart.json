@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-29T19:42:41.234936+00:00",
+  "updated_at": "2026-10-29T20:34:53.942396+00:00",
   "songs": [
     {
       "rank": 1,
@@ -444,21 +444,21 @@
     },
     {
       "rank": 50,
-      "title": "그대 작은 나의 세상이 되어",
-      "artist": "카더가든",
-      "album": "부재",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/105/54/647/10554647_20210127173809_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 50,
-      "change": 0
-    },
-    {
-      "rank": 51,
       "title": "BANG BANG",
       "artist": "IVE (아이브)",
       "album": "REVIVE+",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/128/45/274/12845274_20260223113048_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 51,
-      "change": 0
+      "change": 1
+    },
+    {
+      "rank": 51,
+      "title": "그대 작은 나의 세상이 되어",
+      "artist": "카더가든",
+      "album": "부재",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/105/54/647/10554647_20210127173809_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 50,
+      "change": -1
     },
     {
       "rank": 52,
@@ -475,8 +475,8 @@
       "artist": "KiiiKiii (키키)",
       "album": "Delulu Pack",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/128/06/237/12806237_20260126145002_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 54,
-      "change": 1
+      "previous_rank": 53,
+      "change": 0
     },
     {
       "rank": 54,
@@ -484,8 +484,8 @@
       "artist": "이무진",
       "album": "만화 (滿花)",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/116/08/521/11608521_20241004161722_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 53,
-      "change": -1
+      "previous_rank": 54,
+      "change": 0
     },
     {
       "rank": 55,
@@ -709,8 +709,8 @@
       "artist": "TWS (투어스)",
       "album": "Sparkling Blue",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/113/91/902/11391902_20250922111638_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 80,
-      "change": 1
+      "previous_rank": 79,
+      "change": 0
     },
     {
       "rank": 80,
@@ -718,8 +718,8 @@
       "artist": "로제 (ROSÉ)",
       "album": "APT.",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/116/19/809/11619809_20241018103507_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 79,
-      "change": -1
+      "previous_rank": 80,
+      "change": 0
     },
     {
       "rank": 81,
