@@ -212,7 +212,6 @@
       rememberLoginToggle.addEventListener("change", () => {
         try { sessionStorage.setItem("melonitor-account-scroll-y", String(window.scrollY)); } catch (_) {}
         MonitorStore.setRememberLogin(rememberLoginToggle.checked);
-        window.location.reload();
       });
     }
     if (window.MonitorStore) await MonitorStore.init();
