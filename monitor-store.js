@@ -100,10 +100,23 @@
 
   function setRememberLogin(enabled) {
     const remember = !!enabled;
+    const authStorageKey = "sb-gyfhwndqmjmerjvpovmx-auth-token";
     try {
+      // Move the active Supabase session before reloading with the new storage.
+      // Turning the option off should shorten persistence, not sign the user out.
+      const sourceStorage = remember ? window.sessionStorage : window.localStorage;
+      const targetStorage = remember ? window.localStorage : window.sessionStorage;
+      const existingSession = sourceStorage.getItem(authStorageKey);
+      if (existingSession) targetStorage.setItem(authStorageKey, existingSession);
       localStorage.setItem(REMEMBER_LOGIN_KEY, remember ? "true" : "false");
-      if (!remember) localStorage.removeItem("sb-gyfhwndqmjmerjvpovmx-auth-token");
-    } catch (_) {}
+      if (remember) {
+        sessionStorage.removeItem(authStorageKey);
+      } else {
+        localStorage.removeItem(authStorageKey);
+      }
+    } catch (error) {
+      console.warn("로그인 유지 설정을 변경하지 못했습니다:", error);
+    }
     return remember;
   }
 
