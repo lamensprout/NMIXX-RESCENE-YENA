@@ -3239,3 +3239,16 @@ body.dark-mode .user-menu-nickname { color: #fff; }
     font-size: 10px;
   }
 }
+
+
+/* Align chart refresh button with the search-row clear button. */
+@media (max-width: 640px) {
+  .search-heading-row {
+    width: 100%;
+  }
+  .search-heading-row .chart-refresh-controls {
+    margin-left: auto;
+    margin-right: 0;
+    align-self: flex-end;
+  }
+}
