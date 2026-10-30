@@ -2556,7 +2556,7 @@ body.dark-mode .page-back-link:focus-visible {
 .brand-logo-dark { display:none; }
 html.dark-mode .brand-logo-light { display:none; }
 html.dark-mode .brand-logo-dark { display:block; }
-@media (max-width:640px) { .brand-logo { width:min(230px,100%); max-height:42px; } }
+@media (max-width:640px) { .brand-logo { width:min(180px,100%); max-height:34px; } }
 
 /* Light-mode header controls: transparent fill, visible outline only. */
 body:not(.dark-mode) .user-menu-trigger {
