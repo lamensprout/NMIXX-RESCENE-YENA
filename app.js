@@ -963,7 +963,6 @@ async function loadChartData(manual = false, silent = false) {
   if (refreshChartButton) {
     if (!silent) {
       refreshChartButton.disabled = true;
-      refreshChartButton.textContent = "↻ 차트를 불러오는 중...";
     } else if (!chartHasLoaded) {
       // 시작 시 HTML에서 비활성화된 버튼은 첫 차트 로딩이 끝날 때까지 유지합니다.
       refreshChartButton.disabled = true;
@@ -1043,7 +1042,6 @@ async function loadChartData(manual = false, silent = false) {
     // 일반 로딩/자동 로딩/오류 여부와 관계없이 버튼을 복구합니다.
     if (refreshChartButton) {
       refreshChartButton.disabled = false;
-      refreshChartButton.textContent = "↻ 차트 새로고침";
     }
   }
 }
