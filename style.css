@@ -3262,3 +3262,11 @@ body.dark-mode .user-menu-nickname { color: #fff; }
   width: auto;
   min-width: 0;
 }
+
+
+/* Portrait mobile: place the refresh button's right edge on the clear button's right edge. */
+@media (max-width: 640px) and (orientation: portrait) {
+  .search-heading-row .refresh-chart-button {
+    margin-right: 15px;
+  }
+}
