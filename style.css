@@ -9,6 +9,8 @@
 body {
   margin: 0;
   background: #f7f7f9;
+  word-break: keep-all;
+  overflow-wrap: break-word;
 }
 
 .container {
