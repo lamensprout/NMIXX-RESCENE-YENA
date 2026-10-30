@@ -3315,8 +3315,10 @@ body.dark-mode .user-menu-nickname { color: #fff; }
 .chart-status.is-loading,
 .chart-status.is-success,
 .chart-status.is-error {
+  box-sizing: border-box !important;
   z-index: 10000 !important;
   width: min(520px, calc(100vw - 36px)) !important;
+  height: 250px !important;
   min-height: 250px !important;
   padding: 42px 36px !important;
   gap: 22px !important;
@@ -3331,6 +3333,7 @@ body.dark-mode .user-menu-nickname { color: #fff; }
   .chart-status.is-success,
   .chart-status.is-error {
     width: calc(100vw - 28px) !important;
+    height: 220px !important;
     min-height: 220px !important;
     padding: 32px 22px !important;
     font-size: 18px !important;
