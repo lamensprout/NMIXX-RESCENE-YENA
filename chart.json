@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-30T21:28:44.238561+00:00",
+  "updated_at": "2026-10-30T22:29:50.131831+00:00",
   "songs": [
     {
       "rank": 1,
@@ -372,21 +372,21 @@
     },
     {
       "rank": 42,
-      "title": "Dear my crazy soulmate",
-      "artist": "아이유",
-      "album": "이 별로부터",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/145/35/765/14535765_20260909154035_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 42,
-      "change": 0
-    },
-    {
-      "rank": 43,
       "title": "HOME SWEET HOME (feat. 태양, 대성)",
       "artist": "G-DRAGON",
       "album": "HOME SWEET HOME (feat. 태양, 대성)",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/116/47/670/11647670_20241121150855_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 43,
-      "change": 0
+      "change": 1
+    },
+    {
+      "rank": 43,
+      "title": "Dear my crazy soulmate",
+      "artist": "아이유",
+      "album": "이 별로부터",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/145/35/765/14535765_20260909154035_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 42,
+      "change": -1
     },
     {
       "rank": 44,
@@ -543,19 +543,19 @@
     },
     {
       "rank": 61,
-      "title": "연애의 조건 (Love Options)",
-      "artist": "베스티",
-      "album": "연애의 조건",
-      "album_image": "https://cdnimg.melon.co.kr/cm/album/images/022/10/766/2210766_500.jpg/melon/resize/120/quality/80/optimize",
+      "title": "Lemon Tang",
+      "artist": "Hearts2Hearts (하츠투하츠)",
+      "album": "Lemon Tang - The 2nd Mini Album",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/137/50/428/13750428_20260619162731_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 62,
       "change": 1
     },
     {
       "rank": 62,
-      "title": "Lemon Tang",
-      "artist": "Hearts2Hearts (하츠투하츠)",
-      "album": "Lemon Tang - The 2nd Mini Album",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/137/50/428/13750428_20260619162731_500.jpg/melon/resize/120/quality/80/optimize",
+      "title": "연애의 조건 (Love Options)",
+      "artist": "베스티",
+      "album": "연애의 조건",
+      "album_image": "https://cdnimg.melon.co.kr/cm/album/images/022/10/766/2210766_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 61,
       "change": -1
     },
@@ -660,12 +660,12 @@
     },
     {
       "rank": 74,
-      "title": "Love wins all",
-      "artist": "아이유",
-      "album": "The Winning",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/114/04/142/11404142_20240220141548_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 75,
-      "change": 1
+      "title": "사랑은 늘 도망가",
+      "artist": "임영웅",
+      "album": "신사와 아가씨 OST Part.2",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/107/35/654/10735654_20211008114339_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 76,
+      "change": 2
     },
     {
       "rank": 75,
@@ -673,15 +673,15 @@
       "artist": "제니 (JENNIE)",
       "album": "Ruby",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/117/30/946/11730946_20250307173452_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 76,
-      "change": 1
+      "previous_rank": 75,
+      "change": 0
     },
     {
       "rank": 76,
-      "title": "사랑은 늘 도망가",
-      "artist": "임영웅",
-      "album": "신사와 아가씨 OST Part.2",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/107/35/654/10735654_20211008114339_500.jpg/melon/resize/120/quality/80/optimize",
+      "title": "Love wins all",
+      "artist": "아이유",
+      "album": "The Winning",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/114/04/142/11404142_20240220141548_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 74,
       "change": -2
     },
