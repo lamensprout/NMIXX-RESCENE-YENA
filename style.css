@@ -3152,3 +3152,90 @@ body.dark-mode .user-menu-nickname { color: #fff; }
     align-self: center;
   }
 }
+
+
+/* Keep every page within the viewport on mobile; prevent sideways page movement. */
+@media (max-width: 640px) {
+  html,
+  body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: clip;
+  }
+  body {
+    min-width: 0;
+  }
+  .container,
+  .site-header,
+  .search,
+  .favorites-panel,
+  .account-card,
+  .report-teaser,
+  .error-board-page,
+  .favorite-song-explorer,
+  .favorite-songs-list {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+  }
+  img,
+  svg,
+  canvas,
+  video,
+  iframe {
+    max-width: 100%;
+  }
+  input,
+  button,
+  select,
+  textarea {
+    max-width: 100%;
+  }
+}
+
+/* Favorite-artist songs use the same row layout as the home search results. */
+.favorite-chart-song {
+  min-width: 0;
+}
+.favorite-chart-song .song-info {
+  position: relative;
+  padding-right: 28px;
+}
+.favorite-chart-song .favorite-chart-song-color {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 22px;
+  height: 22px;
+  min-height: 22px;
+  padding: 1px;
+  border: 0;
+  border-radius: 5px;
+  background: transparent;
+  cursor: pointer;
+}
+.favorite-chart-song .album {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+@media (max-width: 640px) {
+  .favorite-chart-song {
+    grid-template-columns: 34px 50px 48px minmax(0, 1fr);
+    gap: 7px;
+    padding: 10px 8px;
+  }
+  .favorite-chart-song .album-image {
+    width: 46px;
+    height: 46px;
+  }
+  .favorite-chart-song .song-info {
+    padding-right: 24px;
+  }
+  .favorite-chart-song .rank {
+    font-size: 17px;
+  }
+  .favorite-chart-song .change {
+    font-size: 10px;
+  }
+}
