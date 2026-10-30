@@ -1875,6 +1875,22 @@ body.dark-mode .main-nav a:focus-visible { color: #8ed69e; }
   }
 }
 @media (max-width: 640px) {
+  html:has(body .page-back-link),
+  body:has(.page-back-link) {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: clip;
+  }
+  body:has(.page-back-link) .container {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+  }
+  body:has(.page-back-link) img,
+  body:has(.page-back-link) svg,
+  body:has(.page-back-link) canvas {
+    max-width: 100%;
+  }
   .container {
     width: 100%;
     max-width: 100%;
