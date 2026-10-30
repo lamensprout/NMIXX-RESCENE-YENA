@@ -3258,3 +3258,12 @@ body.dark-mode .user-menu-nickname { color: #fff; }
     min-width: 0;
   }
 }
+
+
+/* Portrait phones: align refresh button with the clear button's right edge. */
+@media (max-width: 640px) and (orientation: portrait) {
+  .search-heading-row .chart-refresh-controls {
+    position: relative;
+    right: 15px;
+  }
+}
