@@ -2866,7 +2866,7 @@ body.dark-mode .chart-status.is-loading::before {
   gap: 10px;
   margin-bottom: 8px;
 }
-.search-heading-row label { margin: 0; flex: 0 1 auto; }
+.search-heading-row label { margin: 0; flex: 0 0 auto; white-space: nowrap; }
 .search-heading-row .chart-refresh-controls {
   width: auto;
   min-height: 0;
