@@ -3336,3 +3336,19 @@ body.dark-mode .user-menu-nickname { color: #fff; }
     font-size: 18px !important;
   }
 }
+
+
+/* Match the welcome dialog dimensions to the chart refresh dialog. */
+.welcome-modal {
+  box-sizing: border-box;
+  width: min(520px, calc(100vw - 36px));
+  min-height: 250px;
+  padding: 42px 36px;
+}
+@media (max-width: 600px) {
+  .welcome-modal {
+    width: calc(100vw - 28px);
+    min-height: 220px;
+    padding: 32px 22px;
+  }
+}
