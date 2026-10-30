@@ -1006,7 +1006,7 @@ async function loadChartData(manual = false, silent = false) {
     if (input.value.trim()) {
       search(input.value);
     } else {
-      summary.textContent = "아티스트를 검색해 주세요.";
+      summary.textContent = "";
       results.innerHTML = "";
     }
 
