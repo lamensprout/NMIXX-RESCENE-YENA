@@ -901,74 +901,62 @@ function renderFavoriteSongList() {
   available.forEach(function(song) {
     const key = favoriteSongKey(song);
     const row = document.createElement("article");
-    row.className = "favorite-song-row";
-    row.style.setProperty("--favorite-song-color", colors[key] || "#168a35");
-    const rank = document.createElement("span");
-    rank.className = "favorite-song-rank";
+    row.className = "song favorite-chart-song";
+
+    const rank = document.createElement("div");
+    rank.className = "rank";
+    rank.textContent = song.chartOut ? String(song.lastRank || song.rank || "?") : String(song.rank || "?");
+
+    const change = document.createElement("div");
+    change.className = "change";
     if (song.chartOut) {
-      rank.classList.add("is-chart-out");
-      rank.textContent = "▼ OUT";
+      change.classList.add("down");
+      change.textContent = "▼ OUT";
     } else if (song.chartIn) {
-      rank.classList.add("is-chart-in");
-      rank.textContent = "▲ IN";
+      change.classList.add("up");
+      change.textContent = "▲ IN";
     } else {
-      rank.textContent = String(song.rank || "?");
-      const change = Number(song.change) || 0;
-      if (change > 0) {
-        rank.appendChild(document.createTextNode(" "));
-        const movement = document.createElement("span");
-        movement.className = "favorite-rank-change up";
-        movement.textContent = "▲ " + change;
-        rank.appendChild(movement);
-      } else if (change < 0) {
-        rank.appendChild(document.createTextNode(" "));
-        const movement = document.createElement("span");
-        movement.className = "favorite-rank-change down";
-        movement.textContent = "▼ " + Math.abs(change);
-        rank.appendChild(movement);
-      } else {
-        rank.appendChild(document.createTextNode(" -"));
-      }
+      const amount = Number(song.change) || 0;
+      change.textContent = amount > 0 ? "▲ " + amount : amount < 0 ? "▼ " + Math.abs(amount) : "-";
+      change.classList.add(amount > 0 ? "up" : amount < 0 ? "down" : "same");
     }
+
+    const image = document.createElement("img");
+    image.className = "album-image";
+    image.alt = song.title ? song.title + " 앨범아트" : "앨범아트";
+    image.loading = "lazy";
+    if (song.album_image) {
+      image.src = song.album_image;
+    } else {
+      image.style.visibility = "hidden";
+    }
+
     const details = document.createElement("div");
-    details.className = "favorite-song-details";
-    const title = document.createElement("strong");
+    details.className = "song-info";
+    const title = document.createElement("div");
+    title.className = "title";
     title.textContent = song.title || "제목 없음";
-    const artist = document.createElement("span");
+    const artist = document.createElement("div");
+    artist.className = "artist";
     artist.textContent = song.artist || "";
-    details.append(title, artist);
-    if (song.chartOut) {
-      const note = document.createElement("small");
-      note.className = "favorite-song-out-note";
-      note.textContent = "조회일 기준 차트 밖 · 최근 7일 기록";
-      details.appendChild(note);
-    }
-    const colorLabel = document.createElement("div");
-    colorLabel.className = "favorite-song-color-label";
-    colorLabel.title = "이 곡의 색상 변경";
-    const color = document.createElement("input");
-    color.type = "color";
-    color.value = colors[key] || "#168a35";
-    color.setAttribute("aria-label", song.title + " 색상 선택");
-    const hex = document.createElement("input");
-    hex.type = "text";
-    hex.className = "favorite-song-hex";
-    hex.value = color.value.toUpperCase();
-    hex.maxLength = 7;
-    hex.placeholder = "#168A35";
-    hex.setAttribute("aria-label", song.title + " HTML Color Code");
-    function saveSongColor(value) {
-      if (!/^#[0-9a-f]{6}$/i.test(value)) { hex.setAttribute("aria-invalid", "true"); return; }
-      hex.removeAttribute("aria-invalid");
-      const normalizedColor = value.toUpperCase();
-      color.value = normalizedColor;
-      hex.value = normalizedColor;
+    const album = document.createElement("div");
+    album.className = "album";
+    album.textContent = song.chartOut
+      ? (song.album || "") + (song.album ? " · " : "") + "최근 7일 차트 이탈"
+      : (song.album || "");
+    details.append(title, artist, album);
+
+    // Keep the existing per-song color preference available in the matching chart row.
+    const colorControl = document.createElement("input");
+    colorControl.type = "color";
+    colorControl.className = "favorite-chart-song-color";
+    colorControl.value = colors[key] || "#168a35";
+    colorControl.title = "이 곡의 색상 변경";
+    colorControl.setAttribute("aria-label", (song.title || "곡") + " 색상 선택");
+    function persistSongColor() {
       const next = getFavoriteSongColors();
-      next[key] = normalizedColor;
+      next[key] = colorControl.value.toUpperCase();
       try { localStorage.setItem(FAVORITE_SONG_COLORS_KEY, JSON.stringify(next)); } catch (_) {}
-      row.style.setProperty("--favorite-song-color", normalizedColor);
-    }
-    function persistSongColors() {
       if (window.MonitorStore && MonitorStore.isReady() && typeof MonitorStore.saveColorPreferences === "function") {
         MonitorStore.saveColorPreferences({
           favorite_song_colors: getFavoriteSongColors(),
@@ -977,14 +965,10 @@ function renderFavoriteSongList() {
         });
       }
     }
-    color.addEventListener("input", function() { saveSongColor(color.value); });
-    color.addEventListener("change", persistSongColors);
-    hex.addEventListener("change", function() { saveSongColor(hex.value.trim()); persistSongColors(); });
-    hex.addEventListener("keydown", function(event) {
-      if (event.key === "Enter") { event.preventDefault(); saveSongColor(hex.value.trim()); persistSongColors(); hex.blur(); }
-    });
-    colorLabel.append(color, hex);
-    row.append(rank, details, colorLabel);
+    colorControl.addEventListener("change", persistSongColor);
+    details.appendChild(colorControl);
+
+    row.append(rank, change, image, details);
     list.appendChild(row);
   });
 }
