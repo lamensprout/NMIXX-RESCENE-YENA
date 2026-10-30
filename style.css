@@ -3304,3 +3304,35 @@ body.dark-mode .user-menu-nickname { color: #fff; }
   overflow: visible !important;
   text-overflow: clip !important;
 }
+
+
+/* Enlarge the refresh dialog and blur only the page behind it. */
+.chart-refresh-backdrop {
+  background: rgba(12, 20, 16, .32) !important;
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+}
+.chart-status.is-loading,
+.chart-status.is-success,
+.chart-status.is-error {
+  z-index: 10000 !important;
+  width: min(520px, calc(100vw - 36px)) !important;
+  min-height: 250px !important;
+  padding: 42px 36px !important;
+  gap: 22px !important;
+  font-size: 20px !important;
+  filter: none !important;
+  opacity: 1 !important;
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+}
+@media (max-width: 600px) {
+  .chart-status.is-loading,
+  .chart-status.is-success,
+  .chart-status.is-error {
+    width: calc(100vw - 28px) !important;
+    min-height: 220px !important;
+    padding: 32px 22px !important;
+    font-size: 18px !important;
+  }
+}
