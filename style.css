@@ -3264,9 +3264,27 @@ body.dark-mode .user-menu-nickname { color: #fff; }
 }
 
 
-/* Portrait mobile: place the refresh button's right edge on the clear button's right edge. */
-@media (max-width: 640px) and (orientation: portrait) {
-  .search-heading-row .refresh-chart-button {
-    margin-right: 15px;
-  }
+/* Keep the refresh button aligned with the search-row clear button. */
+.search-heading-row {
+  width: 100%;
+  box-sizing: border-box;
+}
+.search-heading-row .chart-refresh-controls {
+  position: relative;
+  flex: 0 0 auto;
+  width: max-content;
+  margin-left: auto;
+  margin-right: 0;
+  align-items: flex-end;
+}
+.search-heading-row .refresh-chart-button {
+  margin-right: 0;
+}
+.search-heading-row .chart-status {
+  position: absolute;
+  top: calc(100% + 5px);
+  right: 0;
+  z-index: 2;
+  width: max-content;
+  max-width: min(320px, 80vw);
 }
