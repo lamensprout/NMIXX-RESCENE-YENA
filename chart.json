@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-30T19:39:13.972262+00:00",
+  "updated_at": "2026-10-30T20:29:11.762503+00:00",
   "songs": [
     {
       "rank": 1,
@@ -700,8 +700,8 @@
       "artist": "로제 (ROSÉ)",
       "album": "APT.",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/116/19/809/11619809_20241018103507_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 79,
-      "change": 1
+      "previous_rank": 78,
+      "change": 0
     },
     {
       "rank": 79,
@@ -709,8 +709,8 @@
       "artist": "NCT WISH",
       "album": "I SPY - The 4th Mini Album",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/145/82/521/14582521_20261002114945_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 78,
-      "change": -1
+      "previous_rank": 79,
+      "change": 0
     },
     {
       "rank": 80,
