@@ -3392,3 +3392,19 @@ body.dark-mode .user-menu-nickname { color: #fff; }
   .welcome-modal p { font-size: 12px; }
   .welcome-modal-actions { margin-top: 10px; }
 }
+
+/* Keep the welcome dialog the same outer size as the chart-refresh popup. */
+.welcome-modal {
+  width: min(440px, calc(100vw - 36px));
+  height: 210px;
+  min-height: 210px;
+  padding: 18px 28px;
+}
+@media (max-width: 600px) {
+  .welcome-modal {
+    width: calc(100vw - 32px);
+    height: 190px;
+    min-height: 190px;
+    padding: 14px 20px;
+  }
+}
