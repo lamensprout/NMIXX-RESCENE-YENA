@@ -773,7 +773,7 @@ function render(list, query) {
   results.innerHTML = "";
 
   if (!query) {
-    summary.textContent = "아티스트를 검색해 주세요.";
+    summary.textContent = "";
     return;
   }
 
