@@ -3138,3 +3138,17 @@ body.dark-mode .welcome-modal-secondary{background:var(--surface-bg,#252b27);col
 body.dark-mode .user-menu-profile { color: #e6ebef; }
 body.dark-mode .user-menu-profile-heading { color: #aeb8c1; }
 body.dark-mode .user-menu-nickname { color: #fff; }
+
+
+/* Keep the search heading and chart refresh on one row on mobile. */
+@media (max-width: 640px) {
+  .search-heading-row {
+    flex-wrap: nowrap;
+    align-items: center;
+  }
+  .search-heading-row .chart-refresh-controls {
+    min-height: 0;
+    height: auto;
+    align-self: center;
+  }
+}
