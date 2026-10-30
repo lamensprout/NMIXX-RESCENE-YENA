@@ -1522,7 +1522,7 @@ body.dark-mode .chart-status { color: #9eabb5; }
   width: 258px;
   padding: 7px;
   border: 1px solid #d8dde2;
-  border-radius: 5px;
+  border-radius: 16px;
   background: #fff;
   box-shadow: 0 14px 36px rgb(10 21 30 / 18%);
 }
