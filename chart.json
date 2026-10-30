@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-30T17:34:22.304536+00:00",
+  "updated_at": "2026-10-30T18:36:12.258107+00:00",
   "songs": [
     {
       "rank": 1,
@@ -552,21 +552,21 @@
     },
     {
       "rank": 62,
-      "title": "청혼하지 않을 이유를 못 찾았어",
-      "artist": "이무진",
-      "album": "청혼하지 않을 이유를 못 찾았어",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/114/55/285/11455285_20240401151801_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 62,
-      "change": 0
-    },
-    {
-      "rank": 63,
       "title": "연애의 조건 (Love Options)",
       "artist": "베스티",
       "album": "연애의 조건",
       "album_image": "https://cdnimg.melon.co.kr/cm/album/images/022/10/766/2210766_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 63,
-      "change": 0
+      "change": 1
+    },
+    {
+      "rank": 63,
+      "title": "청혼하지 않을 이유를 못 찾았어",
+      "artist": "이무진",
+      "album": "청혼하지 않을 이유를 못 찾았어",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/114/55/285/11455285_20240401151801_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 62,
+      "change": -1
     },
     {
       "rank": 64,
@@ -615,19 +615,19 @@
     },
     {
       "rank": 69,
-      "title": "다정히 내 이름을 부르면",
-      "artist": "경서예지",
-      "album": "다정히 내 이름을 부르면 (경서예지 x 전건호)",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/106/10/525/10610525_20210518143433_500.jpg/melon/resize/120/quality/80/optimize",
+      "title": "Golden",
+      "artist": "HUNTR/X",
+      "album": "KPop Demon Hunters (Soundtrack from the Netflix Film)",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/118/59/863/11859863_20250620104512_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 70,
       "change": 1
     },
     {
       "rank": 70,
-      "title": "Golden",
-      "artist": "HUNTR/X",
-      "album": "KPop Demon Hunters (Soundtrack from the Netflix Film)",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/118/59/863/11859863_20250620104512_500.jpg/melon/resize/120/quality/80/optimize",
+      "title": "다정히 내 이름을 부르면",
+      "artist": "경서예지",
+      "album": "다정히 내 이름을 부르면 (경서예지 x 전건호)",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/106/10/525/10610525_20210518143433_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 69,
       "change": -1
     },
