@@ -3288,3 +3288,19 @@ body.dark-mode .user-menu-nickname { color: #fff; }
   width: max-content;
   max-width: min(320px, 80vw);
 }
+
+/* Keep the chart refresh dialog centered in the viewport. */
+.chart-status.is-loading,
+.chart-status.is-success,
+.chart-status.is-error {
+  position: fixed !important;
+  top: 50% !important;
+  left: 50% !important;
+  right: auto !important;
+  bottom: auto !important;
+  transform: translate(-50%, -50%) !important;
+  box-sizing: border-box !important;
+  height: auto !important;
+  overflow: visible !important;
+  text-overflow: clip !important;
+}
