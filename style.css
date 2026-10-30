@@ -3338,17 +3338,54 @@ body.dark-mode .user-menu-nickname { color: #fff; }
 }
 
 
-/* Match the welcome dialog dimensions to the chart refresh dialog. */
+/* Match the welcome dialog's outer width and height to the chart refresh dialog. */
 .welcome-modal {
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   width: min(520px, calc(100vw - 36px));
+  height: 250px;
   min-height: 250px;
-  padding: 42px 36px;
+  padding: 18px 36px;
+}
+.welcome-modal-mark {
+  width: 40px;
+  height: 40px;
+  margin: 0 auto 8px;
+  font-size: 22px;
+}
+.welcome-modal h2 {
+  margin: 0 0 6px;
+  font-size: 19px;
+  line-height: 1.25;
+}
+.welcome-modal p {
+  font-size: 13px;
+  line-height: 1.45;
+}
+.welcome-modal-actions {
+  width: 100%;
+  margin-top: 12px;
+}
+.welcome-modal-actions button {
+  min-height: 40px;
 }
 @media (max-width: 600px) {
   .welcome-modal {
     width: calc(100vw - 28px);
+    height: 220px;
     min-height: 220px;
-    padding: 32px 22px;
+    padding: 14px 22px;
   }
+  .welcome-modal-mark {
+    width: 36px;
+    height: 36px;
+    margin-bottom: 6px;
+    font-size: 20px;
+  }
+  .welcome-modal h2 { font-size: 18px; }
+  .welcome-modal p { font-size: 12px; }
+  .welcome-modal-actions { margin-top: 10px; }
 }
