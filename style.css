@@ -3241,29 +3241,24 @@ body.dark-mode .user-menu-nickname { color: #fff; }
 }
 
 
-/* Align chart refresh button with the search-row clear button. */
-@media (max-width: 640px) {
-  .search-heading-row {
-    width: auto;
-    margin-right: 15px;
-  }
-  .search-heading-row .chart-refresh-controls {
-    width: auto;
-    margin-left: auto;
-    margin-right: 0;
-    align-self: flex-end;
-  }
-  .search-heading-row .refresh-chart-button {
-    width: auto;
-    min-width: 0;
-  }
+/* Keep the refresh button's right edge aligned with the clear button. */
+.search-heading-row {
+  width: 100%;
+  box-sizing: border-box;
+  justify-content: space-between;
+  flex-wrap: nowrap;
 }
-
-
-/* Portrait phones: align refresh button with the clear button's right edge. */
-@media (max-width: 640px) and (orientation: portrait) {
-  .search-heading-row .chart-refresh-controls {
-    position: relative;
-    right: 15px;
-  }
+.search-heading-row .chart-refresh-controls {
+  flex: 0 0 auto;
+  width: auto;
+  min-height: 0;
+  margin-left: auto;
+  margin-right: 0;
+  position: static;
+  right: auto;
+  align-items: flex-end;
+}
+.search-heading-row .refresh-chart-button {
+  width: auto;
+  min-width: 0;
 }
