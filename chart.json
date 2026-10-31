@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-31T20:25:39.111733+00:00",
+  "updated_at": "2026-10-31T21:27:13.648515+00:00",
   "songs": [
     {
       "rank": 1,
@@ -417,19 +417,19 @@
     },
     {
       "rank": 47,
-      "title": "toxic till the end",
-      "artist": "로제 (ROSÉ)",
-      "album": "rosie",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/116/59/696/11659696_20241205141243_500.jpg/melon/resize/120/quality/80/optimize",
+      "title": "BANG BANG",
+      "artist": "IVE (아이브)",
+      "album": "REVIVE+",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/128/45/274/12845274_20260223113048_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 48,
       "change": 1
     },
     {
       "rank": 48,
-      "title": "BANG BANG",
-      "artist": "IVE (아이브)",
-      "album": "REVIVE+",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/128/45/274/12845274_20260223113048_500.jpg/melon/resize/120/quality/80/optimize",
+      "title": "toxic till the end",
+      "artist": "로제 (ROSÉ)",
+      "album": "rosie",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/116/59/696/11659696_20241205141243_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 47,
       "change": -1
     },
@@ -624,12 +624,12 @@
     },
     {
       "rank": 70,
-      "title": "사랑은 늘 도망가",
-      "artist": "임영웅",
-      "album": "신사와 아가씨 OST Part.2",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/107/35/654/10735654_20211008114339_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 70,
-      "change": 0
+      "title": "입춘",
+      "artist": "한로로",
+      "album": "입춘",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/108/90/163/10890163_20220311160155_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 72,
+      "change": 2
     },
     {
       "rank": 71,
@@ -637,17 +637,17 @@
       "artist": "Crush",
       "album": "삐그덕 (Feat. 아이유)",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/149/55/418/14955418_20261019111743_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 72,
-      "change": 1
+      "previous_rank": 71,
+      "change": 0
     },
     {
       "rank": 72,
-      "title": "입춘",
-      "artist": "한로로",
-      "album": "입춘",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/108/90/163/10890163_20220311160155_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 71,
-      "change": -1
+      "title": "사랑은 늘 도망가",
+      "artist": "임영웅",
+      "album": "신사와 아가씨 OST Part.2",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/107/35/654/10735654_20211008114339_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 70,
+      "change": -2
     },
     {
       "rank": 73,
