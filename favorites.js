@@ -192,7 +192,13 @@ function getEnglishAcronyms(value) {
   return [tokens.map(function(token) { return token.charAt(0); }).join("")];
 }
 
+const searchNamesCache = new Map();
+const aliasClosureCache = new Map();
+
 function getSearchNames(artist) {
+  const cacheKey = String(artist || "");
+  if (searchNamesCache.has(cacheKey)) return searchNamesCache.get(cacheKey);
+
   const names = [artist];
 
   getParenthesizedNames(artist).forEach(function(name) {
@@ -227,8 +233,11 @@ function getSearchNames(artist) {
     });
   });
 
-  return Array.from(new Set(names.filter(Boolean)));
+  const result = Array.from(new Set(names.filter(Boolean)));
+  searchNamesCache.set(cacheKey, result);
+  return result;
 }
+
 
 
 
@@ -243,44 +252,22 @@ function getArtistIdentityTokens(artist) {
 function areSameArtist(a, b) {
   const aTokens = getArtistIdentityTokens(a);
   const bTokens = getArtistIdentityTokens(b);
-  const knownForms = new Set(aTokens.concat(bTokens));
 
-  let changed = true;
-  while (changed) {
-    changed = false;
-
-    Object.entries(artistAliases).forEach(function(entry) {
-      const group = [entry[0]].concat(entry[1] || []).map(normalize).filter(Boolean);
-      const touchesKnownForm = group.some(function(name) {
-        return knownForms.has(name);
-      });
-
-      if (touchesKnownForm) {
-        group.forEach(function(name) {
-          if (!knownForms.has(name)) {
-            knownForms.add(name);
-            changed = true;
-          }
-        });
-      }
-    });
-  }
-
+  // Alias groups are static, so reuse each artist's transitive alias set.
+  // This avoids scanning the full alias table for every song comparison.
   return aTokens.some(function(token) {
-    return knownForms.has(token) && bTokens.some(function(other) {
-      return knownForms.has(other) && token === other;
-    });
-  }) || aTokens.some(function(token) {
+    const aliases = getAliasClosure(token);
     return bTokens.some(function(other) {
-      if (token === other) return true;
-      const aNames = getAliasClosure(token);
-      return aNames.has(other);
+      return token === other || aliases.has(other);
     });
   });
 }
 
 function getAliasClosure(value) {
-  const knownForms = new Set([normalize(value)]);
+  const cacheKey = normalize(value);
+  if (aliasClosureCache.has(cacheKey)) return aliasClosureCache.get(cacheKey);
+
+  const knownForms = new Set([cacheKey]);
   let changed = true;
 
   while (changed) {
@@ -298,6 +285,7 @@ function getAliasClosure(value) {
     });
   }
 
+  aliasClosureCache.set(cacheKey, knownForms);
   return knownForms;
 }
 
