@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-31T21:27:13.648515+00:00",
+  "updated_at": "2026-10-31T22:27:39.060450+00:00",
   "songs": [
     {
       "rank": 1,
@@ -372,21 +372,21 @@
     },
     {
       "rank": 42,
-      "title": "HOME SWEET HOME (feat. 태양, 대성)",
-      "artist": "G-DRAGON",
-      "album": "HOME SWEET HOME (feat. 태양, 대성)",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/116/47/670/11647670_20241121150855_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 42,
-      "change": 0
-    },
-    {
-      "rank": 43,
       "title": "Skibidi",
       "artist": "소녀시대-효리수 (Girls' Generation-HRS)",
       "album": "Skibidi",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/144/94/370/14494370_20260828152343_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 43,
-      "change": 0
+      "change": 1
+    },
+    {
+      "rank": 43,
+      "title": "HOME SWEET HOME (feat. 태양, 대성)",
+      "artist": "G-DRAGON",
+      "album": "HOME SWEET HOME (feat. 태양, 대성)",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/116/47/670/11647670_20241121150855_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 42,
+      "change": -1
     },
     {
       "rank": 44,
@@ -417,19 +417,19 @@
     },
     {
       "rank": 47,
-      "title": "BANG BANG",
-      "artist": "IVE (아이브)",
-      "album": "REVIVE+",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/128/45/274/12845274_20260223113048_500.jpg/melon/resize/120/quality/80/optimize",
+      "title": "toxic till the end",
+      "artist": "로제 (ROSÉ)",
+      "album": "rosie",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/116/59/696/11659696_20241205141243_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 48,
       "change": 1
     },
     {
       "rank": 48,
-      "title": "toxic till the end",
-      "artist": "로제 (ROSÉ)",
-      "album": "rosie",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/116/59/696/11659696_20241205141243_500.jpg/melon/resize/120/quality/80/optimize",
+      "title": "BANG BANG",
+      "artist": "IVE (아이브)",
+      "album": "REVIVE+",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/128/45/274/12845274_20260223113048_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 47,
       "change": -1
     },
@@ -534,21 +534,21 @@
     },
     {
       "rank": 60,
-      "title": "뛰어(JUMP)",
-      "artist": "BLACKPINK",
-      "album": "뛰어(JUMP)",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/118/90/480/11890480_20250711095238_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 60,
-      "change": 0
-    },
-    {
-      "rank": 61,
       "title": "헤어지자 말해요",
       "artist": "박재정",
       "album": "1집 Alone",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/112/27/533/11227533_20230419162238_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 61,
-      "change": 0
+      "change": 1
+    },
+    {
+      "rank": 61,
+      "title": "뛰어(JUMP)",
+      "artist": "BLACKPINK",
+      "album": "뛰어(JUMP)",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/118/90/480/11890480_20250711095238_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 60,
+      "change": -1
     },
     {
       "rank": 62,
@@ -570,21 +570,21 @@
     },
     {
       "rank": 64,
-      "title": "청혼하지 않을 이유를 못 찾았어",
-      "artist": "이무진",
-      "album": "청혼하지 않을 이유를 못 찾았어",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/114/55/285/11455285_20240401151801_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 64,
-      "change": 0
-    },
-    {
-      "rank": 65,
       "title": "Star Trace",
       "artist": "PLAVE",
       "album": "HYPERDRIVE",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/146/29/242/14629242_20261007150642_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 65,
-      "change": 0
+      "change": 1
+    },
+    {
+      "rank": 65,
+      "title": "청혼하지 않을 이유를 못 찾았어",
+      "artist": "이무진",
+      "album": "청혼하지 않을 이유를 못 찾았어",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/114/55/285/11455285_20240401151801_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 64,
+      "change": -1
     },
     {
       "rank": 66,
@@ -624,21 +624,21 @@
     },
     {
       "rank": 70,
-      "title": "입춘",
-      "artist": "한로로",
-      "album": "입춘",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/108/90/163/10890163_20220311160155_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 72,
-      "change": 2
-    },
-    {
-      "rank": 71,
       "title": "삐그덕 (Feat. 아이유)",
       "artist": "Crush",
       "album": "삐그덕 (Feat. 아이유)",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/149/55/418/14955418_20261019111743_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 71,
-      "change": 0
+      "change": 1
+    },
+    {
+      "rank": 71,
+      "title": "입춘",
+      "artist": "한로로",
+      "album": "입춘",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/108/90/163/10890163_20220311160155_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 70,
+      "change": -1
     },
     {
       "rank": 72,
@@ -646,8 +646,8 @@
       "artist": "임영웅",
       "album": "신사와 아가씨 OST Part.2",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/107/35/654/10735654_20211008114339_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 70,
-      "change": -2
+      "previous_rank": 72,
+      "change": 0
     },
     {
       "rank": 73,
