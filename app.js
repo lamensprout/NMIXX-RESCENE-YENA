@@ -745,7 +745,14 @@ function schedulePopularSearch(query) {
   }, 900);
 }
 
-function formatChange(change) {
+function formatChange(song) {
+  // 서버가 previous_rank를 null로 반환한 곡은 비교 기준 차트에 없던 신규 진입곡입니다.
+  if (song && Object.prototype.hasOwnProperty.call(song, "previous_rank") &&
+      song.previous_rank == null) {
+    return { text: "NEW", className: "new" };
+  }
+
+  const change = Number(song && song.change) || 0;
   if (change > 0) {
     return { text: "▲ " + change, className: "up" };
   }
@@ -780,7 +787,7 @@ function render(list, query) {
 
     node.querySelector(".rank").textContent = song.rank;
 
-    const change = formatChange(song.change || 0);
+    const change = formatChange(song);
     const changeEl = node.querySelector(".change");
     changeEl.textContent = change.text;
     changeEl.classList.add(change.className);
