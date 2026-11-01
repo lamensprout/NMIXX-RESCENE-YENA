@@ -6,7 +6,6 @@
   const signupEmailInput = document.getElementById("signupEmailInput");
   const sendVerificationButton = document.getElementById("sendVerificationButton");
   const verificationSentPanel = document.getElementById("verificationSentPanel");
-  const resendVerificationButton = document.getElementById("resendVerificationButton");
   const verificationOtpForm = document.getElementById("verificationOtpForm");
   const verificationCodeInput = document.getElementById("verificationCodeInput");
   const verifyOtpButton = document.getElementById("verifyOtpButton");
@@ -161,7 +160,6 @@
 
     signInButton.disabled = !configured;
     sendVerificationButton.disabled = !configured;
-    resendVerificationButton.disabled = !configured;
     if (verifyOtpButton) verifyOtpButton.disabled = !configured;
     completeSignupButton.disabled = !configured || !signedIn || hasNickname;
   }
@@ -170,7 +168,6 @@
     if (!signupEmailForm.reportValidity()) return;
     const email = signupEmailInput.value.trim();
     sendVerificationButton.disabled = true;
-    resendVerificationButton.disabled = true;
     if (verifyOtpButton) verifyOtpButton.disabled = true;
     setMessage(isResend ? "인증 코드를 다시 보내고 있어요." : "인증 코드를 보내고 있어요.");
 
@@ -195,7 +192,6 @@
       setMessage(getKoreanAuthError(error, "인증 코드를 보내지 못했어요. 이메일을 확인한 뒤 다시 시도해 주세요."), true);
     } finally {
       sendVerificationButton.disabled = !MonitorStore.isConfigured();
-      resendVerificationButton.disabled = !MonitorStore.isConfigured();
       if (verifyOtpButton) verifyOtpButton.disabled = !MonitorStore.isConfigured();
     }
   }
@@ -278,7 +274,6 @@
   verificationCodeInput.addEventListener("input", () => {
     verificationCodeInput.value = verificationCodeInput.value.replace(/[^0-9]/g, "").slice(0, 6);
   });
-  resendVerificationButton.addEventListener("click", () => sendVerificationEmail(true));
 
   chooseLoginButton.addEventListener("click", () => {
     setAuthMode("login");
