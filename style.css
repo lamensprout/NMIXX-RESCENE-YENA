@@ -2247,7 +2247,7 @@ body.dark-mode .account-signout-button:hover:not(:disabled) {
 .user-menu-trigger.has-avatar {
   overflow: hidden;
   padding: 0;
-  border-color: transparent;
+  border-color: #d8dde2;
   border-radius: 10px;
   background: transparent !important;
 }
