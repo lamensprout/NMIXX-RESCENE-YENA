@@ -2247,13 +2247,8 @@ body.dark-mode .account-signout-button:hover:not(:disabled) {
 .user-menu-trigger.has-avatar {
   overflow: hidden;
   padding: 0;
-  border-color: #d6dde2;
+  border-color: transparent;
   border-radius: 10px;
-  background: transparent !important;
-}
-.user-menu-trigger.has-avatar:hover,
-.user-menu-trigger.has-avatar[aria-expanded="true"] {
-  border-color: #168a35;
   background: transparent !important;
 }
 body.dark-mode .profile-avatar-settings { border-bottom-color: #303a43; }
