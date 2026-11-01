@@ -2641,17 +2641,22 @@ body.dark-mode .chart-status.is-loading::before {
 }
 
 
-/* Centered chart-refresh modal: block taps/clicks while allowing page scrolling. */
+/* Centered chart-refresh modal: block all page interaction and scrolling while visible. */
 .chart-refresh-backdrop {
   position: fixed;
   inset: 0;
   z-index: 9998;
   background: rgba(12, 20, 16, .48);
-  touch-action: pan-y;
-  pointer-events: none;
+  touch-action: none;
+  overscroll-behavior: none;
+  pointer-events: auto;
 }
 .chart-refresh-backdrop[hidden] { display: none !important; }
-body.chart-refresh-active { cursor: progress; }
+body.chart-refresh-active {
+  cursor: progress;
+  overflow: hidden !important;
+  overscroll-behavior: none;
+}
 .chart-status.is-loading,
 .chart-status.is-success,
 .chart-status.is-error {
