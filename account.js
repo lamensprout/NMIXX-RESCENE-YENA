@@ -201,7 +201,6 @@
     if (!verificationOtpForm.reportValidity()) return;
 
     verifyOtpButton.disabled = true;
-    resendVerificationButton.disabled = true;
     setMessage("인증 코드를 확인하고 있어요.");
     try {
       const result = await MonitorStore.verifySignupOtp(
@@ -218,7 +217,6 @@
       setMessage(getKoreanAuthError(error, "인증에 실패했어요. 6자리 코드를 확인하고 다시 시도해 주세요."), true);
     } finally {
       verifyOtpButton.disabled = !MonitorStore.isConfigured();
-      resendVerificationButton.disabled = !MonitorStore.isConfigured();
     }
   }
 
