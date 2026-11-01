@@ -4,6 +4,9 @@
   const FAVORITE_KEY = "melonitor-favorite-artists";
   const CONFIG = window.MELONITOR_SUPABASE_CONFIG || {};
   const NICKNAME_PATTERN = /^[가-힣A-Za-z0-9_]{2,16}$/;
+  // Explicitly block known mixed-script nickname evasions while keeping the exact "관리자" exception.
+  const NICKNAME_OBFUSCATED_BLOCKED = new Set(["ㄱr슴", "ㄱㅏ슴", "보ㅈi"]);
+  const NICKNAME_OBFUSCATED_RESERVED = new Set(["관a리자", "관1리자", "관리2자", "관ㄹi자", "관ㄹl자", "관리ㅈr", "관ㄹlㅈr"]);
   const NICKNAME_BLOCKED_PATTERNS = [
     new RegExp("\\u{c528}+\\u{c774}*\\u{bc1c}+|\\u{c2dc}+\\u{c774}*\\u{bc1c}+|\\u{c528}+\\u{d314}+|\\u{c2dc}+\\u{d314}+|\\u{c528}\\u{bc8c}|\\u{c2dc}\\u{bc8c}|\\u{c528}\\u{bd88}|\\u{c2dc}\\u{bd88}|\\u{c539}\\u{c0c8}\\u{b07c}|\\u{ac1c}\\u{c0c8}\\u{b07c}|\\u{c0c8}\\u{b07c}|\\u{c886}|\\u{c887}|\\u{c874}\\u{b098}|\\u{c874}\\u{b0b4}|\\u{bcd1}\\u{c2e0}|\\u{be05}\\u{c2e0}|\\u{be59}\\u{c2e0}|\\u{c9c0}\\u{b784}|\\u{c5fc}\\u{bcd1}|\\u{ac1c}\\u{b144}|\\u{ac1c}\\u{b188}|\\u{bbf8}\\u{ce5c}\\u{b144}|\\u{bbf8}\\u{ce5c}\\u{b188}|\\u{b290}\\u{ae08}\\u{b9c8}|\\u{b2c8}\\u{c560}\\u{bbf8}|\\u{c560}\\u{bbf8}\\u{b4a4}|\\u{c560}\\u{be44}\\u{b4a4}|\\u{bcf4}\\u{c9c0}|\\u{c790}\\u{c9c0}|\\u{c131}\\u{d3ed}\\u{d589}|\\u{ac15}\\u{ac04}|\\u{c57c}\\u{b3d9}|\\u{d3ec}\\u{b974}\\u{b178}|\\u{b530}\\u{ba39}|\\u{d6c4}\\u{c7a5}|\\u{b538}\\u{b538}\\u{c774}|\\u{c139}\\u{c2a4}|\\u{cc3d}\\u{b140}|\\u{ac78}\\u{b808}|\\u{b9d8}\\u{cda9}|\\u{d55c}\\u{b0a8}\\u{cda9}|\\u{d55c}\\u{b140}\\u{cda9}|\\u{c9f1}\\u{ae68}|\\u{cabd}\\u{bc14}\\u{b9ac}", "u"),
     new RegExp("\\u{66}\\u{75}\\u{63}\\u{6b}|\\u{66}\\u{75}\\u{6b}|\\u{73}\\u{68}\\u{69}\\u{74}|\\u{62}\\u{69}\\u{74}\\u{63}\\u{68}|\\u{62}\\u{61}\\u{73}\\u{74}\\u{61}\\u{72}\\u{64}|\\u{6d}\\u{6f}\\u{74}\\u{68}\\u{65}\\u{72}\\u{66}\\u{75}\\u{63}\\u{6b}\\u{65}\\u{72}|\\u{61}\\u{73}\\u{73}\\u{68}\\u{6f}\\u{6c}\\u{65}|\\u{6a}\\u{61}\\u{63}\\u{6b}\\u{61}\\u{73}\\u{73}|\\u{64}\\u{75}\\u{6d}\\u{62}\\u{61}\\u{73}\\u{73}|\\u{64}\\u{69}\\u{63}\\u{6b}|\\u{70}\\u{75}\\u{73}\\u{73}\\u{79}|\\u{63}\\u{75}\\u{6e}\\u{74}|\\u{73}\\u{6c}\\u{75}\\u{74}|\\u{77}\\u{68}\\u{6f}\\u{72}\\u{65}|\\u{70}\\u{6f}\\u{72}\\u{6e}|\\u{68}\\u{65}\\u{6e}\\u{74}\\u{61}\\u{69}|\\u{62}\\u{6c}\\u{6f}\\u{77}\\u{6a}\\u{6f}\\u{62}|\\u{68}\\u{61}\\u{6e}\\u{64}\\u{6a}\\u{6f}\\u{62}|\\u{6d}\\u{61}\\u{73}\\u{74}\\u{75}\\u{72}\\u{62}\\u{61}\\u{74}|\\u{64}\\u{69}\\u{6c}\\u{64}\\u{6f}|\\u{6e}\\u{69}\\u{67}\\u{67}\\u{65}\\u{72}|\\u{6e}\\u{69}\\u{67}\\u{67}\\u{61}|\\u{66}\\u{61}\\u{67}\\u{67}\\u{6f}\\u{74}|\\u{64}\\u{79}\\u{6b}\\u{65}|\\u{63}\\u{68}\\u{69}\\u{6e}\\u{6b}|\\u{6b}\\u{69}\\u{6b}\\u{65}|\\u{73}\\u{70}\\u{69}\\u{63}|\\u{74}\\u{72}\\u{61}\\u{6e}\\u{6e}\\u{79}|\\u{72}\\u{65}\\u{74}\\u{61}\\u{72}\\u{64}|\\u{70}\\u{65}\\u{64}\\u{6f}|\\u{70}\\u{65}\\u{64}\\u{6f}\\u{70}\\u{68}\\u{69}\\u{6c}\\u{65}|\\u{68}\\u{65}\\u{69}\\u{6c}\\u{68}\\u{69}\\u{74}\\u{6c}\\u{65}\\u{72}|\\u{77}\\u{68}\\u{69}\\u{74}\\u{65}\\u{70}\\u{6f}\\u{77}\\u{65}\\u{72}|\\u{77}\\u{68}\\u{69}\\u{74}\\u{65}\\u{70}\\u{72}\\u{69}\\u{64}\\u{65}|\\u{6b}\\u{6b}\\u{6b}", "u")
@@ -28,11 +31,15 @@
     }
 
     const normalizedVariants = normalizeNicknameForModeration(nickname);
+    const obfuscatedNickname = nickname.normalize("NFKC").toLowerCase();
+    if (NICKNAME_OBFUSCATED_BLOCKED.has(obfuscatedNickname)) {
+      return "욕설, 성적인 표현, 혐오·비하 표현 또는 차단된 단어가 포함된 닉네임은 사용할 수 없어요. 숫자나 밑줄로 바꿔 써도 제한됩니다.";
+    }
     if (normalizedVariants.some(normalized => NICKNAME_BLOCKED_PATTERNS.some(pattern => pattern.test(normalized)))) {
       return "욕설, 성적인 표현, 혐오·비하 표현 또는 차단된 단어가 포함된 닉네임은 사용할 수 없어요. 숫자나 밑줄로 바꿔 써도 제한됩니다.";
     }
 
-    if (nickname !== "관리자" && normalizedVariants.some(normalized => NICKNAME_RESERVED.test(normalized))) {
+    if (nickname !== "관리자" && (NICKNAME_OBFUSCATED_RESERVED.has(obfuscatedNickname) || normalizedVariants.some(normalized => NICKNAME_RESERVED.test(normalized)))) {
       return "운영진이나 공식 계정으로 오해할 수 있는 닉네임은 사용할 수 없어요.";
     }
 
