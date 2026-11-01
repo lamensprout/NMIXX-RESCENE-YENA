@@ -12,6 +12,8 @@
     new RegExp("\\u{66}\\u{75}\\u{63}\\u{6b}|\\u{66}\\u{75}\\u{6b}|\\u{73}\\u{68}\\u{69}\\u{74}|\\u{62}\\u{69}\\u{74}\\u{63}\\u{68}|\\u{62}\\u{61}\\u{73}\\u{74}\\u{61}\\u{72}\\u{64}|\\u{6d}\\u{6f}\\u{74}\\u{68}\\u{65}\\u{72}\\u{66}\\u{75}\\u{63}\\u{6b}\\u{65}\\u{72}|\\u{61}\\u{73}\\u{73}\\u{68}\\u{6f}\\u{6c}\\u{65}|\\u{6a}\\u{61}\\u{63}\\u{6b}\\u{61}\\u{73}\\u{73}|\\u{64}\\u{75}\\u{6d}\\u{62}\\u{61}\\u{73}\\u{73}|\\u{64}\\u{69}\\u{63}\\u{6b}|\\u{70}\\u{75}\\u{73}\\u{73}\\u{79}|\\u{63}\\u{75}\\u{6e}\\u{74}|\\u{73}\\u{6c}\\u{75}\\u{74}|\\u{77}\\u{68}\\u{6f}\\u{72}\\u{65}|\\u{70}\\u{6f}\\u{72}\\u{6e}|\\u{68}\\u{65}\\u{6e}\\u{74}\\u{61}\\u{69}|\\u{62}\\u{6c}\\u{6f}\\u{77}\\u{6a}\\u{6f}\\u{62}|\\u{68}\\u{61}\\u{6e}\\u{64}\\u{6a}\\u{6f}\\u{62}|\\u{6d}\\u{61}\\u{73}\\u{74}\\u{75}\\u{72}\\u{62}\\u{61}\\u{74}|\\u{64}\\u{69}\\u{6c}\\u{64}\\u{6f}|\\u{6e}\\u{69}\\u{67}\\u{67}\\u{65}\\u{72}|\\u{6e}\\u{69}\\u{67}\\u{67}\\u{61}|\\u{66}\\u{61}\\u{67}\\u{67}\\u{6f}\\u{74}|\\u{64}\\u{79}\\u{6b}\\u{65}|\\u{63}\\u{68}\\u{69}\\u{6e}\\u{6b}|\\u{6b}\\u{69}\\u{6b}\\u{65}|\\u{73}\\u{70}\\u{69}\\u{63}|\\u{74}\\u{72}\\u{61}\\u{6e}\\u{6e}\\u{79}|\\u{72}\\u{65}\\u{74}\\u{61}\\u{72}\\u{64}|\\u{70}\\u{65}\\u{64}\\u{6f}|\\u{70}\\u{65}\\u{64}\\u{6f}\\u{70}\\u{68}\\u{69}\\u{6c}\\u{65}|\\u{68}\\u{65}\\u{69}\\u{6c}\\u{68}\\u{69}\\u{74}\\u{6c}\\u{65}\\u{72}|\\u{77}\\u{68}\\u{69}\\u{74}\\u{65}\\u{70}\\u{6f}\\u{77}\\u{65}\\u{72}|\\u{77}\\u{68}\\u{69}\\u{74}\\u{65}\\u{70}\\u{72}\\u{69}\\u{64}\\u{65}|\\u{6b}\\u{6b}\\u{6b}", "u")
   ];
   const NICKNAME_RESERVED = /^(admin|administrator|moderator|staff|support|developer|official|운영자|관리자|개발자|고객센터|공식|melonitor|멜로니터)$|^(melonitor|멜로니터)(admin|administrator|moderator|staff|support|developer|official|운영자|관리자|개발자|공식)$|^(admin|administrator|moderator|staff|support|developer|official|운영자|관리자|개발자|공식)(melonitor|멜로니터)$|^(official|공식)(nmixx|rescene|yena|엔믹스|리센느|예나|최예나)$|^(nmixx|rescene|yena|엔믹스|리센느|예나|최예나)(official|공식)$/u;
+  // Common romanized Korean spellings and short forms of already-blocked terms.
+  const NICKNAME_BLOCKED_VARIANTS = /sibal|ssibal|shibal|ssip|jona|fack|gaesaekki|gaesekki|byungshin|byeongsin|byeongshin|jiral|jonna|jonnae|boji|bozi|jaji|jazi|negeumma|nigaemi|aemidw|aebidw|seks|segs|yadong|poreuno|ttameok|hujang|ddalddali|changnyeo|geolle|fuck|fuk|sh1t|b1tch|bast4rd|d1ck|pu55y|a55hole/iu;
 
   function normalizeNicknameForModeration(nickname) {
     const raw = String(nickname || "").normalize("NFKC").toLowerCase();
@@ -35,7 +37,7 @@
     if (NICKNAME_OBFUSCATED_BLOCKED.has(obfuscatedNickname)) {
       return "욕설, 성적인 표현, 혐오·비하 표현 또는 차단된 단어가 포함된 닉네임은 사용할 수 없어요. 숫자나 밑줄로 바꿔 써도 제한됩니다.";
     }
-    if (normalizedVariants.some(normalized => NICKNAME_BLOCKED_PATTERNS.some(pattern => pattern.test(normalized)))) {
+    if (normalizedVariants.some(normalized => NICKNAME_BLOCKED_PATTERNS.some(pattern => pattern.test(normalized))) || normalizedVariants.some(normalized => NICKNAME_BLOCKED_VARIANTS.test(normalized))) {
       return "욕설, 성적인 표현, 혐오·비하 표현 또는 차단된 단어가 포함된 닉네임은 사용할 수 없어요. 숫자나 밑줄로 바꿔 써도 제한됩니다.";
     }
 
