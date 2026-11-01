@@ -13,7 +13,7 @@
   ];
   const NICKNAME_RESERVED = /^(admin|administrator|moderator|staff|support|developer|official|운영자|관리자|개발자|고객센터|공식|melonitor|멜로니터)$|^(melonitor|멜로니터)(admin|administrator|moderator|staff|support|developer|official|운영자|관리자|개발자|공식)$|^(admin|administrator|moderator|staff|support|developer|official|운영자|관리자|개발자|공식)(melonitor|멜로니터)$|^(official|공식)(nmixx|rescene|yena|엔믹스|리센느|예나|최예나)$|^(nmixx|rescene|yena|엔믹스|리센느|예나|최예나)(official|공식)$/u;
   // Common romanized Korean spellings and short forms of already-blocked terms.
-  const NICKNAME_BLOCKED_VARIANTS = /sibal|ssibal|shibal|ssip|gaesaekki|gaesekki|byungshin|byeongsin|byeongshin|jiral|jonna|jonnae|boji|bozi|jaji|jazi|negeumma|nigaemi|aemidw|aebidw|seks|segs|yadong|poreuno|ttameok|hujang|ddalddali|changnyeo|geolle|fuck|fuk|sh1t|b1tch|bast4rd|d1ck|pu55y|a55hole/iu;
+  const NICKNAME_BLOCKED_VARIANTS = /sibal|ssibal|shibal|ssip|jona|fack|gaesaekki|gaesekki|byungshin|byeongsin|byeongshin|jiral|jonna|jonnae|boji|bozi|jaji|jazi|negeumma|nigaemi|aemidw|aebidw|seks|segs|yadong|poreuno|ttameok|hujang|ddalddali|changnyeo|geolle|fuck|fuk|sh1t|b1tch|bast4rd|d1ck|pu55y|a55hole/iu;
 
   function normalizeNicknameForModeration(nickname) {
     const raw = String(nickname || "").normalize("NFKC").toLowerCase();
