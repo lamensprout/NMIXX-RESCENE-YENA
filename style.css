@@ -2240,7 +2240,7 @@ body.dark-mode .account-signout-button:hover:not(:disabled) {
   width: 28px;
   height: 28px;
   border: 1px solid #d6dde2;
-  border-radius: 50%;
+  border-radius: 10px;
   object-fit: cover;
 }
 .user-menu-avatar[hidden] { display: none !important; }
@@ -2248,7 +2248,7 @@ body.dark-mode .account-signout-button:hover:not(:disabled) {
   overflow: hidden;
   padding: 0;
   border-color: #d6dde2;
-  border-radius: 50%;
+  border-radius: 10px;
   background: transparent !important;
 }
 .user-menu-trigger.has-avatar:hover,
