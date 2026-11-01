@@ -32,7 +32,7 @@
       return "욕설, 성적인 표현, 혐오·비하 표현 또는 차단된 단어가 포함된 닉네임은 사용할 수 없어요. 숫자나 밑줄로 바꿔 써도 제한됩니다.";
     }
 
-    if (normalizedVariants.some(normalized => NICKNAME_RESERVED.test(normalized))) {
+    if (nickname !== "관리자" && normalizedVariants.some(normalized => NICKNAME_RESERVED.test(normalized))) {
       return "운영진이나 공식 계정으로 오해할 수 있는 닉네임은 사용할 수 없어요.";
     }
 
