@@ -26,6 +26,8 @@
   const signedInNickname = document.getElementById("signedInNickname");
   const signedInEmail = document.getElementById("signedInEmail");
   const message = document.getElementById("accountMessage");
+  const duplicateEmailModal = document.getElementById("duplicateEmailModal");
+  const closeDuplicateEmailModalButton = document.getElementById("closeDuplicateEmailModal");
   const signInButton = document.getElementById("signInButton");
   const signOutButton = document.getElementById("signOutButton");
   const accountTitle = document.getElementById("accountTitle");
@@ -79,6 +81,15 @@
   function setMessage(text, error) {
     message.textContent = text || "";
     message.classList.toggle("is-error", !!error);
+  }
+
+  function showDuplicateEmailModal() {
+    if (!duplicateEmailModal) {
+      setMessage("이미 해당 이메일로 가입된 계정이 있을 수 있어요. 로그인 화면에서 로그인을 시도해 주세요.", true);
+      return;
+    }
+    duplicateEmailModal.hidden = false;
+    if (closeDuplicateEmailModalButton) closeDuplicateEmailModalButton.focus();
   }
 
   function getKoreanAuthError(error, fallback) {
@@ -179,6 +190,12 @@
       const error = result.error;
       if (error) throw error;
 
+      // Supabase may return an obfuscated user with no identities for an existing email.
+      if (!isResend && data && data.user && Array.isArray(data.user.identities) && data.user.identities.length === 0) {
+        showDuplicateEmailModal();
+        return;
+      }
+
       if (data && data.emailConfirmationDisabled) {
         setMessage("이메일 인증이 꺼져 있어 가입 절차를 시작할 수 없어요. Supabase에서 Confirm email을 켜 주세요.", true);
         return;
@@ -259,6 +276,18 @@
     if (!MonitorStore.isConfigured()) {
       setMessage("계정 연결을 완료하면 이메일 인증, 회원가입, 닉네임 설정을 사용할 수 있어요.");
     }
+  }
+
+  if (duplicateEmailModal && closeDuplicateEmailModalButton) {
+    closeDuplicateEmailModalButton.addEventListener("click", () => {
+      duplicateEmailModal.hidden = true;
+    });
+    duplicateEmailModal.addEventListener("click", event => {
+      if (event.target === duplicateEmailModal) duplicateEmailModal.hidden = true;
+    });
+    document.addEventListener("keydown", event => {
+      if (event.key === "Escape" && !duplicateEmailModal.hidden) duplicateEmailModal.hidden = true;
+    });
   }
 
   signupEmailForm.addEventListener("submit", async event => {

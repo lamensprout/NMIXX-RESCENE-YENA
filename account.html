@@ -130,6 +130,15 @@
     </section>
   </main>
 
+  <div id="duplicateEmailModal" class="account-alert-backdrop" role="dialog" aria-modal="true" aria-labelledby="duplicateEmailModalTitle" aria-describedby="duplicateEmailModalMessage" hidden>
+    <section class="account-alert-dialog">
+      <div class="account-alert-icon" aria-hidden="true">×</div>
+      <h2 id="duplicateEmailModalTitle">이미 가입된 이메일일 수 있어요</h2>
+      <p id="duplicateEmailModalMessage">이미 해당 이메일로 가입된 계정이 있을 수 있어요.<br>로그인 화면에서 로그인을 시도해 주세요.</p>
+      <button id="closeDuplicateEmailModal" class="primary-button" type="button">확인</button>
+    </section>
+  </div>
+
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="supabase-config.js?v=1"></script>
   <script src="monitor-store.js?v=14"></script>

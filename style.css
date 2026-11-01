@@ -3408,3 +3408,56 @@ body.dark-mode .user-menu-nickname { color: #fff; }
     padding: 14px 20px;
   }
 }
+
+
+/* Duplicate signup email notice: keep the account page styling and show a focused alert. */
+.account-alert-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(12, 20, 16, .52);
+}
+.account-alert-backdrop[hidden] { display: none !important; }
+.account-alert-dialog {
+  width: min(420px, 100%);
+  padding: 28px 24px 22px;
+  border: 1px solid var(--border-color, rgba(120, 140, 125, .24));
+  border-radius: 20px;
+  background: var(--card-bg, #fff);
+  color: var(--text-color, #202820);
+  box-shadow: 0 18px 55px rgba(0, 0, 0, .22);
+  text-align: center;
+}
+.account-alert-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 54px;
+  height: 54px;
+  margin: 0 auto 16px;
+  border: 2px solid #dc5b5b;
+  border-radius: 50%;
+  color: #dc5b5b;
+  font-size: 38px;
+  font-weight: 400;
+  line-height: 1;
+}
+.account-alert-dialog h2 {
+  margin: 0 0 10px;
+  font-size: 19px;
+}
+.account-alert-dialog p {
+  margin: 0 0 22px;
+  color: var(--muted-text, #68736a);
+  font-size: 14px;
+  line-height: 1.65;
+}
+.account-alert-dialog .primary-button { width: 100%; }
+@media (max-width: 600px) {
+  .account-alert-dialog { padding: 24px 20px 20px; }
+  .account-alert-dialog h2 { font-size: 17px; }
+}
