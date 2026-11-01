@@ -82,6 +82,31 @@
     message.classList.toggle("is-error", !!error);
   }
 
+  function getKoreanAuthError(error, fallback) {
+    const message = String(error && error.message || "").toLowerCase();
+    const code = String(error && error.code || "").toLowerCase();
+
+    if (/rate limit|too many requests|over_email_send_rate_limit|email rate limit/.test(message + " " + code)) {
+      return "요청이 너무 많아요. 잠시 기다린 뒤 다시 시도해 주세요.";
+    }
+    if (/otp.*(expired|invalid)|token.*(expired|invalid)|invalid.*(otp|token)|expired.*(otp|token)/.test(message)) {
+      return "인증 코드가 올바르지 않거나 만료됐어요. 새 인증 코드를 요청해 주세요.";
+    }
+    if (/already registered|user already exists|already been registered/.test(message)) {
+      return "이미 가입된 이메일이에요. 로그인하거나 인증 코드를 다시 요청해 주세요.";
+    }
+    if (/invalid email|email address.*invalid/.test(message)) {
+      return "이메일 주소를 확인해 주세요.";
+    }
+    if (/email.*(not confirmed|unconfirmed)|email_not_confirmed/.test(message + " " + code)) {
+      return "이메일 인증이 아직 완료되지 않았어요. 받은 인증 코드를 입력해 주세요.";
+    }
+    if (/smtp|email.*(send|deliver)|sending.*email/.test(message)) {
+      return "인증 메일을 보내지 못했어요. 잠시 후 다시 시도해 주세요.";
+    }
+    return fallback;
+  }
+
   function showSignedIn(user) {
     renderProfileAvatar();
     const configured = MonitorStore.isConfigured();
@@ -148,7 +173,7 @@
       setMessage("인증 코드를 요청했어요. 받은 메일에서 6자리 숫자를 찾아 입력해 주세요. 이미 가입한 계정이라면 아래 로그인에서 이메일과 비밀번호로 로그인해 주세요.");
       verificationCodeInput.focus();
     } catch (error) {
-      setMessage(error.message || "인증 코드를 보내지 못했어요. 이메일을 확인한 뒤 다시 시도해 주세요.", true);
+      setMessage(getKoreanAuthError(error, "인증 코드를 보내지 못했어요. 이메일을 확인한 뒤 다시 시도해 주세요."), true);
     } finally {
       sendVerificationButton.disabled = !MonitorStore.isConfigured();
       resendVerificationButton.disabled = !MonitorStore.isConfigured();
@@ -175,7 +200,7 @@
       showSignedIn(MonitorStore.getUser());
       setMessage("이메일 인증이 완료됐어요. 이제 닉네임과 비밀번호를 설정해 주세요.");
     } catch (error) {
-      setMessage(error.message || "인증에 실패했어요. 6자리 코드를 확인하고 다시 시도해 주세요.", true);
+      setMessage(getKoreanAuthError(error, "인증에 실패했어요. 6자리 코드를 확인하고 다시 시도해 주세요."), true);
     } finally {
       verifyOtpButton.disabled = !MonitorStore.isConfigured();
       resendVerificationButton.disabled = !MonitorStore.isConfigured();
