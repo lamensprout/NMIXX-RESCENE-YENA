@@ -921,6 +921,14 @@ function formatChartUpdateTime(updatedAt) {
 
 let chartStatusHideTimer = null;
 
+function getKoreanChartErrorMessage(error) {
+  const message = String(error && error.message || error || "");
+  if (/[가-힣]/.test(message)) return message;
+  if (/abort|timeout|timed out/i.test(message)) return "차트 서버 응답 시간이 초과됐어요. 잠시 후 다시 시도해 주세요.";
+  if (/network|fetch|connection/i.test(message)) return "차트 서버에 연결하지 못했어요. 인터넷 연결을 확인하고 다시 시도해 주세요.";
+  return "차트를 갱신하지 못했어요. 잠시 후 다시 시도해 주세요.";
+}
+
 function setChartStatus(message, hideAfterMs = 0) {
   if (window.MelonitorChartPopup) window.MelonitorChartPopup.set("", 0, false);
   if (!chartStatus) return;
@@ -1010,7 +1018,7 @@ async function loadChartData(manual = false, silent = false) {
   } catch (error) {
     console.error("차트 갱신 실패:", error);
     if (!silent) {
-      const errorMessage = String(error && error.message ? error.message : "알 수 없는 오류").slice(0, 180);
+      const errorMessage = getKoreanChartErrorMessage(error);
       if (manual) {
         setChartStatus((chartHasLoaded ? "갱신 실패" : "차트 로딩 실패") + " · " + errorMessage, 5500);
       } else {
