@@ -83,27 +83,46 @@
   }
 
   function getKoreanAuthError(error, fallback) {
-    const message = String(error && error.message || "").toLowerCase();
+    const message = String(error && error.message || error || "").toLowerCase();
     const code = String(error && error.code || "").toLowerCase();
+    const combined = message + " " + code;
 
-    if (/rate limit|too many requests|over_email_send_rate_limit|email rate limit/.test(message + " " + code)) {
+    if (/rate limit|too many requests|over_email_send_rate_limit|email rate limit/.test(combined)) {
       return "요청이 너무 많아요. 잠시 기다린 뒤 다시 시도해 주세요.";
     }
-    if (/otp.*(expired|invalid)|token.*(expired|invalid)|invalid.*(otp|token)|expired.*(otp|token)/.test(message)) {
+    if (/otp.*(expired|invalid)|token.*(expired|invalid)|invalid.*(otp|token)|expired.*(otp|token)/.test(combined)) {
       return "인증 코드가 올바르지 않거나 만료됐어요. 새 인증 코드를 요청해 주세요.";
     }
-    if (/already registered|user already exists|already been registered/.test(message)) {
+    if (/already registered|user already exists|already been registered|user_already_exists/.test(combined)) {
       return "이미 가입된 이메일이에요. 로그인하거나 인증 코드를 다시 요청해 주세요.";
     }
-    if (/invalid email|email address.*invalid/.test(message)) {
+    if (/invalid email|email address.*invalid/.test(combined)) {
       return "이메일 주소를 확인해 주세요.";
     }
-    if (/email.*(not confirmed|unconfirmed)|email_not_confirmed/.test(message + " " + code)) {
+    if (/email.*(not confirmed|unconfirmed)|email_not_confirmed/.test(combined)) {
       return "이메일 인증이 아직 완료되지 않았어요. 받은 인증 코드를 입력해 주세요.";
     }
-    if (/smtp|email.*(send|deliver)|sending.*email/.test(message)) {
+    if (/invalid login credentials|invalid_credentials|email or password|invalid password/.test(combined)) {
+      return "이메일 또는 비밀번호가 일치하지 않아요. 입력 내용을 확인해 주세요.";
+    }
+    if (/password.*(weak|short|length)|weak_password/.test(combined)) {
+      return "비밀번호가 보안 기준에 맞지 않아요. 8자 이상으로 설정해 주세요.";
+    }
+    if (/same password|should be different|different from the current/.test(combined)) {
+      return "새 비밀번호는 현재 비밀번호와 다르게 설정해 주세요.";
+    }
+    if (/user.*(not found|missing)|no user/.test(combined)) {
+      return "계정을 찾을 수 없어요. 이메일 주소를 확인해 주세요.";
+    }
+    if (/network|fetch failed|failed to fetch|load failed|timeout|timed out/.test(combined)) {
+      return "서버에 연결하지 못했어요. 인터넷 연결을 확인하고 다시 시도해 주세요.";
+    }
+    if (/smtp|email.*(send|deliver)|sending.*email/.test(combined)) {
       return "인증 메일을 보내지 못했어요. 잠시 후 다시 시도해 주세요.";
     }
+
+    const original = String(error && error.message || "");
+    if (/[가-힣]/.test(original)) return original;
     return fallback;
   }
 
@@ -324,7 +343,7 @@
       signupPasswordInput.value = "";
       setMessage("설정이 완료됐어요! 다음부터는 이메일과 비밀번호로 로그인하면 돼요.");
     } catch (error) {
-      setMessage(error.message || "설정을 저장하지 못했어요. 입력 내용을 확인해 주세요.", true);
+      setMessage(getKoreanAuthError(error, "설정을 저장하지 못했어요. 입력 내용을 확인해 주세요."), true);
     } finally {
       completeSignupButton.disabled = !MonitorStore.isConfigured() || MonitorStore.hasNickname();
     }
@@ -352,7 +371,7 @@
         showSignedIn(MonitorStore.getUser());
         setMessage("닉네임이 변경됐어요.");
       } catch (error) {
-        setMessage(error.message || "닉네임을 변경하지 못했어요. 다시 시도해 주세요.", true);
+        setMessage(getKoreanAuthError(error, "닉네임을 변경하지 못했어요. 다시 시도해 주세요."), true);
       } finally {
         updateNicknameButton.disabled = !MonitorStore.isConfigured() || !MonitorStore.hasNickname();
       }
@@ -383,7 +402,7 @@
         newAccountPasswordInput.value = "";
         setMessage("비밀번호가 변경됐어요. 다음 로그인부터 새 비밀번호를 사용해 주세요.");
       } catch (error) {
-        setMessage(error.message || "비밀번호를 변경하지 못했어요. 다시 시도해 주세요.", true);
+        setMessage(getKoreanAuthError(error, "비밀번호를 변경하지 못했어요. 다시 시도해 주세요."), true);
       } finally {
         updatePasswordButton.disabled = !MonitorStore.isConfigured() || !MonitorStore.hasNickname();
       }
@@ -407,7 +426,7 @@
         renderProfileAvatar();
         setProfileAvatarStatus("프로필 사진을 변경했어요.");
       } catch (error) {
-        setProfileAvatarStatus(error.message || "프로필 사진을 변경하지 못했어요.", true);
+        setProfileAvatarStatus(getKoreanAuthError(error, "프로필 사진을 변경하지 못했어요."), true);
       } finally {
         profileAvatarBusy = false;
         profileAvatarFileInput.value = "";
@@ -428,7 +447,7 @@
         renderProfileAvatar();
         setProfileAvatarStatus("프로필 사진을 삭제했어요.");
       } catch (error) {
-        setProfileAvatarStatus(error.message || "프로필 사진을 삭제하지 못했어요.", true);
+        setProfileAvatarStatus(getKoreanAuthError(error, "프로필 사진을 삭제하지 못했어요."), true);
       } finally {
         profileAvatarBusy = false;
         renderProfileAvatar();
@@ -445,7 +464,7 @@
       showSignedIn(null);
       setMessage("로그아웃됐어요. 다시 이용하려면 이메일과 비밀번호로 로그인해 주세요.");
     } catch (error) {
-      setMessage(error.message || "로그아웃에 실패했어요.", true);
+      setMessage(getKoreanAuthError(error, "로그아웃에 실패했어요."), true);
     }
   });
 
