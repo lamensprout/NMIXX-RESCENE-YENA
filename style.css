@@ -3555,3 +3555,38 @@ body:not(.dark-mode) .rank-alert-trigger[aria-expanded="true"] {
   background: transparent !important;
   border-color: #aeb8c1;
 }
+
+
+/* Keep only the favorite-artist chart rows aligned like the home chart on mobile. */
+@media (max-width: 640px) {
+  .favorite-chart-song {
+    grid-template-columns: 64px 68px 56px minmax(0, 1fr);
+    gap: 0;
+    padding: 18px 0;
+    border: 0;
+    border-bottom: 1px solid #303844;
+    border-radius: 0;
+    background: transparent;
+  }
+  .favorite-chart-song .rank {
+    padding-left: 26px;
+    text-align: left;
+    font-size: 22px;
+  }
+  .favorite-chart-song .change {
+    padding-left: 16px;
+    text-align: left;
+    font-size: 13px;
+  }
+  .favorite-chart-song .album-image {
+    width: 56px;
+    height: 56px;
+  }
+  .favorite-chart-song .song-info {
+    margin-left: 23px;
+    padding-right: 24px;
+  }
+  .favorite-chart-song .title { font-size: 15px; }
+  .favorite-chart-song .artist { font-size: 12px; }
+  .favorite-chart-song .album { font-size: 11px; }
+}
