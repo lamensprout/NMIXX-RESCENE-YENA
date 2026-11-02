@@ -685,6 +685,32 @@
     return result;
   }
 
+  async function getRankAlertSettings() {
+    if (!isReady()) return null;
+    const { data, error } = await client.from("melonitor_rank_alert_settings").select("enabled, threshold, notify_rises, notify_falls").eq("user_id", currentUser.id).maybeSingle();
+    if (error) return null;
+    return data || { enabled:false, threshold:1, notify_rises:true, notify_falls:true };
+  }
+  async function saveRankAlertSettings(value) {
+    if (!isReady()) return {ok:false,synced:false};
+    const threshold=Math.max(1,Math.min(100,Math.floor(Number(value.threshold)||1)));
+    const rises=value.notify_rises!==false, falls=value.notify_falls!==false;
+    if(!rises&&!falls) return {ok:false,synced:false,error:new Error("상승 또는 하락을 하나 이상 선택해 주세요.")};
+    const {error}=await client.from("melonitor_rank_alert_settings").upsert({user_id:currentUser.id,enabled:!!value.enabled,threshold,notify_rises:rises,notify_falls:falls,updated_at:new Date().toISOString()},{onConflict:"user_id"});
+    return error?{ok:false,synced:false,error}:{ok:true,synced:true};
+  }
+  async function getRankAlertNotifications(limit=30) {
+    if(!isReady()) return [];
+    const {data,error}=await client.from("melonitor_rank_alert_notifications").select("id,artist_name,song_title,old_rank,new_rank,rank_change,created_at,read_at").order("created_at",{ascending:false}).limit(Math.max(1,Math.min(100,Number(limit)||30)));
+    if(error)return []; return data||[];
+  }
+  async function markRankAlertNotificationsRead(ids) {
+    if(!isReady()) return {ok:false,synced:false};
+    let query=client.from("melonitor_rank_alert_notifications").update({read_at:new Date().toISOString()}).eq("user_id",currentUser.id).is("read_at",null);
+    const {error}=Array.isArray(ids)&&ids.length?await query.in("id",ids):await query;
+    return error?{ok:false,synced:false,error}:{ok:true,synced:true};
+  }
+
   window.MonitorStore = {
     isConfigured,
     init,
@@ -699,6 +725,10 @@
     getFavorites,
     getColorPreferences,
     saveColorPreferences,
+    getRankAlertSettings,
+    saveRankAlertSettings,
+    getRankAlertNotifications,
+    markRankAlertNotificationsRead,
     addFavorite,
     removeFavorite,
     startSignup,
