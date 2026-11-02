@@ -3461,4 +3461,8 @@ body.dark-mode .user-menu-nickname { color: #fff; }
   .account-alert-dialog { padding: 24px 20px 20px; }
   .account-alert-dialog h2 { font-size: 17px; }
 }
-\n/* Favorite artist song rank contrast */\n.favorite-card-song-rank { color: #111; }\n.favorite-rank-change.same { color: #111; }\nbody.dark-mode .favorite-card-song-rank, body.dark-mode .favorite-rank-change.same { color: #f5f7fa; }\n
+
+/* Favorite artist song rank contrast */
+.favorite-card-song-rank { color: #111; }
+.favorite-rank-change.same { color: #111; }
+body.dark-mode .favorite-card-song-rank, body.dark-mode .favorite-rank-change.same { color: #f5f7fa; }
