@@ -17,6 +17,7 @@ let melonArtistCatalog = [];
 let melonArtistCatalogSignature = "";
 let selectedFavoriteArtist = "";
 let favoriteArtistNames = [];
+let favoritesRenderVersion = 0;
 const selectedSongArtists = new Set();
 const FAVORITE_SONG_COLORS_KEY = "melonitor-favorite-song-colors-v1";
 const FAVORITE_SONG_HISTORY_KEY = "melonitor-chart-song-history-v1";
@@ -971,6 +972,7 @@ function renderFavoriteRankGraphs() {
 
 async function renderFavorites() {
   if (!favoriteArtists || !window.MonitorStore || !MonitorStore.isReady()) return;
+  const renderVersion = ++favoritesRenderVersion;
   favoriteArtists.innerHTML = "";
   let names = [];
   try {
@@ -978,6 +980,8 @@ async function renderFavorites() {
   } catch (error) {
     console.warn("즐겨찾기를 불러오지 못했습니다:", error);
   }
+  // 여러 초기화/인증 이벤트가 겹쳐도 가장 마지막 렌더링만 화면에 반영합니다.
+  if (renderVersion !== favoritesRenderVersion) return;
 
   // Merge saved aliases under one representative Melon artist name.
   const groups = [];
