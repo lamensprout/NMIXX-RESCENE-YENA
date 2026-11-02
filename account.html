@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>계정 | Melonitor</title>
   <link rel="stylesheet" href="style.css?v=20261101-9">
-  <link rel="stylesheet" href="rank-alert.css?v=3">
+  <link rel="stylesheet" href="rank-alert.css?v=4">
 </head>
 <body>
   <main class="container account-container">
@@ -94,7 +94,7 @@
             </div>
           </aside>
           <div class="settings-main">
-            <section id="accountSettings" class="account-settings-panel settings-view" aria-labelledby="accountSettingsTitle"> class="account-settings-panel" aria-labelledby="accountSettingsTitle">
+            <section id="accountSettings" class="account-settings-panel settings-view" aria-labelledby="accountSettingsTitle">
           <h3 id="accountSettingsTitle">계정 설정</h3>
 
           <section class="profile-avatar-settings" aria-labelledby="profileAvatarTitle">
@@ -133,11 +133,11 @@
           <div class="account-settings-divider" role="separator" aria-hidden="true"></div>
           <div class="remember-login-control"><span class="remember-login-copy"><strong>로그인 유지</strong><small>이 기기에서 다음에도 로그인 상태를 유지해요.</small></span><span class="switch-control"><input id="rememberLoginToggle" type="checkbox" checked><span class="switch-track" aria-hidden="true"></span></span></div>
             </section>
-            <section class="account-settings-panel rank-alert-settings-page settings-view" aria-labelledby="rankAlertPageTitle">
+            <section id="rankAlertSettings" class="account-settings-panel rank-alert-settings-page settings-view" aria-labelledby="rankAlertPageTitle">
           <h3 id="rankAlertPageTitle">알림 수신 설정</h3>
           <p class="signed-in-explainer">좋아하는 아티스트의 순위 변동 알림을 관리할 수 있어요.</p>
 <div class="account-settings-divider" role="separator" aria-hidden="true"></div>
-          <section id="rankAlertSettings" class="rank-alert-settings" aria-labelledby="rankAlertSettingsTitle">
+          <section id="rankAlertSettingsControls" class="rank-alert-settings" aria-labelledby="rankAlertSettingsTitle">
             <h4 id="rankAlertSettingsTitle">순위 변동 알림</h4>
             <div class="remember-login-control"><span class="remember-login-copy"><strong>좋아하는 아티스트 순위 변동 알림</strong><small>즐겨찾기에 추가한 아티스트의 곡 순위가 설정한 폭만큼 변하면 알려줘요.</small></span><span class="switch-control"><input id="rankAlertEnabled" type="checkbox"><span class="switch-track" aria-hidden="true"></span></span></div>
             <div id="rankAlertOptions" class="rank-alert-options">
@@ -171,7 +171,7 @@
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="supabase-config.js?v=1"></script>
   <script src="monitor-store.js?v=15"></script>
-  <script src="account.js?v=18"></script>
+  <script src="account.js?v=19"></script>
   <script src="rank-alert-settings.js?v=1"></script>
   <script src="theme.js?v=6"></script>
 </body>
