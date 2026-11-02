@@ -784,15 +784,22 @@ function render(list, query) {
 
   list.forEach(function(song) {
     const node = template.content.cloneNode(true);
-
-    node.querySelector(".rank").textContent = song.rank;
-
-    const change = formatChange(song);
-    const changeEl = node.querySelector(".change");
-    changeEl.textContent = change.text;
-    changeEl.classList.add(change.className);
-
+    const rank = node.querySelector(".rank");
+    const change = node.querySelector(".change");
     const image = node.querySelector(".album-image");
+    const details = node.querySelector(".song-info");
+
+    const rankGroup = document.createElement("div");
+    rankGroup.className = "rank-group";
+    rank.textContent = song.rank;
+    const changeInfo = formatChange(song);
+    change.textContent = changeInfo.text;
+    change.classList.add(changeInfo.className);
+    rankGroup.append(rank, change);
+
+    const row = node.querySelector(".song");
+    row.insertBefore(rankGroup, image);
+    row.classList.add("song-ranked-layout");
 
     if (song.album_image) {
       image.src = song.album_image;
@@ -802,13 +809,12 @@ function render(list, query) {
       image.style.visibility = "hidden";
     }
 
-    node.querySelector(".title").textContent = song.title || "";
-    node.querySelector(".artist").textContent = song.artist || "";
-    node.querySelector(".album").textContent = song.album || "";
+    details.querySelector(".title").textContent = song.title || "";
+    details.querySelector(".artist").textContent = song.artist || "";
+    details.querySelector(".album").textContent = song.album || "";
 
     results.appendChild(node);
-  });
-}
+  });}
 
 function search(query) {
   const q = String(query || "").trim();
