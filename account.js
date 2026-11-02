@@ -237,6 +237,28 @@
     }
   }
 
+  function initSettingsNavigation() {
+    const links = Array.from(document.querySelectorAll("[data-settings-view]"));
+    const views = Array.from(document.querySelectorAll(".settings-view"));
+    if (!links.length || !views.length) return;
+    function activate(viewId, updateHash) {
+      const targetId = viewId === "rankAlertSettings" ? "rankAlertSettings" : "accountSettings";
+      views.forEach(view => { view.hidden = view.id !== targetId; });
+      links.forEach(link => {
+        const active = link.dataset.settingsView === targetId;
+        if (active) link.setAttribute("aria-current", "page");
+        else link.removeAttribute("aria-current");
+      });
+      if (updateHash && window.location.hash !== "#" + targetId) history.replaceState(null, "", "#" + targetId);
+    }
+    links.forEach(link => link.addEventListener("click", event => {
+      event.preventDefault();
+      activate(link.dataset.settingsView, true);
+    }));
+    window.addEventListener("hashchange", () => activate(window.location.hash.slice(1), false));
+    activate(window.location.hash.slice(1), false);
+  }
+
   function restoreAccountScrollPosition() {
     const key = "melonitor-account-scroll-y";
     try {
@@ -262,6 +284,7 @@
   });
 
   async function init() {
+    initSettingsNavigation();
     if (rememberLoginToggle && window.MonitorStore && typeof MonitorStore.getRememberLogin === "function") {
       rememberLoginToggle.checked = MonitorStore.getRememberLogin();
       rememberLoginToggle.addEventListener("change", () => {
