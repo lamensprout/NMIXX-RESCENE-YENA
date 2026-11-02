@@ -3,6 +3,18 @@
     if (!window.MonitorStore || typeof MonitorStore.getAvatarUrl !== "function") return;
     const ready = MonitorStore.isReady();
     const avatarUrl = ready ? MonitorStore.getAvatarUrl() : "";
+    const hasUser = !!MonitorStore.getUser();
+    const nickname = ready ? MonitorStore.getNickname() : "";
+    const profile = document.getElementById("userMenuProfile");
+    const nicknameLabel = document.getElementById("userMenuNickname");
+    const loginIcon = document.getElementById("accountLoginIcon");
+    const settingsIcon = document.getElementById("accountSettingsIcon");
+    const logoutButton = document.getElementById("userLogoutButton");
+    if (profile) profile.hidden = !hasUser;
+    if (nicknameLabel) nicknameLabel.textContent = nickname || (hasUser ? "닉네임 설정 필요" : "");
+    if (loginIcon) loginIcon.hidden = hasUser;
+    if (settingsIcon) settingsIcon.hidden = !hasUser;
+    if (logoutButton) logoutButton.hidden = !hasUser;
     const accountLinkLabel = document.getElementById("accountLinkLabel");
     if (accountLinkLabel) {
       const hasUser = !!MonitorStore.getUser();
