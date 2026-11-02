@@ -3516,3 +3516,25 @@ body.dark-mode .favorite-chart-song .change.new {
     padding: 14px 20px !important;
   }
 }
+
+
+/* Match the light-mode rank-alert button outline to the profile button. */
+body:not(.dark-mode) .rank-alert-trigger {
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 38px;
+  width: 38px;
+  height: 38px;
+  padding: 0;
+  border: 1px solid #d8dde2;
+  border-radius: 10px;
+  background: transparent !important;
+  color: #17212b;
+}
+body:not(.dark-mode) .rank-alert-trigger:hover,
+body:not(.dark-mode) .rank-alert-trigger[aria-expanded="true"] {
+  background: transparent !important;
+  border-color: #aeb8c1;
+}
