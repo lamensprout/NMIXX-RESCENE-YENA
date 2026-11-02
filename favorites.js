@@ -21,6 +21,7 @@ const selectedSongArtists = new Set();
 const FAVORITE_SONG_COLORS_KEY = "melonitor-favorite-song-colors-v1";
 const FAVORITE_SONG_HISTORY_KEY = "melonitor-chart-song-history-v1";
 let favoriteSearchComposing = false;
+let favoriteAddInProgress = false;
 
 const artistAliases = {
   "NMIXX": ["엔믹스", "믹스"],
@@ -1212,29 +1213,53 @@ if (favoriteInput) {
 if (favoriteForm) {
   favoriteForm.addEventListener("submit", async event => {
     event.preventDefault();
+    // Ignore rapid repeated submits while the first add is still being processed.
+    if (favoriteAddInProgress) return;
     if (!selectedFavoriteArtist) {
       if (favoritesNote) favoritesNote.textContent = "먼저 검색 결과에서 아티스트를 선택해 주세요.";
       renderFavoriteSearchResults();
       return;
     }
 
+    favoriteAddInProgress = true;
     const artist = selectedFavoriteArtist;
-    favoriteAddButton.disabled = true;
-    const result = await MonitorStore.addFavorite(artist);
-    if (favoriteInput) favoriteInput.value = "";
-    selectedFavoriteArtist = "";
-    if (favoriteSearchResults) {
-      favoriteSearchResults.innerHTML = "";
-      favoriteSearchResults.hidden = true;
-    }
+    if (favoriteAddButton) favoriteAddButton.disabled = true;
 
-    if (result && result.ok) {
-      await renderFavorites();
-      if (favoritesNote) favoritesNote.textContent = "좋아하는 아티스트에 추가했어요.";
-    } else {
-      if (favoritesNote) favoritesNote.textContent = "추가하지 못했어요. 로그인 상태를 확인하고 다시 시도해 주세요.";
+    try {
+      // Treat known aliases as the same artist so repeated adds cannot create
+      // separate rows under alternate display names.
+      const savedNames = await MonitorStore.getFavorites();
+      const alreadySaved = savedNames.some(function(name) {
+        return normalize(name) === normalize(artist) || areSameArtist(name, artist);
+      });
+      const result = alreadySaved
+        ? { ok: true, alreadyExists: true }
+        : await MonitorStore.addFavorite(artist);
+
+      if (favoriteInput) favoriteInput.value = "";
+      selectedFavoriteArtist = "";
+      if (favoriteSearchResults) {
+        favoriteSearchResults.innerHTML = "";
+        favoriteSearchResults.hidden = true;
+      }
+
+      if (result && result.ok) {
+        await renderFavorites();
+        if (favoritesNote) {
+          favoritesNote.textContent = result.alreadyExists
+            ? "이미 좋아하는 아티스트에 추가되어 있어요."
+            : "좋아하는 아티스트에 추가했어요.";
+        }
+      } else {
+        if (favoritesNote) favoritesNote.textContent = "추가하지 못했어요. 로그인 상태를 확인하고 다시 시도해 주세요.";
+      }
+    } catch (error) {
+      console.warn("좋아하는 아티스트 추가 실패:", error);
+      if (favoritesNote) favoritesNote.textContent = "추가하지 못했어요. 잠시 후 다시 시도해 주세요.";
+    } finally {
+      favoriteAddInProgress = false;
+      if (favoriteAddButton) favoriteAddButton.disabled = false;
     }
-    favoriteAddButton.disabled = false;
   });
 }
 
