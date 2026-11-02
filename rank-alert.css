@@ -104,3 +104,6 @@ body.dark-mode .user-logout-button:focus-visible{
   color:#dc3545 !important;
   background:rgb(220 53 69 / 9%) !important;
 }
+
+/* Keep rise/fall notification choices together on one row. */
+.rank-alert-directions{display:flex;align-items:center;flex-wrap:wrap;gap:14px}
