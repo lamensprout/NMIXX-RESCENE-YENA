@@ -452,10 +452,10 @@ function updateAccountMenuLabel() {
   if (loginIcon) loginIcon.hidden = hasUser;
   if (settingsIcon) settingsIcon.hidden = !hasUser;
 
-  // 로그인 상태에서는 닉네임을 상단에 표시하고, 링크는 계정 설정으로 고정합니다.
-  accountLinkLabel.textContent = hasUser
-    ? "계정 설정"
-    : "로그인 / 회원가입";
+  // 로그인 상태에서는 계정 메뉴의 첫 항목을 "설정"으로 표시합니다.
+  accountLinkLabel.textContent = hasUser ? "설정" : "로그인 / 회원가입";
+  const settingsSubmenu = document.getElementById("settingsSubmenu");
+  if (settingsSubmenu && !hasUser) settingsSubmenu.hidden = true;
 }
 
 function updatePersonalPanels() {
