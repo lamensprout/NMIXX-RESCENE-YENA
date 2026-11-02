@@ -891,6 +891,9 @@ function renderFavoriteSongList() {
     const row = document.createElement("article");
     row.className = "song favorite-chart-song";
 
+    const rankGroup = document.createElement("div");
+    rankGroup.className = "favorite-chart-rank-group";
+
     const rank = document.createElement("div");
     rank.className = "rank";
     rank.textContent = song.chartOut ? String(song.lastRank || song.rank || "?") : String(song.rank || "?");
@@ -908,6 +911,8 @@ function renderFavoriteSongList() {
       change.textContent = amount > 0 ? "▲ " + amount : amount < 0 ? "▼ " + Math.abs(amount) : "-";
       change.classList.add(amount > 0 ? "up" : amount < 0 ? "down" : "same");
     }
+
+    rankGroup.append(rank, change);
 
     const image = document.createElement("img");
     image.className = "album-image";
@@ -956,7 +961,7 @@ function renderFavoriteSongList() {
     colorControl.addEventListener("change", persistSongColor);
     details.appendChild(colorControl);
 
-    row.append(rank, change, image, details);
+    row.append(rankGroup, image, details);
     list.appendChild(row);
   });
 }
