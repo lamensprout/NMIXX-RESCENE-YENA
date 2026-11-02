@@ -3481,39 +3481,17 @@ body.dark-mode .user-menu-nickname { color: #fff; }
 body.dark-mode .favorite-card-song-rank, body.dark-mode .favorite-rank-change.same { color: #f5f7fa; }
 
 
-/* Favorites chart: rank and movement share one compact line. */
+/* Favorite artist TOP100 rows use separate rank, movement, cover and song-info columns. */
 .favorite-chart-song {
-  grid-template-columns: max-content 56px minmax(0, 1fr);
+  grid-template-columns: 48px 56px 64px minmax(0, 1fr);
 }
-.favorite-chart-rank-group {
-  display: flex;
-  align-items: baseline;
-  justify-content: flex-end;
-  gap: 4px;
-  min-width: 0;
-  white-space: nowrap;
+.favorite-chart-song .rank {
+  color: #17212b;
 }
-.favorite-chart-song .rank,
-.favorite-chart-song .change,
-.favorite-chart-song .change.up,
-.favorite-chart-song .change.down,
-.favorite-chart-song .change.same,
-.favorite-chart-song .change.new {
-  color: #111 !important;
-}
-body.dark-mode .favorite-chart-song .rank,
-body.dark-mode .favorite-chart-song .change,
-body.dark-mode .favorite-chart-song .change.up,
-body.dark-mode .favorite-chart-song .change.down,
-body.dark-mode .favorite-chart-song .change.same,
-body.dark-mode .favorite-chart-song .change.new {
-  color: #fff !important;
-}
-@media (max-width: 640px) {
-  .favorite-chart-song {
-    grid-template-columns: max-content 50px minmax(0, 1fr);
-  }
-}
+.favorite-chart-song .change.up { color: #e91e63; }
+.favorite-chart-song .change.down { color: #1684d8; }
+.favorite-chart-song .change.same { color: #87929b; }
+body.dark-mode .favorite-chart-song .rank { color: #f5f7fa; }
 
 /* Match chart-refresh popup dimensions to the welcome popup. */
 .chart-status.is-loading,
@@ -3554,4 +3532,110 @@ body:not(.dark-mode) .rank-alert-trigger:hover,
 body:not(.dark-mode) .rank-alert-trigger[aria-expanded="true"] {
   background: transparent !important;
   border-color: #aeb8c1;
+}
+
+
+/* Keep only the favorite-artist chart rows aligned like the home chart on mobile. */
+@media (max-width: 640px) {
+  .favorite-chart-song {
+    grid-template-columns: 64px 68px 56px minmax(0, 1fr);
+    gap: 0;
+    padding: 18px 0;
+    border: 0;
+    border-bottom: 1px solid #303844;
+    border-radius: 0;
+    background: transparent;
+  }
+  .favorite-chart-song .rank {
+    padding-left: 26px;
+    text-align: left;
+    font-size: 22px;
+  }
+  .favorite-chart-song .change {
+    padding-left: 16px;
+    text-align: left;
+    font-size: 13px;
+  }
+  .favorite-chart-song .album-image {
+    width: 56px;
+    height: 56px;
+  }
+  .favorite-chart-song .song-info {
+    margin-left: 23px;
+    padding-right: 24px;
+  }
+  .favorite-chart-song .title { font-size: 15px; }
+  .favorite-chart-song .artist { font-size: 12px; }
+  .favorite-chart-song .album { font-size: 11px; }
+}
+
+
+/* Selected favorite artist TOP100 rows: mirror the home chart layout on mobile. */
+.favorite-card-song-list li {
+  align-items: center;
+}
+.favorite-card-song-details {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  gap: 3px;
+}
+.favorite-card-song-artist,
+.favorite-card-song-album {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.favorite-card-song-artist { color: #8b96a1; font-size: 12px; }
+.favorite-card-song-album { color: #8b96a1; font-size: 11px; }
+.favorite-card-song-movement { flex: 0 0 auto; min-width: 42px; font-size: 12px; font-weight: 750; white-space: nowrap; }
+.favorite-card-song-movement.up { color: #e91e63; }
+.favorite-card-song-movement.down { color: #1684d8; }
+.favorite-card-song-movement.same { color: #87929b; }
+.favorite-card-song-image { display: block; flex: 0 0 56px; width: 56px; height: 56px; object-fit: cover; border-radius: 5px; }
+.favorite-card-song-title { display: block; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 15px; font-weight: 750; }
+.favorite-card-song-list li.is-chart-out .favorite-card-song-title { color: #7b858e; }
+@media (max-width: 640px) {
+  .favorite-card-songs { padding: 12px 0; }
+  .favorite-card-song-list { display: block; }
+  .favorite-card-song-list li {
+    display: grid;
+    grid-template-columns: 64px 68px 56px minmax(0, 1fr);
+    gap: 0;
+    align-items: center;
+    min-height: 56px;
+    padding: 18px 0;
+    border-bottom: 1px solid #303844;
+    font-size: 13px;
+  }
+  .favorite-card-song-rank {
+    min-width: 0;
+    padding-left: 26px;
+    color: #f5f7fa;
+    font-size: 22px;
+    line-height: 1;
+    text-align: left;
+  }
+  .favorite-card-song-movement {
+    min-width: 0;
+    padding-left: 16px;
+    font-size: 13px;
+    text-align: left;
+  }
+  .favorite-card-song-image { width: 56px; height: 56px; }
+  .favorite-card-song-details { margin-left: 23px; padding-right: 12px; }
+}
+body.dark-mode .favorite-card-song-artist,
+body.dark-mode .favorite-card-song-album { color: #aeb8c1; }
+
+
+/* Selected artist TOP100: keep rank numbers neutral; color only movement labels. */
+@media (max-width: 640px) {
+  .favorite-card-song-list li .favorite-card-song-rank {
+    color: #111;
+  }
+  body.dark-mode .favorite-card-song-list li .favorite-card-song-rank {
+    color: #f5f7fa;
+  }
 }
