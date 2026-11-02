@@ -121,6 +121,19 @@
           </form>
 
           <div class="account-settings-divider" role="separator" aria-hidden="true"></div>
+          <section id="rankAlertSettings" class="rank-alert-settings" aria-labelledby="rankAlertSettingsTitle">
+            <h4 id="rankAlertSettingsTitle">알림 수신 설정</h4>
+            <div class="remember-login-control"><span class="remember-login-copy"><strong>좋아하는 아티스트 순위 변동 알림</strong><small>즐겨찾기에 추가한 아티스트의 곡 순위가 설정한 폭만큼 변하면 알려줘요.</small></span><span class="switch-control"><input id="rankAlertEnabled" type="checkbox"><span class="switch-track" aria-hidden="true"></span></span></div>
+            <div id="rankAlertOptions" class="rank-alert-options">
+              <label for="rankAlertThreshold">알림 기준 (1~100계단)</label><input id="rankAlertThreshold" type="number" min="1" max="100" step="1" value="1">
+              <span class="rank-alert-direction-label">알림 받을 순위 변동</span>
+              <label class="rank-alert-check"><input id="rankAlertRises" type="checkbox" checked> 상승</label>
+              <label class="rank-alert-check"><input id="rankAlertFalls" type="checkbox" checked> 하락</label>
+            </div>
+            <p id="rankAlertSettingsStatus" class="profile-avatar-status" role="status" aria-live="polite"></p>
+            <button id="saveRankAlertSettings" type="button" class="primary-button">알림 설정 저장</button>
+          </section>
+          <div class="account-settings-divider" role="separator" aria-hidden="true"></div>
           <div class="remember-login-control"><span class="remember-login-copy"><strong>로그인 유지</strong><small>이 기기에서 다음에도 로그인 상태를 유지해요.</small></span><span class="switch-control"><input id="rememberLoginToggle" type="checkbox" checked><span class="switch-track" aria-hidden="true"></span></span></div>
         </section>
         <button id="signOutButton" type="button" class="secondary-button account-signout-button">로그아웃</button>
@@ -143,6 +156,7 @@
   <script src="supabase-config.js?v=1"></script>
   <script src="monitor-store.js?v=14"></script>
   <script src="account.js?v=17"></script>
+  <script src="rank-alert-settings.js?v=1"></script>
   <script src="theme.js?v=6"></script>
 </body>
 </html>
