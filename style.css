@@ -3789,3 +3789,36 @@ body.dark-mode .settings-main .account-settings-panel {
     padding: 17px;
   }
 }
+
+
+/* Use a consistent white surface across the entire account settings screen in light mode. */
+body.settings-page:not(.dark-mode) {
+  background: #fff;
+  color: #202a23;
+}
+body.settings-page:not(.dark-mode) .account-container,
+body.settings-page:not(.dark-mode) .account-card,
+body.settings-page:not(.dark-mode) #signedInPanel,
+body.settings-page:not(.dark-mode) .settings-workspace,
+body.settings-page:not(.dark-mode) .settings-main,
+body.settings-page:not(.dark-mode) .settings-view,
+body.settings-page:not(.dark-mode) .settings-sidebar,
+body.settings-page:not(.dark-mode) .settings-main .account-settings-panel {
+  background-color: #fff;
+}
+body.settings-page:not(.dark-mode) .settings-sidebar {
+  border-color: #e2e7e3;
+}
+body.settings-page:not(.dark-mode) .settings-sidebar-group {
+  border-top-color: #e2e7e3;
+}
+body.settings-page:not(.dark-mode) .settings-home-link {
+  background: #f1f8f2;
+}
+body.settings-page:not(.dark-mode) .settings-nav-link:hover,
+body.settings-page:not(.dark-mode) .settings-home-link:hover {
+  background: #edf5ef;
+}
+body.settings-page:not(.dark-mode) .settings-nav-link[aria-current="page"] {
+  background: #e8f5ea;
+}
