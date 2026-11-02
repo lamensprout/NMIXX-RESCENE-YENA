@@ -14,7 +14,7 @@
    const movement=Number(row.rank_change), verb=movement>0?"상승":"하락";
    const title=document.createElement("strong");title.textContent=row.artist_name+" · "+row.song_title;
    const detail=document.createElement("div");detail.textContent="#"+row.old_rank+" → #"+row.new_rank+" ("+Math.abs(movement)+"계단 "+verb+")";
-   const time=document.createElement("small");time.textContent=new Date(row.created_at).toLocaleString("ko-KR");
+   const time=document.createElement("small");time.textContent=new Date(row.created_at).toLocaleString("ko-KR",{year:"numeric",month:"2-digit",day:"2-digit",hour:"2-digit",minute:"2-digit",hour12:false});
    item.append(title,detail,time);list.appendChild(item);
   });
   await MonitorStore.markRankAlertNotificationsRead();
