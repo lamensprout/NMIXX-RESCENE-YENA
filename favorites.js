@@ -1120,51 +1120,53 @@ async function renderFavorites() {
       songSection.appendChild(emptySongs);
     } else {
       const songList = document.createElement("ul");
-      songList.className = "favorite-card-song-list";
+      songList.className = "favorite-card-song-list favorite-card-song-list-detailed";
       artistSongs.forEach(function(song) {
         const item = document.createElement("li");
-        item.className = song.chartOut ? "is-chart-out" : "is-chart-in";
+        item.className = "favorite-card-song-row" + (song.chartOut ? " is-chart-out" : "");
+
+        const rankGroup = document.createElement("span");
+        rankGroup.className = "favorite-card-song-rank-group";
         const rankLabel = document.createElement("span");
         rankLabel.className = "favorite-card-song-rank";
+        rankLabel.textContent = String(song.chartOut ? (song.lastRank || song.rank || "?") : (song.rank || "?"));
+
+        const movement = document.createElement("span");
+        movement.className = "favorite-rank-change";
         if (song.chartOut) {
-          rankLabel.classList.add("is-chart-out");
-          rankLabel.textContent = "▼ OUT";
+          movement.classList.add("down");
+          movement.textContent = "▼ OUT";
         } else if (song.chartIn) {
-          rankLabel.classList.add("is-chart-in");
-          rankLabel.textContent = "▲ IN";
+          movement.classList.add("up");
+          movement.textContent = "▲ IN";
         } else {
-          rankLabel.textContent = String(song.rank || "?");
           const change = Number(song.change) || 0;
-          if (change > 0) {
-            rankLabel.appendChild(document.createTextNode(" "));
-            const movement = document.createElement("span");
-            movement.className = "favorite-rank-change up";
-            movement.textContent = "▲ " + change;
-            rankLabel.appendChild(movement);
-          } else if (change < 0) {
-            rankLabel.appendChild(document.createTextNode(" "));
-            const movement = document.createElement("span");
-            movement.className = "favorite-rank-change down";
-            movement.textContent = "▼ " + Math.abs(change);
-            rankLabel.appendChild(movement);
-          } else {
-            rankLabel.appendChild(document.createTextNode(" "));
-            const unchanged = document.createElement("span");
-            unchanged.className = "favorite-rank-change same";
-            unchanged.textContent = "-";
-            rankLabel.appendChild(unchanged);
-          }
+          movement.classList.add(change > 0 ? "up" : change < 0 ? "down" : "same");
+          movement.textContent = change > 0 ? "▲ " + change : change < 0 ? "▼ " + Math.abs(change) : "-";
         }
-        const titleLabel = document.createElement("span");
-        titleLabel.className = "favorite-card-song-title";
-        titleLabel.textContent = song.title || "제목 없음";
-        item.append(rankLabel, titleLabel);
-        if (song.chartOut) {
-          const outLabel = document.createElement("small");
-          outLabel.className = "favorite-card-song-out-label";
-          outLabel.textContent = "최근 7일 차트 이탈";
-          item.appendChild(outLabel);
-        }
+        rankGroup.append(rankLabel, movement);
+
+        const image = document.createElement("img");
+        image.className = "favorite-card-song-image";
+        image.alt = song.title ? song.title + " 앨범아트" : "앨범아트";
+        image.loading = "lazy";
+        if (song.album_image) image.src = song.album_image;
+        else image.style.visibility = "hidden";
+
+        const details = document.createElement("span");
+        details.className = "favorite-card-song-details";
+        const title = document.createElement("strong");
+        title.className = "favorite-card-song-title";
+        title.textContent = song.title || "제목 없음";
+        const songArtist = document.createElement("span");
+        songArtist.className = "favorite-card-song-artist";
+        songArtist.textContent = song.artist || "";
+        const album = document.createElement("span");
+        album.className = "favorite-card-song-album";
+        album.textContent = song.album || "";
+        details.append(title, songArtist, album);
+
+        item.append(rankGroup, image, details);
         songList.appendChild(item);
       });
       songSection.appendChild(songList);
