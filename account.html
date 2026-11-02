@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>계정 | Melonitor</title>
   <link rel="stylesheet" href="style.css?v=20261101-9">
-  <link rel="stylesheet" href="rank-alert.css?v=4">
+  <link rel="stylesheet" href="rank-alert.css?v=5">
 </head>
 <body>
   <main class="container account-container">
@@ -87,12 +87,12 @@
         <div class="settings-workspace">
           <aside class="settings-sidebar" aria-label="설정 메뉴">
             <h2>설정</h2>
+            <a class="settings-home-link" href="/" aria-label="홈으로 돌아가기">← 홈으로 돌아가기</a>
             <div class="settings-sidebar-group">
               <span class="settings-sidebar-label">내 계정</span>
               <a class="settings-nav-link" href="#accountSettings" data-settings-view="accountSettings" aria-current="page">계정 설정</a>
               <a class="settings-nav-link" href="#rankAlertSettings" data-settings-view="rankAlertSettings">알림 수신 설정</a>
             </div>
-          <div class="settings-sidebar-footer"><button id="signOutButton" type="button" class="secondary-button account-signout-button">로그아웃</button></div>
           </aside>
           <div class="settings-main">
             <section id="accountSettings" class="account-settings-panel settings-view" aria-labelledby="accountSettingsTitle">
@@ -133,6 +133,8 @@
           
           <div class="account-settings-divider" role="separator" aria-hidden="true"></div>
           <div class="remember-login-control"><span class="remember-login-copy"><strong>로그인 유지</strong><small>이 기기에서 다음에도 로그인 상태를 유지해요.</small></span><span class="switch-control"><input id="rememberLoginToggle" type="checkbox" checked><span class="switch-track" aria-hidden="true"></span></span></div>
+          <div class="account-settings-divider" role="separator" aria-hidden="true"></div>
+          <div class="account-settings-bottom-actions"><button id="signOutButton" type="button" class="secondary-button account-signout-button">로그아웃</button></div>
             </section>
             <section id="rankAlertSettings" class="account-settings-panel rank-alert-settings-page settings-view" aria-labelledby="rankAlertPageTitle">
           <h3 id="rankAlertPageTitle">알림 수신 설정</h3>
@@ -171,7 +173,7 @@
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="supabase-config.js?v=1"></script>
   <script src="monitor-store.js?v=15"></script>
-  <script src="account.js?v=19"></script>
+  <script src="account.js?v=20"></script>
   <script src="rank-alert-settings.js?v=1"></script>
   <script src="theme.js?v=6"></script>
 </body>
