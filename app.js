@@ -446,15 +446,19 @@ function updateAccountMenuLabel() {
   const nicknameLabel = document.getElementById("userMenuNickname");
   const loginIcon = document.getElementById("accountLoginIcon");
   const settingsIcon = document.getElementById("accountSettingsIcon");
+  const accountSettingsSubLink = document.getElementById("accountSettingsSubLink");
+  const rankAlertSettingsSubLink = document.getElementById("rankAlertSettingsSubLink");
 
   if (profile) profile.hidden = !hasUser;
   if (nicknameLabel) nicknameLabel.textContent = nickname || (hasUser ? "닉네임 설정 필요" : "");
   if (loginIcon) loginIcon.hidden = hasUser;
   if (settingsIcon) settingsIcon.hidden = !hasUser;
+  if (accountSettingsSubLink) accountSettingsSubLink.hidden = !hasUser;
+  if (rankAlertSettingsSubLink) rankAlertSettingsSubLink.hidden = !hasUser;
 
   // 로그인 상태에서는 닉네임을 상단에 표시하고, 링크는 계정 설정으로 고정합니다.
   accountLinkLabel.textContent = hasUser
-    ? "계정 설정"
+    ? "설정"
     : "로그인 / 회원가입";
 }
 
