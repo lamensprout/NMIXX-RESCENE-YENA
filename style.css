@@ -3590,3 +3590,63 @@ body:not(.dark-mode) .rank-alert-trigger[aria-expanded="true"] {
   .favorite-chart-song .artist { font-size: 12px; }
   .favorite-chart-song .album { font-size: 11px; }
 }
+
+
+/* Selected favorite artist TOP100 rows: mirror the home chart layout on mobile. */
+.favorite-card-song-list li {
+  align-items: center;
+}
+.favorite-card-song-details {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  gap: 3px;
+}
+.favorite-card-song-artist,
+.favorite-card-song-album {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.favorite-card-song-artist { color: #8b96a1; font-size: 12px; }
+.favorite-card-song-album { color: #8b96a1; font-size: 11px; }
+.favorite-card-song-movement { flex: 0 0 auto; min-width: 42px; font-size: 12px; font-weight: 750; white-space: nowrap; }
+.favorite-card-song-movement.up { color: #e91e63; }
+.favorite-card-song-movement.down { color: #1684d8; }
+.favorite-card-song-movement.same { color: #87929b; }
+.favorite-card-song-image { display: block; flex: 0 0 56px; width: 56px; height: 56px; object-fit: cover; border-radius: 5px; }
+.favorite-card-song-title { display: block; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 15px; font-weight: 750; }
+.favorite-card-song-list li.is-chart-out .favorite-card-song-title { color: #7b858e; }
+@media (max-width: 640px) {
+  .favorite-card-songs { padding: 12px 0; }
+  .favorite-card-song-list { display: block; }
+  .favorite-card-song-list li {
+    display: grid;
+    grid-template-columns: 64px 68px 56px minmax(0, 1fr);
+    gap: 0;
+    align-items: center;
+    min-height: 56px;
+    padding: 18px 0;
+    border-bottom: 1px solid #303844;
+    font-size: 13px;
+  }
+  .favorite-card-song-rank {
+    min-width: 0;
+    padding-left: 26px;
+    color: #f5f7fa;
+    font-size: 22px;
+    line-height: 1;
+    text-align: left;
+  }
+  .favorite-card-song-movement {
+    min-width: 0;
+    padding-left: 16px;
+    font-size: 13px;
+    text-align: left;
+  }
+  .favorite-card-song-image { width: 56px; height: 56px; }
+  .favorite-card-song-details { margin-left: 23px; padding-right: 12px; }
+}
+body.dark-mode .favorite-card-song-artist,
+body.dark-mode .favorite-card-song-album { color: #aeb8c1; }
