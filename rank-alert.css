@@ -1,1 +1,109 @@
 .rank-alert-menu{position:relative;flex:0 0 auto}.rank-alert-trigger{position:relative;display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;padding:0;border:1px solid transparent;border-radius:10px;background:transparent;color:inherit;cursor:pointer}.rank-alert-trigger svg{width:23px;height:23px}.rank-alert-badge{position:absolute;top:5px;right:5px;width:9px;height:9px;border-radius:50%;background:#e53935;box-shadow:0 0 0 2px #fff}.rank-alert-badge[hidden],.rank-alert-panel[hidden],.rank-alert-options[hidden]{display:none}.rank-alert-panel{position:absolute;top:calc(100% + 8px);right:0;z-index:1001;width:min(340px,calc(100vw - 32px));max-height:420px;overflow:auto;padding:12px;border:1px solid #d8dde2;border-radius:15px;background:#fff;color:#26323b;box-shadow:0 14px 36px rgb(10 21 30 / 18%)}.rank-alert-panel-heading{display:flex;justify-content:space-between;gap:12px;padding:2px 2px 10px;border-bottom:1px solid #e3e7ea;font-size:14px}.rank-alert-panel-heading a{color:#168a35;font-size:12px}.rank-alert-item{padding:11px 3px;border-bottom:1px solid #edf0f2;font-size:13px;line-height:1.5}.rank-alert-item small{display:block;margin-top:3px;color:#78838b;font-weight:400}.rank-alert-empty{margin:14px 2px;color:#78838b;font-size:13px}.rank-alert-settings{display:grid;gap:10px;padding:4px 0}.rank-alert-settings h4{margin:0;font-size:15px}.rank-alert-options{display:grid;gap:8px;padding:10px 12px;border-radius:10px;background:#f5f7f8}.rank-alert-options input[type=number]{width:100%;min-height:40px;padding:8px 10px;border:1px solid #cfd6dc;border-radius:8px;background:transparent;color:inherit}.rank-alert-check{display:flex;align-items:center;gap:8px;font-size:13px}body.dark-mode .rank-alert-panel{border-color:#37414a;background:#1c2228;color:#e6ebef}body.dark-mode .rank-alert-options{background:#242c33}
+.user-menu-submenu{display:grid;gap:2px;padding:4px 8px 8px 38px}.user-menu-submenu[hidden]{display:none}.user-menu-subitem{display:block;padding:8px 10px;border-radius:8px;color:inherit;text-decoration:none;font-size:13px;line-height:1.4}.user-menu-subitem:hover,.user-menu-subitem:focus-visible{background:rgb(127 127 127 / 12%);outline:none}
+/* Settings page layout inspired by the supplied reference. */
+.settings-workspace{display:grid;grid-template-columns:minmax(220px,27%) minmax(0,1fr);gap:0;min-height:620px;margin:18px -24px -24px;border-top:1px solid var(--border-color,#30363b)}
+.settings-sidebar{padding:24px 18px;border-right:1px solid var(--border-color,#30363b);background:var(--surface-bg,#101417)}
+.settings-sidebar h2{margin:0 0 26px;font-size:22px}
+.settings-sidebar-group{display:grid;gap:8px}
+.settings-sidebar-label{margin:0 0 8px;color:var(--muted-text,#8b969e);font-size:12px;font-weight:700}
+.settings-nav-link{display:block;padding:13px 14px;border-radius:9px;color:var(--text-color,inherit);text-decoration:none;font-size:14px;font-weight:600}
+.settings-nav-link:hover{background:rgb(127 127 127 / 10%)}
+.settings-nav-link[aria-current="page"]{background:rgb(127 127 127 / 18%)}
+.settings-main{min-width:0;padding:28px clamp(20px,5vw,64px)}
+.settings-view[hidden]{display:none!important}
+.settings-main>.account-settings-panel{max-width:760px;margin:0 auto;border:0;padding:0;background:transparent;box-shadow:none}
+.settings-main .rank-alert-settings-page>h3{margin:0 0 24px;font-size:22px}
+.settings-main .rank-alert-settings-page .rank-alert-settings{padding:18px;border:1px solid var(--border-color,#30363b);border-radius:16px}
+.settings-main .rank-alert-settings-page .rank-alert-settings h4{display:none}
+.settings-main .account-settings-panel>h3{margin:0 0 24px;font-size:22px}
+@media(max-width:700px){.settings-workspace{grid-template-columns:1fr;min-height:0;margin:14px -14px -18px}.settings-sidebar{padding:18px 14px;border-right:0;border-bottom:1px solid var(--border-color,#30363b)}.settings-sidebar h2{margin-bottom:14px}.settings-sidebar-group{display:flex;flex-wrap:wrap;align-items:center;gap:6px}.settings-sidebar-label{width:100%;margin-bottom:4px}.settings-nav-link{padding:10px 12px}.settings-main{padding:24px 16px}}
+
+/* Full-window settings layout matching the supplied reference. */
+body.settings-page{min-height:100vh}
+body.settings-page .account-container{width:100%;max-width:none;margin:0;padding:0}
+body.settings-page .page-back-link,body.settings-page .hero,body.settings-page #accountTitle,body.settings-page #accountStatus,body.settings-page #accountSetupNotice{display:none!important}
+body.settings-page .account-card{min-height:100vh;margin:0;padding:0;border:0;border-radius:0;box-shadow:none;background:transparent}
+body.settings-page .signed-in-panel{display:block;margin:0;padding:0;border:0;border-radius:0;background:transparent;box-shadow:none}
+body.settings-page .signed-in-panel>p:first-child,body.settings-page .signed-in-panel>#signedInNickname,body.settings-page .signed-in-panel>#signedInEmail{display:none}
+body.settings-page .settings-workspace{grid-template-columns:minmax(250px,25.7%) minmax(0,1fr);min-height:100vh;margin:0;border:0}
+body.settings-page .settings-sidebar{position:sticky;top:0;display:flex;flex-direction:column;min-height:100vh;padding:28px 12px;border:0;border-right:1px solid var(--border-color,#30363b);background:var(--page-bg,#0e1114)}
+body.settings-page .settings-sidebar h2{margin:0 0 26px;font-size:22px}
+body.settings-page .settings-sidebar-group{gap:6px}
+body.settings-page .settings-nav-link{padding:13px 12px;border-radius:8px}
+body.settings-page .settings-main{padding:32px clamp(28px,5vw,76px)}
+body.settings-page .settings-main>.account-settings-panel{max-width:760px;margin:0 auto}
+body.settings-page #accountMessage{display:none}
+.settings-sidebar-footer{margin-top:auto;padding:20px 0 4px}
+.settings-sidebar-footer .account-signout-button{width:100%}
+@media(max-width:700px){body.settings-page .settings-workspace{grid-template-columns:1fr;min-height:100vh}body.settings-page .settings-sidebar{position:static;min-height:0;padding:18px 14px;border-right:0;border-bottom:1px solid var(--border-color,#30363b)}body.settings-page .settings-sidebar h2{margin-bottom:14px}body.settings-page .settings-sidebar-group{display:flex;flex-wrap:wrap;align-items:center}body.settings-page .settings-sidebar-label{width:100%;margin-bottom:4px}body.settings-page .settings-main{padding:24px 16px}.settings-sidebar-footer{width:100%;margin-top:12px;padding:0}}
+
+.settings-home-link{display:block;margin:-12px 0 24px;padding:10px 12px;border-radius:8px;color:inherit;text-decoration:none;font-size:13px;font-weight:600}.settings-home-link:hover{background:rgb(127 127 127 / 10%)}.account-settings-bottom-actions{display:flex;justify-content:flex-end;margin-top:28px;padding-top:18px;border-top:1px solid var(--border-color,#30363b)}.account-settings-bottom-actions .account-signout-button{min-width:112px}@media(max-width:700px){.settings-home-link{margin:-4px 0 12px}.account-settings-bottom-actions{margin-top:22px}}
+
+/* Consistent red destructive-action styling for both logout buttons. */
+.account-settings-bottom-actions .account-signout-button{
+  width:min(100%,240px);
+  min-height:42px;
+  padding:10px 22px;
+  border:1px solid #dc3545;
+  color:#dc3545;
+  background:transparent;
+}
+.account-settings-bottom-actions .account-signout-button:hover,
+.account-settings-bottom-actions .account-signout-button:focus-visible{
+  border-color:#dc3545;
+  color:#dc3545;
+  background:rgb(220 53 69 / 9%);
+}
+.rank-alert-check input[type="checkbox"]{
+  width:14px;
+  height:14px;
+  min-width:14px;
+  min-height:14px;
+  flex:0 0 14px;
+  margin:0;
+  padding:0;
+  accent-color:var(--accent-color,#3978d4);
+}
+
+/* Profile-menu logout button uses the same red destructive-action treatment. */
+.user-logout-button,
+body.dark-mode .user-logout-button{
+  border:1px solid #dc3545;
+  color:#dc3545;
+  background:transparent;
+}
+.user-logout-button:hover,
+.user-logout-button:focus-visible,
+body.dark-mode .user-logout-button:hover,
+body.dark-mode .user-logout-button:focus-visible{
+  border-color:#dc3545;
+  color:#dc3545;
+  background:rgb(220 53 69 / 9%);
+}
+
+/* Make the account-page logout action full-width and visibly destructive. */
+.settings-main .account-settings-bottom-actions{
+  display:flex;
+  width:100%;
+  justify-content:stretch;
+}
+.settings-main .account-settings-bottom-actions .account-signout-button{
+  display:block;
+  width:100%;
+  max-width:none;
+  min-height:46px;
+  padding:12px 24px;
+  border:1px solid #dc3545 !important;
+  color:#dc3545 !important;
+  background:transparent !important;
+  box-sizing:border-box;
+}
+.settings-main .account-settings-bottom-actions .account-signout-button:hover,
+.settings-main .account-settings-bottom-actions .account-signout-button:focus-visible{
+  border-color:#dc3545 !important;
+  color:#dc3545 !important;
+  background:rgb(220 53 69 / 9%) !important;
+}
+
+/* Keep rise/fall notification choices together on one row. */
+.rank-alert-directions{display:flex;align-items:center;flex-wrap:wrap;gap:14px}

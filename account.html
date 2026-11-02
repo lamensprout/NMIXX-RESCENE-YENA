@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>계정 | Melonitor</title>
   <link rel="stylesheet" href="style.css?v=20261101-9">
-  <link rel="stylesheet" href="rank-alert.css?v=1">
+  <link rel="stylesheet" href="rank-alert.css?v=7">
 </head>
 <body>
   <main class="container account-container">
@@ -84,9 +84,18 @@
         <p>로그인 완료</p>
         <strong id="signedInNickname"></strong>
         <p id="signedInEmail" class="signed-in-email"></p>
-        <p class="signed-in-explainer">계정 정보와 로그인 보안 설정을 여기에서 관리할 수 있어요.</p>
-
-        <section class="account-settings-panel" aria-labelledby="accountSettingsTitle">
+        <div class="settings-workspace">
+          <aside class="settings-sidebar" aria-label="설정 메뉴">
+            <h2>설정</h2>
+            <a class="settings-home-link" href="/" aria-label="홈으로 돌아가기">← 홈으로 돌아가기</a>
+            <div class="settings-sidebar-group">
+              <span class="settings-sidebar-label">내 계정</span>
+              <a class="settings-nav-link" href="#accountSettings" data-settings-view="accountSettings" aria-current="page">계정 설정</a>
+              <a class="settings-nav-link" href="#rankAlertSettings" data-settings-view="rankAlertSettings">알림 수신 설정</a>
+            </div>
+          </aside>
+          <div class="settings-main">
+            <section id="accountSettings" class="account-settings-panel settings-view" aria-labelledby="accountSettingsTitle">
           <h3 id="accountSettingsTitle">계정 설정</h3>
 
           <section class="profile-avatar-settings" aria-labelledby="profileAvatarTitle">
@@ -121,23 +130,33 @@
             <button id="updatePasswordButton" type="submit" class="primary-button">비밀번호 변경</button>
           </form>
 
+          
           <div class="account-settings-divider" role="separator" aria-hidden="true"></div>
-          <section id="rankAlertSettings" class="rank-alert-settings" aria-labelledby="rankAlertSettingsTitle">
-            <h4 id="rankAlertSettingsTitle">알림 수신 설정</h4>
+          <div class="remember-login-control"><span class="remember-login-copy"><strong>로그인 유지</strong><small>이 기기에서 다음에도 로그인 상태를 유지해요.</small></span><span class="switch-control"><input id="rememberLoginToggle" type="checkbox" checked><span class="switch-track" aria-hidden="true"></span></span></div>
+          <div class="account-settings-divider" role="separator" aria-hidden="true"></div>
+          <div class="account-settings-bottom-actions"><button id="signOutButton" type="button" class="secondary-button account-signout-button">로그아웃</button></div>
+            </section>
+            <section id="rankAlertSettings" class="account-settings-panel rank-alert-settings-page settings-view" aria-labelledby="rankAlertPageTitle">
+          <h3 id="rankAlertPageTitle">알림 수신 설정</h3>
+          <p class="signed-in-explainer">좋아하는 아티스트의 순위 변동 알림을 관리할 수 있어요.</p>
+<div class="account-settings-divider" role="separator" aria-hidden="true"></div>
+          <section id="rankAlertSettingsControls" class="rank-alert-settings" aria-labelledby="rankAlertSettingsTitle">
+            <h4 id="rankAlertSettingsTitle">순위 변동 알림</h4>
             <div class="remember-login-control"><span class="remember-login-copy"><strong>좋아하는 아티스트 순위 변동 알림</strong><small>즐겨찾기에 추가한 아티스트의 곡 순위가 설정한 폭만큼 변하면 알려줘요.</small></span><span class="switch-control"><input id="rankAlertEnabled" type="checkbox"><span class="switch-track" aria-hidden="true"></span></span></div>
             <div id="rankAlertOptions" class="rank-alert-options">
               <label for="rankAlertThreshold">알림 기준 (1~100계단)</label><input id="rankAlertThreshold" type="number" min="1" max="100" step="1" value="1">
               <span class="rank-alert-direction-label">알림 받을 순위 변동</span>
-              <label class="rank-alert-check"><input id="rankAlertRises" type="checkbox" checked> 상승</label>
-              <label class="rank-alert-check"><input id="rankAlertFalls" type="checkbox" checked> 하락</label>
+              <div class="rank-alert-directions">
+                <label class="rank-alert-check"><input id="rankAlertRises" type="checkbox" checked> 상승</label>
+                <label class="rank-alert-check"><input id="rankAlertFalls" type="checkbox" checked> 하락</label>
+              </div>
             </div>
             <p id="rankAlertSettingsStatus" class="profile-avatar-status" role="status" aria-live="polite"></p>
             <button id="saveRankAlertSettings" type="button" class="primary-button">알림 설정 저장</button>
           </section>
-          <div class="account-settings-divider" role="separator" aria-hidden="true"></div>
-          <div class="remember-login-control"><span class="remember-login-copy"><strong>로그인 유지</strong><small>이 기기에서 다음에도 로그인 상태를 유지해요.</small></span><span class="switch-control"><input id="rememberLoginToggle" type="checkbox" checked><span class="switch-track" aria-hidden="true"></span></span></div>
-        </section>
-        <button id="signOutButton" type="button" class="secondary-button account-signout-button">로그아웃</button>
+            </section>
+          </div>
+        </div>
       </div>
 
       <p id="accountMessage" class="account-message" aria-live="polite"></p>
@@ -156,7 +175,7 @@
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="supabase-config.js?v=1"></script>
   <script src="monitor-store.js?v=15"></script>
-  <script src="account.js?v=17"></script>
+  <script src="account.js?v=20"></script>
   <script src="rank-alert-settings.js?v=1"></script>
   <script src="theme.js?v=6"></script>
 </body>
