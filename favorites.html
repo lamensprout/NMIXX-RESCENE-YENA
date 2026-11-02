@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAFVklEQVR42u1WW2yVVRb+1tp7/+dWKC3QoqCEMlqhOompEaPGQmulRc08QXyYV32bl4kmxjE54oNxmGTGxGiMRk28x8ZbVKKg0iZcNGgMTDoMSoFUArYMpz2np6fnnH/vtebh70W0PPvSdR7393/rW+tbe50NLMVSLMXvHHTFkzwYu6FrDu24tnh1fZ+3oUVjCBERWBOM/JKJEi5RgKDz9ExQCAiAzqYjJmKiUm6M/3plAdplQUN+2cneR6avN3tkvK7IGsIsVYJZKIN8klwJgOWF8giA6mWlUlWBHMFdwIi9cnOGBADqNtynFajxFKOgZTKAqs5mJ0AAYkAcloPEcEwBcSgRE8ALGgFKNDBIWZZL3TBAZ+0V20+QNZ9sW38p0k5YotQkvWqH+bFg1JrAHgAkrjG7lKSbeV2hPT4cWl0uGsFL0UF9PDSrbQrkS5hzq2IY2aDX6JZKG31KAKWr5sPFBTzRxXhiSMv/pr7QbHM8GRBN8luTu/YVFh2kE73dusLmeEqQmcLHEw/uLwDA9CLYhh+6b5ImRzzuq5kJP8iLt3+rgKA+S/dKBuApOXvD11NHoSDkwVAQFIRvOx0UVHfolxyDy2F83Y8zXyfn+QWcgqA7DQD4yPTBASbwiWefWXFikeFLrGp7r7clGu0pIL5bM8NbX0zOEpLL3Mp3WTd69zB0u6ZHevYmuDwvxrlmb99qN9ozQaFf0yM9/0pG4jfXsssAwP/afY9v5iZTVKSnMx/8BvduIub5/lSHOG2nmsLU8EVyfFlnCYMJZ3VtfLs0mhVcDnBle2BBgOZ5VrXOKY5TdL/kWHlKL6w8culQwjWgs11Q7BwnHOiylUbZqk3WmEIIdlIH5y3UPM9jtybdi7PmHskZUDFMXFVwh/Hrdj30UKdL8iu50Z7zFLZr5mTP6/N7Yf6SgPOz4rMjPe9D+9Sd7j7V95e+1GwB85xdWPguOtN7HNKv6TO9++dyW9BuaT7afWv1WvvoK9Abo8e2jWX99v8GR600A7iY9s4keyG0fd7bMr4Zjz9lQy8FDsvqdKAayRYKClvHoc+e/awG7XSg7+KVX25vr27Wvx2Gvy2Ku0spb7+ppKSNA2CrPDRnlV39ff8dxbVhf7ySM5gK8Dl3HRPfqdOiphjqmSlzpARg/eCfGs9vqnxVX+c6tJQsGR9Rh04E5arC1e2+ROh94ZqDqzeObfQH4xazCiUDNDC8404pBjWTAW7CHEgcbVGezvk99QbO4KKva1UFUxK07OuaNmRiGb7rn8t/AoCJ1pk/1662HfJztYYZFZRFpBC8MkDFEKfO45tk5HZLoVUe9q1ulY7FNdRUtOxFJuIYjokr8dhV5yrHAAA7B4TrGfkDKkEAckTEIBgVYUpBTbBHBwYGAgDUM+FGDT4AbBRgJTCgjAyrqePscy83npnzXiLdpDMhgMgqwMlPCGmIic3x/+waKkPzDIKyi+0pajBMUJ/8mwSBEbKxpUzJvT0/QFUzzJE1REGgqhAoQTw3RByVzDu7BgYCznZFAMA1OomMMVAJpKKsIgSocY5dhV5L7E+uKi+76B52RS3qCuPUgpBltsszJjoX/nHp5k8HoTsNFLTqXONr0agco1WpCJES0kq0MhWlTvuhDcf079A842hLDAVlf8rucT/7C9TsIrUgiYi5KXKp0+HN0h/3vQnNM7YN+fn3QPO3O7bMrMWTKmGzMl9MFcyLpY5PXkjatFugIBB0w0cPtI7fXHzas99GhNjW3Edt7zXnjz/yxvQcZvYdIesHd2y6uEGeChRuIaZSNG3eKLbvfZqU5taTLj3HlmIplgIA/g+etJRe28WRogAAAABJRU5ErkJggg==">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+<title>좋아하는 아티스트 | Melonitor</title>
+  <link rel="stylesheet" href="style.css?v=20261102-1">
+  <link rel="stylesheet" href="rank-alert.css?v=7">
+</head>
+<body>
+  <main class="container">
+    <a class="page-back-link" href="/" aria-label="차트로 돌아가기">← 차트로 돌아가기</a>
+    <header class="hero site-header">
+      <div class="header-brand">
+        <a class="brand-link" href="/" aria-label="Melonitor 첫 화면으로"><img class="brand-logo brand-logo-light" src="/assets/melonitor-logo-light.png" alt="Melonitor"><img class="brand-logo brand-logo-dark" src="/assets/melonitor-logo-dark.png" alt="Melonitor"></a>
+        <p>멜론 TOP100 아티스트 검색</p>
+      </div>
+      <nav class="main-nav" aria-label="주요 메뉴">
+        <a href="/">홈으로 이동</a>
+        <a href="/favorites.html" aria-current="page">좋아하는 아티스트</a>
+        <a href="/feedback.html">피드백</a>
+        <a href="https://www.melon.com/chart/index.htm" target="_blank" rel="noopener noreferrer">멜론차트 공식 사이트 <span aria-hidden="true">↗</span></a>
+      </nav>
+      <div class="hero-tools">
+        <div class="rank-alert-menu">
+          <button id="rankAlertToggle" class="rank-alert-trigger" type="button" aria-label="순위 변동 알림 열기" aria-expanded="false" aria-controls="rankAlertPanel">
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M18 9a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span id="rankAlertBadge" class="rank-alert-badge" hidden></span>
+          </button>
+          <section id="rankAlertPanel" class="rank-alert-panel" aria-label="순위 변동 알림" hidden>
+            <div class="rank-alert-panel-heading"><strong>순위 변동 알림</strong><a href="/account.html#rankAlertSettings">알림 설정</a></div>
+            <div id="rankAlertList" class="rank-alert-list"><p class="rank-alert-empty">로그인하면 알림을 확인할 수 있어요.</p></div>
+          </section>
+        </div>
+        <div class="user-menu">
+          <button id="userMenuToggle" class="user-menu-trigger" type="button" aria-label="사용자 메뉴 열기" aria-expanded="false" aria-controls="userMenuPanel">
+            <img class="user-menu-avatar" alt="" aria-hidden="true" hidden>
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <circle cx="12" cy="7.2" r="3.35" fill="none" stroke="currentColor" stroke-width="1.65"></circle>
+              <path d="M4.1 20v-1.25c0-2.65 2.05-4.65 4.65-4.65h6.5c2.6 0 4.65 2 4.65 4.65V20H4.1Z" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"></path>
+            </svg>
+          </button>
+          <div id="userMenuPanel" class="user-menu-panel" role="menu" aria-label="사용자 설정" hidden>
+            <a id="accountLink" class="user-menu-item" href="/account.html" role="menuitem">
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path d="M10 3H4.8A1.8 1.8 0 0 0 3 4.8v14.4A1.8 1.8 0 0 0 4.8 21H10v-2H5V5h5V3Zm4.6 4.4-1.4 1.4 2.2 2.2H9v2h6.4l-2.2 2.2 1.4 1.4 4.6-4.6-4.6-4.6Z"></path>
+              </svg>
+              <span id="accountLinkLabel">로그인 / 회원가입</span>
+            </a>
+            <div class="user-menu-divider" role="separator"></div>
+            <div class="user-theme-section">
+              <div class="user-theme-heading">화면 모드</div>
+              <div id="themeModeControl" class="theme-mode-control" data-active-mode="auto" role="group" aria-label="화면 모드 선택">
+                <button class="theme-mode-option" type="button" data-theme-mode="light" aria-pressed="false">라이트</button>
+                <button class="theme-mode-option" type="button" data-theme-mode="auto" aria-pressed="true">AUTO</button>
+                <button class="theme-mode-option" type="button" data-theme-mode="dark" aria-pressed="false">다크</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <section class="favorites-panel favorite-page-panel" aria-labelledby="favoriteTitle">
+      <div class="favorites-heading search-heading-row">
+        <div>
+          <h2 id="favoriteTitle">좋아하는 아티스트</h2>
+          <p>아티스트별 멜론 TOP100에 포함된 곡 수와 최근 24시간 순위 변화를 확인할 수 있어요. 아티스트명을 누르면 해당 아티스트의 곡만 볼 수 있습니다.</p>
+        </div>
+        <div class="chart-refresh-controls"><button id="refreshChartButton" class="refresh-chart-button" type="button" title="멜론 TOP100을 다시 수집합니다">↻ 차트 새로고침</button><span id="chartStatus" class="chart-status" role="status" aria-live="polite" hidden></span></div>
+      </div>
+
+      <div class="rank-graph-settings">
+        <label for="rankGraphColor">순위 그래프 색상</label>
+        <input id="rankGraphColor" type="color" value="#168a35" aria-label="순위 그래프 색상 선택">
+        <span id="rankGraphColorValue">#168A35</span>
+      </div>
+      <p id="rankHistoryStatus" class="rank-history-status" role="status" aria-live="polite">순위 기록을 불러오는 중...</p>
+
+      <form id="favoriteForm" class="favorite-form" hidden>
+        <label class="visually-hidden" for="favoriteInput">즐겨찾기 아티스트 이름</label>
+        <input id="favoriteInput" type="search" maxlength="100" placeholder="아티스트 이름 검색 (예: 엔믹스)" autocomplete="off" aria-controls="favoriteSearchResults" aria-expanded="false">
+        <button id="favoriteAddButton" type="submit" class="primary-button" disabled>아티스트 추가</button>
+      </form>
+      <div id="favoriteSearchResults" class="favorite-search-results" role="listbox" aria-label="아티스트 검색 결과" hidden></div>
+      <p id="favoritesNote" class="favorites-note" role="status" aria-live="polite">계정 확인 중...</p>
+      <div id="favoriteArtists" class="chips favorite-list" aria-label="좋아하는 아티스트 목록" hidden></div>
+
+      <section id="favoriteSongExplorer" class="favorite-song-explorer" aria-labelledby="favoriteSongExplorerTitle" hidden>
+        <h3 id="favoriteSongExplorerTitle">선택한 아티스트의 TOP100 곡</h3>
+        <p class="favorite-song-explorer-note">아티스트를 여러 명 선택할 수 있어요. 최근 7일 동안 이 브라우저에서 기록된 차트 곡도 함께 표시합니다.</p>
+        <div id="favoriteArtistCheckboxes" class="favorite-artist-checkboxes" aria-label="곡을 볼 아티스트 선택"></div>
+        <div id="favoriteSongsList" class="favorite-songs-list"></div>
+      </section>
+
+      <div id="favoritesLoginGate" class="favorites-login-gate" hidden>
+        <p>좋아하는 아티스트 목록을 보거나 수정하려면 로그인하고 가입 설정을 완료해 주세요.</p>
+        <a class="primary-button favorites-login-button" href="/account.html">로그인 / 회원가입</a>
+      </div>
+    </section>
+
+    
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="supabase-config.js?v=1"></script>
+  <script src="monitor-store.js?v=13"></script>
+  <script src="rank-alert-ui.js?v=2"></script>
+  <script src="profile-avatar.js?v=2"></script>
+  <script src="chart-popup.js?v=2"></script>
+  <script src="favorites.js?v=20261030-19"></script>
+  <script src="theme.js?v=5"></script>
+  <script>
+    (() => {
+      const button = document.getElementById("refreshChartButton");
+      const status = document.getElementById("chartStatus");
+      if (!button || !status || !window.MelonitorChartPopup) return;
+      function showPopup(message, state, duration) {
+        window.MelonitorChartPopup.set(message, duration, state === "loading", state || "");
+      }
+      const showFavoritesReady = () => showPopup("순위 그래프 준비가 완료되었습니다.", "success", 1800);
+      window.addEventListener("melonitor-favorites-page-loaded", showFavoritesReady, { once: true });
+      showPopup("차트를 불러오는 중입니다.
+잠시만 기다려주세요.", "loading", 0);
+      if (window.__melonitorFavoritesPageLoaded) showFavoritesReady();
+      button.addEventListener("click", async () => {
+        const config = window.MELONITOR_SUPABASE_CONFIG || {};
+        button.disabled = true;
+        button.textContent = "↻ 차트 불러오는 중...";
+        showPopup("차트를 불러오는 중입니다.
+잠시만 기다려주세요.", "loading", 0);
+        try {
+          if (typeof config.projectUrl !== "string" || !config.projectUrl.startsWith("https://") || typeof config.publishableKey !== "string" || !config.publishableKey.trim()) {
+            throw new Error("차트 서버 설정을 찾을 수 없습니다.");
+          }
+          const endpoint = config.projectUrl.replace(/\/+$/, "") + "/functions/v1/melon-chart";
+          const response = await fetch(endpoint, {
+            method: "POST",
+            headers: { apikey: config.publishableKey, "Content-Type": "application/json" },
+            body: "{}",
+            cache: "no-store"
+          });
+          const data = await response.json();
+          if (!response.ok) throw new Error(data.error || data.message || ("요청 실패 (" + response.status + ")"));
+          showPopup("차트가 새로고침되었습니다.", "success", 1600);
+          window.setTimeout(() => window.location.reload(), 1800);
+        } catch (error) {
+          showPopup("차트를 불러오지 못했습니다.", "error", 2200);
+        } finally {
+          button.disabled = false;
+          button.textContent = "↻ 차트 새로고침";
+        }
+      });
+    })();
+  </script>
+  <script>
+    (() => {
+      const toggle = document.getElementById("userMenuToggle");
+      const panel = document.getElementById("userMenuPanel");
+      const account = document.getElementById("accountLink");
+      const themeOptions = panel ? panel.querySelectorAll("[data-theme-mode]") : [];
+      if (!toggle || !panel) return;
+      function closeMenu() {
+        panel.hidden = true;
+        toggle.setAttribute("aria-expanded", "false");
+        toggle.setAttribute("aria-label", "사용자 메뉴 열기");
+      }
+      function openMenu() {
+        panel.hidden = false;
+        toggle.setAttribute("aria-expanded", "true");
+        toggle.setAttribute("aria-label", "사용자 메뉴 닫기");
+      }
+      toggle.addEventListener("click", () => panel.hidden ? openMenu() : closeMenu());
+      document.addEventListener("click", event => {
+        if (!panel.hidden && !event.target.closest(".user-menu")) closeMenu();
+      });
+      document.addEventListener("keydown", event => {
+        if (event.key === "Escape" && !panel.hidden) {
+          closeMenu();
+          toggle.focus();
+        }
+      });
+      if (account) account.addEventListener("click", closeMenu);
+      themeOptions.forEach(option => option.addEventListener("click", closeMenu));
+    })();
+  </script>
+</body>
+</html>
