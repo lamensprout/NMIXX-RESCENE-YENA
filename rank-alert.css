@@ -19,20 +19,20 @@
 @media(max-width:700px){.settings-workspace{grid-template-columns:1fr;min-height:0;margin:14px -14px -18px}.settings-sidebar{padding:18px 14px;border-right:0;border-bottom:1px solid var(--border-color,#30363b)}.settings-sidebar h2{margin-bottom:14px}.settings-sidebar-group{display:flex;flex-wrap:wrap;align-items:center;gap:6px}.settings-sidebar-label{width:100%;margin-bottom:4px}.settings-nav-link{padding:10px 12px}.settings-main{padding:24px 16px}}
 
 /* Full-window settings layout matching the supplied reference. */
-body:has(.settings-workspace){min-height:100vh}
-body:has(.settings-workspace) .account-container{width:100%;max-width:none;margin:0;padding:0}
-body:has(.settings-workspace) .page-back-link,body:has(.settings-workspace) .hero,body:has(.settings-workspace) #accountTitle,body:has(.settings-workspace) #accountStatus,body:has(.settings-workspace) #accountSetupNotice{display:none!important}
-body:has(.settings-workspace) .account-card{min-height:100vh;margin:0;padding:0;border:0;border-radius:0;box-shadow:none;background:transparent}
-body:has(.settings-workspace) .signed-in-panel{display:block;margin:0;padding:0;border:0;border-radius:0;background:transparent;box-shadow:none}
-body:has(.settings-workspace) .signed-in-panel>p:first-child,body:has(.settings-workspace) .signed-in-panel>#signedInNickname,body:has(.settings-workspace) .signed-in-panel>#signedInEmail{display:none}
-body:has(.settings-workspace) .settings-workspace{grid-template-columns:minmax(250px,25.7%) minmax(0,1fr);min-height:100vh;margin:0;border:0}
-body:has(.settings-workspace) .settings-sidebar{position:sticky;top:0;display:flex;flex-direction:column;min-height:100vh;padding:28px 12px;border:0;border-right:1px solid var(--border-color,#30363b);background:var(--page-bg,#0e1114)}
-body:has(.settings-workspace) .settings-sidebar h2{margin:0 0 26px;font-size:22px}
-body:has(.settings-workspace) .settings-sidebar-group{gap:6px}
-body:has(.settings-workspace) .settings-nav-link{padding:13px 12px;border-radius:8px}
-body:has(.settings-workspace) .settings-main{padding:32px clamp(28px,5vw,76px)}
-body:has(.settings-workspace) .settings-main>.account-settings-panel{max-width:760px;margin:0 auto}
-body:has(.settings-workspace) #accountMessage{display:none}
+body.settings-page{min-height:100vh}
+body.settings-page .account-container{width:100%;max-width:none;margin:0;padding:0}
+body.settings-page .page-back-link,body.settings-page .hero,body.settings-page #accountTitle,body.settings-page #accountStatus,body.settings-page #accountSetupNotice{display:none!important}
+body.settings-page .account-card{min-height:100vh;margin:0;padding:0;border:0;border-radius:0;box-shadow:none;background:transparent}
+body.settings-page .signed-in-panel{display:block;margin:0;padding:0;border:0;border-radius:0;background:transparent;box-shadow:none}
+body.settings-page .signed-in-panel>p:first-child,body.settings-page .signed-in-panel>#signedInNickname,body.settings-page .signed-in-panel>#signedInEmail{display:none}
+body.settings-page .settings-workspace{grid-template-columns:minmax(250px,25.7%) minmax(0,1fr);min-height:100vh;margin:0;border:0}
+body.settings-page .settings-sidebar{position:sticky;top:0;display:flex;flex-direction:column;min-height:100vh;padding:28px 12px;border:0;border-right:1px solid var(--border-color,#30363b);background:var(--page-bg,#0e1114)}
+body.settings-page .settings-sidebar h2{margin:0 0 26px;font-size:22px}
+body.settings-page .settings-sidebar-group{gap:6px}
+body.settings-page .settings-nav-link{padding:13px 12px;border-radius:8px}
+body.settings-page .settings-main{padding:32px clamp(28px,5vw,76px)}
+body.settings-page .settings-main>.account-settings-panel{max-width:760px;margin:0 auto}
+body.settings-page #accountMessage{display:none}
 .settings-sidebar-footer{margin-top:auto;padding:20px 0 4px}
 .settings-sidebar-footer .account-signout-button{width:100%}
-@media(max-width:700px){body:has(.settings-workspace) .settings-workspace{grid-template-columns:1fr;min-height:100vh}body:has(.settings-workspace) .settings-sidebar{position:static;min-height:0;padding:18px 14px;border-right:0;border-bottom:1px solid var(--border-color,#30363b)}body:has(.settings-workspace) .settings-sidebar h2{margin-bottom:14px}body:has(.settings-workspace) .settings-sidebar-group{display:flex;flex-wrap:wrap;align-items:center}body:has(.settings-workspace) .settings-sidebar-label{width:100%;margin-bottom:4px}body:has(.settings-workspace) .settings-main{padding:24px 16px}.settings-sidebar-footer{width:100%;margin-top:12px;padding:0}}
+@media(max-width:700px){body.settings-page .settings-workspace{grid-template-columns:1fr;min-height:100vh}body.settings-page .settings-sidebar{position:static;min-height:0;padding:18px 14px;border-right:0;border-bottom:1px solid var(--border-color,#30363b)}body.settings-page .settings-sidebar h2{margin-bottom:14px}body.settings-page .settings-sidebar-group{display:flex;flex-wrap:wrap;align-items:center}body.settings-page .settings-sidebar-label{width:100%;margin-bottom:4px}body.settings-page .settings-main{padding:24px 16px}.settings-sidebar-footer{width:100%;margin-top:12px;padding:0}}
