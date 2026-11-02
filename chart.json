@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-02T17:49:59.426518+00:00",
+  "updated_at": "2026-11-02T18:47:33.112266+00:00",
   "songs": [
     {
       "rank": 1,
@@ -390,21 +390,21 @@
     },
     {
       "rank": 44,
+      "title": "HOME SWEET HOME (feat. 태양, 대성)",
+      "artist": "G-DRAGON",
+      "album": "HOME SWEET HOME (feat. 태양, 대성)",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/116/47/670/11647670_20241121150855_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 45,
+      "change": 1
+    },
+    {
+      "rank": 45,
       "title": "Pop Off Pop Off",
       "artist": "KiiiKiii (키키)",
       "album": "WhyKiiiKiii",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/144/29/080/14429080_20260806154450_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 44,
-      "change": 0
-    },
-    {
-      "rank": 45,
-      "title": "HOME SWEET HOME (feat. 태양, 대성)",
-      "artist": "G-DRAGON",
-      "album": "HOME SWEET HOME (feat. 태양, 대성)",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/116/47/670/11647670_20241121150855_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 46,
-      "change": 1
+      "change": -1
     },
     {
       "rank": 46,
@@ -412,8 +412,8 @@
       "artist": "소녀시대-효리수 (Girls' Generation-HRS)",
       "album": "Skibidi",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/144/94/370/14494370_20260828152343_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 45,
-      "change": -1
+      "previous_rank": 46,
+      "change": 0
     },
     {
       "rank": 47,
@@ -592,8 +592,8 @@
       "artist": "TWS (투어스)",
       "album": "Sparkling Blue",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/113/91/902/11391902_20250922111638_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 67,
-      "change": 1
+      "previous_rank": 66,
+      "change": 0
     },
     {
       "rank": 67,
@@ -601,26 +601,26 @@
       "artist": "아이유",
       "album": "이 별로부터",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/145/35/765/14535765_20260909154035_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 66,
-      "change": -1
-    },
-    {
-      "rank": 68,
-      "title": "Pinball",
-      "artist": "RESCENE (리센느)",
-      "album": "SCENEDROME",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/115/75/849/11575849_20240826152240_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 68,
+      "previous_rank": 67,
       "change": 0
     },
     {
-      "rank": 69,
+      "rank": 68,
       "title": "예뻤어",
       "artist": "DAY6 (데이식스)",
       "album": "Every DAY6 February",
       "album_image": "https://cdnimg.melon.co.kr/cm/album/images/100/36/099/10036099_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 69,
-      "change": 0
+      "change": 1
+    },
+    {
+      "rank": 69,
+      "title": "Pinball",
+      "artist": "RESCENE (리센느)",
+      "album": "SCENEDROME",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/115/75/849/11575849_20240826152240_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 68,
+      "change": -1
     },
     {
       "rank": 70,
@@ -628,8 +628,8 @@
       "artist": "멜로망스",
       "album": "사랑인가 봐 (사내맞선 OST 스페셜 트랙)",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/108/71/162/10871162_20220217162422_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 71,
-      "change": 1
+      "previous_rank": 70,
+      "change": 0
     },
     {
       "rank": 71,
@@ -637,8 +637,8 @@
       "artist": "한로로",
       "album": "입춘",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/108/90/163/10890163_20220311160155_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 70,
-      "change": -1
+      "previous_rank": 71,
+      "change": 0
     },
     {
       "rank": 72,
