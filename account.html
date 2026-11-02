@@ -146,8 +146,10 @@
             <div id="rankAlertOptions" class="rank-alert-options">
               <label for="rankAlertThreshold">알림 기준 (1~100계단)</label><input id="rankAlertThreshold" type="number" min="1" max="100" step="1" value="1">
               <span class="rank-alert-direction-label">알림 받을 순위 변동</span>
-              <label class="rank-alert-check"><input id="rankAlertRises" type="checkbox" checked> 상승</label>
-              <label class="rank-alert-check"><input id="rankAlertFalls" type="checkbox" checked> 하락</label>
+              <div class="rank-alert-directions">
+                <label class="rank-alert-check"><input id="rankAlertRises" type="checkbox" checked> 상승</label>
+                <label class="rank-alert-check"><input id="rankAlertFalls" type="checkbox" checked> 하락</label>
+              </div>
             </div>
             <p id="rankAlertSettingsStatus" class="profile-avatar-status" role="status" aria-live="polite"></p>
             <button id="saveRankAlertSettings" type="button" class="primary-button">알림 설정 저장</button>
