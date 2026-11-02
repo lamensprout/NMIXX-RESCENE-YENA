@@ -140,6 +140,7 @@
     renderProfileAvatar();
     const configured = MonitorStore.isConfigured();
     const signedIn = !!user;
+    document.body.classList.toggle("settings-page", signedIn && MonitorStore.hasNickname());
     const hasNickname = signedIn && MonitorStore.hasNickname();
 
     setupNotice.hidden = configured;
