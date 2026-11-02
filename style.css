@@ -3542,3 +3542,85 @@ body:not(.dark-mode) .rank-alert-trigger[aria-expanded="true"] {
   background: transparent !important;
   border-color: #aeb8c1;
 }
+
+
+/* Favorite artist graph cards: use the same rank / movement / album row as TOP100. */
+.favorite-card-song-list-detailed {
+  display: grid;
+  gap: 0;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+.favorite-card-song-list-detailed .favorite-card-song-row {
+  display: grid;
+  grid-template-columns: max-content 56px minmax(0, 1fr);
+  align-items: center;
+  gap: 24px;
+  min-width: 0;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--border-color, #303844);
+}
+.favorite-card-song-rank-group {
+  display: flex;
+  align-items: baseline;
+  justify-content: flex-end;
+  gap: 4px;
+  min-width: 0;
+  white-space: nowrap;
+  font-weight: 800;
+}
+.favorite-card-song-rank {
+  color: var(--text-color, #f2f5f3);
+  font-size: 20px;
+}
+.favorite-card-song-rank-group .favorite-rank-change {
+  font-size: 13px;
+  font-weight: 700;
+}
+.favorite-card-song-rank-group .favorite-rank-change.up { color: #f04478; }
+.favorite-card-song-rank-group .favorite-rank-change.down { color: #1687df; }
+.favorite-card-song-rank-group .favorite-rank-change.same { color: var(--muted-text, #87919d); }
+.favorite-card-song-image {
+  display: block;
+  width: 56px;
+  height: 56px;
+  border-radius: 6px;
+  object-fit: cover;
+}
+.favorite-card-song-details {
+  display: grid;
+  gap: 3px;
+  min-width: 0;
+}
+.favorite-card-song-details .favorite-card-song-title {
+  overflow: hidden;
+  color: var(--text-color, #f2f5f3);
+  font-size: 15px;
+  font-weight: 750;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.favorite-card-song-artist,
+.favorite-card-song-album {
+  overflow: hidden;
+  color: var(--muted-text, #87919d);
+  font-size: 12px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+body:not(.dark-mode) .favorite-card-song-rank,
+body:not(.dark-mode) .favorite-card-song-details .favorite-card-song-title {
+  color: #111 !important;
+}
+@media (max-width: 640px) {
+  .favorite-card-song-list-detailed .favorite-card-song-row {
+    grid-template-columns: max-content 50px minmax(0, 1fr);
+    gap: 14px;
+    padding: 9px 10px;
+  }
+  .favorite-card-song-image {
+    width: 50px;
+    height: 50px;
+  }
+}
