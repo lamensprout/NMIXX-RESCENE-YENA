@@ -1085,7 +1085,10 @@ async function renderFavorites() {
 
     const rank = document.createElement("span");
     rank.className = "favorite-current-rank" + (current ? "" : " is-outside-chart");
-    rank.textContent = current ? "#" + current.rank : "TOP100 밖";
+    const currentSongCount = songs.filter(function(song) {
+      return song.artist && (normalize(song.artist) === normalize(artist) || areSameArtist(song.artist, artist));
+    }).length;
+    rank.textContent = currentSongCount + "곡";
 
     header.appendChild(open);
     header.appendChild(rank);
@@ -1140,7 +1143,11 @@ async function renderFavorites() {
             movement.textContent = "▼ " + Math.abs(change);
             rankLabel.appendChild(movement);
           } else {
-            rankLabel.appendChild(document.createTextNode(" -"));
+            rankLabel.appendChild(document.createTextNode(" "));
+            const unchanged = document.createElement("span");
+            unchanged.className = "favorite-rank-change same";
+            unchanged.textContent = "-";
+            rankLabel.appendChild(unchanged);
           }
         }
         const titleLabel = document.createElement("span");
