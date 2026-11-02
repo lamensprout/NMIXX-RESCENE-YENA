@@ -19,9 +19,9 @@
     if (accountLinkLabel) {
       const hasUser = !!MonitorStore.getUser();
       const nickname = ready ? MonitorStore.getNickname() : "";
-      accountLinkLabel.textContent = !hasUser
-        ? "로그인 / 회원가입"
-        : (ready ? (nickname || "내 계정") : "닉네임 설정하기");
+      accountLinkLabel.textContent = hasUser
+        ? "계정 설정"
+        : "로그인 / 회원가입";
     }
 
     document.querySelectorAll(".user-menu-avatar").forEach(image => {
