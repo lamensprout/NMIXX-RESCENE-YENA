@@ -1466,17 +1466,30 @@ body.dark-mode .chart-status { color: #9eabb5; }
   input { height: 48px; padding: 0 12px; font-size: 14px; }
   .search-row { gap: 7px; }
   .search-row button { min-width: 60px; padding: 0 10px; }
-  .song {
-    grid-template-columns: 28px 43px 50px minmax(0, 1fr);
-    gap: 8px;
-    padding: 13px 2px;
+  .results {
+    margin-left: -16px;
+    margin-right: -16px;
   }
-  .rank { font-size: 19px; }
-  .change { font-size: 11px; }
-  .album-image { width: 48px; height: 48px; }
-  .title { font-size: 14px; }
-  .artist { font-size: 11px; }
-  .album { font-size: 10px; }
+  .song {
+    grid-template-columns: 64px 68px 56px minmax(0, 1fr);
+    gap: 0;
+    padding: 18px 0;
+  }
+  .rank {
+    padding-left: 26px;
+    text-align: left;
+    font-size: 22px;
+  }
+  .change {
+    padding-left: 16px;
+    text-align: left;
+    font-size: 13px;
+  }
+  .album-image { width: 56px; height: 56px; }
+  .song-info { margin-left: 23px; }
+  .title { font-size: 15px; }
+  .artist { font-size: 12px; }
+  .album { font-size: 11px; }
   .report-teaser { padding: 20px; margin-top: 28px; }
 }
 
