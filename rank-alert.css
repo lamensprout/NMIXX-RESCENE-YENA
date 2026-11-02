@@ -64,3 +64,19 @@ body.settings-page #accountMessage{display:none}
   padding:0;
   accent-color:var(--accent-color,#3978d4);
 }
+
+/* Profile-menu logout button uses the same red destructive-action treatment. */
+.user-logout-button,
+body.dark-mode .user-logout-button{
+  border:1px solid #dc3545;
+  color:#dc3545;
+  background:transparent;
+}
+.user-logout-button:hover,
+.user-logout-button:focus-visible,
+body.dark-mode .user-logout-button:hover,
+body.dark-mode .user-logout-button:focus-visible{
+  border-color:#dc3545;
+  color:#dc3545;
+  background:rgb(220 53 69 / 9%);
+}
