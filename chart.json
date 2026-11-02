@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-02T18:47:33.112266+00:00",
+  "updated_at": "2026-11-02T19:46:32.668072+00:00",
   "songs": [
     {
       "rank": 1,
@@ -390,19 +390,19 @@
     },
     {
       "rank": 44,
-      "title": "HOME SWEET HOME (feat. 태양, 대성)",
-      "artist": "G-DRAGON",
-      "album": "HOME SWEET HOME (feat. 태양, 대성)",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/116/47/670/11647670_20241121150855_500.jpg/melon/resize/120/quality/80/optimize",
+      "title": "Pop Off Pop Off",
+      "artist": "KiiiKiii (키키)",
+      "album": "WhyKiiiKiii",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/144/29/080/14429080_20260806154450_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 45,
       "change": 1
     },
     {
       "rank": 45,
-      "title": "Pop Off Pop Off",
-      "artist": "KiiiKiii (키키)",
-      "album": "WhyKiiiKiii",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/144/29/080/14429080_20260806154450_500.jpg/melon/resize/120/quality/80/optimize",
+      "title": "HOME SWEET HOME (feat. 태양, 대성)",
+      "artist": "G-DRAGON",
+      "album": "HOME SWEET HOME (feat. 태양, 대성)",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/116/47/670/11647670_20241121150855_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 44,
       "change": -1
     },
@@ -610,8 +610,8 @@
       "artist": "DAY6 (데이식스)",
       "album": "Every DAY6 February",
       "album_image": "https://cdnimg.melon.co.kr/cm/album/images/100/36/099/10036099_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 69,
-      "change": 1
+      "previous_rank": 68,
+      "change": 0
     },
     {
       "rank": 69,
@@ -619,8 +619,8 @@
       "artist": "RESCENE (리센느)",
       "album": "SCENEDROME",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/115/75/849/11575849_20240826152240_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 68,
-      "change": -1
+      "previous_rank": 69,
+      "change": 0
     },
     {
       "rank": 70,
@@ -651,21 +651,21 @@
     },
     {
       "rank": 73,
-      "title": "사랑은 늘 도망가",
-      "artist": "임영웅",
-      "album": "신사와 아가씨 OST Part.2",
-      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/107/35/654/10735654_20211008114339_500.jpg/melon/resize/120/quality/80/optimize",
-      "previous_rank": 73,
-      "change": 0
-    },
-    {
-      "rank": 74,
       "title": "다정히 내 이름을 부르면",
       "artist": "경서예지",
       "album": "다정히 내 이름을 부르면 (경서예지 x 전건호)",
       "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/106/10/525/10610525_20210518143433_500.jpg/melon/resize/120/quality/80/optimize",
       "previous_rank": 74,
-      "change": 0
+      "change": 1
+    },
+    {
+      "rank": 74,
+      "title": "사랑은 늘 도망가",
+      "artist": "임영웅",
+      "album": "신사와 아가씨 OST Part.2",
+      "album_image": "https://cdnimg.melon.co.kr/cm2/album/images/107/35/654/10735654_20211008114339_500.jpg/melon/resize/120/quality/80/optimize",
+      "previous_rank": 73,
+      "change": -1
     },
     {
       "rank": 75,
