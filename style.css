@@ -3624,3 +3624,48 @@ body:not(.dark-mode) .favorite-card-song-details .favorite-card-song-title {
     height: 50px;
   }
 }
+
+
+/* Selected-artist TOP100 rows: rank and movement share one column before the album art. */
+.song.song-ranked-layout {
+  grid-template-columns: 104px 56px minmax(0, 1fr);
+  gap: 24px;
+}
+.song-ranked-layout .rank-group {
+  display: flex;
+  align-items: baseline;
+  justify-content: flex-end;
+  gap: 4px;
+  min-width: 0;
+  white-space: nowrap;
+}
+.song-ranked-layout .rank {
+  width: 2.2ch;
+  flex: 0 0 2.2ch;
+  text-align: right;
+}
+.song-ranked-layout .change {
+  min-width: 34px;
+  text-align: left;
+}
+.favorite-card-song-rank-group {
+  min-width: 104px;
+  justify-content: flex-end;
+}
+.favorite-card-song-rank {
+  display: inline-block;
+  min-width: 2.2ch;
+  text-align: right;
+}
+@media (max-width: 640px) {
+  .song.song-ranked-layout {
+    grid-template-columns: 84px 50px minmax(0, 1fr);
+    gap: 14px;
+  }
+  .song-ranked-layout .change {
+    min-width: 30px;
+  }
+  .favorite-card-song-rank-group {
+    min-width: 84px;
+  }
+}
