@@ -3461,3 +3461,58 @@ body.dark-mode .user-menu-nickname { color: #fff; }
   .account-alert-dialog { padding: 24px 20px 20px; }
   .account-alert-dialog h2 { font-size: 17px; }
 }
+
+
+/* Favorites chart: keep rank and movement together with a single-space gap. */
+.favorite-chart-song {
+  grid-template-columns: max-content 56px 64px minmax(0, 1fr);
+}
+.favorite-chart-rank-group {
+  display: flex;
+  align-items: baseline;
+  justify-content: flex-end;
+  gap: 4px;
+  min-width: 0;
+  white-space: nowrap;
+}
+.favorite-chart-song .rank,
+.favorite-chart-song .change,
+.favorite-chart-song .change.up,
+.favorite-chart-song .change.down,
+.favorite-chart-song .change.same,
+.favorite-chart-song .change.new {
+  color: #111 !important;
+}
+body.dark-mode .favorite-chart-song .rank,
+body.dark-mode .favorite-chart-song .change,
+body.dark-mode .favorite-chart-song .change.up,
+body.dark-mode .favorite-chart-song .change.down,
+body.dark-mode .favorite-chart-song .change.same,
+body.dark-mode .favorite-chart-song .change.new {
+  color: #fff !important;
+}
+@media (max-width: 640px) {
+  .favorite-chart-song {
+    grid-template-columns: max-content 50px 48px minmax(0, 1fr);
+  }
+}
+
+/* Match the chart-refresh popup to the welcome popup dimensions. */
+.chart-status.is-loading,
+.chart-status.is-success,
+.chart-status.is-error {
+  width: min(440px, calc(100vw - 36px)) !important;
+  height: 210px !important;
+  min-height: 210px !important;
+  padding: 18px 28px !important;
+}
+@media (max-width: 600px) {
+  .chart-status.is-loading,
+  .chart-status.is-success,
+  .chart-status.is-error {
+    width: calc(100vw - 32px) !important;
+    height: 190px !important;
+    min-height: 190px !important;
+    padding: 14px 20px !important;
+  }
+}
