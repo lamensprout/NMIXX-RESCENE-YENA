@@ -3650,3 +3650,14 @@ body:not(.dark-mode) .rank-alert-trigger[aria-expanded="true"] {
 }
 body.dark-mode .favorite-card-song-artist,
 body.dark-mode .favorite-card-song-album { color: #aeb8c1; }
+
+
+/* Selected artist TOP100: keep rank numbers neutral; color only movement labels. */
+@media (max-width: 640px) {
+  .favorite-card-song-list li .favorite-card-song-rank {
+    color: #111;
+  }
+  body.dark-mode .favorite-card-song-list li .favorite-card-song-rank {
+    color: #f5f7fa;
+  }
+}
