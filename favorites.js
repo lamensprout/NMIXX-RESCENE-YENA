@@ -1118,7 +1118,7 @@ async function renderFavorites() {
       songList.className = "favorite-card-song-list";
       artistSongs.forEach(function(song) {
         const item = document.createElement("li");
-        item.className = song.chartOut ? "is-chart-out" : "is-chart-in";
+        item.className = song.chartOut ? "is-chart-out" : (song.chartIn ? "is-chart-in" : "");
         const rankLabel = document.createElement("span");
         rankLabel.className = "favorite-card-song-rank";
         rankLabel.textContent = String(song.chartOut ? (song.lastRank || song.rank || "?") : (song.rank || "?"));
