@@ -138,7 +138,7 @@ button {
 
 .change.up { color: #e91e63; }
 .change.down { color: #1976d2; }
-.change.same { color: #777; }
+.change.same { color: #fff; }
 .change.new { color: #00cd3b; }
 
 .album-image {
@@ -3461,3 +3461,4 @@ body.dark-mode .user-menu-nickname { color: #fff; }
   .account-alert-dialog { padding: 24px 20px 20px; }
   .account-alert-dialog h2 { font-size: 17px; }
 }
+\n/* Favorite artist song rank contrast */\n.favorite-card-song-rank { color: #111; }\n.favorite-rank-change.same { color: #111; }\nbody.dark-mode .favorite-card-song-rank, body.dark-mode .favorite-rank-change.same { color: #f5f7fa; }\n
