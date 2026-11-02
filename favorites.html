@@ -5,7 +5,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>좋아하는 아티스트 | Melonitor</title>
-  <link rel="stylesheet" href="style.css?v=20261102-1">\n  <link rel="stylesheet" href="rank-alert.css?v=7">
+  <link rel="stylesheet" href="style.css?v=20261102-1">
+  <link rel="stylesheet" href="rank-alert.css?v=7">
 </head>
 <body>
   <main class="container">
@@ -104,7 +105,8 @@
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="supabase-config.js?v=1"></script>
-  <script src="monitor-store.js?v=13"></script>\n  <script src="rank-alert-ui.js?v=2"></script>
+  <script src="monitor-store.js?v=13"></script>
+  <script src="rank-alert-ui.js?v=2"></script>
   <script src="profile-avatar.js?v=2"></script>
   <script src="chart-popup.js?v=2"></script>
   <script src="favorites.js?v=20261030-19"></script>
@@ -119,13 +121,15 @@
       }
       const showFavoritesReady = () => showPopup("순위 그래프 준비가 완료되었습니다.", "success", 1800);
       window.addEventListener("melonitor-favorites-page-loaded", showFavoritesReady, { once: true });
-      showPopup("차트를 불러오는 중입니다.\n잠시만 기다려주세요.", "loading", 0);
+      showPopup("차트를 불러오는 중입니다.
+잠시만 기다려주세요.", "loading", 0);
       if (window.__melonitorFavoritesPageLoaded) showFavoritesReady();
       button.addEventListener("click", async () => {
         const config = window.MELONITOR_SUPABASE_CONFIG || {};
         button.disabled = true;
         button.textContent = "↻ 차트 불러오는 중...";
-        showPopup("차트를 불러오는 중입니다.\n잠시만 기다려주세요.", "loading", 0);
+        showPopup("차트를 불러오는 중입니다.
+잠시만 기다려주세요.", "loading", 0);
         try {
           if (typeof config.projectUrl !== "string" || !config.projectUrl.startsWith("https://") || typeof config.publishableKey !== "string" || !config.publishableKey.trim()) {
             throw new Error("차트 서버 설정을 찾을 수 없습니다.");
