@@ -80,3 +80,27 @@ body.dark-mode .user-logout-button:focus-visible{
   color:#dc3545;
   background:rgb(220 53 69 / 9%);
 }
+
+/* Make the account-page logout action full-width and visibly destructive. */
+.settings-main .account-settings-bottom-actions{
+  display:flex;
+  width:100%;
+  justify-content:stretch;
+}
+.settings-main .account-settings-bottom-actions .account-signout-button{
+  display:block;
+  width:100%;
+  max-width:none;
+  min-height:46px;
+  padding:12px 24px;
+  border:1px solid #dc3545 !important;
+  color:#dc3545 !important;
+  background:transparent !important;
+  box-sizing:border-box;
+}
+.settings-main .account-settings-bottom-actions .account-signout-button:hover,
+.settings-main .account-settings-bottom-actions .account-signout-button:focus-visible{
+  border-color:#dc3545 !important;
+  color:#dc3545 !important;
+  background:rgb(220 53 69 / 9%) !important;
+}
