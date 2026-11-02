@@ -105,6 +105,10 @@
               </svg>
               <span id="accountLinkLabel">로그인 / 회원가입</span>
             </a>
+            <div id="settingsSubmenu" class="user-menu-submenu" hidden>
+              <a class="user-menu-subitem" href="/account.html#accountSettings" role="menuitem">계정 설정</a>
+              <a class="user-menu-subitem" href="/account.html#rankAlertSettings" role="menuitem">알림 수신 설정</a>
+            </div>
             <div class="user-menu-divider" role="separator"></div>
             <div class="user-theme-section">
               <div class="user-theme-heading">화면 모드</div>
@@ -173,8 +177,10 @@
       const logoutButton = document.getElementById("userLogoutButton");
       const themeOptions = panel ? panel.querySelectorAll("[data-theme-mode]") : [];
       if (!toggle || !panel) return;
+      const settingsSubmenu = document.getElementById("settingsSubmenu");
       function closeMenu() {
         panel.hidden = true;
+        if (settingsSubmenu) settingsSubmenu.hidden = true;
         toggle.setAttribute("aria-expanded", "false");
         toggle.setAttribute("aria-label", "사용자 메뉴 열기");
       }
@@ -193,7 +199,14 @@
           toggle.focus();
         }
       });
-      if (account) account.addEventListener("click", closeMenu);
+      if (account) account.addEventListener("click", event => {
+        const signedIn = !!(window.MonitorStore && MonitorStore.getUser());
+        if (!signedIn) { closeMenu(); return; }
+        event.preventDefault();
+        if (settingsSubmenu) settingsSubmenu.hidden = !settingsSubmenu.hidden;
+        account.setAttribute("aria-expanded", String(settingsSubmenu ? !settingsSubmenu.hidden : false));
+      });
+      if (settingsSubmenu) settingsSubmenu.addEventListener("click", event => { if (event.target.closest("a")) closeMenu(); });
       async function syncLogoutVisibility() {
         if (logoutButton) logoutButton.hidden = !(window.MonitorStore && MonitorStore.getUser());
       }
