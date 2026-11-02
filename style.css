@@ -3639,3 +3639,186 @@ body.dark-mode .favorite-card-song-album { color: #aeb8c1; }
     color: #f5f7fa;
   }
 }
+
+
+/* Account settings workspace navigation */
+body.settings-page .account-container {
+  max-width: 1080px;
+}
+body.settings-page .account-card {
+  padding: 28px;
+}
+.settings-workspace {
+  display: grid;
+  grid-template-columns: 228px minmax(0, 1fr);
+  align-items: start;
+  gap: 24px;
+  margin-top: 24px;
+}
+.settings-sidebar {
+  position: sticky;
+  top: 20px;
+  min-width: 0;
+  padding: 20px 14px;
+  border: 1px solid #e2e7e3;
+  border-radius: 14px;
+  background: #f8faf8;
+}
+.settings-sidebar h2 {
+  margin: 0 8px 14px;
+  color: #202a23;
+  font-size: 19px;
+  line-height: 1.4;
+}
+.settings-home-link,
+.settings-nav-link {
+  display: flex;
+  align-items: center;
+  min-height: 42px;
+  padding: 9px 11px;
+  border: 1px solid transparent;
+  border-radius: 9px;
+  color: #46524a;
+  font-size: 13px;
+  font-weight: 650;
+  line-height: 1.45;
+  text-decoration: none;
+  transition: background .15s ease, color .15s ease, border-color .15s ease;
+}
+.settings-home-link {
+  margin-bottom: 18px;
+  color: #168a35;
+  background: #edf8ef;
+}
+.settings-home-link:hover,
+.settings-nav-link:hover {
+  background: #edf5ef;
+  color: #116d2b;
+}
+.settings-sidebar-group {
+  display: grid;
+  gap: 5px;
+  padding-top: 14px;
+  border-top: 1px solid #e0e6e1;
+}
+.settings-sidebar-label {
+  padding: 0 11px 5px;
+  color: #78827b;
+  font-size: 11px;
+  font-weight: 750;
+}
+.settings-nav-link[aria-current="page"] {
+  color: #126d2c;
+  background: #e4f4e7;
+  border-color: #c9e7d0;
+}
+.settings-main {
+  min-width: 0;
+}
+.settings-main > .settings-view[hidden] {
+  display: none !important;
+}
+.settings-main > .settings-view {
+  min-width: 0;
+}
+.settings-main .account-settings-panel {
+  padding: 22px;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  background: #fff;
+}
+body.dark-mode .settings-sidebar {
+  border-color: #303844;
+  background: #191e25;
+}
+body.dark-mode .settings-sidebar h2 {
+  color: #edf0f5;
+}
+body.dark-mode .settings-home-link {
+  color: #a6e3b2;
+  background: #1b3021;
+}
+body.dark-mode .settings-home-link:hover,
+body.dark-mode .settings-nav-link:hover {
+  color: #c5f0cd;
+  background: #25372b;
+}
+body.dark-mode .settings-nav-link {
+  color: #c5ced8;
+}
+body.dark-mode .settings-sidebar-group {
+  border-top-color: #303844;
+}
+body.dark-mode .settings-sidebar-label {
+  color: #9ba6b4;
+}
+body.dark-mode .settings-nav-link[aria-current="page"] {
+  color: #b8edc2;
+  background: #203a28;
+  border-color: #31563a;
+}
+body.dark-mode .settings-main .account-settings-panel {
+  border-color: #303844;
+  background: #191e25;
+}
+@media (max-width: 760px) {
+  body.settings-page .account-container {
+    max-width: 100%;
+  }
+  body.settings-page .account-card {
+    padding: 18px;
+  }
+  .settings-workspace {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 14px;
+  }
+  .settings-sidebar {
+    position: static;
+    padding: 14px;
+  }
+  .settings-sidebar h2 {
+    margin-bottom: 10px;
+  }
+  .settings-sidebar-group {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .settings-sidebar-label {
+    grid-column: 1 / -1;
+  }
+  .settings-main .account-settings-panel {
+    padding: 17px;
+  }
+}
+
+
+/* Use a consistent white surface across the entire account settings screen in light mode. */
+body.settings-page:not(.dark-mode) {
+  background: #fff;
+  color: #202a23;
+}
+body.settings-page:not(.dark-mode) .account-container,
+body.settings-page:not(.dark-mode) .account-card,
+body.settings-page:not(.dark-mode) #signedInPanel,
+body.settings-page:not(.dark-mode) .settings-workspace,
+body.settings-page:not(.dark-mode) .settings-main,
+body.settings-page:not(.dark-mode) .settings-view,
+body.settings-page:not(.dark-mode) .settings-sidebar,
+body.settings-page:not(.dark-mode) .settings-main .account-settings-panel {
+  background-color: #fff;
+}
+body.settings-page:not(.dark-mode) .settings-sidebar {
+  border-color: #e2e7e3;
+}
+body.settings-page:not(.dark-mode) .settings-sidebar-group {
+  border-top-color: #e2e7e3;
+}
+body.settings-page:not(.dark-mode) .settings-home-link {
+  background: #f1f8f2;
+}
+body.settings-page:not(.dark-mode) .settings-nav-link:hover,
+body.settings-page:not(.dark-mode) .settings-home-link:hover {
+  background: #edf5ef;
+}
+body.settings-page:not(.dark-mode) .settings-nav-link[aria-current="page"] {
+  background: #e8f5ea;
+}
