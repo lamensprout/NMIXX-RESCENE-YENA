@@ -138,7 +138,7 @@ button {
 
 .change.up { color: #e91e63; }
 .change.down { color: #1976d2; }
-.change.same { color: #fff; }
+.change.same { color: #777; }
 .change.new { color: #00cd3b; }
 
 .album-image {
