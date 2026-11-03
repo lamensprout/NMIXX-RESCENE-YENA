@@ -69,13 +69,14 @@
   if(!filteredRows.length){list.innerHTML='<p class="rank-alert-empty">좋아하는 아티스트의 순위 변동 알림이 없어요.</p>';return;}
   const rankedRows=[...filteredRows].sort((a,b)=>Number(a.new_rank)-Number(b.new_rank));
   const top=rankedRows[0];
+  const latestAlert=[...filteredRows].sort((a,b)=>(Date.parse(b.created_at)||0)-(Date.parse(a.created_at)||0))[0];
   const item=document.createElement("p");item.className="rank-alert-item"+(filteredRows.some(row=>!row.read_at)?" unread":"");
   const line=document.createElement("span");line.className="rank-alert-line";
   const message=document.createElement("strong");
   message.textContent=top.artist_name+" · "+top.song_title+(filteredRows.length>1?" 외 "+(filteredRows.length-1)+"곡":"")+"의 순위 변동이 감지되었습니다.";
   const timestamp=document.createElement("time");timestamp.className="rank-alert-time";
-  timestamp.dateTime=top.created_at||"";
-  timestamp.textContent=formatAlertTimestamp(top.created_at);
+  timestamp.dateTime=latestAlert.created_at||"";
+  timestamp.textContent=formatAlertTimestamp(latestAlert.created_at);
   line.append(message,timestamp);item.appendChild(line);list.appendChild(item);
   const unreadIds=filteredRows.filter(row=>!row.read_at).map(row=>row.id);
   if(unreadIds.length)await MonitorStore.markRankAlertNotificationsRead(unreadIds);
