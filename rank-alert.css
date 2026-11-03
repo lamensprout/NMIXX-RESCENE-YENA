@@ -121,3 +121,8 @@ body.dark-mode .user-logout-button:focus-visible{
 .rank-alert-detail p+p{margin-top:4px;color:#78838b}
 .rank-alert-item.unread .rank-alert-summary strong{font-weight:700}
 body.dark-mode .rank-alert-detail{background:#242c33}
+
+/* Inline alert timestamp beside the filtered rank-change summary. */
+.rank-alert-line{display:flex;align-items:center;justify-content:space-between;gap:10px;min-width:0}
+.rank-alert-line strong{min-width:0;flex:1}
+.rank-alert-time{flex:0 0 auto;color:#78838b;font-size:11px;font-weight:400;white-space:nowrap}
