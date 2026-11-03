@@ -107,3 +107,17 @@ body.dark-mode .user-logout-button:focus-visible{
 
 /* Keep rise/fall notification choices together on one row. */
 .rank-alert-directions{display:flex;align-items:center;flex-wrap:wrap;gap:14px}
+
+/* Compact rank-alert rows with expandable details. */
+.rank-alert-summary{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:4px 10px;cursor:pointer;list-style:none}
+.rank-alert-summary::-webkit-details-marker{display:none}
+.rank-alert-summary::after{content:"⌄";grid-column:2;grid-row:2;justify-self:end;color:#78838b;font-size:12px}
+.rank-alert-summary strong{grid-column:1;grid-row:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.rank-alert-compact{grid-column:2;grid-row:1;font-size:12px;font-weight:600;white-space:nowrap}
+.rank-alert-summary small{grid-column:1;grid-row:2;margin-top:0}
+.rank-alert-item[open] .rank-alert-summary::after{content:"⌃"}
+.rank-alert-detail{margin-top:8px;padding:8px 10px;border-radius:8px;background:#f5f7f8;font-size:12px}
+.rank-alert-detail p{margin:0}
+.rank-alert-detail p+p{margin-top:4px;color:#78838b}
+.rank-alert-item.unread .rank-alert-summary strong{font-weight:700}
+body.dark-mode .rank-alert-detail{background:#242c33}
