@@ -26,8 +26,13 @@
    MonitorStore.getFavorites()
   ]);
   const favoriteNames=Array.isArray(favorites)?favorites:[];
-  // 알림은 현재 즐겨찾기에 속한 아티스트만 대상으로 합니다.
-  const favoriteRows=rows.filter(row=>favoriteNames.some(name=>sameArtist(row.artist_name,name)));
+  // 순위가 실제로 바뀐 알림만 집계합니다. TOP100에 있다는 사실만으로는 알림 곡에 포함하지 않습니다.
+  const changedRows=rows.filter(row=>{
+   const oldRank=Number(row.old_rank),newRank=Number(row.new_rank),change=Number(row.rank_change);
+   return Number.isFinite(oldRank)&&Number.isFinite(newRank)&&oldRank!==newRank&&Number.isFinite(change)&&change!==0;
+  });
+  // 알림은 현재 즐겨찾기에 속한 아티스트의 순위 변동만 대상으로 합니다.
+  const favoriteRows=changedRows.filter(row=>favoriteNames.some(name=>sameArtist(row.artist_name,name)));
   // 같은 곡이 시간대별로 여러 번 기록되어도 "곡 수"에 중복 계산하지 않습니다.
   const latestByTrack=new Map();
   favoriteRows.forEach(row=>{
