@@ -3,7 +3,7 @@
  if(!toggle||!panel||!badge||!list)return;
  let opened=false;
  const close=()=>{panel.hidden=true;toggle.setAttribute("aria-expanded","false");};
- const normalizeArtist=value=>String(value||"").toLowerCase().replace(/\\s+/g,"").replace(/[^0-9a-z가-힣ㄱ-ㅎ]/g,"");
+ const normalizeArtist=value=>String(value||"").toLowerCase().replace(/\s+/g,"").replace(/[^0-9a-z가-힣ㄱ-ㅎ]/g,"");
  const artistAliases=[
   ["NMIXX","엔믹스","믹스"],
   ["RESCENE","RESCENE (리센느)","리센느","리센"],
