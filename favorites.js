@@ -430,11 +430,9 @@ function resolveKnownMelonArtist(query) {
 function updateAccountMenuLabel() {
   if (!accountLinkLabel) return;
   const hasUser = !!(window.MonitorStore && MonitorStore.getUser());
-  const ready = !!(window.MonitorStore && MonitorStore.isReady());
-  const nickname = ready ? MonitorStore.getNickname() : "";
-  accountLinkLabel.textContent = !hasUser
-    ? "로그인 / 회원가입"
-    : (ready ? (nickname || "내 계정") : "닉네임 설정하기");
+  accountLinkLabel.textContent = hasUser
+    ? "설정"
+    : "로그인 / 회원가입";
 }
 
 function findFavoriteArtistMatches(query) {

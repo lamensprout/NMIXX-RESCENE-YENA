@@ -20,7 +20,7 @@
       const hasUser = !!MonitorStore.getUser();
       const nickname = ready ? MonitorStore.getNickname() : "";
       accountLinkLabel.textContent = hasUser
-        ? "계정 설정"
+        ? "설정"
         : "로그인 / 회원가입";
     }
 

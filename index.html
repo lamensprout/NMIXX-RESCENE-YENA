@@ -98,12 +98,12 @@
             <div class="user-menu-divider" role="separator"></div>
             <a id="accountLink" class="user-menu-item" href="/account.html#accountSettings" role="menuitem">
               <svg id="accountLoginIcon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                <path d="M10 3H4.8A1.8 1.8 0 0 0 3 4.8v14.4A1.8 1.8 0 0 0 4.8 21H10v-2H5V5h5V3Zm4.6 4.4-1.4 1.4 2.2 2.2H9v2h6.4l-2.2 2.2 1.4 1.4 4.6-4.6-4.6-4.6Z"></path>
+                <path d="M9.9 2.8h4.2l.55 2.15a7.6 7.6 0 0 1 1.55.9l2.15-.75 2.1 3.65-1.6 1.55c.1.55.1 1.15 0 1.7l1.6 1.55-2.1 3.65-2.15-.75a7.6 7.6 0 0 1-1.55.9l-.55 2.15H9.9l-.55-2.15a7.6 7.6 0 0 1-1.55-.9l-2.15.75-2.1-3.65 1.6-1.55a7.5 7.5 0 0 1 0-1.7l-1.6-1.55 2.1-3.65 2.15.75a7.6 7.6 0 0 1 1.55-.9L9.9 2.8Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><circle cx="12" cy="11.1" r="3.1" fill="none" stroke="currentColor" stroke-width="1.6"/>
               </svg>
               <svg id="accountSettingsIcon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" hidden>
-                <path d="M19.14 12.94c.04-.31.06-.62.06-.94s-.02-.63-.07-.94l2.03-1.58-2-3.46-2.39.96a7.1 7.1 0 0 0-1.63-.95L14.78 3h-4l-.36 3.03c-.59.22-1.13.54-1.63.95L6.4 6.02l-2 3.46 2.03 1.58a6.1 6.1 0 0 0 0 1.88L4.4 14.52l2 3.46 2.39-.96c.5.41 1.04.73 1.63.95L10.78 21h4l.36-3.03c.59-.22 1.13-.54 1.63-.95l2.39.96 2-3.46-2.02-1.58ZM12.78 15.5a3.5 3.5 0 1 1 0-7 3.5 3.5 0 0 1 0 7Z"></path>
+                <path d="M9.9 2.8h4.2l.55 2.15a7.6 7.6 0 0 1 1.55.9l2.15-.75 2.1 3.65-1.6 1.55c.1.55.1 1.15 0 1.7l1.6 1.55-2.1 3.65-2.15-.75a7.6 7.6 0 0 1-1.55.9l-.55 2.15H9.9l-.55-2.15a7.6 7.6 0 0 1-1.55-.9l-2.15.75-2.1-3.65 1.6-1.55a7.5 7.5 0 0 1 0-1.7l-1.6-1.55 2.1-3.65 2.15.75a7.6 7.6 0 0 1 1.55-.9L9.9 2.8Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><circle cx="12" cy="11.1" r="3.1" fill="none" stroke="currentColor" stroke-width="1.6"/>
               </svg>
-              <span id="accountLinkLabel">로그인 / 회원가입</span>
+              <span id="accountLinkLabel">설정</span>
             </a>
             <div class="user-menu-divider" role="separator"></div>
             <div class="user-theme-section">
@@ -161,62 +161,11 @@
   <script src="supabase-config.js?v=1"></script>
   <script src="monitor-store.js?v=13"></script>
   <script src="rank-alert-ui.js?v=2"></script>
-  <script src="profile-avatar.js?v=2"></script>
+  <script src="profile-avatar.js?v=3"></script>
   <script src="chart-popup.js?v=4"></script>
   <script src="app.js?v=20261102-10"></script>
   <script src="theme.js?v=5"></script>
-  <script>
-    (() => {
-      const toggle = document.getElementById("userMenuToggle");
-      const panel = document.getElementById("userMenuPanel");
-      const account = document.getElementById("accountLink");
-      const logoutButton = document.getElementById("userLogoutButton");
-      const themeOptions = panel ? panel.querySelectorAll("[data-theme-mode]") : [];
-      if (!toggle || !panel) return;
-      function closeMenu() {
-        panel.hidden = true;
-        toggle.setAttribute("aria-expanded", "false");
-        toggle.setAttribute("aria-label", "사용자 메뉴 열기");
-      }
-      function openMenu() {
-        panel.hidden = false;
-        toggle.setAttribute("aria-expanded", "true");
-        toggle.setAttribute("aria-label", "사용자 메뉴 닫기");
-      }
-      toggle.addEventListener("click", () => panel.hidden ? openMenu() : closeMenu());
-      document.addEventListener("click", event => {
-        if (!panel.hidden && !event.target.closest(".user-menu")) closeMenu();
-      });
-      document.addEventListener("keydown", event => {
-        if (event.key === "Escape" && !panel.hidden) {
-          closeMenu();
-          toggle.focus();
-        }
-      });
-      if (account) account.addEventListener("click", closeMenu);
-      async function syncLogoutVisibility() {
-        if (logoutButton) logoutButton.hidden = !(window.MonitorStore && MonitorStore.getUser());
-      }
-      if (logoutButton) {
-        logoutButton.addEventListener("click", async () => {
-          if (!window.MonitorStore || !MonitorStore.getUser()) return;
-          logoutButton.disabled = true;
-          logoutButton.textContent = "로그아웃 중...";
-          const result = await MonitorStore.signOut();
-          if (result && result.error) {
-            logoutButton.disabled = false;
-            logoutButton.textContent = "로그아웃";
-            alert("로그아웃하지 못했습니다. 잠시 후 다시 시도해 주세요.");
-            return;
-          }
-          closeMenu();
-          window.location.reload();
-        });
-      }
-      window.addEventListener("melonitor-auth-change", syncLogoutVisibility);
-      syncLogoutVisibility();
-    })();
-  </script>
+  <script src="user-menu.js?v=1"></script>
 
   </body>
 </html>
