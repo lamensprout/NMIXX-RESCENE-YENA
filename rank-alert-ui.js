@@ -3,6 +3,13 @@
  if(!toggle||!panel||!badge||!list)return;
  let opened=false;
  const close=()=>{panel.hidden=true;toggle.setAttribute("aria-expanded","false");};
+ const formatAlertTimestamp=value=>{
+  const date=new Date(value);
+  if(!value||Number.isNaN(date.getTime()))return "";
+  const parts=new Intl.DateTimeFormat("ko-KR",{year:"numeric",month:"2-digit",day:"2-digit",hour:"2-digit",minute:"2-digit",hour12:true}).formatToParts(date);
+  const part=type=>parts.find(item=>item.type===type)?.value||"";
+  return part("year")+". "+part("month")+". "+part("day")+" "+part("dayPeriod")+" "+part("hour")+":"+part("minute");
+ };
  const normalizeArtist=value=>String(value||"").toLowerCase().replace(/\s+/g,"").replace(/[^0-9a-z가-힣ㄱ-ㅎ]/g,"");
  const artistAliases=[
   ["NMIXX","엔믹스"],
@@ -21,18 +28,23 @@
  };
  const render=async()=>{
   if(!window.MonitorStore||!MonitorStore.isReady()){badge.hidden=true;list.innerHTML='<p class="rank-alert-empty">로그인하면 알림을 확인할 수 있어요.</p>';return;}
-  const [rows,favorites]=await Promise.all([
+  const [rows,favorites,settings]=await Promise.all([
    MonitorStore.getRankAlertNotifications(100),
-   MonitorStore.getFavorites()
+   MonitorStore.getFavorites(),
+   MonitorStore.getRankAlertSettings()
   ]);
   const favoriteNames=Array.isArray(favorites)?favorites:[];
   // 순위가 실제로 바뀐 알림만 집계합니다. TOP100에 있다는 사실만으로는 알림 곡에 포함하지 않습니다.
+  const threshold=Math.max(1,Math.min(100,Math.floor(Number(settings&&settings.threshold)||1)));
+  const notifyRises=!!(settings&&settings.notify_rises!==false);
+  const notifyFalls=!!(settings&&settings.notify_falls!==false);
   const changedRows=rows.filter(row=>{
    const oldRank=Number(row.old_rank),newRank=Number(row.new_rank);
-   // Use the stored before/after ranks as the source of truth. TOP100 membership or
-   // a stale rank_change field alone must never make an unchanged song count.
-   return Number.isInteger(oldRank)&&Number.isInteger(newRank)&&
-    oldRank>=1&&oldRank<=100&&newRank>=1&&newRank<=100&&oldRank!==newRank;
+   // Rank difference is authoritative; unchanged ranks never qualify.
+   if(!Number.isInteger(oldRank)||!Number.isInteger(newRank)||
+      oldRank<1||oldRank>100||newRank<1||newRank>100||oldRank===newRank)return false;
+   const movement=oldRank-newRank;
+   return Math.abs(movement)>=threshold&&(movement>0?notifyRises:notifyFalls);
   });
   // 알림은 현재 즐겨찾기에 속한 아티스트의 순위 변동만 대상으로 합니다.
   const favoriteRows=changedRows.filter(row=>favoriteNames.some(name=>sameArtist(row.artist_name,name)));
@@ -58,9 +70,13 @@
   const rankedRows=[...filteredRows].sort((a,b)=>Number(a.new_rank)-Number(b.new_rank));
   const top=rankedRows[0];
   const item=document.createElement("p");item.className="rank-alert-item"+(filteredRows.some(row=>!row.read_at)?" unread":"");
+  const line=document.createElement("span");line.className="rank-alert-line";
   const message=document.createElement("strong");
   message.textContent=top.artist_name+" · "+top.song_title+(filteredRows.length>1?" 외 "+(filteredRows.length-1)+"곡":"")+"의 순위 변동이 감지되었습니다.";
-  item.appendChild(message);list.appendChild(item);
+  const timestamp=document.create.createElement("time");timestamp.className="rank-alert-time";
+  timestamp.dateTime=top.created_at||"";
+  timestamp.textContent=formatAlertTimestamp(top.created_at);
+  line.append(message,timestamp);item.appendChild(line);list.appendChild(item);
   const unreadIds=filteredRows.filter(row=>!row.read_at).map(row=>row.id);
   if(unreadIds.length)await MonitorStore.markRankAlertNotificationsRead(unreadIds);
   badge.hidden=true;
