@@ -28,29 +28,40 @@
   const favoriteNames=Array.isArray(favorites)?favorites:[];
   // 순위가 실제로 바뀐 알림만 집계합니다. TOP100에 있다는 사실만으로는 알림 곡에 포함하지 않습니다.
   const changedRows=rows.filter(row=>{
-   const oldRank=Number(row.old_rank),newRank=Number(row.new_rank),change=Number(row.rank_change);
-   return Number.isFinite(oldRank)&&Number.isFinite(newRank)&&oldRank!==newRank&&Number.isFinite(change)&&change!==0;
+   const oldRank=Number(row.old_rank),newRank=Number(row.new_rank);
+   // Use the stored before/after ranks as the source of truth. TOP100 membership or
+   // a stale rank_change field alone must never make an unchanged song count.
+   return Number.isInteger(oldRank)&&Number.isInteger(newRank)&&
+    oldRank>=1&&oldRank<=100&&newRank>=1&&newRank<=100&&oldRank!==newRank;
   });
   // 알림은 현재 즐겨찾기에 속한 아티스트의 순위 변동만 대상으로 합니다.
   const favoriteRows=changedRows.filter(row=>favoriteNames.some(name=>sameArtist(row.artist_name,name)));
-  // 같은 곡이 시간대별로 여러 번 기록되어도 "곡 수"에 중복 계산하지 않습니다.
+  // 별칭으로 저장된 아티스트 이름도 같은 곡으로 취급해 중복 집계를 막습니다.
+  const canonicalArtist=value=>{
+   const normalized=normalizeArtist(value);
+   const group=artistAliases.find(items=>items.map(normalizeArtist).includes(normalized));
+   return group?normalizeArtist(group[0]):normalized;
+  };
+  // 실제 순위 변동 곡만 남긴 뒤, 같은 곡은 최신 변동 한 건으로 집계합니다.
   const latestByTrack=new Map();
   favoriteRows.forEach(row=>{
-   const key=normalizeArtist(row.artist_name)+"\\u0000"+String(row.song_title||"").trim().toLowerCase();
+   const key=canonicalArtist(row.artist_name)+"\\u0000"+String(row.song_title||"").trim().toLowerCase();
    const previous=latestByTrack.get(key);
-   if(!previous||Date.parse(row.created_at)>Date.parse(previous.created_at))latestByTrack.set(key,row);
+   const currentTime=Date.parse(row.created_at)||0,previousTime=previous?(Date.parse(previous.created_at)||0):-1;
+   if(!previous||currentTime>previousTime)latestByTrack.set(key,row);
   });
   const filteredRows=[...latestByTrack.values()];
-  badge.hidden=!favoriteRows.some(row=>!row.read_at);
+  // 알림 배지, 요약 개수, 읽음 처리 모두 같은 필터 결과를 사용합니다.
+  badge.hidden=!filteredRows.some(row=>!row.read_at);
   list.innerHTML="";
   if(!filteredRows.length){list.innerHTML='<p class="rank-alert-empty">좋아하는 아티스트의 순위 변동 알림이 없어요.</p>';return;}
   const rankedRows=[...filteredRows].sort((a,b)=>Number(a.new_rank)-Number(b.new_rank));
   const top=rankedRows[0];
-  const item=document.createElement("p");item.className="rank-alert-item"+(favoriteRows.some(row=>!row.read_at)?" unread":"");
+  const item=document.createElement("p");item.className="rank-alert-item"+(filteredRows.some(row=>!row.read_at)?" unread":"");
   const message=document.createElement("strong");
   message.textContent=top.artist_name+" · "+top.song_title+(filteredRows.length>1?" 외 "+(filteredRows.length-1)+"곡":"")+"의 순위 변동이 감지되었습니다.";
   item.appendChild(message);list.appendChild(item);
-  const unreadIds=favoriteRows.filter(row=>!row.read_at).map(row=>row.id);
+  const unreadIds=filteredRows.filter(row=>!row.read_at).map(row=>row.id);
   if(unreadIds.length)await MonitorStore.markRankAlertNotificationsRead(unreadIds);
   badge.hidden=true;
  };
