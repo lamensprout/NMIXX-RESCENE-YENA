@@ -73,7 +73,7 @@
   const line=document.createElement("span");line.className="rank-alert-line";
   const message=document.createElement("strong");
   message.textContent=top.artist_name+" · "+top.song_title+(filteredRows.length>1?" 외 "+(filteredRows.length-1)+"곡":"")+"의 순위 변동이 감지되었습니다.";
-  const timestamp=document.create.createElement("time");timestamp.className="rank-alert-time";
+  const timestamp=document.createElement("time");timestamp.className="rank-alert-time";
   timestamp.dateTime=top.created_at||"";
   timestamp.textContent=formatAlertTimestamp(top.created_at);
   line.append(message,timestamp);item.appendChild(line);list.appendChild(item);
