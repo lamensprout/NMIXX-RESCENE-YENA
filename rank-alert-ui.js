@@ -27,7 +27,7 @@
   });
  };
  let chartCache=null,chartCacheAt=0,chartRequest=null;
- const normalizeSong=value=>String(value||"").toLowerCase().replace(/\\s+/g,"").replace(/[^0-9a-z가-힣ㄱ-ㅎ]/g,"");
+ const normalizeSong=value=>String(value||"").toLowerCase().replace(/\s+/g,"").replace(/[^0-9a-z가-힣ㄱ-ㅎ]/g,"");
  const getCurrentChart=async()=>{
   if(chartCache&&Date.now()-chartCacheAt<45000)return chartCache;
   if(chartRequest)return chartRequest;
