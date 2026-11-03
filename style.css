@@ -3850,7 +3850,7 @@ body.settings-page:not(.dark-mode) .settings-nav-link[aria-current="page"] {
 .favorite-card-song-details { margin-left: 0; }
 @media (max-width: 640px) {
   .favorite-card-song-list li {
-    grid-template-columns: 56px 64px 48px minmax(0, 1fr);
+    grid-template-columns: 56px 64px 56px minmax(0, 1fr);
   }
   .favorite-card-song-rank {
     width: 56px;
