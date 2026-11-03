@@ -63,11 +63,14 @@
    getCurrentChart()
   ]);
   const favoriteNames=Array.isArray(favorites)?favorites:[];
+  // 가장 최근 차트 수집 회차의 알림만 사용해 이전 시간대 변동이 계속 누적되지 않게 합니다.
+  const latestBatchAt=Math.max(0,...rows.map(row=>Date.parse(row.created_at)||0));
+  const latestBatchRows=rows.filter(row=>(Date.parse(row.created_at)||0)===latestBatchAt);
   // 순위가 실제로 바뀐 알림만 집계합니다. TOP100에 있다는 사실만으로는 알림 곡에 포함하지 않습니다.
   const threshold=Math.max(1,Math.min(100,Math.floor(Number(settings&&settings.threshold)||1)));
   const notifyRises=!!(settings&&settings.notify_rises!==false);
   const notifyFalls=!!(settings&&settings.notify_falls!==false);
-  const changedRows=rows.filter(row=>{
+  const changedRows=latestBatchRows.filter(row=>{
    const oldRank=Number(row.old_rank),newRank=Number(row.new_rank);
    // Rank difference is authoritative; unchanged ranks never qualify.
    if(!Number.isInteger(oldRank)||!Number.isInteger(newRank)||
