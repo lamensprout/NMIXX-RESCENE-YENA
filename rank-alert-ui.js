@@ -9,19 +9,12 @@
   badge.hidden=!rows.some(row=>!row.read_at);
   list.innerHTML="";
   if(!rows.length){list.innerHTML='<p class="rank-alert-empty">아직 도착한 알림이 없어요.</p>';return;}
-  rows.forEach(row=>{
-   const item=document.createElement("details");item.className="rank-alert-item"+(!row.read_at?" unread":"");
-   const summary=document.createElement("summary");summary.className="rank-alert-summary";
-   const title=document.createElement("strong");title.textContent=row.artist_name+" · "+row.song_title;
-   const movement=Number(row.rank_change),verb=movement>0?"상승":"하락";
-   const compact=document.createElement("span");compact.className="rank-alert-compact";compact.textContent="#"+row.old_rank+" → #"+row.new_rank;
-   const time=document.createElement("small");time.textContent=new Date(row.created_at).toLocaleString("ko-KR",{year:"numeric",month:"2-digit",day:"2-digit",hour:"2-digit",minute:"2-digit",hour12:false});
-   summary.append(title,compact,time);
-   const detail=document.createElement("div");detail.className="rank-alert-detail";
-   const movementText=document.createElement("p");movementText.textContent="순위 변동: #"+row.old_rank+" → #"+row.new_rank+" ("+Math.abs(movement)+"계단 "+verb+")";
-   const detailTime=document.createElement("p");detailTime.textContent="알림 발생: "+time.textContent;
-   detail.append(movementText,detailTime);item.append(summary,detail);list.appendChild(item);
-  });
+  const rankedRows=[...rows].sort((a,b)=>Number(a.new_rank)-Number(b.new_rank));
+  const top=rankedRows[0];
+  const item=document.createElement("p");item.className="rank-alert-item"+(rows.some(row=>!row.read_at)?" unread":"");
+  const message=document.createElement("strong");
+  message.textContent=top.artist_name+" · "+top.song_title+(rows.length>1?" 외 "+(rows.length-1)+"곡":"")+"의 순위 변동이 감지되었습니다.";
+  item.appendChild(message);list.appendChild(item);
   await MonitorStore.markRankAlertNotificationsRead();
   badge.hidden=true;
  };
