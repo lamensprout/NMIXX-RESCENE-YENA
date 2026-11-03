@@ -26,12 +26,41 @@
    return forms.includes(na)&&forms.includes(nb);
   });
  };
+ let chartCache=null,chartCacheAt=0,chartRequest=null;
+ const normalizeSong=value=>String(value||"").toLowerCase().replace(/\\s+/g,"").replace(/[^0-9a-z가-힣ㄱ-ㅎ]/g,"");
+ const getCurrentChart=async()=>{
+  if(chartCache&&Date.now()-chartCacheAt<45000)return chartCache;
+  if(chartRequest)return chartRequest;
+  chartRequest=(async()=>{
+   const config=window.MELONITOR_SUPABASE_CONFIG||{};
+   const headers=typeof config.publishableKey==="string"&&config.publishableKey.trim()?{apikey:config.publishableKey}:{};
+   const sources=["/api/melon-chart","./chart.json?rank-alert="+Date.now()];
+   for(const source of sources){
+    try{
+     const response=await fetch(source,{headers,cache:"no-store"});
+     if(!response.ok)continue;
+     const data=await response.json();
+     if(!data||!Array.isArray(data.songs)||data.songs.length!==100)continue;
+     chartCache=data.songs;chartCacheAt=Date.now();return chartCache;
+    }catch(_){}
+   }
+   return null;
+  })();
+  try{return await chartRequest;}finally{chartRequest=null;}
+ };
+ const getCurrentRank=(row,chartSongs)=>{
+  if(!Array.isArray(chartSongs))return Number(row.new_rank)||101;
+  const title=normalizeSong(row.song_title),artist=row.artist_name;
+  const match=chartSongs.find(song=>normalizeSong(song.title)===title&&sameArtist(song.artist,artist));
+  return match&&Number.isInteger(Number(match.rank))?Number(match.rank):101;
+ };
  const render=async()=>{
   if(!window.MonitorStore||!MonitorStore.isReady()){badge.hidden=true;list.innerHTML='<p class="rank-alert-empty">로그인하면 알림을 확인할 수 있어요.</p>';return;}
-  const [rows,favorites,settings]=await Promise.all([
+  const [rows,favorites,settings,chartSongs]=await Promise.all([
    MonitorStore.getRankAlertNotifications(100),
    MonitorStore.getFavorites(),
-   MonitorStore.getRankAlertSettings()
+   MonitorStore.getRankAlertSettings(),
+   getCurrentChart()
   ]);
   const favoriteNames=Array.isArray(favorites)?favorites:[];
   // 순위가 실제로 바뀐 알림만 집계합니다. TOP100에 있다는 사실만으로는 알림 곡에 포함하지 않습니다.
@@ -62,12 +91,18 @@
    const currentTime=Date.parse(row.created_at)||0,previousTime=previous?(Date.parse(previous.created_at)||0):-1;
    if(!previous||currentTime>previousTime)latestByTrack.set(key,row);
   });
-  const filteredRows=[...latestByTrack.values()];
-  // 알림 배지, 요약 개수, 읽음 처리 모두 같은 필터 결과를 사용합니다.
+  const notificationRows=[...latestByTrack.values()];
+  // 대표 곡은 알림 기록의 과거 순위가 아니라 최신 TOP100의 현재 순위로 선정합니다.
+  // 차트에서 빠진 곡은 최신 TOP100 알림 집계에서 제외합니다.
+  const filteredRows=Array.isArray(chartSongs)
+   ?notificationRows.filter(row=>getCurrentRank(row,chartSongs)<=100)
+   :notificationRows;
+  const rankedRows=filteredRows.map(row=>({...row,current_rank:getCurrentRank(row,chartSongs)}))
+   .sort((a,b)=>a.current_rank-b.current_rank||Number(a.new_rank)-Number(b.new_rank));
+  // 알림 배지, 요약 개수, 읽음 처리 모두 최신 차트에 남아 있는 필터 결과를 사용합니다.
   badge.hidden=!filteredRows.some(row=>!row.read_at);
   list.innerHTML="";
   if(!filteredRows.length){list.innerHTML='<p class="rank-alert-empty">좋아하는 아티스트의 순위 변동 알림이 없어요.</p>';return;}
-  const rankedRows=[...filteredRows].sort((a,b)=>Number(a.new_rank)-Number(b.new_rank));
   const top=rankedRows[0];
   const latestAlert=[...filteredRows].sort((a,b)=>(Date.parse(b.created_at)||0)-(Date.parse(a.created_at)||0))[0];
   const item=document.createElement("p");item.className="rank-alert-item"+(filteredRows.some(row=>!row.read_at)?" unread":"");
