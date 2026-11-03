@@ -687,7 +687,8 @@ function createArtistRankGraph(artist, color) {
     grid.setAttribute("class", "rank-graph-grid");
     svg.appendChild(grid);
     const label = document.createElementNS(svg.namespaceURI, "text");
-    label.setAttribute("x", "0"); label.setAttribute("y", String(y - 2));
+    label.setAttribute("x", String(left - 4)); label.setAttribute("y", String(y - 2));
+    label.setAttribute("text-anchor", "end");
     label.setAttribute("class", "rank-graph-axis-label"); label.textContent = String(rank);
     svg.appendChild(label);
   });
