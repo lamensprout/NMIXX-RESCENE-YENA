@@ -615,33 +615,67 @@ function createArtistRankGraph(artist, color) {
   const wrapper = document.createElement("div");
   wrapper.className = "rank-graph-wrap";
   const rangeSelect = document.getElementById("rankGraphRange");
-  const requestedHours = Number(rangeSelect && rangeSelect.value || 24);
-  const hours = Number.isFinite(requestedHours) ? Math.max(1, Math.min(8760, requestedHours)) : 24;
-  const cutoff = Date.now() - hours * 60 * 60 * 1000;
-  const snapshots = rankHistorySnapshots.filter(function(snapshot) {
-    const capturedAt = Date.parse(snapshot && snapshot.snapshot_at || "");
-    return Number.isFinite(capturedAt) && capturedAt >= cutoff && Array.isArray(snapshot.artist_ranks);
-  });
-  const points = snapshots.map(function(snapshot, index) {
-    const capturedAt = Date.parse(snapshot.snapshot_at);
-    return {
-      x: snapshots.length === 1 ? 373 : 42 + index / (snapshots.length - 1) * 662,
-      rank: getArtistRankInSnapshot(snapshot, artist),
-      timestamp: capturedAt
-    };
-  }).filter(function(point) {
-    return Number.isFinite(point.timestamp);
-  });
+  const selectedPeriod = String(rangeSelect && rangeSelect.value || "24");
+  const isHourly = selectedPeriod === "24";
+  const now = new Date();
+  let points = [];
+
+  if (isHourly) {
+    // 시간 버튼은 오늘 00시~현재까지의 각 시간대에서
+    // 차트 새로고침으로 저장된 가장 최근 기록을 사용합니다.
+    const dayStart = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    const hourlyLatest = new Map();
+    rankHistorySnapshots.forEach(function(snapshot) {
+      const capturedAt = Date.parse(snapshot && snapshot.snapshot_at || "");
+      if (!Number.isFinite(capturedAt) || capturedAt < dayStart.getTime() ||
+          capturedAt > now.getTime() || !Array.isArray(snapshot.artist_ranks)) return;
+      const hour = new Date(capturedAt).getHours();
+      const previous = hourlyLatest.get(hour);
+      if (!previous || capturedAt > previous.timestamp) {
+        hourlyLatest.set(hour, {
+          timestamp: capturedAt,
+          rank: getArtistRankInSnapshot(snapshot, artist)
+        });
+      }
+    });
+    points = Array.from({ length: 24 }, function(_unused, hour) {
+      const latest = hourlyLatest.get(hour);
+      return { x: 42 + hour / 23 * 662, rank: latest ? latest.rank : null,
+        timestamp: latest ? latest.timestamp : null, hour: hour };
+    });
+  } else {
+    const requestedHours = Number(selectedPeriod);
+    const hours = Number.isFinite(requestedHours) ? Math.max(1, Math.min(8760, requestedHours)) : 24;
+    const cutoff = Date.now() - hours * 60 * 60 * 1000;
+    const snapshots = rankHistorySnapshots.filter(function(snapshot) {
+      const capturedAt = Date.parse(snapshot && snapshot.snapshot_at || "");
+      return Number.isFinite(capturedAt) && capturedAt >= cutoff && Array.isArray(snapshot.artist_ranks);
+    });
+    points = snapshots.map(function(snapshot, index) {
+      const capturedAt = Date.parse(snapshot.snapshot_at);
+      return { x: snapshots.length === 1 ? 373 : 42 + index / (snapshots.length - 1) * 662,
+        rank: getArtistRankInSnapshot(snapshot, artist), timestamp: capturedAt };
+    }).filter(function(point) { return Number.isFinite(point.timestamp); });
+  }
+
   const valid = points.filter(function(point) {
-    return point.rank !== null && Number.isFinite(point.rank);
+    return point.rank !== null && Number.isFinite(point.rank) && Number.isFinite(point.timestamp);
   });
   if (valid.length < 2) {
     const empty = document.createElement("p");
     empty.className = "rank-graph-empty";
-    empty.textContent = snapshots.length < 2
-      ? "선택한 기간의 순위 기록이 아직 충분하지 않아요."
-      : "선택한 기간에 이 아티스트의 순위 기록이 없어요.";
+    empty.textContent = isHourly
+      ? "오늘 시간대별 기록이 아직 충분하지 않아요. 차트 새로고침으로 기록을 모아 주세요."
+      : "선택한 기간의 순위 기록이 아직 충분하지 않아요.";
     wrapper.appendChild(empty);
+    if (isHourly) {
+      const hoursLabel = document.createElement("div");
+      hoursLabel.className = "rank-graph-hour-labels";
+      hoursLabel.textContent = Array.from({ length: 24 }, function(_unused, hour) {
+        return String(hour).padStart(2, "0") + "시";
+      }).join(" · ");
+      wrapper.appendChild(hoursLabel);
+    }
     return wrapper;
   }
 
@@ -653,53 +687,50 @@ function createArtistRankGraph(artist, color) {
   svg.setAttribute("class", "rank-graph");
   svg.setAttribute("viewBox", "0 0 " + width + " " + height);
   svg.setAttribute("role", "img");
-  svg.setAttribute("aria-label", artist + "의 선택한 기간 아티스트 최고 순위 그래프");
+  svg.setAttribute("aria-label", isHourly ? artist + "의 오늘 00시부터 23시까지 시간별 최고 순위 그래프" : artist + "의 선택한 기간 아티스트 최고 순위 그래프");
 
   [1, 25, 50, 75, 100].forEach(function(rank) {
     const y = yForRank(rank);
     const grid = document.createElementNS(svg.namespaceURI, "line");
     grid.setAttribute("x1", String(left)); grid.setAttribute("x2", String(right));
     grid.setAttribute("y1", String(y)); grid.setAttribute("y2", String(y));
-    grid.setAttribute("class", "rank-graph-grid");
-    svg.appendChild(grid);
+    grid.setAttribute("class", "rank-graph-grid"); svg.appendChild(grid);
     const label = document.createElementNS(svg.namespaceURI, "text");
     label.setAttribute("x", "0"); label.setAttribute("y", String(y - 2));
-    label.setAttribute("class", "rank-graph-axis-label"); label.textContent = String(rank);
-    svg.appendChild(label);
+    label.setAttribute("class", "rank-graph-axis-label"); label.textContent = String(rank); svg.appendChild(label);
   });
+  if (isHourly) {
+    points.forEach(function(point) {
+      const label = document.createElementNS(svg.namespaceURI, "text");
+      label.setAttribute("x", String(point.x)); label.setAttribute("y", String(bottom + 17));
+      label.setAttribute("text-anchor", "middle"); label.setAttribute("class", "rank-graph-axis-label");
+      label.textContent = String(point.hour).padStart(2, "0"); svg.appendChild(label);
+    });
+  }
   const line = document.createElementNS(svg.namespaceURI, "polyline");
-  line.setAttribute("class", "rank-graph-line");
-  line.setAttribute("fill", "none");
-  line.setAttribute("stroke", color || "#168a35");
-  line.setAttribute("stroke-width", "2.8");
-  line.setAttribute("stroke-linecap", "round");
-  line.setAttribute("stroke-linejoin", "round");
+  line.setAttribute("class", "rank-graph-line"); line.setAttribute("fill", "none");
+  line.setAttribute("stroke", color || "#168a35"); line.setAttribute("stroke-width", "2.8");
+  line.setAttribute("stroke-linecap", "round"); line.setAttribute("stroke-linejoin", "round");
   line.setAttribute("points", valid.map(function(point) {
     return point.x.toFixed(2) + "," + yForRank(point.rank).toFixed(2);
-  }).join(" "));
-  svg.appendChild(line);
+  }).join(" ")); svg.appendChild(line);
   valid.forEach(function(point) {
     const marker = document.createElementNS(svg.namespaceURI, "circle");
-    marker.setAttribute("class", "rank-graph-end");
-    marker.setAttribute("cx", String(point.x));
-    marker.setAttribute("cy", String(yForRank(point.rank)));
-    marker.setAttribute("r", "3.5");
+    marker.setAttribute("class", "rank-graph-end"); marker.setAttribute("cx", String(point.x));
+    marker.setAttribute("cy", String(yForRank(point.rank))); marker.setAttribute("r", "3.5");
     marker.setAttribute("fill", color || "#168a35");
     const title = document.createElementNS(svg.namespaceURI, "title");
-    title.textContent = artist + " · #" + point.rank + " · " +
-      new Date(point.timestamp).toLocaleString("ko-KR");
-    marker.appendChild(title);
-    svg.appendChild(marker);
+    title.textContent = artist + " · #" + point.rank + " · " + new Date(point.timestamp).toLocaleString("ko-KR");
+    marker.appendChild(title); svg.appendChild(marker);
   });
   wrapper.appendChild(svg);
-
   const labels = document.createElement("div");
   labels.className = "rank-graph-time-labels";
-  const first = new Date(valid[0].timestamp);
-  const last = new Date(valid[valid.length - 1].timestamp);
-  labels.textContent = first.toLocaleDateString("ko-KR", { month: "numeric", day: "numeric" }) +
-    " — " + last.toLocaleDateString("ko-KR", { month: "numeric", day: "numeric", year: hours > 720 ? "2-digit" : undefined }) +
-    " · 서버 기록 · 아티스트 최고 순위";
+  labels.textContent = isHourly
+    ? "오늘 00시 — 23시 · 차트 새로고침 기록 · 아티스트 최고 순위"
+    : new Date(valid[0].timestamp).toLocaleDateString("ko-KR", { month: "numeric", day: "numeric" }) +
+      " — " + new Date(valid[valid.length - 1].timestamp).toLocaleDateString("ko-KR", { month: "numeric", day: "numeric", year: Number(selectedPeriod) > 720 ? "2-digit" : undefined }) +
+      " · 서버 기록 · 아티스트 최고 순위";
   wrapper.appendChild(labels);
   return wrapper;
 }
