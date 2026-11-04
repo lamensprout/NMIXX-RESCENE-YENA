@@ -1090,6 +1090,7 @@ async function renderFavorites() {
     const currentSongCount = songs.filter(function(song) {
       return song.artist && (normalize(song.artist) === normalize(artist) || areSameArtist(song.artist, artist));
     }).length;
+    card.classList.toggle("is-zero-song", currentSongCount === 0);
     rank.textContent = currentSongCount + "곡";
 
     header.appendChild(open);
