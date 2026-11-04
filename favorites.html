@@ -84,16 +84,17 @@
         <label for="rankGraphColor">순위 그래프 색상</label>
         <input id="rankGraphColor" type="color" value="#168a35" aria-label="순위 그래프 색상 선택">
         <span id="rankGraphColorValue">#168A35</span>
-        <label for="rankGraphRange">그래프 기간</label>
-        <select id="rankGraphRange" class="rank-graph-range-select" aria-label="순위 그래프 기간">
-          <option value="24" selected>시간</option>
-          <option value="168">일간</option>
-          <option value="720">주간</option>
-          <option value="2160">월간</option>
-          <option value="4320">분기</option>
-          <option value="8760">반기</option>
-          <option value="8760">연간</option>
-        </select>
+        <label>그래프 기간</label>
+        <div id="rankGraphPeriodButtons" class="rank-graph-period-buttons" role="group" aria-label="순위 그래프 기간">
+          <button type="button" class="rank-graph-period-button is-active" data-hours="24" aria-pressed="true">시간</button>
+          <button type="button" class="rank-graph-period-button" data-hours="168" aria-pressed="false">일간</button>
+          <button type="button" class="rank-graph-period-button" data-hours="720" aria-pressed="false">주간</button>
+          <button type="button" class="rank-graph-period-button" data-hours="2160" aria-pressed="false">월간</button>
+          <button type="button" class="rank-graph-period-button" data-hours="2160" aria-pressed="false">분기</button>
+          <button type="button" class="rank-graph-period-button" data-hours="4320" aria-pressed="false">반기</button>
+          <button type="button" class="rank-graph-period-button" data-hours="8760" aria-pressed="false">연간</button>
+        </div>
+        <input id="rankGraphRange" type="hidden" value="24">
       </div>
       <p id="rankHistoryStatus" class="rank-history-status" role="status" aria-live="polite">순위 기록을 불러오는 중...</p>
 
