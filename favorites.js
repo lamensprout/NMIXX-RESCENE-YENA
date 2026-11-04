@@ -673,7 +673,7 @@ function createArtistRankGraph(artist, color) {
       hoursLabel.className = "rank-graph-hour-labels";
       hoursLabel.textContent = Array.from({ length: 24 }, function(_unused, hour) {
         return String(hour).padStart(2, "0") + "시";
-      }).join(" ");
+      }).join("   ");
       wrapper.appendChild(hoursLabel);
     }
     return wrapper;
