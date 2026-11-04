@@ -52,7 +52,12 @@
   if(!Array.isArray(chartSongs))return Number(row.new_rank)||101;
   const title=normalizeSong(row.song_title),artist=row.artist_name;
   const match=chartSongs.find(song=>normalizeSong(song.title)===title&&sameArtist(song.artist,artist));
-  return match&&Number.isInteger(Number(match.rank))?Number(match.rank):101;
+  const chartRank=match?Number(match.rank):NaN;
+  // 차트 API에서 제목/아티스트 매칭이 누락되어도, TOP100 변동 알림에 저장된 현재 순위를 사용합니다.
+  const fallbackRank=Number(row.new_rank);
+  return Number.isInteger(chartRank)&&chartRank>=1&&chartRank<=100
+   ?chartRank
+   :Number.isInteger(fallbackRank)&&fallbackRank>=1&&fallbackRank<=100?fallbackRank:101;
  };
  const render=async()=>{
   if(!window.MonitorStore||!MonitorStore.isReady()){badge.hidden=true;list.innerHTML='<p class="rank-alert-empty">로그인하면 알림을 확인할 수 있어요.</p>';return;}
@@ -95,11 +100,10 @@
    if(!previous||currentTime>previousTime)latestByTrack.set(key,row);
   });
   const notificationRows=[...latestByTrack.values()];
-  // 대표 곡은 알림 기록의 과거 순위가 아니라 최신 TOP100의 현재 순위로 선정합니다.
-  // 차트에서 빠진 곡은 최신 TOP100 알림 집계에서 제외합니다.
-  const filteredRows=Array.isArray(chartSongs)
-   ?notificationRows.filter(row=>getCurrentRank(row,chartSongs)<=100)
-   :notificationRows;
+  // TOP100 변동 알림 데이터가 이미 이전/현재 순위를 검증합니다.
+  // 차트 API의 곡명/아티스트 매칭 실패를 이유로 유효한 변동 곡을 집계에서 빼지 않습니다.
+  // 최신 TOP100에서 매칭되면 현재 순위를 쓰고, 매칭되지 않으면 알림의 new_rank로 정렬합니다.
+  const filteredRows=notificationRows;
   const rankedRows=filteredRows.map(row=>({...row,current_rank:getCurrentRank(row,chartSongs)}))
    .sort((a,b)=>a.current_rank-b.current_rank||Number(a.new_rank)-Number(b.new_rank));
   // 알림 배지, 요약 개수, 읽음 처리 모두 최신 차트에 남아 있는 필터 결과를 사용합니다.
