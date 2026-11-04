@@ -3867,3 +3867,15 @@ body.settings-page:not(.dark-mode) .settings-nav-link[aria-current="page"] {
 }
 body.dark-mode .rank-graph-period-button { border-color: #53616d; }
 body.dark-mode .rank-graph-period-button.is-active { border-color: #168a35; background: #168a35; color: #fff; }
+
+/* Keep hourly labels on one compact, horizontally scrollable line. */
+.rank-graph-hour-labels {
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+  white-space: nowrap;
+  font-size: 10px;
+  line-height: 1.4;
+  padding-bottom: 2px;
+  scrollbar-width: thin;
+}
