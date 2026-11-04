@@ -3821,3 +3821,10 @@ body.settings-page:not(.dark-mode) .settings-home-link:hover {
 body.settings-page:not(.dark-mode) .settings-nav-link[aria-current="page"] {
   background: #e8f5ea;
 }
+
+
+/* Keep favorite artist names visually consistent regardless of chart song count. */
+.favorite-rank-card-heading .favorite-rank-name { font-size: 17px; }
+@media (max-width: 480px) {
+  .favorite-rank-card-heading .favorite-rank-name { font-size: 15px; }
+}
