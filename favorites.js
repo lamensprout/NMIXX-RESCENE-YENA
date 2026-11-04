@@ -1266,8 +1266,17 @@ window.addEventListener("melonitor-auth-change", async () => {
   }
 });
 
-if (rankGraphRangeSelect) {
-  rankGraphRangeSelect.addEventListener("change", async function() {
+const rankGraphPeriodButtons = document.getElementById("rankGraphPeriodButtons");
+if (rankGraphPeriodButtons && rankGraphRangeSelect) {
+  rankGraphPeriodButtons.addEventListener("click", async function(event) {
+    const button = event.target.closest("button[data-hours]");
+    if (!button) return;
+    rankGraphRangeSelect.value = button.dataset.hours;
+    rankGraphPeriodButtons.querySelectorAll("button[data-hours]").forEach(function(item) {
+      const active = item === button;
+      item.classList.toggle("is-active", active);
+      item.setAttribute("aria-pressed", active ? "true" : "false");
+    });
     await loadRankHistory();
     await renderFavorites();
   });
