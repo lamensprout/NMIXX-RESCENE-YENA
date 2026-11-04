@@ -2400,7 +2400,6 @@ body.dark-mode .environment-badge {
 }
 .favorite-current-rank.is-outside-chart {
   color: #7b8790;
-  font-size: 12px;
   font-weight: 700;
   letter-spacing: 0;
 }
@@ -3821,4 +3820,12 @@ body.settings-page:not(.dark-mode) .settings-home-link:hover {
 }
 body.settings-page:not(.dark-mode) .settings-nav-link[aria-current="page"] {
   background: #e8f5ea;
+}
+
+
+/* Match the zero-song artist name to the standard NMIXX artist-name size. */
+#favoriteArtists .favorite-rank-card.is-zero-song .favorite-rank-card-heading .favorite-rank-name { font-size: 17px; font-weight: 800; }
+#favoriteArtists .favorite-rank-card.is-zero-song .favorite-current-rank { font-weight: 800; }
+@media (max-width: 480px) {
+  #favoriteArtists .favorite-rank-card.is-zero-song .favorite-rank-card-heading .favorite-rank-name { font-size: 15px; }
 }
