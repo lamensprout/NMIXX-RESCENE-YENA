@@ -671,9 +671,11 @@ function createArtistRankGraph(artist, color) {
     if (isHourly) {
       const hoursLabel = document.createElement("div");
       hoursLabel.className = "rank-graph-hour-labels";
-      hoursLabel.textContent = Array.from({ length: 24 }, function(_unused, hour) {
-        return String(hour).padStart(2, "0") + "시";
-      }).join("   ");
+      Array.from({ length: 24 }, function(_unused, hour) {
+        const label = document.createElement("span");
+        label.textContent = String(hour).padStart(2, "0") + "시";
+        hoursLabel.appendChild(label);
+      });
       wrapper.appendChild(hoursLabel);
     }
     return wrapper;
