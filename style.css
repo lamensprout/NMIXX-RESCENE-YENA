@@ -3840,3 +3840,30 @@ body.settings-page:not(.dark-mode) .settings-nav-link[aria-current="page"] {
 @media (max-width: 480px) {
   #favoriteArtists .favorite-rank-card.is-zero-song .favorite-rank-card-heading .favorite-rank-name { font-size: 15px; }
 }
+
+
+/* Favorite graph period choices as individual buttons. */
+.rank-graph-period-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.rank-graph-period-button {
+  min-height: 32px;
+  padding: 0 11px;
+  border: 1px solid #bcc7ce;
+  border-radius: 5px;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  font-size: 13px;
+  cursor: pointer;
+}
+.rank-graph-period-button.is-active {
+  border-color: #168a35;
+  background: #168a35;
+  color: #fff;
+  font-weight: 700;
+}
+body.dark-mode .rank-graph-period-button { border-color: #53616d; }
+body.dark-mode .rank-graph-period-button.is-active { border-color: #168a35; background: #168a35; color: #fff; }
