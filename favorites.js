@@ -10,6 +10,7 @@ const accountLinkLabel = document.getElementById("accountLinkLabel");
 const rankGraphColorInput = document.getElementById("rankGraphColor");
 const rankGraphColorValue = document.getElementById("rankGraphColorValue");
 const rankHistoryStatus = document.getElementById("rankHistoryStatus");
+const rankGraphRangeSelect = document.getElementById("rankGraphRange");
 
 let rankHistorySnapshots = [];
 let songs = [];
@@ -559,13 +560,15 @@ function loadSavedRankGraphColor() {
 }
 
 async function loadRankHistory() {
-  if (rankHistoryStatus) rankHistoryStatus.textContent = "최근 24시간 순위 기록을 불러오는 중...";
+  const requestedHours = Number(rankGraphRangeSelect && rankGraphRangeSelect.value || 24);
+  const hours = Number.isFinite(requestedHours) ? Math.max(1, Math.min(8760, requestedHours)) : 24;
+  if (rankHistoryStatus) rankHistoryStatus.textContent = "선택한 기간의 순위 기록을 불러오는 중...";
   try {
     const config = window.MELONITOR_SUPABASE_CONFIG || {};
     if (!config.projectUrl || !config.publishableKey) throw new Error("차트 서버 설정을 찾을 수 없어요.");
     const url = new URL("/api/melon-chart", window.location.origin);
     url.searchParams.set("history", "1");
-    url.searchParams.set("hours", "24");
+    url.searchParams.set("hours", String(hours));
     const response = await fetch(url.toString(), {
       headers: { apikey: config.publishableKey },
       cache: "no-store"
@@ -581,7 +584,7 @@ async function loadRankHistory() {
       if (!rankHistorySnapshots.length) {
         rankHistoryStatus.textContent = "순위 기록을 모으는 중이에요. 첫 기록이 저장된 뒤 그래프가 표시됩니다.";
       } else {
-        rankHistoryStatus.textContent = "최근 24시간 · " + rankHistorySnapshots.length + "회 기록 · 약 15분 간격";
+        rankHistoryStatus.textContent = "선택한 기간 · " + rankHistorySnapshots.length + "회 서버 기록";
       }
     }
   } catch (error) {
@@ -611,65 +614,38 @@ function getArtistRankInSnapshot(snapshot, artist) {
 function createArtistRankGraph(artist, color) {
   const wrapper = document.createElement("div");
   wrapper.className = "rank-graph-wrap";
-
-  const cutoff = Date.now() - 7 * 24 * 60 * 60 * 1000;
-  let localSnapshots = [];
-  try {
-    const saved = JSON.parse(localStorage.getItem(FAVORITE_SONG_HISTORY_KEY) || "[]");
-    if (Array.isArray(saved)) localSnapshots = saved.filter(function(snapshot) {
-      return snapshot && Number(snapshot.capturedAt) >= cutoff && Array.isArray(snapshot.songs);
-    });
-  } catch (_) {}
-
-  const currentArtistSongs = songs.filter(function(song) {
-    return song.artist && (normalize(song.artist) === normalize(artist) || areSameArtist(song.artist, artist));
+  const rangeSelect = document.getElementById("rankGraphRange");
+  const requestedHours = Number(rangeSelect && rangeSelect.value || 24);
+  const hours = Number.isFinite(requestedHours) ? Math.max(1, Math.min(8760, requestedHours)) : 24;
+  const cutoff = Date.now() - hours * 60 * 60 * 1000;
+  const snapshots = rankHistorySnapshots.filter(function(snapshot) {
+    const capturedAt = Date.parse(snapshot && snapshot.snapshot_at || "");
+    return Number.isFinite(capturedAt) && capturedAt >= cutoff && Array.isArray(snapshot.artist_ranks);
   });
-  const historicalArtistSongs = [];
-  localSnapshots.forEach(function(snapshot) {
-    snapshot.songs.forEach(function(song) {
-      if (song.artist && (normalize(song.artist) === normalize(artist) || areSameArtist(song.artist, artist)) &&
-          !historicalArtistSongs.some(function(existing) { return favoriteSongKey(existing) === favoriteSongKey(song); })) {
-        historicalArtistSongs.push(song);
-      }
-    });
+  const points = snapshots.map(function(snapshot, index) {
+    const capturedAt = Date.parse(snapshot.snapshot_at);
+    return {
+      x: snapshots.length === 1 ? 373 : 42 + index / (snapshots.length - 1) * 662,
+      rank: getArtistRankInSnapshot(snapshot, artist),
+      timestamp: capturedAt
+    };
+  }).filter(function(point) {
+    return Number.isFinite(point.timestamp);
   });
-
-  const candidates = currentArtistSongs.concat(historicalArtistSongs.filter(function(oldSong) {
-    return !currentArtistSongs.some(function(currentSong) { return favoriteSongKey(currentSong) === favoriteSongKey(oldSong); });
-  })).sort(function(a, b) {
-    return (Number(a.rank) || 999) - (Number(b.rank) || 999);
-  }).slice(0, 5);
-
-  if (!candidates.length || localSnapshots.length < 2) {
+  const valid = points.filter(function(point) {
+    return point.rank !== null && Number.isFinite(point.rank);
+  });
+  if (valid.length < 2) {
     const empty = document.createElement("p");
     empty.className = "rank-graph-empty";
-    empty.textContent = localSnapshots.length < 2
-      ? "곡별 순위 기록이 쌓이면 여러 곡의 변화를 그래프로 보여드려요."
-      : "표시할 곡별 순위 기록이 없어요.";
+    empty.textContent = snapshots.length < 2
+      ? "선택한 기간의 순위 기록이 아직 충분하지 않아요."
+      : "선택한 기간에 이 아티스트의 순위 기록이 없어요.";
     wrapper.appendChild(empty);
     return wrapper;
   }
 
-  const palette = ["#08b8d5", "#29245f", "#f2b400", "#f04498", "#20bd63"];
   const width = 720, height = 250, left = 42, right = 704, top = 28, bottom = 194;
-  const snapshots = localSnapshots.slice(-7);
-  const series = candidates.map(function(song, index) {
-    const key = favoriteSongKey(song);
-    const points = snapshots.map(function(snapshot, snapshotIndex) {
-      const match = snapshot.songs.find(function(item) { return favoriteSongKey(item) === key; });
-      return {
-        x: snapshots.length === 1 ? (left + right) / 2 : left + snapshotIndex / (snapshots.length - 1) * (right - left),
-        rank: match ? Number(match.rank) : null,
-        timestamp: snapshot.capturedAt
-      };
-    });
-    const currentMatch = currentArtistSongs.find(function(item) { return favoriteSongKey(item) === key; });
-    if (currentMatch && points.length) {
-      points[points.length - 1].rank = Number(currentMatch.rank);
-    }
-    return { song: song, key: key, color: palette[index % palette.length], points: points };
-  });
-
   function yForRank(rank) {
     return top + ((Math.max(1, Math.min(100, Number(rank) || 100)) - 1) / 99) * (bottom - top);
   }
@@ -677,7 +653,7 @@ function createArtistRankGraph(artist, color) {
   svg.setAttribute("class", "rank-graph");
   svg.setAttribute("viewBox", "0 0 " + width + " " + height);
   svg.setAttribute("role", "img");
-  svg.setAttribute("aria-label", artist + "의 최근 7일 곡별 순위 변동 그래프");
+  svg.setAttribute("aria-label", artist + "의 선택한 기간 아티스트 최고 순위 그래프");
 
   [1, 25, 50, 75, 100].forEach(function(rank) {
     const y = yForRank(rank);
@@ -691,51 +667,39 @@ function createArtistRankGraph(artist, color) {
     label.setAttribute("class", "rank-graph-axis-label"); label.textContent = String(rank);
     svg.appendChild(label);
   });
-
-  series.forEach(function(item) {
-    const valid = item.points.filter(function(point) { return point.rank !== null && Number.isFinite(point.rank); });
-    if (valid.length > 1) {
-      const line = document.createElementNS(svg.namespaceURI, "polyline");
-      line.setAttribute("class", "rank-graph-line");
-      line.setAttribute("fill", "none"); line.setAttribute("stroke", item.color);
-      line.setAttribute("stroke-width", "2.8"); line.setAttribute("stroke-linecap", "round");
-      line.setAttribute("stroke-linejoin", "round");
-      line.setAttribute("points", valid.map(function(point) {
-        return point.x.toFixed(2) + "," + yForRank(point.rank).toFixed(2);
-      }).join(" "));
-      svg.appendChild(line);
-    }
-    valid.forEach(function(point) {
-      const marker = document.createElementNS(svg.namespaceURI, "circle");
-      marker.setAttribute("class", "rank-graph-end");
-      marker.setAttribute("cx", String(point.x)); marker.setAttribute("cy", String(yForRank(point.rank)));
-      marker.setAttribute("r", "4"); marker.setAttribute("fill", item.color);
-      const title = document.createElementNS(svg.namespaceURI, "title");
-      title.textContent = item.song.title + " · #" + point.rank + " · " +
-        new Date(point.timestamp).toLocaleString("ko-KR");
-      marker.appendChild(title); svg.appendChild(marker);
-    });
+  const line = document.createElementNS(svg.namespaceURI, "polyline");
+  line.setAttribute("class", "rank-graph-line");
+  line.setAttribute("fill", "none");
+  line.setAttribute("stroke", color || "#168a35");
+  line.setAttribute("stroke-width", "2.8");
+  line.setAttribute("stroke-linecap", "round");
+  line.setAttribute("stroke-linejoin", "round");
+  line.setAttribute("points", valid.map(function(point) {
+    return point.x.toFixed(2) + "," + yForRank(point.rank).toFixed(2);
+  }).join(" "));
+  svg.appendChild(line);
+  valid.forEach(function(point) {
+    const marker = document.createElementNS(svg.namespaceURI, "circle");
+    marker.setAttribute("class", "rank-graph-end");
+    marker.setAttribute("cx", String(point.x));
+    marker.setAttribute("cy", String(yForRank(point.rank)));
+    marker.setAttribute("r", "3.5");
+    marker.setAttribute("fill", color || "#168a35");
+    const title = document.createElementNS(svg.namespaceURI, "title");
+    title.textContent = artist + " · #" + point.rank + " · " +
+      new Date(point.timestamp).toLocaleString("ko-KR");
+    marker.appendChild(title);
+    svg.appendChild(marker);
   });
-
   wrapper.appendChild(svg);
-  const legend = document.createElement("div");
-  legend.className = "rank-graph-legend";
-  series.forEach(function(item) {
-    const entry = document.createElement("span");
-    entry.className = "rank-graph-legend-item";
-    const dot = document.createElement("i");
-    dot.style.backgroundColor = item.color;
-    const label = document.createElement("span");
-    label.textContent = item.song.title;
-    entry.append(dot, label); legend.appendChild(entry);
-  });
-  wrapper.appendChild(legend);
 
   const labels = document.createElement("div");
   labels.className = "rank-graph-time-labels";
-  labels.textContent = new Date(snapshots[0].capturedAt).toLocaleDateString("ko-KR", { month: "numeric", day: "numeric" }) +
-    " — " + new Date(snapshots[snapshots.length - 1].capturedAt).toLocaleDateString("ko-KR", { month: "numeric", day: "numeric" }) +
-    " · 이 브라우저의 기록 기준";
+  const first = new Date(valid[0].timestamp);
+  const last = new Date(valid[valid.length - 1].timestamp);
+  labels.textContent = first.toLocaleDateString("ko-KR", { month: "numeric", day: "numeric" }) +
+    " — " + last.toLocaleDateString("ko-KR", { month: "numeric", day: "numeric", year: hours > 720 ? "2-digit" : undefined }) +
+    " · 서버 기록 · 아티스트 최고 순위";
   wrapper.appendChild(labels);
   return wrapper;
 }
@@ -1171,7 +1135,7 @@ async function renderFavorites() {
     const graphHeader = document.createElement("div");
     graphHeader.className = "rank-graph-heading";
     const graphTitle = document.createElement("span");
-    graphTitle.textContent = "순위 변동";
+    graphTitle.textContent = "아티스트 최고 순위";
     const graphUnit = document.createElement("span");
     graphUnit.textContent = "1위가 위쪽";
     graphHeader.appendChild(graphTitle);
@@ -1301,6 +1265,13 @@ window.addEventListener("melonitor-auth-change", async () => {
     await renderFavorites();
   }
 });
+
+if (rankGraphRangeSelect) {
+  rankGraphRangeSelect.addEventListener("change", async function() {
+    await loadRankHistory();
+    await renderFavorites();
+  });
+}
 
 setInterval(async function() {
   if (document.visibilityState !== "visible" || !window.MonitorStore || !MonitorStore.isReady()) return;
