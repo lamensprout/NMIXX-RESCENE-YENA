@@ -2338,6 +2338,17 @@ body.dark-mode .environment-badge {
   background: transparent;
   cursor: pointer;
 }
+.rank-graph-range-select {
+  min-width: 112px;
+  height: 32px;
+  padding: 0 8px;
+  border: 1px solid #bcc7ce;
+  border-radius: 5px;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  font-size: 13px;
+}
 #rankGraphColorValue {
   color: #71808a;
   font-size: 12px;
