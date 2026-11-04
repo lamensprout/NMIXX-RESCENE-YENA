@@ -234,19 +234,26 @@ Deno.serve(async (request: Request) => {
         ? Math.max(1, Math.min(8760, Math.floor(requestedHours)))
         : 24;
       const cutoff = new Date(Date.now() - hours * 60 * 60 * 1000).toISOString();
-      const { data: snapshots, error: historyReadError } = await supabase
-        .from(HISTORY_TABLE)
-        .select("snapshot_at, artist_ranks")
-        .gte("snapshot_at", cutoff)
-        .order("snapshot_at", { ascending: true })
-        .limit(Math.min(40000, Math.ceil(hours * 60 * 1000 / HISTORY_INTERVAL_MS) + 1));
+      const maxSnapshots = Math.min(40000, Math.ceil(hours * 60 * 1000 / HISTORY_INTERVAL_MS) + 1);
+      const snapshots: Array<{ snapshot_at: string; artist_ranks: unknown }> = [];
+      const pageSize = 1000;
+      for (let offset = 0; offset < maxSnapshots; offset += pageSize) {
+        const { data: page, error: historyReadError } = await supabase
+          .from(HISTORY_TABLE)
+          .select("snapshot_at, artist_ranks")
+          .gte("snapshot_at", cutoff)
+          .order("snapshot_at", { ascending: true })
+          .range(offset, Math.min(offset + pageSize - 1, maxSnapshots - 1));
 
-      if (historyReadError) {
-        console.error("[melon-chart] History read failed", historyReadError);
-        return jsonResponse({ error: "순위 기록을 불러오지 못했습니다.", snapshots: [] }, 500, origin);
+        if (historyReadError) {
+          console.error("[melon-chart] History read failed", historyReadError);
+          return jsonResponse({ error: "순위 기록을 불러오지 못했습니다.", snapshots: [] }, 500, origin);
+        }
+        snapshots.push(...(page || []));
+        if (!page || page.length < pageSize) break;
       }
       return jsonResponse({
-        snapshots: snapshots || [],
+        snapshots,
         interval_minutes: 15,
         retention_days: 365,
         hours,
