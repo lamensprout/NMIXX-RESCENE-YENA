@@ -661,24 +661,14 @@ function createArtistRankGraph(artist, color) {
   const valid = points.filter(function(point) {
     return point.rank !== null && Number.isFinite(point.rank) && Number.isFinite(point.timestamp);
   });
-  if (valid.length < 2) {
+  if (valid.length === 0) {
     const empty = document.createElement("p");
     empty.className = "rank-graph-empty";
     empty.textContent = isHourly
-      ? "오늘 시간대별 기록이 아직 충분하지 않아요. 차트 새로고침으로 기록을 모아 주세요."
-      : "선택한 기간의 순위 기록이 아직 충분하지 않아요.";
+      ? "오늘 시간대별 기록이 아직 없어요. 차트 새로고침으로 기록을 저장해 주세요."
+      : "선택한 기간의 순위 기록이 아직 없어요.";
     wrapper.appendChild(empty);
-    if (isHourly) {
-      const hoursLabel = document.createElement("div");
-      hoursLabel.className = "rank-graph-hour-labels";
-      Array.from({ length: 24 }, function(_unused, hour) {
-        const label = document.createElement("span");
-        label.textContent = String(hour).padStart(2, "0") + "시";
-        hoursLabel.appendChild(label);
-      });
-      wrapper.appendChild(hoursLabel);
-    }
-    return wrapper;
+    if (!isHourly) return wrapper;
   }
 
   const width = 720, height = 250, left = 42, right = 704, top = 28, bottom = 194;
