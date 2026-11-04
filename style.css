@@ -3870,15 +3870,19 @@ body.dark-mode .rank-graph-period-button.is-active { border-color: #168a35; back
 
 /* Keep hourly labels on one compact, horizontally scrollable line. */
 .rank-graph-hour-labels {
-  display: block;
+  display: flex;
   width: 100%;
   max-width: 100%;
   box-sizing: border-box;
-  overflow-x: auto;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0;
   white-space: nowrap;
-  text-align: center;
   font-size: 9px;
   line-height: 1.4;
   padding: 3px 8px 4px;
-  scrollbar-width: thin;
+}
+.rank-graph-hour-labels span {
+  flex: 0 0 auto;
+  text-align: center;
 }
