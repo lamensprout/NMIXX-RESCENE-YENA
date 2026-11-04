@@ -3823,8 +3823,8 @@ body.settings-page:not(.dark-mode) .settings-nav-link[aria-current="page"] {
 }
 
 
-/* Keep favorite artist names visually consistent regardless of chart song count. */
-.favorite-rank-card-heading .favorite-rank-name { font-size: 17px; }
+/* Match the zero-song artist name to the standard NMIXX artist-name size. */
+#favoriteArtists .favorite-rank-card-heading .favorite-rank-name { font-size: 17px; }
 @media (max-width: 480px) {
-  .favorite-rank-card-heading .favorite-rank-name { font-size: 15px; }
+  #favoriteArtists .favorite-rank-card-heading .favorite-rank-name { font-size: 15px; }
 }
