@@ -3900,13 +3900,14 @@ body.dark-mode .rank-graph-period-button.is-active { border-color: #168a35; back
 body.dark-mode .favorite-artist-overview{background:#182333;border-color:#344255;}body.dark-mode .favorite-artist-summary-card,body.dark-mode .favorite-artist-overview-chart{background:#0e1727;border-color:#344255;}
 @media(max-width:640px){.favorite-artist-overview{padding:8px;}.favorite-artist-legend{justify-content:flex-start;}.favorite-artist-summary-card{padding:7px;}}
 
-/* Give the song-rank plot its intended vertical space; keep the legend below it. */
+/* Expand the song-rank graph vertically; no extra frame or border. */
 .rank-graph-wrap:has(.rank-song-graph-legend) {
   box-sizing: border-box;
   width: 100%;
 }
 .rank-graph-wrap:has(.rank-song-graph-legend) .rank-graph {
-  height: 250px;
+  height: 380px !important;
+  max-height: none !important;
 }
 .rank-graph-wrap .rank-song-graph-legend {
   box-sizing: border-box;
