@@ -3906,9 +3906,23 @@ body.dark-mode .favorite-artist-overview{background:#182333;border-color:#344255
   width: 100%;
 }
 .rank-graph-wrap:has(.rank-song-graph-legend) .rank-graph {
-  height: 500px !important;
+  display: block !important;
+  box-sizing: border-box !important;
   width: 100% !important;
+  height: clamp(520px, 58vw, 680px) !important;
   max-height: none !important;
+  overflow: visible !important;
+}
+.rank-graph-wrap:has(.rank-song-graph-legend) .rank-graph-axis-label {
+  font-size: 14px !important;
+}
+.rank-graph-wrap:has(.rank-song-graph-legend) .rank-graph-grid {
+  stroke-width: 1.2 !important;
+}
+.rank-graph-wrap .rank-song-graph-legend {
+  gap: 12px 20px !important;
+  padding: 10px 14px !important;
+  font-size: 14px !important;
 }
 .rank-graph-wrap .rank-song-graph-legend {
   box-sizing: border-box;
