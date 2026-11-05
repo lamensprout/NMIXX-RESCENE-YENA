@@ -621,22 +621,32 @@ function createArtistRankGraph(artist, color) {
   const width = 1000, height = 620, left = 72, right = 984, top = 28, bottom = 560;
   const y = rank => top + (Math.max(1, Math.min(100, Number(rank) || 100)) - 1) / 99 * (bottom - top);
   const artistSongMap = new Map();
-  const addArtistSong = (entry, rank) => {
-    if (!entry || !entry.title || !entry.artist ||
-        !(normalize(entry.artist) === normalize(artist) || areSameArtist(entry.artist, artist))) return;
-    const key = normalize(entry.title) + "|" + normalize(entry.artist);
+  const addArtistSong = (entry, entryArtist, rank) => {
+    const songArtist = String(entryArtist || entry && entry.artist || "").trim();
+    if (!entry || !entry.title || !songArtist ||
+        !(normalize(songArtist) === normalize(artist) || areSameArtist(songArtist, artist))) return;
+    const key = normalize(entry.title) + "|" + normalize(songArtist);
     const existing = artistSongMap.get(key);
     const currentRank = Number(rank ?? entry.rank);
     artistSongMap.set(key, {
       title: entry.title,
-      artist: entry.artist,
+      artist: songArtist,
       rank: Number.isFinite(currentRank) ? currentRank : (existing ? existing.rank : 101)
     });
   };
-  songs.forEach(song => addArtistSong(song, song.rank));
+  // 홈의 현재 TOP100 데이터도 그래프 곡 목록에 포함합니다.
+  songs.forEach(song => addArtistSong(song, song.artist, song.rank));
+  // 홈에서 저장한 순위 스냅샷은 아티스트별 songs 배열에 곡별 rank를 담습니다.
+  // 과거 구형 스냅샷의 대표곡 형식도 함께 지원합니다.
   rankHistorySnapshots.forEach(snapshot => {
     (Array.isArray(snapshot && snapshot.artist_ranks) ? snapshot.artist_ranks : [])
-      .forEach(entry => addArtistSong(entry, entry.rank));
+      .forEach(entry => {
+        const entryArtist = String(entry && entry.artist || "").trim();
+        if (Array.isArray(entry && entry.songs)) {
+          entry.songs.forEach(song => addArtistSong(song, entryArtist, song && song.rank));
+        }
+        if (entry && entry.title) addArtistSong(entry, entryArtist, entry.rank);
+      });
   });
   const artistSongs = Array.from(artistSongMap.values()).sort((a, b) => Number(a.rank) - Number(b.rank));
   if (!artistSongs.length) {
@@ -671,10 +681,16 @@ function createArtistRankGraph(artist, color) {
     .sort((a, b) => a.ts - b.ts);
   const songRankInSnapshot = (snapshot, song) => {
     const entries = Array.isArray(snapshot && snapshot.artist_ranks) ? snapshot.artist_ranks : [];
-    const match = entries.find(entry => entry && entry.title && entry.artist &&
-      normalize(entry.title) === normalize(song.title) &&
+    const artistEntry = entries.find(entry => entry && entry.artist &&
       (normalize(entry.artist) === normalize(song.artist) || areSameArtist(entry.artist, song.artist)));
-    const rank = match ? Number(match.rank) : NaN;
+    if (!artistEntry) return null;
+    // 홈의 최신 스냅샷은 아티스트별 songs 배열에 곡별 순위를 저장합니다.
+    const historySongs = Array.isArray(artistEntry.songs) ? artistEntry.songs : [];
+    const songEntry = historySongs.find(entry => entry && entry.title &&
+      normalize(entry.title) === normalize(song.title));
+    // 이전 스냅샷은 대표곡만 top-level에 저장했으므로 호환 처리합니다.
+    const rank = songEntry ? Number(songEntry.rank) :
+      (normalize(artistEntry.title) === normalize(song.title) ? Number(artistEntry.rank) : NaN);
     return Number.isFinite(rank) && rank >= 1 && rank <= 100 ? rank : null;
   };
   const graphColor = /^#[0-9a-f]{6}$/i.test(String(color || "")) ? color : "#168a35";
