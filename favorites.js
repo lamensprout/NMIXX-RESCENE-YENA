@@ -706,11 +706,11 @@ function createArtistRankGraph(artist, color) {
     title.textContent = item.song.title || "제목 없음";
     const album = document.createElement("div");
     album.textContent = "앨범: " + (item.song.album || "앨범 정보 없음");
-    const artist = document.createElement("div");
-    artist.textContent = "아티스트: " + (item.song.artist || artistName || artist);
+    const artistLabel = document.createElement("div");
+    artistLabel.textContent = "아티스트: " + (item.song.artist || artist);
     const rank = document.createElement("div");
     rank.textContent = "멜론 TOP100: " + point.rank + "위";
-    tooltip.append(title, album, artist, rank);
+    tooltip.append(title, album, artistLabel, rank);
     tooltip.hidden = false;
     const wrapRect = wrapper.getBoundingClientRect();
     const markerRect = marker.getBoundingClientRect();
