@@ -620,8 +620,25 @@ function createArtistRankGraph(artist, color) {
   const now = new Date();
   const width = 1000, height = 620, left = 72, right = 984, top = 28, bottom = 560;
   const y = rank => top + (Math.max(1, Math.min(100, Number(rank) || 100)) - 1) / 99 * (bottom - top);
-  const artistSongs = songs.filter(song => song && song.title && song.artist &&
-    (normalize(song.artist) === normalize(artist) || areSameArtist(song.artist, artist)))
+  const artistSongMap = new Map();
+  const addArtistSong = (entry, rank) => {
+    if (!entry || !entry.title || !entry.artist ||
+        !(normalize(entry.artist) === normalize(artist) || areSameArtist(entry.artist, artist))) return;
+    const key = normalize(entry.title) + "|" + normalize(entry.artist);
+    const existing = artistSongMap.get(key);
+    const currentRank = Number(rank ?? entry.rank);
+    artistSongMap.set(key, {
+      title: entry.title,
+      artist: entry.artist,
+      rank: Number.isFinite(currentRank) ? currentRank : (existing ? existing.rank : 101)
+    });
+  };
+  songs.forEach(song => addArtistSong(song, song.rank));
+  rankHistorySnapshots.forEach(snapshot => {
+    (Array.isArray(snapshot && snapshot.artist_ranks) ? snapshot.artist_ranks : [])
+      .forEach(entry => addArtistSong(entry, entry.rank));
+  });
+  const artistSongs = Array.from(artistSongMap.values())
     .sort((a, b) => Number(a.rank) - Number(b.rank));
   if (!artistSongs.length) {
     const empty = document.createElement("p");
