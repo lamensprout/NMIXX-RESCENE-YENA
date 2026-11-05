@@ -620,11 +620,22 @@ function createArtistRankGraph(artist, color) {
   const now = new Date();
   const width = 1000, height = 620, left = 72, right = 984, top = 28, bottom = 560;
   const y = rank => top + (Math.max(1, Math.min(100, Number(rank) || 100)) - 1) / 99 * (bottom - top);
+  const artistSongs = songs.filter(song => song && song.title && song.artist &&
+    (normalize(song.artist) === normalize(artist) || areSameArtist(song.artist, artist)))
+    .sort((a, b) => Number(a.rank) - Number(b.rank));
+  if (!artistSongs.length) {
+    const empty = document.createElement("p");
+    empty.className = "rank-graph-empty";
+    empty.textContent = "현재 TOP100에 해당 아티스트 곡이 없어요.";
+    wrapper.appendChild(empty);
+    return wrapper;
+  }
+
   const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
   svg.setAttribute("class", "rank-graph");
   svg.setAttribute("viewBox", "0 0 " + width + " " + height);
   svg.setAttribute("role", "img");
-  svg.setAttribute("aria-label", artist + "의 시간별 아티스트 순위 그래프");
+  svg.setAttribute("aria-label", artist + "의 곡별 시간 순위 그래프");
   [1,5,10,15,20,25,30,35,40,45,50,55,60,65,70,75,80,85,90,95,100].forEach(rank => {
     const yy = y(rank), line = document.createElementNS(svg.namespaceURI, "line");
     line.setAttribute("x1", left); line.setAttribute("x2", right);
@@ -632,74 +643,96 @@ function createArtistRankGraph(artist, color) {
     line.setAttribute("class", "rank-graph-grid"); svg.appendChild(line);
     const label = document.createElementNS(svg.namespaceURI, "text");
     label.setAttribute("x", "0"); label.setAttribute("y", yy - 2);
-    label.setAttribute("class", "rank-graph-axis-label"); label.textContent = rank + "위";
-    svg.appendChild(label);
+    label.setAttribute("class", "rank-graph-axis-label");
+    label.textContent = rank + "위"; svg.appendChild(label);
   });
 
-  const points = [];
-  if (hourly) {
-    const dayStart = new Date(now.getFullYear(), now.getMonth(), now.getDate()).getTime();
-    const latestByHour = new Map();
-    rankHistorySnapshots.forEach(snapshot => {
-      const ts = Date.parse(snapshot && snapshot.snapshot_at || "");
-      if (!Number.isFinite(ts) || ts < dayStart || ts > now.getTime()) return;
-      const hour = new Date(ts).getHours(), previous = latestByHour.get(hour);
-      if (!previous || ts > previous.ts) latestByHour.set(hour, { ts, snapshot });
-    });
-    for (let hour = 0; hour < 24; hour++) {
-      const item = latestByHour.get(hour);
-      if (!item) continue;
-      const rank = getArtistRankInSnapshot(item.snapshot, artist);
-      if (!Number.isFinite(rank) || rank < 1 || rank > 100) continue;
-      points.push({ x: left + hour / 23 * (right - left), rank, ts: item.ts, hour });
-    }
-  } else {
-    const hours = Math.max(1, Math.min(8760, Number(period) || 24));
-    const cut = now.getTime() - hours * 3600000;
-    const snapshots = rankHistorySnapshots.map(snapshot => ({
-      ts: Date.parse(snapshot && snapshot.snapshot_at || ""),
-      snapshot
-    })).filter(item => Number.isFinite(item.ts) && item.ts >= cut && item.ts <= now.getTime())
-      .sort((a, b) => a.ts - b.ts);
-    snapshots.forEach(item => {
-      const rank = getArtistRankInSnapshot(item.snapshot, artist);
-      if (!Number.isFinite(rank) || rank < 1 || rank > 100) return;
-      points.push({ x: left + (item.ts - cut) / (now.getTime() - cut || 1) * (right - left), rank, ts: item.ts });
-    });
-  }
-
+  const palette = ["#00D5E8","#4386F7","#FFD400","#F36AA8","#9B7BFF","#FF8A3D","#36C275","#F06B5D","#8BABC9","#D77CE5"];
+  const snapshots = rankHistorySnapshots.map(snapshot => ({
+    ts: Date.parse(snapshot && snapshot.snapshot_at || ""),
+    snapshot
+  })).filter(item => Number.isFinite(item.ts) && item.ts <= now.getTime())
+    .sort((a, b) => a.ts - b.ts);
+  const songRankInSnapshot = (snapshot, song) => {
+    const entries = Array.isArray(snapshot && snapshot.artist_ranks) ? snapshot.artist_ranks : [];
+    const match = entries.find(entry => entry && entry.title && entry.artist &&
+      normalize(entry.title) === normalize(song.title) &&
+      (normalize(entry.artist) === normalize(song.artist) || areSameArtist(entry.artist, song.artist)));
+    const rank = match ? Number(match.rank) : NaN;
+    return Number.isFinite(rank) && rank >= 1 && rank <= 100 ? rank : null;
+  };
   const graphColor = /^#[0-9a-f]{6}$/i.test(String(color || "")) ? color : "#168a35";
-  const line = document.createElementNS(svg.namespaceURI, "polyline");
-  line.setAttribute("fill", "none"); line.setAttribute("stroke", graphColor);
-  line.setAttribute("stroke-width", "2.2"); line.setAttribute("stroke-linecap", "round");
-  line.setAttribute("stroke-linejoin", "round");
-  line.setAttribute("points", points.map(point => point.x.toFixed(2) + "," + y(point.rank).toFixed(2)).join(" "));
-  svg.appendChild(line);
-  points.forEach(point => {
-    const dot = document.createElementNS(svg.namespaceURI, "circle");
-    dot.setAttribute("cx", point.x); dot.setAttribute("cy", y(point.rank));
-    dot.setAttribute("r", "3"); dot.setAttribute("fill", graphColor);
-    const title = document.createElementNS(svg.namespaceURI, "title");
-    title.textContent = artist + " · #" + point.rank + " · " + new Date(point.ts).toLocaleString("ko-KR");
-    dot.appendChild(title); svg.appendChild(dot);
+  const hourlyStart = new Date(now.getTime() - 24 * 3600000);
+  const dayStart = new Date(now.getFullYear(), now.getMonth(), now.getDate()).getTime();
+  const graphStart = hourly ? dayStart : now.getTime() - Math.max(1, Math.min(8760, Number(period) || 24)) * 3600000;
+  const graphEnd = now.getTime();
+  const paletteForSong = song => {
+    const idx = artistSongs.indexOf(song);
+    return palette[idx % palette.length] || graphColor;
+  };
+
+  artistSongs.forEach(song => {
+    const points = [];
+    if (hourly) {
+      const latestByHour = new Map();
+      snapshots.forEach(item => {
+        if (item.ts < dayStart || item.ts > graphEnd) return;
+        const hour = new Date(item.ts).getHours();
+        const prev = latestByHour.get(hour);
+        if (!prev || item.ts > prev.ts) latestByHour.set(hour, item);
+      });
+      for (let hour = 0; hour < 24; hour++) {
+        const item = latestByHour.get(hour);
+        if (!item) continue;
+        const rank = songRankInSnapshot(item.snapshot, song);
+        if (rank === null) continue;
+        points.push({ x: left + hour / 23 * (right - left), rank, ts: item.ts, hour });
+      }
+    } else {
+      snapshots.filter(item => item.ts >= graphStart && item.ts <= graphEnd).forEach(item => {
+        const rank = songRankInSnapshot(item.snapshot, song);
+        if (rank === null) return;
+        points.push({ x: left + (item.ts - graphStart) / (graphEnd - graphStart || 1) * (right - left), rank, ts: item.ts });
+      });
+    }
+    const songColor = paletteForSong(song);
+    const line = document.createElementNS(svg.namespaceURI, "polyline");
+    line.setAttribute("fill", "none"); line.setAttribute("stroke", songColor);
+    line.setAttribute("stroke-width", "2.2"); line.setAttribute("stroke-linecap", "round");
+    line.setAttribute("stroke-linejoin", "round");
+    line.setAttribute("points", points.map(point => point.x.toFixed(2) + "," + y(point.rank).toFixed(2)).join(" "));
+    svg.appendChild(line);
+    points.forEach(point => {
+      const dot = document.createElementNS(svg.namespaceURI, "circle");
+      dot.setAttribute("cx", point.x); dot.setAttribute("cy", y(point.rank));
+      dot.setAttribute("r", "3"); dot.setAttribute("fill", songColor);
+      const title = document.createElementNS(svg.namespaceURI, "title");
+      title.textContent = song.title + " · #" + point.rank + " · " + new Date(point.ts).toLocaleString("ko-KR");
+      dot.appendChild(title); svg.appendChild(dot);
+    });
   });
+
   if (hourly) {
     for (let hour = 0; hour < 24; hour++) {
       const label = document.createElementNS(svg.namespaceURI, "text");
       label.setAttribute("x", left + hour / 23 * (right - left));
       label.setAttribute("y", bottom + 22); label.setAttribute("text-anchor", "middle");
       label.setAttribute("class", "rank-graph-axis-label");
-      label.textContent = String(hour).padStart(2, "0") + "시"; svg.appendChild(label);
+      label.textContent = String(hour).padStart(2, "0") + "시";
+      svg.appendChild(label);
     }
   }
   wrapper.appendChild(svg);
   const legend = document.createElement("div");
   legend.className = "rank-graph-time-labels rank-song-graph-legend";
   legend.style.cssText = "display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:10px 16px;margin-top:12px;padding:8px 12px;";
-  const item = document.createElement("span");
-  item.textContent = "● " + artist;
-  item.style.cssText = "color:" + graphColor + ";white-space:nowrap;";
-  legend.appendChild(item); wrapper.appendChild(legend);
+  artistSongs.forEach(song => {
+    const item = document.createElement("span");
+    item.textContent = "● " + song.title;
+    item.style.cssText = "color:" + paletteForSong(song) + ";white-space:nowrap;";
+    legend.appendChild(item);
+  });
+  wrapper.appendChild(legend);
   return wrapper;
 }
 
