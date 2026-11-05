@@ -3907,6 +3907,7 @@ body.dark-mode .favorite-artist-overview{background:#182333;border-color:#344255
 }
 .rank-graph-wrap:has(.rank-song-graph-legend) .rank-graph {
   height: 500px !important;
+  width: 100% !important;
   max-height: none !important;
 }
 .rank-graph-wrap .rank-song-graph-legend {
