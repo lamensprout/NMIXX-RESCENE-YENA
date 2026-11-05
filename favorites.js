@@ -693,6 +693,37 @@ function createArtistRankGraph(artist, color) {
     svg.appendChild(label);
   });
 
+  const tooltip = document.createElement("div");
+  tooltip.className = "rank-graph-point-tooltip";
+  tooltip.setAttribute("role", "tooltip");
+  tooltip.hidden = true;
+  tooltip.style.cssText = "position:absolute;z-index:5;max-width:min(260px,calc(100% - 16px));padding:10px 12px;border-radius:10px;background:var(--card-bg,#202020);color:var(--text-color,#fff);border:1px solid var(--border-color,#555);box-shadow:0 4px 18px rgba(0,0,0,.22);font-size:13px;line-height:1.5;pointer-events:none;";
+  wrapper.style.position = "relative";
+  let pinnedMarker = null;
+  function showPointInfo(item, point, marker, pin) {
+    tooltip.replaceChildren();
+    const title = document.createElement("strong");
+    title.textContent = item.song.title || "제목 없음";
+    const album = document.createElement("div");
+    album.textContent = "앨범: " + (item.song.album || "앨범 정보 없음");
+    const artistLabel = document.createElement("div");
+    artistLabel.textContent = "아티스트: " + (item.song.artist || artist);
+    const rank = document.createElement("div");
+    rank.textContent = "멜론 TOP100: " + point.rank + "위";
+    tooltip.append(title, album, artistLabel, rank);
+    tooltip.hidden = false;
+    const wrapRect = wrapper.getBoundingClientRect();
+    const markerRect = marker.getBoundingClientRect();
+    const left = markerRect.left - wrapRect.left + markerRect.width / 2;
+    const top = markerRect.top - wrapRect.top;
+    tooltip.style.left = Math.max(8, Math.min(left, wrapper.clientWidth - tooltip.offsetWidth - 8)) + "px";
+    tooltip.style.top = Math.max(8, top - tooltip.offsetHeight - 10) + "px";
+    if (pin) pinnedMarker = marker;
+  }
+  function hidePointInfo(marker) {
+    if (pinnedMarker && pinnedMarker === marker) return;
+    tooltip.hidden = true;
+  }
   series.forEach(function(item) {
     const valid = item.points.filter(function(point) { return point.rank !== null && Number.isFinite(point.rank); });
     if (valid.length > 1) {
@@ -711,12 +742,32 @@ function createArtistRankGraph(artist, color) {
       marker.setAttribute("class", "rank-graph-end");
       marker.setAttribute("cx", String(point.x)); marker.setAttribute("cy", String(yForRank(point.rank)));
       marker.setAttribute("r", "4"); marker.setAttribute("fill", item.color);
-      const title = document.createElementNS(svg.namespaceURI, "title");
-      title.textContent = item.song.title + " · #" + point.rank + " · " +
-        new Date(point.timestamp).toLocaleString("ko-KR");
-      marker.appendChild(title); svg.appendChild(marker);
+      marker.setAttribute("tabindex", "0");
+      marker.setAttribute("role", "button");
+      marker.setAttribute("aria-label", [item.song.title, item.song.album || "앨범 정보 없음", item.song.artist || artistName, point.rank + "위"].join(", "));
+      marker.setAttribute("stroke", "transparent");
+      marker.setAttribute("stroke-width", "12");
+      marker.addEventListener("pointerenter", function() {
+        if (!pinnedMarker) showPointInfo(item, point, marker, false);
+      });
+      marker.addEventListener("pointerleave", function() { hidePointInfo(marker); });
+      marker.addEventListener("focus", function() { showPointInfo(item, point, marker, false); });
+      marker.addEventListener("blur", function() { if (!pinnedMarker) tooltip.hidden = true; });
+      marker.addEventListener("click", function(event) {
+        event.stopPropagation();
+        if (pinnedMarker === marker) {
+          pinnedMarker = null;
+          tooltip.hidden = true;
+        } else {
+          pinnedMarker = null;
+          showPointInfo(item, point, marker, true);
+        }
+      });
+      svg.appendChild(marker);
     });
   });
+  svg.addEventListener("click", function() { pinnedMarker = null; tooltip.hidden = true; });
+  wrapper.appendChild(tooltip);
 
   wrapper.appendChild(svg);
   const legend = document.createElement("div");
