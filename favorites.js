@@ -612,6 +612,56 @@ function getArtistRankInSnapshot(snapshot, artist) {
 function createArtistRankGraph(artist, color) {
   const wrapper = document.createElement("div");
   wrapper.className = "rank-graph-wrap";
+  wrapper.style.position = "relative";
+
+  const tooltip = document.createElement("div");
+  tooltip.className = "rank-graph-tooltip";
+  tooltip.hidden = true;
+  tooltip.setAttribute("role", "tooltip");
+  tooltip.style.cssText = "position:absolute;z-index:10;display:none;box-sizing:border-box;max-width:min(260px,calc(100% - 16px));padding:10px 12px;border:1px solid var(--border-color, rgba(128,128,128,.35));border-radius:10px;background:var(--panel-bg, var(--card-bg, #fff));color:var(--text-color, #222);box-shadow:0 6px 20px rgba(0,0,0,.18);font-size:12px;line-height:1.5;pointer-events:none;white-space:normal;overflow-wrap:anywhere;";
+  wrapper.appendChild(tooltip);
+  let pinnedPoint = null;
+
+  function hideGraphTooltip() {
+    tooltip.hidden = true;
+    tooltip.style.display = "none";
+  }
+
+  function showGraphTooltip(item, point, marker, svg) {
+    tooltip.replaceChildren();
+    const heading = document.createElement("strong");
+    heading.className = "rank-graph-tooltip-title";
+    heading.textContent = item.song.title || "제목 없음";
+    heading.style.cssText = "display:block;margin-bottom:5px;font-size:13px;font-weight:700;";
+    tooltip.appendChild(heading);
+
+    [
+      ["앨범", item.song.album || "정보 없음"],
+      ["아티스트", item.song.artist || artist || "정보 없음"],
+      ["현재 순위", Number.isFinite(Number(point.rank)) ? "#" + point.rank : "정보 없음"]
+    ].forEach(function(entry) {
+      const row = document.createElement("div");
+      row.className = "rank-graph-tooltip-row";
+      row.textContent = entry[0] + " · " + entry[1];
+      tooltip.appendChild(row);
+    });
+
+    tooltip.hidden = false;
+    tooltip.style.display = "block";
+    const graphRect = svg.getBoundingClientRect();
+    const wrapperRect = wrapper.getBoundingClientRect();
+    const x = graphRect.left - wrapperRect.left + (point.x / width) * graphRect.width;
+    const y = graphRect.top - wrapperRect.top + (yForRank(point.rank) / height) * graphRect.height;
+    const halfWidth = Math.max(0, Math.min(130, wrapperRect.width / 2 - 8));
+    const left = Math.max(8 + halfWidth, Math.min(wrapperRect.width - 8 - halfWidth, x));
+    const placeAbove = y > 92;
+    tooltip.style.left = left + "px";
+    tooltip.style.top = Math.max(8, y + (placeAbove ? -8 : 12)) + "px";
+    tooltip.style.transform = placeAbove ? "translate(-50%, -100%)" : "translateX(-50%)";
+    marker.setAttribute("aria-describedby", tooltip.id);
+  }
+
+  tooltip.id = "rank-graph-tooltip-" + normalize(artist);
 
   const cutoff = Date.now() - 7 * 24 * 60 * 60 * 1000;
   let localSnapshots = [];
@@ -711,13 +761,46 @@ function createArtistRankGraph(artist, color) {
       marker.setAttribute("class", "rank-graph-end");
       marker.setAttribute("cx", String(point.x)); marker.setAttribute("cy", String(yForRank(point.rank)));
       marker.setAttribute("r", "4"); marker.setAttribute("fill", item.color);
-      const title = document.createElementNS(svg.namespaceURI, "title");
-      title.textContent = item.song.title + " · #" + point.rank + " · " +
-        new Date(point.timestamp).toLocaleString("ko-KR");
-      marker.appendChild(title); svg.appendChild(marker);
+      marker.setAttribute("tabindex", "0");
+      marker.setAttribute("role", "button");
+      marker.setAttribute("aria-label", (item.song.title || "제목 없음") + ", " +
+        (item.song.album || "앨범 정보 없음") + ", " + (item.song.artist || artist) + ", 현재 순위 " + point.rank + "위");
+      marker.style.cursor = "pointer";
+      marker.addEventListener("mouseenter", function() {
+        if (!pinnedPoint) showGraphTooltip(item, point, marker, svg);
+      });
+      marker.addEventListener("mousemove", function() {
+        if (!pinnedPoint) showGraphTooltip(item, point, marker, svg);
+      });
+      marker.addEventListener("mouseleave", function() {
+        if (!pinnedPoint) hideGraphTooltip();
+      });
+      marker.addEventListener("focus", function() {
+        if (!pinnedPoint) showGraphTooltip(item, point, marker, svg);
+      });
+      marker.addEventListener("blur", function() {
+        if (!pinnedPoint) hideGraphTooltip();
+      });
+      marker.addEventListener("click", function(event) {
+        event.stopPropagation();
+        if (pinnedPoint === marker) {
+          pinnedPoint = null;
+          hideGraphTooltip();
+        } else {
+          pinnedPoint = marker;
+          showGraphTooltip(item, point, marker, svg);
+        }
+      });
+      svg.appendChild(marker);
     });
   });
 
+  wrapper.addEventListener("click", function(event) {
+    if (!event.target.closest(".rank-graph-end")) {
+      pinnedPoint = null;
+      hideGraphTooltip();
+    }
+  });
   wrapper.appendChild(svg);
   const legend = document.createElement("div");
   legend.className = "rank-graph-legend";
