@@ -491,14 +491,22 @@ Deno.serve(async (request: Request) => {
       // This limits storage growth while giving the beta view a useful trend line.
       const slotMs = Math.floor(now.getTime() / HISTORY_INTERVAL_MS) * HISTORY_INTERVAL_MS;
       const snapshotAt = new Date(slotMs).toISOString();
-      const artistRankMap = new Map<string, { artist: string; rank: number; title: string }>();
+      const artistRankMap = new Map<string, { artist: string; rank: number; title: string; songs: Array<{ title: string; rank: number }> }>();
       songs.forEach((song) => {
-        const existingArtist = artistRankMap.get(normalizeTrackPart(song.artist));
-        if (!existingArtist || song.rank < existingArtist.rank) {
-          artistRankMap.set(normalizeTrackPart(song.artist), {
+        const key = normalizeTrackPart(song.artist);
+        const existingArtist = artistRankMap.get(key);
+        if (existingArtist) {
+          existingArtist.songs.push({ title: song.title, rank: Number(song.rank) });
+          if (song.rank < existingArtist.rank) {
+            existingArtist.rank = Number(song.rank);
+            existingArtist.title = song.title;
+          }
+        } else {
+          artistRankMap.set(key, {
             artist: song.artist,
             rank: Number(song.rank),
             title: song.title,
+            songs: [{ title: song.title, rank: Number(song.rank) }],
           });
         }
       });
