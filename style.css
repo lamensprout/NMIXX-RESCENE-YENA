@@ -3886,3 +3886,16 @@ body.dark-mode .rank-graph-period-button.is-active { border-color: #168a35; back
   flex: 0 0 auto;
   text-align: center;
 }
+
+.favorite-artist-overview{margin:12px 0 18px;padding:14px;border:1px solid #d8e0e7;border-radius:12px;background:#f7f9fc;}
+.favorite-artist-legend{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:8px;margin-bottom:14px;padding:4px 8px;}
+.favorite-artist-legend-item{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:650;}
+.favorite-artist-legend-item input[type=color]{width:14px;height:14px;padding:0;border:0;background:transparent;cursor:pointer;}
+.favorite-artist-legend-dot{display:inline-block;width:10px;height:10px;border-radius:50%;flex:0 0 auto;}
+.favorite-artist-summary{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px;margin-bottom:14px;}
+.favorite-artist-summary-card{display:grid;grid-template-columns:10px minmax(0,1fr) auto;align-items:center;gap:6px;padding:9px 10px;border:1px solid #dce3e9;border-radius:9px;background:#fff;font-size:12px;}
+.favorite-artist-summary-card small{color:#718096;font-size:10px;grid-column:2;}.favorite-artist-summary-card strong{grid-column:2/4;font-size:13px;}
+.favorite-artist-overview-chart{overflow-x:auto;border-radius:9px;background:#fff;padding:8px;}.favorite-artist-overview-chart svg{display:block;width:100%;min-width:560px;height:clamp(230px,34vw,320px);}
+.favorite-artist-overview .rank-graph-grid{stroke:#e6ebf0;stroke-dasharray:none;}.favorite-artist-overview .rank-graph-axis-label{fill:#82909b;font-size:10px;}
+body.dark-mode .favorite-artist-overview{background:#182333;border-color:#344255;}body.dark-mode .favorite-artist-summary-card,body.dark-mode .favorite-artist-overview-chart{background:#0e1727;border-color:#344255;}
+@media(max-width:640px){.favorite-artist-overview{padding:8px;}.favorite-artist-legend{justify-content:flex-start;}.favorite-artist-summary-card{padding:7px;}}
