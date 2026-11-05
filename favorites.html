@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>좋아하는 아티스트 | Melonitor</title>
-  <link rel="stylesheet" href="style.css?v=20261102-2">
+  <link rel="stylesheet" href="style.css?v=20261104-1">
   <link rel="stylesheet" href="rank-alert.css?v=7">
 </head>
 <body>
@@ -75,7 +75,7 @@
       <div class="favorites-heading search-heading-row">
         <div>
           <h2 id="favoriteTitle">좋아하는 아티스트</h2>
-          <p>아티스트별 멜론 TOP100에 포함된 곡 수와 최근 24시간 순위 변화를 확인할 수 있어요. 아티스트명을 누르면 해당 아티스트의 곡만 볼 수 있습니다.</p>
+          <p>아티스트별 멜론 TOP100 곡 수와 순위 변화를 확인할 수 있어요. 그래프 기간을 선택하고 아티스트명을 누르면 해당 아티스트의 곡만 볼 수 있습니다.</p>
         </div>
         <div class="chart-refresh-controls"><button id="refreshChartButton" class="refresh-chart-button" type="button" title="멜론 TOP100을 다시 수집합니다">↻ 차트 새로고침</button><span id="chartStatus" class="chart-status" role="status" aria-live="polite" hidden></span></div>
       </div>
@@ -84,6 +84,17 @@
         <label for="rankGraphColor">순위 그래프 색상</label>
         <input id="rankGraphColor" type="color" value="#168a35" aria-label="순위 그래프 색상 선택">
         <span id="rankGraphColorValue">#168A35</span>
+        <label>그래프 기간</label>
+        <div id="rankGraphPeriodButtons" class="rank-graph-period-buttons" role="group" aria-label="순위 그래프 기간">
+          <button type="button" class="rank-graph-period-button is-active" data-hours="24" aria-pressed="true">시간</button>
+          <button type="button" class="rank-graph-period-button" data-hours="168" aria-pressed="false">일간</button>
+          <button type="button" class="rank-graph-period-button" data-hours="720" aria-pressed="false">주간</button>
+          <button type="button" class="rank-graph-period-button" data-hours="2160" aria-pressed="false">월간</button>
+          <button type="button" class="rank-graph-period-button" data-hours="2160" aria-pressed="false">분기</button>
+          <button type="button" class="rank-graph-period-button" data-hours="4320" aria-pressed="false">반기</button>
+          <button type="button" class="rank-graph-period-button" data-hours="8760" aria-pressed="false">연간</button>
+        </div>
+        <input id="rankGraphRange" type="hidden" value="24">
       </div>
       <p id="rankHistoryStatus" class="rank-history-status" role="status" aria-live="polite">순위 기록을 불러오는 중...</p>
 
@@ -118,7 +129,7 @@
   <script src="rank-alert-ui.js?v=3"></script>
   <script src="profile-avatar.js?v=3"></script>
   <script src="chart-popup.js?v=2"></script>
-  <script src="favorites.js?v=20261103-1"></script>
+  <script src="favorites.js?v=20261104-1"></script>
   <script src="theme.js?v=5"></script>
   <script>
     (() => {
