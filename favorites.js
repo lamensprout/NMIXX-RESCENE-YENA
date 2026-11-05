@@ -614,7 +614,25 @@ function getArtistRankInSnapshot(snapshot, artist) {
 function createArtistRankGraph(artist, color) {
   const wrapper=document.createElement("div");wrapper.className="rank-graph-wrap";
   const rangeSelect=document.getElementById("rankGraphRange"),period=String(rangeSelect&&rangeSelect.value||"24"),hourly=period==="24",now=new Date();
-  const artistSongs=songs.filter(song=>song.artist&&(normalize(song.artist)===normalize(artist)||areSameArtist(song.artist,artist))).sort((a,b)=>Number(a.rank)-Number(b.rank));
+  const currentArtistSongs=songs.filter(song=>song.artist&&(normalize(song.artist)===normalize(artist)||areSameArtist(song.artist,artist)));
+  const artistSongs=currentArtistSongs.slice();
+  const historicalSongKeys=new Set(artistSongs.map(song=>normalize(song.title)));
+  rankHistorySnapshots.forEach(snapshot=>{
+    const entries=Array.isArray(snapshot&&snapshot.artist_ranks)?snapshot.artist_ranks:[];
+    entries.forEach(entry=>{
+      if(!entry||!entry.artist||!(normalize(entry.artist)===normalize(artist)||areSameArtist(entry.artist,artist)))return;
+      const historicalSongs=Array.isArray(entry.songs)?entry.songs:[entry];
+      historicalSongs.forEach(historicalSong=>{
+        const title=String(historicalSong&&historicalSong.title||"").trim();
+        const rank=Number(historicalSong&&historicalSong.rank);
+        const key=normalize(title);
+        if(!title||!key||!Number.isFinite(rank)||rank<1||rank>100||historicalSongKeys.has(key))return;
+        historicalSongKeys.add(key);
+        artistSongs.push({title,artist:entry.artist,rank});
+      });
+    });
+  });
+  artistSongs.sort((a,b)=>Number(a.rank)-Number(b.rank));
   if(!artistSongs.length){const empty=document.createElement("p");empty.className="rank-graph-empty";empty.textContent="현재 TOP100에 해당 아티스트 곡이 없어요.";wrapper.appendChild(empty);return wrapper;}
   const width=1000,height=620,left=72,right=984,top=28,bottom=560;
   const y=r=>top+(Math.max(1,Math.min(100,Number(r)||100))-1)/99*(bottom-top);
