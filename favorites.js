@@ -638,8 +638,7 @@ function createArtistRankGraph(artist, color) {
     (Array.isArray(snapshot && snapshot.artist_ranks) ? snapshot.artist_ranks : [])
       .forEach(entry => addArtistSong(entry, entry.rank));
   });
-  const artistSongs = Array.from(artistSongMap.values())
-    .sort((a, b) => Number(a.rank) - Number(b.rank));
+  const artistSongs = Array.from(artistSongMap.values()).sort((a, b) => Number(a.rank) - Number(b.rank));
   if (!artistSongs.length) {
     const empty = document.createElement("p");
     empty.className = "rank-graph-empty";
@@ -679,9 +678,11 @@ function createArtistRankGraph(artist, color) {
     return Number.isFinite(rank) && rank >= 1 && rank <= 100 ? rank : null;
   };
   const graphColor = /^#[0-9a-f]{6}$/i.test(String(color || "")) ? color : "#168a35";
-  const rolling24Start = now.getTime() - 24 * 3600000;
-  const graphStart = hourly ? rolling24Start : now.getTime() - Math.max(1, Math.min(8760, Number(period) || 24)) * 3600000;
-  const graphEnd = now.getTime();
+  const kstOffset = 9 * 3600000;
+  const kstNow = new Date(now.getTime() + kstOffset);
+  const kstMidnight = Date.UTC(kstNow.getUTCFullYear(), kstNow.getUTCMonth(), kstNow.getUTCDate()) - kstOffset;
+  const dayStart = hourly ? kstMidnight : now.getTime() - Math.max(1, Math.min(8760, Number(period) || 24)) * 3600000;
+  const graphEnd = hourly ? kstMidnight + 24 * 3600000 : now.getTime();
   const paletteForSong = song => {
     const idx = artistSongs.indexOf(song);
     return palette[idx % palette.length] || graphColor;
@@ -689,29 +690,15 @@ function createArtistRankGraph(artist, color) {
 
   artistSongs.forEach(song => {
     const points = [];
-    if (hourly) {
-      const latestByHour = new Map();
-      snapshots.forEach(item => {
-        if (item.ts < rolling24Start || item.ts > graphEnd) return;
-        // Chart history is stored in UTC; render and group by Korea Standard Time (UTC+9).
-        const hour = new Date(item.ts + 9 * 3600000).getUTCHours();
-        const prev = latestByHour.get(hour);
-        if (!prev || item.ts > prev.ts) latestByHour.set(hour, item);
-      });
-      for (let hour = 0; hour < 24; hour++) {
-        const item = latestByHour.get(hour);
-        if (!item) continue;
-        const rank = songRankInSnapshot(item.snapshot, song);
-        if (rank === null) continue;
-        points.push({ x: left + hour / 23 * (right - left), rank, ts: item.ts, hour });
-      }
-    } else {
-      snapshots.filter(item => item.ts >= graphStart && item.ts <= graphEnd).forEach(item => {
-        const rank = songRankInSnapshot(item.snapshot, song);
-        if (rank === null) return;
-        points.push({ x: left + (item.ts - graphStart) / (graphEnd - graphStart || 1) * (right - left), rank, ts: item.ts });
-      });
-    }
+    const relevant = snapshots.filter(item => item.ts >= dayStart && item.ts <= now.getTime());
+    relevant.forEach(item => {
+      const rank = songRankInSnapshot(item.snapshot, song);
+      if (rank === null) return;
+      // For the 24-hour view, plot every stored snapshot (not one point per hour).
+      // This preserves the 15-minute history and prevents sparse endpoint-only lines.
+      const x = left + (item.ts - dayStart) / (graphEnd - dayStart || 1) * (right - left);
+      points.push({ x, rank, ts: item.ts });
+    });
     const songColor = paletteForSong(song);
     const line = document.createElementNS(svg.namespaceURI, "polyline");
     line.setAttribute("fill", "none"); line.setAttribute("stroke", songColor);
@@ -732,7 +719,7 @@ function createArtistRankGraph(artist, color) {
   if (hourly) {
     for (let hour = 0; hour < 24; hour++) {
       const label = document.createElementNS(svg.namespaceURI, "text");
-      label.setAttribute("x", left + hour / 23 * (right - left));
+      label.setAttribute("x", left + hour / 24 * (right - left));
       label.setAttribute("y", bottom + 22); label.setAttribute("text-anchor", "middle");
       label.setAttribute("class", "rank-graph-axis-label");
       label.textContent = String(hour).padStart(2, "0") + "시";
@@ -752,7 +739,6 @@ function createArtistRankGraph(artist, color) {
   wrapper.appendChild(legend);
   return wrapper;
 }
-
 function favoriteSongKey(song) {
   return normalize(song && song.title) + "|" + normalize(song && song.artist);
 }
