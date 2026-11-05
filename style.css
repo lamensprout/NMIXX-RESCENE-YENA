@@ -3899,3 +3899,17 @@ body.dark-mode .rank-graph-period-button.is-active { border-color: #168a35; back
 .favorite-artist-overview .rank-graph-grid{stroke:#e6ebf0;stroke-dasharray:none;}.favorite-artist-overview .rank-graph-axis-label{fill:#82909b;font-size:10px;}
 body.dark-mode .favorite-artist-overview{background:#182333;border-color:#344255;}body.dark-mode .favorite-artist-summary-card,body.dark-mode .favorite-artist-overview-chart{background:#0e1727;border-color:#344255;}
 @media(max-width:640px){.favorite-artist-overview{padding:8px;}.favorite-artist-legend{justify-content:flex-start;}.favorite-artist-summary-card{padding:7px;}}
+
+/* Keep the song graph and its legend inside one full-width chart frame. */
+.rank-graph-wrap:has(.rank-song-graph-legend) {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 8px 10px 12px;
+  border: 1px solid #b9a7ff;
+  border-radius: 8px;
+}
+.rank-graph-wrap .rank-song-graph-legend {
+  box-sizing: border-box;
+  width: 100%;
+  margin: 12px 0 0;
+}
