@@ -811,6 +811,11 @@ function getFavoriteSongsWithRecentHistory() {
 }
 
 
+const FAVORITE_ARTIST_GRAPH_COLORS_KEY = "melonitor-favorite-artist-graph-colors-v1";
+const FAVORITE_GRAPH_PALETTE = ["#00D5E8", "#4386F7", "#FFD400", "#F36AA8", "#9B7BFF", "#FF8A3D"];
+function getFavoriteArtistGraphColors() { try { const value=JSON.parse(localStorage.getItem(FAVORITE_ARTIST_GRAPH_COLORS_KEY)||"{}"); return value&&typeof value==="object"?value:{}; } catch (_) { return {}; } }
+function getFavoriteArtistGraphColor(artist,index) { const colors=getFavoriteArtistGraphColors(); const saved=colors[normalize(artist)]; return /^#[0-9a-f]{6}$/i.test(saved||"")?saved.toUpperCase():FAVORITE_GRAPH_PALETTE[index%FAVORITE_GRAPH_PALETTE.length]; }
+
 function renderFavoriteSongExplorer() {
   const explorer = document.getElementById("favoriteSongExplorer");
   const checkboxWrap = document.getElementById("favoriteArtistCheckboxes");
