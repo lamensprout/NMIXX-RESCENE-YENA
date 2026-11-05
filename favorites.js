@@ -816,6 +816,27 @@ const FAVORITE_GRAPH_PALETTE = ["#00D5E8", "#4386F7", "#FFD400", "#F36AA8", "#9B
 function getFavoriteArtistGraphColors() { try { const value=JSON.parse(localStorage.getItem(FAVORITE_ARTIST_GRAPH_COLORS_KEY)||"{}"); return value&&typeof value==="object"?value:{}; } catch (_) { return {}; } }
 function getFavoriteArtistGraphColor(artist,index) { const colors=getFavoriteArtistGraphColors(); const saved=colors[normalize(artist)]; return /^#[0-9a-f]{6}$/i.test(saved||"")?saved.toUpperCase():FAVORITE_GRAPH_PALETTE[index%FAVORITE_GRAPH_PALETTE.length]; }
 
+function renderFavoriteArtistOverview(groups) {
+  const old=favoriteArtists&&favoriteArtists.querySelector(".favorite-artist-overview");if(old)old.remove();
+  if(!favoriteArtists||!groups.length)return;
+  const chosen=groups.filter(g=>selectedSongArtists.has(g.canonical));if(!chosen.length)return;
+  const colors=["#00D5E8","#4386F7","#FFD400","#F36AA8","#9B7BFF","#FF8A3D"];
+  const section=document.createElement("section");section.className="favorite-artist-overview";
+  const legend=document.createElement("div");legend.className="favorite-artist-legend";
+  const summary=document.createElement("div");summary.className="favorite-artist-summary";
+  const svg=document.createElementNS("http://www.w3.org/2000/svg","svg");svg.setAttribute("viewBox","0 0 720 300");svg.setAttribute("role","img");svg.setAttribute("aria-label","좋아하는 아티스트 오늘 시간별 순위");
+  const now=new Date(),start=new Date(now.getFullYear(),now.getMonth(),now.getDate()).getTime(),hourly=new Map();
+  rankHistorySnapshots.forEach(s=>{const ts=Date.parse(s&&s.snapshot_at||"");if(!Number.isFinite(ts)||ts<start||ts>now.getTime()||!Array.isArray(s.artist_ranks))return;const h=new Date(ts).getHours(),prev=hourly.get(h);if(!prev||ts>prev.ts)hourly.set(h,{ts,s});});
+  const y=r=>28+(Math.max(1,Math.min(100,r))-1)/99*205;
+  [1,20,40,60,80,100].forEach(r=>{const line=document.createElementNS(svg.namespaceURI,"line");line.setAttribute("x1","42");line.setAttribute("x2","704");line.setAttribute("y1",y(r));line.setAttribute("y2",y(r));line.setAttribute("class","rank-graph-grid");svg.appendChild(line);const t=document.createElementNS(svg.namespaceURI,"text");t.setAttribute("x","0");t.setAttribute("y",y(r)-2);t.setAttribute("class","rank-graph-axis-label");t.textContent=r+"위";svg.appendChild(t);});
+  chosen.forEach((g,index)=>{const color=getFavoriteArtistGraphColor(g.canonical,index),label=document.createElement("label");label.className="favorite-artist-legend-item";const input=document.createElement("input");input.type="color";input.value=color;input.setAttribute("aria-label",g.canonical+" 그래프 색상");input.addEventListener("change",()=>{const all=getFavoriteArtistGraphColors();all[normalize(g.canonical)]=input.value;try{localStorage.setItem(FAVORITE_ARTIST_GRAPH_COLORS_KEY,JSON.stringify(all));}catch(_){}renderFavoriteArtistOverview(groups);});const dot=document.createElement("span");dot.className="favorite-artist-legend-dot";dot.style.background=color;const name=document.createElement("span");name.textContent=g.canonical;label.append(input,dot,name);legend.appendChild(label);
+  const card=document.createElement("div");card.className="favorite-artist-summary-card";const sd=document.createElement("span");sd.className="favorite-artist-legend-dot";sd.style.background=color;const nm=document.createElement("span");nm.textContent=g.canonical;const small=document.createElement("small");small.textContent="현재 순위";const rank=getCurrentArtistRank(g.canonical),val=document.createElement("strong");val.textContent=rank?rank.rank+"위":"TOP100 기록 없음";card.append(sd,nm,small,val);summary.appendChild(card);
+  const pts=[];for(let h=0;h<24;h++){const entry=hourly.get(h);let rank=entry?getArtistRankInSnapshot(entry.s,g.canonical):null;if(h===now.getHours()){const current=getCurrentArtistRank(g.canonical);if(current&&Number.isFinite(current.rank))rank=current.rank;}if(rank&&Number.isFinite(rank))pts.push({x:42+h/23*662,y:y(rank),rank,h,ts:entry?entry.ts:now.getTime()});}
+  const poly=document.createElementNS(svg.namespaceURI,"polyline");poly.setAttribute("fill","none");poly.setAttribute("stroke",color);poly.setAttribute("stroke-width","2.8");poly.setAttribute("stroke-linecap","round");poly.setAttribute("stroke-linejoin","round");poly.setAttribute("points",pts.map(p=>p.x+","+p.y).join(" "));svg.appendChild(poly);pts.forEach(p=>{const dot=document.createElementNS(svg.namespaceURI,"circle");dot.setAttribute("cx",p.x);dot.setAttribute("cy",p.y);dot.setAttribute("r","3.5");dot.setAttribute("fill",color);svg.appendChild(dot);});});
+  for(let h=0;h<24;h++){const t=document.createElementNS(svg.namespaceURI,"text");t.setAttribute("x",42+h/23*662);t.setAttribute("y","267");t.setAttribute("text-anchor","middle");t.setAttribute("class","rank-graph-axis-label");t.textContent=String(h).padStart(2,"0")+"시";svg.appendChild(t);}
+  const chart=document.createElement("div");chart.className="favorite-artist-overview-chart";chart.appendChild(svg);section.append(legend,summary,chart);favoriteArtists.prepend(section);
+}
+
 function renderFavoriteSongExplorer() {
   const explorer = document.getElementById("favoriteSongExplorer");
   const checkboxWrap = document.getElementById("favoriteArtistCheckboxes");
@@ -1002,6 +1023,7 @@ async function renderFavorites() {
   });
   favoriteArtistNames = groups.map(function(group) { return group.canonical; });
   favoriteArtistNames.forEach(function(artist) { selectedSongArtists.add(artist); });
+  renderFavoriteArtistOverview(groups);
   Array.from(selectedSongArtists).forEach(function(artist) {
     if (!favoriteArtistNames.includes(artist)) selectedSongArtists.delete(artist);
   });
