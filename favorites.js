@@ -679,9 +679,8 @@ function createArtistRankGraph(artist, color) {
     return Number.isFinite(rank) && rank >= 1 && rank <= 100 ? rank : null;
   };
   const graphColor = /^#[0-9a-f]{6}$/i.test(String(color || "")) ? color : "#168a35";
-  const hourlyStart = new Date(now.getTime() - 24 * 3600000);
-  const dayStart = new Date(now.getFullYear(), now.getMonth(), now.getDate()).getTime();
-  const graphStart = hourly ? dayStart : now.getTime() - Math.max(1, Math.min(8760, Number(period) || 24)) * 3600000;
+  const rolling24Start = now.getTime() - 24 * 3600000;
+  const graphStart = hourly ? rolling24Start : now.getTime() - Math.max(1, Math.min(8760, Number(period) || 24)) * 3600000;
   const graphEnd = now.getTime();
   const paletteForSong = song => {
     const idx = artistSongs.indexOf(song);
@@ -693,8 +692,9 @@ function createArtistRankGraph(artist, color) {
     if (hourly) {
       const latestByHour = new Map();
       snapshots.forEach(item => {
-        if (item.ts < dayStart || item.ts > graphEnd) return;
-        const hour = new Date(item.ts).getHours();
+        if (item.ts < rolling24Start || item.ts > graphEnd) return;
+        // Chart history is stored in UTC; render and group by Korea Standard Time (UTC+9).
+        const hour = new Date(item.ts + 9 * 3600000).getUTCHours();
         const prev = latestByHour.get(hour);
         if (!prev || item.ts > prev.ts) latestByHour.set(hour, item);
       });
