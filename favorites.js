@@ -616,7 +616,7 @@ function createArtistRankGraph(artist, color) {
   const rangeSelect=document.getElementById("rankGraphRange"),period=String(rangeSelect&&rangeSelect.value||"24"),hourly=period==="24",now=new Date();
   const artistSongs=songs.filter(song=>song.artist&&(normalize(song.artist)===normalize(artist)||areSameArtist(song.artist,artist))).sort((a,b)=>Number(a.rank)-Number(b.rank));
   if(!artistSongs.length){const empty=document.createElement("p");empty.className="rank-graph-empty";empty.textContent="현재 TOP100에 해당 아티스트 곡이 없어요.";wrapper.appendChild(empty);return wrapper;}
-  const width=720,height=380,left=42,right=704,top=28,bottom=320;
+  const width=720,height=500,left=42,right=704,top=28,bottom=440;
   const y=r=>top+(Math.max(1,Math.min(100,Number(r)||100))-1)/99*(bottom-top);
   const svg=document.createElementNS("http://www.w3.org/2000/svg","svg");svg.setAttribute("class","rank-graph");svg.setAttribute("viewBox","0 0 "+width+" "+height);svg.setAttribute("role","img");svg.setAttribute("aria-label",artist+"의 곡별 순위 그래프");
   [1,10,20,30,40,50,60,70,80,90,100].forEach(rank=>{const yy=y(rank),line=document.createElementNS(svg.namespaceURI,"line");line.setAttribute("x1",left);line.setAttribute("x2",right);line.setAttribute("y1",yy);line.setAttribute("y2",yy);line.setAttribute("class","rank-graph-grid");svg.appendChild(line);const t=document.createElementNS(svg.namespaceURI,"text");t.setAttribute("x","0");t.setAttribute("y",yy-2);t.setAttribute("class","rank-graph-axis-label");t.textContent=rank+"위";svg.appendChild(t);});
