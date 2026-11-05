@@ -810,6 +810,52 @@ function getFavoriteSongsWithRecentHistory() {
   return currentSongs.concat(Array.from(recent.values()));
 }
 
+
+const FAVORITE_ARTIST_GRAPH_COLORS_KEY = "melonitor-favorite-artist-graph-colors-v1";
+const FAVORITE_GRAPH_PALETTE = ["#00D5E8", "#4386F7", "#FFD400", "#F36AA8", "#9B7BFF", "#FF8A3D"];
+function getFavoriteArtistGraphColors() {
+  try { const value = JSON.parse(localStorage.getItem(FAVORITE_ARTIST_GRAPH_COLORS_KEY) || "{}"); return value && typeof value === "object" ? value : {}; } catch (_) { return {}; }
+}
+function getFavoriteArtistGraphColor(artist, index) {
+  const colors = getFavoriteArtistGraphColors();
+  return /^#[0-9a-f]{6}$/i.test(colors[normalize(artist)] || "") ? colors[normalize(artist)].toUpperCase() : FAVORITE_GRAPH_PALETTE[index % FAVORITE_GRAPH_PALETTE.length];
+}
+function renderFavoriteArtistOverview(groups) {
+  if (!favoriteArtists) return;
+  const old = favoriteArtists.querySelector(".favorite-artist-overview");
+  if (old) old.remove();
+  if (!groups.length) return;
+  const overview = document.createElement("section"); overview.className = "favorite-artist-overview";
+  const legend = document.createElement("div"); legend.className = "favorite-artist-legend";
+  const summary = document.createElement("div"); summary.className = "favorite-artist-summary";
+  const artists = groups.filter(group => selectedSongArtists.has(group.canonical));
+  const data = artists.map((group, index) => ({ artist: group.canonical, color: getFavoriteArtistGraphColor(group.canonical,index), rank: getCurrentArtistRank(group.canonical), index }));
+  data.forEach(item => {
+    const label = document.createElement("label"); label.className = "favorite-artist-legend-item";
+    const color = document.createElement("input"); color.type = "color"; color.value = item.color; color.title = item.artist + " 그래프 색상"; color.setAttribute("aria-label", item.artist + " 그래프 색상");
+    color.addEventListener("input", () => { const all=getFavoriteArtistGraphColors(); all[normalize(item.artist)]=color.value.toUpperCase(); try{localStorage.setItem(FAVORITE_ARTIST_GRAPH_COLORS_KEY,JSON.stringify(all));}catch(_){} renderFavoriteArtistOverview(groups); renderFavoritesGraphColorLines(); });
+    const dot=document.createElement("span"); dot.className="favorite-artist-legend-dot"; dot.style.backgroundColor=item.color;
+    const name=document.createElement("span"); name.textContent=item.artist;
+    label.append(color,dot,name); legend.appendChild(label);
+    const stat=document.createElement("div"); stat.className="favorite-artist-summary-card";
+    const sdot=document.createElement("span"); sdot.className="favorite-artist-legend-dot"; sdot.style.backgroundColor=item.color;
+    const title=document.createElement("span"); title.textContent=item.artist;
+    const small=document.createElement("small"); small.textContent="최고 순위";
+    const value=document.createElement("strong"); value.textContent=item.rank ? "최고 "+item.rank.rank+"위" : "기록 없음";
+    stat.append(sdot,title,small,value); summary.appendChild(stat);
+  });
+  const chart=document.createElement("div"); chart.className="favorite-artist-overview-chart";
+  const svg=document.createElementNS("http://www.w3.org/2000/svg","svg"); svg.setAttribute("viewBox","0 0 720 300"); svg.setAttribute("role","img"); svg.setAttribute("aria-label","좋아하는 아티스트 시간별 최고 순위 비교 그래프");
+  const y=r=>26+(Math.max(1,Math.min(100,r))-1)/99*220;
+  [1,20,40,60,80,100].forEach(rank=>{const line=document.createElementNS(svg.namespaceURI,"line");line.setAttribute("x1","42");line.setAttribute("x2","704");line.setAttribute("y1",y(rank));line.setAttribute("y2",y(rank));line.setAttribute("class","rank-graph-grid");svg.appendChild(line);const t=document.createElementNS(svg.namespaceURI,"text");t.setAttribute("x","0");t.setAttribute("y",y(rank)-2);t.setAttribute("class","rank-graph-axis-label");t.textContent=rank+"위";svg.appendChild(t);});
+  const now=new Date(), dayStart=new Date(now.getFullYear(),now.getMonth(),now.getDate()).getTime(), hourly=new Map();
+  rankHistorySnapshots.forEach(snapshot=>{const ts=Date.parse(snapshot.snapshot_at||"");if(!Number.isFinite(ts)||ts<dayStart||ts>now.getTime())return;const h=new Date(ts).getHours();const old=hourly.get(h);if(!old||ts>old.ts)hourly.set(h,{ts,snapshot});});
+  data.forEach(item=>{const points=[];for(let h=0;h<24;h++){const entry=hourly.get(h),rank=entry?getArtistRankInSnapshot(entry.snapshot,item.artist):null;if(rank&&Number.isFinite(rank))points.push({x:42+h/23*662,y:y(rank),rank,h,ts:entry.ts});}const poly=document.createElementNS(svg.namespaceURI,"polyline");poly.setAttribute("fill","none");poly.setAttribute("stroke",item.color);poly.setAttribute("stroke-width","2.8");poly.setAttribute("stroke-linecap","round");poly.setAttribute("stroke-linejoin","round");poly.setAttribute("points",points.map(p=>p.x+","+p.y).join(" "));poly.dataset.artistKey=normalize(item.artist);poly.classList.add("favorite-overview-line");svg.appendChild(poly);points.forEach(p=>{const circle=document.createElementNS(svg.namespaceURI,"circle");circle.setAttribute("cx",p.x);circle.setAttribute("cy",p.y);circle.setAttribute("r","3.5");circle.setAttribute("fill",item.color);circle.classList.add("favorite-overview-point");circle.dataset.artistKey=normalize(item.artist);svg.appendChild(circle);});});
+  for(let h=0;h<24;h++){const t=document.createElementNS(svg.namespaceURI,"text");t.setAttribute("x",42+h/23*662);t.setAttribute("y","267");t.setAttribute("text-anchor","middle");t.setAttribute("class","rank-graph-axis-label");t.textContent=String(h).padStart(2,"0")+"시";svg.appendChild(t);}
+  chart.appendChild(svg); overview.append(legend,summary,chart); favoriteArtists.prepend(overview);
+}
+function renderFavoritesGraphColorLines(){ document.querySelectorAll(".favorite-overview-line,.favorite-overview-point").forEach(el=>{const colors=getFavoriteArtistGraphColors();const artist=el.dataset.artistKey;const color=colors[artist];if(/^#[0-9a-f]{6}$/i.test(color||""))el.setAttribute(el.tagName.toLowerCase()==="polyline"?"stroke":"fill",color);}); }
+
 function renderFavoriteSongExplorer() {
   const explorer = document.getElementById("favoriteSongExplorer");
   const checkboxWrap = document.getElementById("favoriteArtistCheckboxes");
@@ -995,6 +1041,7 @@ async function renderFavorites() {
     return a.canonical.localeCompare(b.canonical, "ko");
   });
   favoriteArtistNames = groups.map(function(group) { return group.canonical; });
+  renderFavoriteArtistOverview(groups);
   favoriteArtistNames.forEach(function(artist) { selectedSongArtists.add(artist); });
   Array.from(selectedSongArtists).forEach(function(artist) {
     if (!favoriteArtistNames.includes(artist)) selectedSongArtists.delete(artist);
@@ -1164,7 +1211,7 @@ async function renderFavorites() {
     graphHeader.appendChild(graphTitle);
     graphHeader.appendChild(graphUnit);
     card.appendChild(graphHeader);
-    card.appendChild(createArtistRankGraph(artist, color));
+    card.appendChild(createArtistRankGraph(artist, getFavoriteArtistGraphColor(artist, groups.indexOf(group))));
 
     const footer = document.createElement("div");
     footer.className = "favorite-rank-card-footer";
