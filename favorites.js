@@ -1066,9 +1066,9 @@ async function renderFavorites() {
     const graphHeader = document.createElement("div");
     graphHeader.className = "rank-graph-heading";
     const graphTitle = document.createElement("span");
-    graphTitle.textContent = "아티스트 최고 순위";
+    graphTitle.textContent = "곡별 순위";
     const graphUnit = document.createElement("span");
-    graphUnit.textContent = "1위가 위쪽";
+    graphUnit.textContent = "곡마다 다른 선";
     graphHeader.appendChild(graphTitle);
     graphHeader.appendChild(graphUnit);
     card.appendChild(graphHeader);
