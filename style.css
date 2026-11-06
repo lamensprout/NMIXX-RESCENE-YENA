@@ -3909,7 +3909,7 @@ body.dark-mode .favorite-artist-overview{background:#182333;border-color:#344255
   display: block !important;
   box-sizing: border-box !important;
   width: 100% !important;
-  height: clamp(280px, 36vw, 420px) !important;
+  height: clamp(360px, 58vw, 520px) !important;
   max-height: none !important;
   overflow: visible !important;
 }
