@@ -700,10 +700,13 @@ function createArtistRankGraph(artist, color) {
     const popupWidth = 210;
     const scaleX = svgRect.width / width;
     const scaleY = svgRect.height / height;
-    let left = svgRect.left - wrapperRect.left + point.x * scaleX - popupWidth / 2;
-    let top = svgRect.top - wrapperRect.top + point.y * scaleY - 108;
+    const pointX = svgRect.left - wrapperRect.left + point.x * scaleX;
+    const pointY = svgRect.top - wrapperRect.top + y(point.rank) * scaleY;
+    let left = pointX + 14;
+    let top = pointY - 42;
+    if (left + popupWidth > wrapper.clientWidth - 8) left = pointX - popupWidth - 14;
     left = Math.max(8, Math.min(left, wrapper.clientWidth - popupWidth - 8));
-    top = Math.max(8, top);
+    top = Math.max(8, Math.min(top, wrapper.clientHeight - infoPopup.offsetHeight - 8));
     infoPopup.style.left = left + "px";
     infoPopup.style.top = top + "px";
     infoPopup.setAttribute("role", "status");
@@ -820,6 +823,8 @@ function createArtistRankGraph(artist, color) {
       dot.setAttribute("role", "button");
       const showPointInfo = () => showSongInfo(song, point, dot);
       dot.classList.add("rank-graph-point");
+      dot.addEventListener("mouseenter", () => showPointInfo());
+      dot.addEventListener("focus", () => showPointInfo());
       dot.addEventListener("click", event => {
         event.stopPropagation();
         showPointInfo();
@@ -834,7 +839,7 @@ function createArtistRankGraph(artist, color) {
   if (hourly) {
     for (let hour = 0; hour < 24; hour++) {
       const label = document.createElementNS(svg.namespaceURI, "text");
-      label.setAttribute("x", left + hour / 24 * (right - left));
+      label.setAttribute("x", left + hour / 23 * (right - left));
       label.setAttribute("y", bottom + 22); label.setAttribute("text-anchor", "middle");
       label.setAttribute("class", "rank-graph-axis-label");
       label.textContent = String(hour).padStart(2, "0") + "시";
