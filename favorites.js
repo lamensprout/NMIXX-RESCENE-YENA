@@ -824,7 +824,9 @@ function createArtistRankGraph(artist, color) {
       const showPointInfo = () => showSongInfo(song, point, dot);
       dot.classList.add("rank-graph-point");
       dot.addEventListener("mouseenter", () => showPointInfo());
+      dot.addEventListener("mouseleave", () => closeSongInfo());
       dot.addEventListener("focus", () => showPointInfo());
+      dot.addEventListener("blur", () => closeSongInfo());
       dot.addEventListener("click", event => {
         event.stopPropagation();
         showPointInfo();
