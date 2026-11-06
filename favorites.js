@@ -1163,7 +1163,7 @@ async function renderFavorites() {
     card.className = "favorite-rank-card";
     card.draggable = true;
     card.dataset.artistKey = normalize(artist);
-    card.title = "드래그해서 아티스트 순서를 바꿀 수 있어요.";
+
     card.addEventListener("dragstart", function(event) {
       draggedFavoriteArtist = card.dataset.artistKey;
       card.classList.add("is-dragging");
