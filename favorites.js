@@ -688,7 +688,7 @@ function createArtistRankGraph(artist, color) {
     const trophy = document.createElement("span");
     trophy.textContent = "🏆";
     const rankText = document.createElement("strong");
-    rankText.textContent = "순위: " + point.rank위;
+    rankText.textContent = "순위: " + point.rank + "위";
     const timeText = document.createElement("small");
     timeText.textContent = new Date(point.ts).toLocaleString("ko-KR", { hour12: false });
     footer.append(trophy, rankText, timeText);
