@@ -707,11 +707,21 @@ function createArtistRankGraph(artist, color) {
     relevant.forEach(item => {
       const rank = songRankInSnapshot(item.snapshot, song);
       if (rank === null) return;
-      // For the 24-hour view, plot every stored snapshot (not one point per hour).
-      // This preserves the 15-minute history and prevents sparse endpoint-only lines.
+      // Plot each real stored snapshot.
       const x = left + (item.ts - dayStart) / (graphEnd - dayStart || 1) * (right - left);
       points.push({ x, rank, ts: item.ts });
     });
+    // Add the live TOP100 rank as the final real observation. This connects the
+    // latest saved snapshot to the current chart instead of leaving isolated dots.
+    const currentRank = Number(song.rank);
+    if (Number.isFinite(currentRank) && currentRank >= 1 && currentRank <= 100 &&
+        now.getTime() >= dayStart && now.getTime() <= graphEnd) {
+      const latestPoint = points[points.length - 1];
+      if (!latestPoint || now.getTime() - latestPoint.ts > 60 * 1000) {
+        const x = left + (now.getTime() - dayStart) / (graphEnd - dayStart || 1) * (right - left);
+        points.push({ x, rank: currentRank, ts: now.getTime() });
+      }
+    }
     const songColor = paletteForSong(song);
     const line = document.createElementNS(svg.namespaceURI, "polyline");
     line.setAttribute("fill", "none"); line.setAttribute("stroke", songColor);
