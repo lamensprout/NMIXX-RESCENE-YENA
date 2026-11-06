@@ -658,6 +658,59 @@ function createArtistRankGraph(artist, color) {
     return wrapper;
   }
 
+  const infoPopup = document.createElement("div");
+  infoPopup.className = "rank-song-info-popup";
+  infoPopup.hidden = true;
+  wrapper.appendChild(infoPopup);
+  const closeSongInfo = () => {
+    infoPopup.hidden = true;
+    infoPopup.replaceChildren();
+  };
+  const showSongInfo = (song, point, dot) => {
+    infoPopup.replaceChildren();
+    const header = document.createElement("div");
+    header.className = "rank-song-info-header";
+    const artistBadge = document.createElement("span");
+    artistBadge.className = "rank-song-info-artist";
+    artistBadge.textContent = song.artist || artist;
+    const rankLabel = document.createElement("span");
+    rankLabel.className = "rank-song-info-current";
+    rankLabel.textContent = String(point.rank) + "위";
+    header.append(artistBadge, rankLabel);
+    const songTitle = document.createElement("strong");
+    songTitle.className = "rank-song-info-title";
+    songTitle.textContent = song.title || "곡 정보 없음";
+    const album = document.createElement("div");
+    album.className = "rank-song-info-album";
+    album.textContent = song.album || "앨범 정보 없음";
+    const footer = document.createElement("div");
+    footer.className = "rank-song-info-footer";
+    const trophy = document.createElement("span");
+    trophy.textContent = "🏆";
+    const rankText = document.createElement("strong");
+    rankText.textContent = "순위: " + point.rank위;
+    const timeText = document.createElement("small");
+    timeText.textContent = new Date(point.ts).toLocaleString("ko-KR", { hour12: false });
+    footer.append(trophy, rankText, timeText);
+    infoPopup.append(header, songTitle, album, footer);
+    infoPopup.hidden = false;
+    const svgRect = svg.getBoundingClientRect();
+    const wrapperRect = wrapper.getBoundingClientRect();
+    const popupWidth = 210;
+    const scaleX = svgRect.width / width;
+    const scaleY = svgRect.height / height;
+    let left = svgRect.left - wrapperRect.left + point.x * scaleX - popupWidth / 2;
+    let top = svgRect.top - wrapperRect.top + point.y * scaleY - 108;
+    left = Math.max(8, Math.min(left, wrapper.clientWidth - popupWidth - 8));
+    top = Math.max(8, top);
+    infoPopup.style.left = left + "px";
+    infoPopup.style.top = top + "px";
+    infoPopup.setAttribute("role", "status");
+    infoPopup.setAttribute("aria-live", "polite");
+    wrapper.querySelectorAll(".rank-graph-point.is-selected").forEach(item => item.classList.remove("is-selected"));
+    dot.classList.add("is-selected");
+  };
+
   const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
   svg.setAttribute("class", "rank-graph");
   svg.setAttribute("viewBox", "0 0 " + width + " " + height);
@@ -764,14 +817,14 @@ function createArtistRankGraph(artist, color) {
       dot.style.cursor = "pointer";
       dot.setAttribute("tabindex", "0");
       dot.setAttribute("role", "button");
-      const showSongInfo = () => {
-        const album = song.album || "앨범 정보 없음";
-        const time = new Date(point.ts).toLocaleString("ko-KR", { hour12: false });
-        window.alert("곡 제목: " + song.title + "\n앨범명: " + album + "\n아티스트명: " + song.artist + "\n당시 순위: " + point.rank + "위\n기록 시각: " + time);
-      };
-      dot.addEventListener("click", showSongInfo);
+      const showPointInfo = () => showSongInfo(song, point, dot);
+      dot.classList.add("rank-graph-point");
+      dot.addEventListener("click", event => {
+        event.stopPropagation();
+        showPointInfo();
+      });
       dot.addEventListener("keydown", event => {
-        if (event.key === "Enter" || event.key === " ") { event.preventDefault(); showSongInfo(); }
+        if (event.key === "Enter" || event.key === " ") { event.preventDefault(); showPointInfo(); }
       });
       svg.appendChild(dot);
     });
