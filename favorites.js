@@ -939,7 +939,6 @@ function renderFavoriteSongList() {
     colorControl.type = "color";
     colorControl.className = "favorite-chart-song-color";
     colorControl.value = colors[key] || "#168a35";
-    colorControl.title = "이 곡의 색상 변경";
     colorControl.setAttribute("aria-label", (song.title || "곡") + " 색상 선택");
     function persistSongColor() {
       const next = getFavoriteSongColors();
@@ -1037,7 +1036,6 @@ async function renderFavorites() {
     card.className = "favorite-rank-card";
     card.draggable = true;
     card.dataset.artistKey = normalize(artist);
-    card.title = "드래그해서 아티스트 순서를 바꿀 수 있어요.";
     card.addEventListener("dragstart", function(event) {
       draggedFavoriteArtist = card.dataset.artistKey;
       card.classList.add("is-dragging");
@@ -1078,7 +1076,6 @@ async function renderFavorites() {
     open.className = "favorite-rank-name";
     open.type = "button";
     open.textContent = artist;
-    open.title = artist + "의 멜론 TOP100 곡만 보기";
     open.addEventListener("click", function() {
       window.location.href = "/?artist=" + encodeURIComponent(artist);
     });
@@ -1184,7 +1181,6 @@ async function renderFavorites() {
     remove.type = "button";
     remove.textContent = "×";
     remove.setAttribute("aria-label", artist + " 즐겨찾기 삭제");
-    remove.title = "즐겨찾기에서 삭제";
     remove.addEventListener("click", async function() {
       remove.disabled = true;
       const results = await Promise.all(group.storedNames.map(function(name) {
