@@ -631,6 +631,7 @@ function createArtistRankGraph(artist, color) {
     artistSongMap.set(key, {
       title: entry.title,
       artist: songArtist,
+      album: entry.album || (existing && existing.album) || "",
       rank: Number.isFinite(currentRank) ? currentRank : (existing ? existing.rank : 101)
     });
   };
@@ -704,22 +705,46 @@ function createArtistRankGraph(artist, color) {
   artistSongs.forEach(song => {
     const points = [];
     const relevant = snapshots.filter(item => item.ts >= dayStart && item.ts <= now.getTime());
-    relevant.forEach(item => {
-      const rank = songRankInSnapshot(item.snapshot, song);
-      if (rank === null) return;
-      // Plot each real stored snapshot.
-      const x = left + (item.ts - dayStart) / (graphEnd - dayStart || 1) * (right - left);
-      points.push({ x, rank, ts: item.ts });
-    });
-    // Add the live TOP100 rank as the final real observation. This connects the
-    // latest saved snapshot to the current chart instead of leaving isolated dots.
-    const currentRank = Number(song.rank);
-    if (Number.isFinite(currentRank) && currentRank >= 1 && currentRank <= 100 &&
-        now.getTime() >= dayStart && now.getTime() <= graphEnd) {
-      const latestPoint = points[points.length - 1];
-      if (!latestPoint || now.getTime() - latestPoint.ts > 60 * 1000) {
-        const x = left + (now.getTime() - dayStart) / (graphEnd - dayStart || 1) * (right - left);
-        points.push({ x, rank: currentRank, ts: now.getTime() });
+    if (hourly) {
+      // Keep the latest real snapshot in each KST hour so 16시 and 17시
+      // become separate points once both hours have a record.
+      const byHour = new Map();
+      relevant.forEach(item => {
+        const kst = new Date(item.ts + kstOffset);
+        const hour = kst.getUTCHours();
+        const rank = songRankInSnapshot(item.snapshot, song);
+        if (rank === null) return;
+        const prior = byHour.get(hour);
+        if (!prior || item.ts > prior.ts) byHour.set(hour, { rank, ts: item.ts, hour });
+      });
+      byHour.forEach(point => {
+        point.x = left + point.hour / 23 * (right - left);
+        points.push(point);
+      });
+      const currentRank = Number(song.rank);
+      const currentHour = kstNow.getUTCHours();
+      if (Number.isFinite(currentRank) && currentRank >= 1 && currentRank <= 100) {
+        const prior = byHour.get(currentHour);
+        if (!prior || now.getTime() > prior.ts) {
+          points.push({ x: left + currentHour / 23 * (right - left), rank: currentRank, ts: now.getTime(), hour: currentHour });
+        }
+      }
+      points.sort((a, b) => a.ts - b.ts);
+    } else {
+      relevant.forEach(item => {
+        const rank = songRankInSnapshot(item.snapshot, song);
+        if (rank === null) return;
+        const x = left + (item.ts - dayStart) / (graphEnd - dayStart || 1) * (right - left);
+        points.push({ x, rank, ts: item.ts });
+      });
+      const currentRank = Number(song.rank);
+      if (Number.isFinite(currentRank) && currentRank >= 1 && currentRank <= 100 &&
+          now.getTime() >= dayStart && now.getTime() <= graphEnd) {
+        const latestPoint = points[points.length - 1];
+        if (!latestPoint || now.getTime() - latestPoint.ts > 60 * 1000) {
+          const x = left + (now.getTime() - dayStart) / (graphEnd - dayStart || 1) * (right - left);
+          points.push({ x, rank: currentRank, ts: now.getTime() });
+        }
       }
     }
     const songColor = paletteForSong(song);
@@ -735,7 +760,20 @@ function createArtistRankGraph(artist, color) {
       dot.setAttribute("r", "3"); dot.setAttribute("fill", songColor);
       const title = document.createElementNS(svg.namespaceURI, "title");
       title.textContent = song.title + " · #" + point.rank + " · " + new Date(point.ts).toLocaleString("ko-KR");
-      dot.appendChild(title); svg.appendChild(dot);
+      dot.appendChild(title);
+      dot.style.cursor = "pointer";
+      dot.setAttribute("tabindex", "0");
+      dot.setAttribute("role", "button");
+      const showSongInfo = () => {
+        const album = song.album || "앨범 정보 없음";
+        const time = new Date(point.ts).toLocaleString("ko-KR", { hour12: false });
+        window.alert("곡 제목: " + song.title + "\n앨범명: " + album + "\n아티스트명: " + song.artist + "\n당시 순위: " + point.rank + "위\n기록 시각: " + time);
+      };
+      dot.addEventListener("click", showSongInfo);
+      dot.addEventListener("keydown", event => {
+        if (event.key === "Enter" || event.key === " ") { event.preventDefault(); showSongInfo(); }
+      });
+      svg.appendChild(dot);
     });
   });
 
