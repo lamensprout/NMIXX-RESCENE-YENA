@@ -668,18 +668,18 @@ function createArtistRankGraph(artist, color) {
   };
   const showSongInfo = (song, point, dot) => {
     infoPopup.replaceChildren();
-    const header = document.createElement("div");
-    header.className = "rank-song-info-header";
-    const artistBadge = document.createElement("span");
-    artistBadge.className = "rank-song-info-artist";
-    artistBadge.textContent = song.artist || artist;
-    const rankLabel = document.createElement("span");
-    rankLabel.className = "rank-song-info-current";
-    rankLabel.textContent = String(point.rank) + "위";
-    header.append(artistBadge, rankLabel);
     const songTitle = document.createElement("strong");
     songTitle.className = "rank-song-info-title";
     songTitle.textContent = song.title || "곡 정보 없음";
+    const header = document.createElement("div");
+    header.className = "rank-song-info-header";
+    const artistName = document.createElement("span");
+    artistName.className = "rank-song-info-artist";
+    artistName.textContent = song.artist || artist;
+    const rankLabel = document.createElement("span");
+    rankLabel.className = "rank-song-info-current";
+    rankLabel.textContent = String(point.rank) + "위";
+    header.append(artistName, rankLabel);
     const album = document.createElement("div");
     album.className = "rank-song-info-album";
     album.textContent = song.album || "앨범 정보 없음";
@@ -690,7 +690,8 @@ function createArtistRankGraph(artist, color) {
     const rankText = document.createElement("strong");
     rankText.textContent = "순위: " + point.rank + "위";
     const timeText = document.createElement("small");
-    timeText.textContent = new Date(point.ts).toLocaleString("ko-KR", { hour12: false });
+    const kstHour = new Date(point.ts + 9 * 60 * 60 * 1000).getUTCHours();
+    timeText.textContent = String(kstHour).padStart(2, "0") + "시 기준";
     footer.append(trophy, rankText, timeText);
     infoPopup.append(header, songTitle, album, footer);
     infoPopup.hidden = false;
