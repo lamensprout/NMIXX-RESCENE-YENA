@@ -815,9 +815,6 @@ function createArtistRankGraph(artist, color) {
       const dot = document.createElementNS(svg.namespaceURI, "circle");
       dot.setAttribute("cx", point.x); dot.setAttribute("cy", y(point.rank));
       dot.setAttribute("r", "3"); dot.setAttribute("fill", songColor);
-      const title = document.createElementNS(svg.namespaceURI, "title");
-      title.textContent = song.title + " · #" + point.rank + " · " + new Date(point.ts).toLocaleString("ko-KR");
-      dot.appendChild(title);
       dot.style.cursor = "pointer";
       dot.setAttribute("tabindex", "0");
       dot.setAttribute("role", "button");
