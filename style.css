@@ -3929,3 +3929,85 @@ body.dark-mode .favorite-artist-overview{background:#182333;border-color:#344255
   width: 100%;
   margin: 12px 0 0;
 }
+
+
+/* Song-rank point details popup, styled like the supplied reference. */
+.rank-graph-wrap { position: relative; }
+.rank-song-info-popup {
+  position: absolute;
+  z-index: 20;
+  box-sizing: border-box;
+  width: 210px;
+  max-width: calc(100% - 16px);
+  padding: 10px 12px;
+  border: 1px solid #34465f;
+  border-radius: 13px;
+  background: #111d31;
+  color: #eef4ff;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, .38);
+  pointer-events: none;
+}
+.rank-song-info-popup[hidden] { display: none !important; }
+.rank-song-info-header {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  min-width: 0;
+  margin-bottom: 4px;
+}
+.rank-song-info-artist {
+  display: inline-block;
+  max-width: 120px;
+  overflow: hidden;
+  padding: 2px 7px;
+  border-radius: 10px;
+  background: #347ff0;
+  color: #fff;
+  font-size: 10px;
+  font-weight: 800;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.rank-song-info-current {
+  color: #aebbd0;
+  font-size: 10px;
+  white-space: nowrap;
+}
+.rank-song-info-title {
+  display: block;
+  overflow: hidden;
+  color: #f7f9ff;
+  font-size: 13px;
+  font-weight: 800;
+  line-height: 1.35;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.rank-song-info-album {
+  overflow: hidden;
+  margin-top: 2px;
+  color: #b4c0d2;
+  font-size: 10px;
+  line-height: 1.4;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.rank-song-info-footer {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 6px;
+  color: #f4c94d;
+  font-size: 10px;
+}
+.rank-song-info-footer strong { color: #f0f5ff; font-size: 11px; }
+.rank-song-info-footer small {
+  overflow: hidden;
+  margin-left: auto;
+  color: #8999b1;
+  font-size: 9px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.rank-graph-point { cursor: pointer; }
+.rank-graph-point.is-selected { stroke: #fff; stroke-width: 1.5; }
