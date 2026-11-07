@@ -1471,7 +1471,7 @@ body.dark-mode .chart-status { color: #9eabb5; }
     margin-right: -16px;
   }
   .song {
-    grid-template-columns: 64px 68px 56px minmax(0, 1fr);
+    grid-template-columns: 64px 68px 60px 56px minmax(0, 1fr);
     gap: 0;
     padding: 18px 0;
   }
@@ -3556,7 +3556,7 @@ body:not(.dark-mode) .rank-alert-trigger[aria-expanded="true"] {
 /* Keep only the favorite-artist chart rows aligned like the home chart on mobile. */
 @media (max-width: 640px) {
   .favorite-chart-song {
-    grid-template-columns: 64px 68px 56px minmax(0, 1fr);
+    grid-template-columns: 64px 68px 60px 56px minmax(0, 1fr);
     gap: 0;
     padding: 18px 0;
     border: 0;
@@ -3619,7 +3619,7 @@ body:not(.dark-mode) .rank-alert-trigger[aria-expanded="true"] {
   .favorite-card-song-list { display: block; }
   .favorite-card-song-list li {
     display: grid;
-    grid-template-columns: 64px 68px 56px minmax(0, 1fr);
+    grid-template-columns: 64px 68px 60px 56px minmax(0, 1fr);
     gap: 0;
     align-items: center;
     min-height: 56px;
@@ -4078,7 +4078,7 @@ body.dark-mode .favorite-artist-overview{background:#182333;border-color:#344255
 /* Favorite artist TOP100: align rank, movement, and album-art columns consistently. */
 .favorite-card-song-list li {
   display: grid;
-  grid-template-columns: 64px 68px 56px minmax(0, 1fr);
+  grid-template-columns: 64px 68px 60px 56px minmax(0, 1fr);
   align-items: center;
   gap: 0;
 }
@@ -4107,7 +4107,7 @@ body.dark-mode .favorite-artist-overview{background:#182333;border-color:#344255
 
 /* Favorite song tables: fixed rank, movement, and album-art columns on desktop and mobile. */
 .favorite-chart-song {
-  grid-template-columns: 64px 68px 56px minmax(0, 1fr);
+  grid-template-columns: 64px 68px 60px 56px minmax(0, 1fr);
   gap: 0;
 }
 .favorite-chart-song .rank {
@@ -4133,7 +4133,7 @@ body.dark-mode .favorite-artist-overview{background:#182333;border-color:#344255
 }
 @media (max-width: 640px) {
   .favorite-chart-song {
-    grid-template-columns: 64px 68px 56px minmax(0, 1fr);
+    grid-template-columns: 64px 68px 60px 56px minmax(0, 1fr);
     gap: 0;
     padding: 10px 8px;
   }
