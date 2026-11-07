@@ -1002,9 +1002,6 @@ async function loadChartData(manual = false, silent = false) {
       renderFavoriteSearchResults();
     }
 
-    await loadPopularSearches();
-    await renderFavoriteArtists();
-
     if (input.value.trim()) {
       search(input.value);
     } else {
@@ -1012,15 +1009,20 @@ async function loadChartData(manual = false, silent = false) {
       results.innerHTML = "";
     }
 
-    // 사용자가 새로고침 버튼을 눌렀을 때는 성공 팝업을 표시합니다.
-    if (!silent) {
-      if (manual && window.MelonitorChartPopup) {
+    // TOP100 화면 반영이 끝난 직후 완료 팝업을 표시하고 개인 패널은 이어서 갱신합니다.
+    if (!silent && manual) {
+      if (window.MelonitorChartPopup) {
         window.MelonitorChartPopup.set("차트 갱신에 성공했습니다!", 2600, false, "success");
-      } else if (manual) {
-        setChartStatus("차트 갱신에 성공했습니다!", 2600);
       } else {
-        setChartStatus("");
+        setChartStatus("차트 갱신에 성공했습니다!", 2600);
       }
+    }
+
+    await loadPopularSearches();
+    await renderFavoriteArtists();
+
+    if (!silent && !manual) {
+      setChartStatus("");
     }
   } catch (error) {
     console.error("차트 갱신 실패:", error);
