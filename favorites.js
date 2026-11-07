@@ -722,9 +722,7 @@ function createArtistRankGraph(artist, color) {
     // fewest other graph points, so the popup doesn't hide nearby rank dots.
     const candidates = [
       { left: pointX + gap, top: pointY - popupHeight / 2 },
-      { left: pointX - popupWidth - gap, top: pointY - popupHeight / 2 },
-      { left: pointX - popupWidth / 2, top: pointY - popupHeight - gap },
-      { left: pointX - popupWidth / 2, top: pointY + gap }
+      { left: pointX - popupWidth - gap, top: pointY - popupHeight / 2 }
     ].map(candidate => ({
       left: clamp(candidate.left, minLeft, maxLeft),
       top: clamp(candidate.top, minTop, maxTop)
