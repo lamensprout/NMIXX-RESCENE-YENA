@@ -502,6 +502,37 @@ function renderFavoriteSearchResults() {
   favoriteInput.setAttribute("aria-expanded", "true");
 }
 
+function saveFavoriteChartSnapshot() {
+  if (!Array.isArray(songs) || songs.length !== 100) return;
+  const snapshotSongs = songs.map(function(song) {
+    return {
+      title: String(song.title || ""),
+      artist: String(song.artist || ""),
+      rank: Number(song.rank) || 0,
+      album: String(song.album || ""),
+      album_image: String(song.album_image || "")
+    };
+  }).filter(function(song) { return song.title && song.artist && song.rank > 0; });
+  if (!snapshotSongs.length) return;
+  const fingerprint = snapshotSongs.map(favoriteSongKey).join(";");
+  let snapshots = [];
+  try {
+    const saved = JSON.parse(localStorage.getItem(FAVORITE_SONG_HISTORY_KEY) || "[]");
+    if (Array.isArray(saved)) snapshots = saved.filter(function(snapshot) {
+      return snapshot && Array.isArray(snapshot.songs) && Number(snapshot.capturedAt) > Date.now() - 7 * 24 * 60 * 60 * 1000;
+    });
+  } catch (_) {}
+  const latest = snapshots.length ? snapshots[snapshots.length - 1] : null;
+  const latestFingerprint = latest ? latest.songs.map(favoriteSongKey).join(";") : "";
+  if (fingerprint === latestFingerprint) return;
+  snapshots.push({ capturedAt: Date.now(), songs: snapshotSongs });
+  try {
+    localStorage.setItem(FAVORITE_SONG_HISTORY_KEY, JSON.stringify(snapshots.slice(-48)));
+  } catch (error) {
+    console.warn("차트 순위 기록을 저장하지 못했어요:", error);
+  }
+}
+
 async function loadArtistCatalog() {
   let data = null;
   try {
@@ -527,6 +558,7 @@ async function loadArtistCatalog() {
   }
   songs = data && Array.isArray(data.songs) ? canonicalizeChartSongs(data.songs) : [];
   buildMelonArtistCatalog();
+  saveFavoriteChartSnapshot();
 }
 
 function updateAccessView() {
