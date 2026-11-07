@@ -4097,11 +4097,9 @@ body.dark-mode .favorite-artist-overview{background:#182333;border-color:#344255
 }
 
 
-/* Mobile-only leading space before unchanged-rank dashes in home and favorite tables. */
+/* Mobile-only single space before unchanged-rank dashes in the favorite artist graph table. */
 @media (max-width: 640px) {
-  .song .change.same::before,
-  .favorite-chart-song .change.same::before,
-  .favorite-card-song-list .favorite-card-song-movement.same::before {
-    content: "\00a0\00a0";
+  .favorite-chart-song .change.same::before {
+    content: "\00a0";
   }
 }
