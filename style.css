@@ -4089,3 +4089,23 @@ body.dark-mode .favorite-artist-overview{background:#182333;border-color:#344255
     grid-template-columns: 64px 68px 64px minmax(0, 1fr);
   }
 }
+
+
+/* Center the movement indicator in its existing column on favorite artist chart rows. */
+.favorite-card-song-list li .favorite-card-song-movement {
+  box-sizing: border-box;
+  justify-self: center;
+  width: 100%;
+  min-width: 0;
+  padding-left: 0;
+  text-align: center;
+}
+@media (max-width: 640px) {
+  .favorite-card-song-list li .favorite-card-song-movement {
+    justify-self: center;
+    width: 100%;
+    min-width: 0;
+    padding-left: 0;
+    text-align: center;
+  }
+}
