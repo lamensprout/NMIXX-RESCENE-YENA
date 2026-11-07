@@ -1286,7 +1286,7 @@ async function renderFavorites() {
           movement.textContent = "▼ OUT";
         } else if (song.chartIn) {
           movement.classList.add("up");
-          movement.textContent = "▲ IN";
+          movement.textContent = "NEW";
         } else {
           const change = Number(song.change) || 0;
           movement.classList.add(change > 0 ? "up" : change < 0 ? "down" : "same");
