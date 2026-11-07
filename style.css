@@ -4039,3 +4039,29 @@ body.dark-mode .favorite-artist-overview{background:#182333;border-color:#344255
     font-size: 13px !important;
   }
 }
+
+
+/* Mobile: replace the song-rank graph with a PC-version notice. */
+@media (max-width: 640px) {
+  .rank-graph-wrap:has(.rank-song-graph-legend) {
+    min-height: 90px;
+    padding: 24px 12px;
+    overflow: visible !important;
+    text-align: center;
+  }
+  .rank-graph-wrap:has(.rank-song-graph-legend)::before {
+    content: "순위 그래프는 PC 버전으로 이용해 주세요.";
+    display: block;
+    color: #68717d;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  .rank-graph-wrap:has(.rank-song-graph-legend) .rank-graph,
+  .rank-graph-wrap:has(.rank-song-graph-legend) .rank-song-graph-legend,
+  .rank-graph-wrap:has(.rank-song-graph-legend) .rank-song-info-popup {
+    display: none !important;
+  }
+  body.dark-mode .rank-graph-wrap:has(.rank-song-graph-legend)::before {
+    color: #aab3c1;
+  }
+}
