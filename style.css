@@ -4158,3 +4158,10 @@ body.dark-mode .favorite-artist-overview{background:#182333;border-color:#344255
     padding-right: 24px;
   }
 }
+
+
+/* Match NEW indicators in favorite artist tables to the home NEW green. */
+.favorite-chart-song .change.new,
+.favorite-card-song-list li .favorite-card-song-movement.new {
+  color: #00cd3b;
+}
