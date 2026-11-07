@@ -820,7 +820,9 @@ function createArtistRankGraph(artist, color) {
       if (Number.isFinite(currentRank) && currentRank >= 1 && currentRank <= 100 &&
           now.getTime() >= dayStart && now.getTime() <= graphEnd) {
         const latestPoint = points[points.length - 1];
-        if (!latestPoint || now.getTime() - latestPoint.ts > 60 * 1000) {
+        // Never let a recent-but-historical snapshot stand in for the live rank.
+        // Add a separate current point unless this exact timestamp is already present.
+        if (!latestPoint || latestPoint.ts !== now.getTime()) {
           const x = left + (now.getTime() - dayStart) / (graphEnd - dayStart || 1) * (right - left);
           points.push({ x, rank: currentRank, ts: now.getTime() });
         }
