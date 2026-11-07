@@ -4089,3 +4089,10 @@ body.dark-mode .favorite-artist-overview{background:#182333;border-color:#344255
     grid-template-columns: 64px 68px 64px minmax(0, 1fr);
   }
 }
+
+
+/* Add two character-widths before the unchanged-rank dash only. */
+.favorite-card-song-movement.same,
+.favorite-chart-song .change.same {
+  text-indent: 2ch;
+}
