@@ -936,40 +936,61 @@ function getFavoriteSongsWithRecentHistory() {
   const currentKeys = new Set(songs.map(favoriteSongKey));
   const recent = new Map();
   const cutoff = Date.now() - 7 * 24 * 60 * 60 * 1000;
-  let snapshots = [];
-  try {
-    const saved = JSON.parse(localStorage.getItem(FAVORITE_SONG_HISTORY_KEY) || "[]");
-    if (Array.isArray(saved)) snapshots = saved.filter(function(snapshot) {
-      return snapshot && Number(snapshot.capturedAt) >= cutoff && Array.isArray(snapshot.songs);
-    }).sort(function(a, b) { return Number(a.capturedAt) - Number(b.capturedAt); });
-  } catch (_) {}
-  const latest = snapshots.length ? snapshots[snapshots.length - 1] : null;
-  const beforeLatest = snapshots.length > 1 ? snapshots[snapshots.length - 2] : null;
-  const latestKeys = new Set(latest ? latest.songs.map(favoriteSongKey) : []);
-  const previousKeys = new Set(beforeLatest ? beforeLatest.songs.map(favoriteSongKey) : []);
+  const snapshots = [];
+
+  // Melon API's previous_rank=null is the source of truth for NEW.
+  // Do not infer NEW from our own snapshot comparison.
   const currentSongs = songs.map(function(song) {
     const key = favoriteSongKey(song);
     return Object.assign({}, song, {
-      chartIn: !!latest && !!beforeLatest && latestKeys.has(key) && !previousKeys.has(key)
+      chartIn: Object.prototype.hasOwnProperty.call(song, "previous_rank") && song.previous_rank == null
     });
   });
+
+  // Keep the existing server-history-based OUT list unchanged.
+  (Array.isArray(rankHistorySnapshots) ? rankHistorySnapshots : []).forEach(function(snapshot) {
+    const capturedAt = Date.parse(snapshot && snapshot.snapshot_at);
+    if (!Number.isFinite(capturedAt) || capturedAt < cutoff) return;
+    const snapshotSongs = [];
+    (Array.isArray(snapshot.artist_ranks) ? snapshot.artist_ranks : []).forEach(function(entry) {
+      const artist = String(entry && entry.artist || "").trim();
+      (Array.isArray(entry && entry.songs) ? entry.songs : []).forEach(function(song) {
+        if (!song || !song.title || !artist) return;
+        snapshotSongs.push(Object.assign({}, song, { artist: artist }));
+      });
+      if (entry && entry.title && artist) {
+        snapshotSongs.push(Object.assign({}, entry, { artist: artist }));
+      }
+    });
+    if (snapshotSongs.length) snapshots.push({ capturedAt: capturedAt, songs: snapshotSongs });
+  });
+
+  try {
+    const saved = JSON.parse(localStorage.getItem(FAVORITE_SONG_HISTORY_KEY) || "[]");
+    if (Array.isArray(saved)) saved.forEach(function(snapshot) {
+      const capturedAt = Number(snapshot && snapshot.capturedAt);
+      if (Number.isFinite(capturedAt) && capturedAt >= cutoff && Array.isArray(snapshot.songs)) {
+        snapshots.push({ capturedAt: capturedAt, songs: snapshot.songs });
+      }
+    });
+  } catch (_) {}
+
   snapshots.forEach(function(snapshot) {
     snapshot.songs.forEach(function(song) {
       const key = favoriteSongKey(song);
       if (!key || currentKeys.has(key)) return;
       const previous = recent.get(key);
-      if (!previous || Number(snapshot.capturedAt) > previous.lastSeenAt) {
+      if (!previous || snapshot.capturedAt > previous.lastSeenAt) {
         recent.set(key, Object.assign({}, song, {
           chartOut: true,
           lastRank: Number(song.rank) || 0,
-          lastSeenAt: Number(snapshot.capturedAt)
+          lastSeenAt: snapshot.capturedAt
         }));
       }
     });
   });
   return currentSongs.concat(Array.from(recent.values()));
 }
-
 
 const FAVORITE_ARTIST_GRAPH_COLORS_KEY = "melonitor-favorite-artist-graph-colors-v1";
 const FAVORITE_GRAPH_PALETTE = ["#00D5E8", "#4386F7", "#FFD400", "#F36AA8", "#9B7BFF", "#FF8A3D"];
@@ -1053,8 +1074,8 @@ function renderFavoriteSongList() {
       change.classList.add("down");
       change.textContent = "▼ OUT";
     } else if (song.chartIn) {
-      change.classList.add("up");
-      change.textContent = "▲ IN";
+      change.classList.add("new");
+      change.textContent = "NEW";
     } else {
       const amount = Number(song.change) || 0;
       change.textContent = amount > 0 ? "▲ " + amount : amount < 0 ? "▼ " + Math.abs(amount) : "-";
@@ -1285,8 +1306,8 @@ async function renderFavorites() {
           movement.classList.add("down");
           movement.textContent = "▼ OUT";
         } else if (song.chartIn) {
-          movement.classList.add("up");
-          movement.textContent = "▲ IN";
+          movement.classList.add("new");
+          movement.textContent = "NEW";
         } else {
           const change = Number(song.change) || 0;
           movement.classList.add(change > 0 ? "up" : change < 0 ? "down" : "same");

@@ -3603,6 +3603,7 @@ body:not(.dark-mode) .rank-alert-trigger[aria-expanded="true"] {
 .favorite-card-song-movement { flex: 0 0 auto; min-width: 42px; font-size: 12px; font-weight: 750; white-space: nowrap; }
 .favorite-card-song-movement.up { color: #e91e63; }
 .favorite-card-song-movement.down { color: #1684d8; }
+.favorite-card-song-movement.new { color: #00cd3b; font-weight: 800; }
 .favorite-card-song-movement.same { color: #87929b; }
 .favorite-card-song-image { display: block; flex: 0 0 56px; width: 56px; height: 56px; object-fit: cover; border-radius: 5px; }
 .favorite-card-song-title { display: block; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 15px; font-weight: 750; }
@@ -4091,7 +4092,4 @@ body.dark-mode .favorite-artist-overview{background:#182333;border-color:#344255
 }
 
 
-/* Keep the unchanged-rank dash aligned in the favorite artist list. */
-.favorite-card-song-movement.same {
-  text-indent: 1ch;
-}
+/* Unchanged-rank movement is displayed as a plain dash on desktop and mobile. */
