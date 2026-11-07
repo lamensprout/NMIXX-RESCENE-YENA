@@ -514,7 +514,7 @@ function saveFavoriteChartSnapshot() {
     };
   }).filter(function(song) { return song.title && song.artist && song.rank > 0; });
   if (!snapshotSongs.length) return;
-  const fingerprint = snapshotSongs.map(favoriteSongKey).join(";");
+  const fingerprint = snapshotSongs.map(function(song) { return favoriteSongKey(song) + "#" + song.rank; }).join(";");
   let snapshots = [];
   try {
     const saved = JSON.parse(localStorage.getItem(FAVORITE_SONG_HISTORY_KEY) || "[]");
@@ -523,7 +523,7 @@ function saveFavoriteChartSnapshot() {
     });
   } catch (_) {}
   const latest = snapshots.length ? snapshots[snapshots.length - 1] : null;
-  const latestFingerprint = latest ? latest.songs.map(favoriteSongKey).join(";") : "";
+  const latestFingerprint = latest ? latest.songs.map(function(song) { return favoriteSongKey(song) + "#" + (Number(song.rank) || 0); }).join(";") : "";
   if (fingerprint === latestFingerprint) return;
   snapshots.push({ capturedAt: Date.now(), songs: snapshotSongs });
   try {
