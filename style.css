@@ -4055,6 +4055,7 @@ body.dark-mode .favorite-artist-overview{background:#182333;border-color:#344255
     color: #68717d;
     font-size: 14px;
     line-height: 1.6;
+    white-space: pre-line;
   }
   .rank-graph-wrap:has(.rank-song-graph-legend) .rank-graph,
   .rank-graph-wrap:has(.rank-song-graph-legend) .rank-song-graph-legend,
