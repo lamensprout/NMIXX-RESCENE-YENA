@@ -938,8 +938,16 @@ function getFavoriteSongsWithRecentHistory() {
   const cutoff = Date.now() - 7 * 24 * 60 * 60 * 1000;
   const snapshots = [];
 
-  // Prefer the server history used by the rank graph. The old localStorage
-  // history key is not written anywhere, so it cannot reliably identify NEW.
+  // Melon API's previous_rank=null is the source of truth for NEW.
+  // Do not infer NEW from our own snapshot comparison.
+  const currentSongs = songs.map(function(song) {
+    const key = favoriteSongKey(song);
+    return Object.assign({}, song, {
+      chartIn: Object.prototype.hasOwnProperty.call(song, "previous_rank") && song.previous_rank == null
+    });
+  });
+
+  // Keep the existing server-history-based OUT list unchanged.
   (Array.isArray(rankHistorySnapshots) ? rankHistorySnapshots : []).forEach(function(snapshot) {
     const capturedAt = Date.parse(snapshot && snapshot.snapshot_at);
     if (!Number.isFinite(capturedAt) || capturedAt < cutoff) return;
@@ -957,7 +965,6 @@ function getFavoriteSongsWithRecentHistory() {
     if (snapshotSongs.length) snapshots.push({ capturedAt: capturedAt, songs: snapshotSongs });
   });
 
-  // Preserve compatibility with any previously saved browser-side snapshots.
   try {
     const saved = JSON.parse(localStorage.getItem(FAVORITE_SONG_HISTORY_KEY) || "[]");
     if (Array.isArray(saved)) saved.forEach(function(snapshot) {
@@ -967,18 +974,6 @@ function getFavoriteSongsWithRecentHistory() {
       }
     });
   } catch (_) {}
-
-  snapshots.sort(function(a, b) { return a.capturedAt - b.capturedAt; });
-  const latest = snapshots.length ? snapshots[snapshots.length - 1] : null;
-  const beforeLatest = snapshots.length > 1 ? snapshots[snapshots.length - 2] : null;
-  const latestKeys = new Set(latest ? latest.songs.map(favoriteSongKey) : []);
-  const previousKeys = new Set(beforeLatest ? beforeLatest.songs.map(favoriteSongKey) : []);
-  const currentSongs = songs.map(function(song) {
-    const key = favoriteSongKey(song);
-    return Object.assign({}, song, {
-      chartIn: !!latest && !!beforeLatest && latestKeys.has(key) && !previousKeys.has(key)
-    });
-  });
 
   snapshots.forEach(function(snapshot) {
     snapshot.songs.forEach(function(song) {
