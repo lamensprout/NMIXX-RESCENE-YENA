@@ -4091,8 +4091,7 @@ body.dark-mode .favorite-artist-overview{background:#182333;border-color:#344255
 }
 
 
-/* Add two character-widths before the unchanged-rank dash only. */
-.favorite-card-song-movement.same,
-.favorite-chart-song .change.same {
+/* Keep the unchanged-rank dash aligned in the favorite artist list. */
+.favorite-card-song-movement.same {
   text-indent: 1ch;
 }
