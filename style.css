@@ -4050,7 +4050,7 @@ body.dark-mode .favorite-artist-overview{background:#182333;border-color:#344255
     text-align: center;
   }
   .rank-graph-wrap:has(.rank-song-graph-legend)::before {
-    content: "순위 그래프는 PC 버전으로 이용해 주세요.";
+    content: "순위 그래프는 PC버전으로만 이용이 가능합니다.\A PC 버전으로 이용해 주세요.";
     display: block;
     color: #68717d;
     font-size: 14px;
