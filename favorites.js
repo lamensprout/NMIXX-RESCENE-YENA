@@ -814,7 +814,9 @@ function createArtistRankGraph(artist, color) {
         const x = left + (item.ts - dayStart) / (graphEnd - dayStart || 1) * (right - left);
         points.push({ x, rank, ts: item.ts });
       });
-      const currentRank = Number(song.rank);
+      // Live TOP100 data is authoritative for the current-time point in every range.
+      // Historical snapshots are used only for points before the current time.
+      const currentRank = Number(song.currentRank);
       if (Number.isFinite(currentRank) && currentRank >= 1 && currentRank <= 100 &&
           now.getTime() >= dayStart && now.getTime() <= graphEnd) {
         const latestPoint = points[points.length - 1];
