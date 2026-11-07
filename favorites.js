@@ -662,7 +662,7 @@ function createArtistRankGraph(artist, color) {
   if (!artistSongs.length) {
     const empty = document.createElement("p");
     empty.className = "rank-graph-empty";
-    empty.textContent = "현재 TOP100에 해당 아티스트 곡이 없어요.";
+    empty.textContent = "현재 TOP100에 해당 아티스트 곡이 없습니다.";
     wrapper.appendChild(empty);
     return wrapper;
   }
