@@ -4091,22 +4091,12 @@ body.dark-mode .favorite-artist-overview{background:#182333;border-color:#344255
 }
 
 
-/* Keep the unchanged-rank dash aligned in the favorite artist list. */
-.favorite-card-song-movement.same {
+/* Favorite artist selected TOP100: exactly two character-spaces before an unchanged-rank dash. */
+.favorite-card-song-list li .favorite-card-song-movement.same {
+  text-indent: 2ch;
+}
+
+/* Favorite artist graph ranking table: exactly one character-space before an unchanged-rank dash. */
+.favorite-chart-song .change.same {
   text-indent: 1ch;
-}
-
-/* Mobile-only: add two spaces before unchanged-rank dashes in the favorite artist's selected TOP100 list. */
-@media (max-width: 640px) {
-  .favorite-card-song-list li .favorite-card-song-movement.same {
-    text-indent: 2ch;
-  }
-}
-
-
-/* Mobile-only single space before unchanged-rank dashes in the favorite artist graph table. */
-@media (max-width: 640px) {
-  .favorite-chart-song .change.same::before {
-    content: "\00a0";
-  }
 }
