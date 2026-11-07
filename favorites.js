@@ -702,11 +702,26 @@ function createArtistRankGraph(artist, color) {
     const scaleY = svgRect.height / height;
     const pointX = svgRect.left - wrapperRect.left + point.x * scaleX;
     const pointY = svgRect.top - wrapperRect.top + y(point.rank) * scaleY;
-    let left = pointX + 10;
-    let top = pointY - infoPopup.offsetHeight / 2;
-    if (left + popupWidth > wrapper.clientWidth - 8) left = pointX - popupWidth - 10;
-    left = Math.max(8, Math.min(left, wrapper.clientWidth - popupWidth - 8));
-    top = Math.max(8, Math.min(top, wrapper.clientHeight - infoPopup.offsetHeight - 8));
+    const popupHeight = infoPopup.offsetHeight;
+    const gap = 12;
+    const maxLeft = Math.max(8, wrapper.clientWidth - popupWidth - 8);
+    const maxTop = Math.max(8, wrapper.clientHeight - popupHeight - 8);
+    // 우/좌/상/하 순서로 점과 겹치지 않는 공간을 찾고, 마지막에는
+    // 그래프 wrapper 안으로 제한합니다.
+    const candidates = [
+      { left: pointX + gap, top: pointY - popupHeight / 2 },
+      { left: pointX - popupWidth - gap, top: pointY - popupHeight / 2 },
+      { left: pointX - popupWidth / 2, top: pointY - popupHeight - gap },
+      { left: pointX - popupWidth / 2, top: pointY + gap }
+    ];
+    const fits = candidates.find(candidate =>
+      candidate.left >= 8 && candidate.left + popupWidth <= wrapper.clientWidth - 8 &&
+      candidate.top >= 8 && candidate.top + popupHeight <= wrapper.clientHeight - 8
+    );
+    let left = fits ? fits.left : Math.max(8, Math.min(candidates[0].left, maxLeft));
+    let top = fits ? fits.top : Math.max(8, Math.min(pointY - popupHeight / 2, maxTop));
+    left = Math.max(8, Math.min(left, maxLeft));
+    top = Math.max(8, Math.min(top, maxTop));
     infoPopup.style.left = left + "px";
     infoPopup.style.top = top + "px";
     infoPopup.setAttribute("role", "status");
@@ -784,13 +799,19 @@ function createArtistRankGraph(artist, color) {
       });
       const currentRank = Number(song.rank);
       const currentHour = kstNow.getUTCHours();
+      // 현재 시간의 실시간 TOP100 순위가 있으면 같은 시간대의 서버 스냅샷을
+      // 별도 점으로 추가하지 않고 한 점으로 교체합니다. 그래프와 팝업이
+      // 같은 시간에 서로 다른 순위를 표시하는 중복 점 문제를 방지합니다.
       if (Number.isFinite(currentRank) && currentRank >= 1 && currentRank <= 100) {
-        const prior = byHour.get(currentHour);
-        if (!prior || now.getTime() > prior.ts) {
-          points.push({ x: left + currentHour / 23 * (right - left), rank: currentRank, ts: now.getTime(), hour: currentHour });
-        }
+        byHour.set(currentHour, {
+          rank: currentRank,
+          ts: now.getTime(),
+          hour: currentHour,
+          x: left + currentHour / 23 * (right - left)
+        });
       }
-      points.sort((a, b) => a.ts - b.ts);
+      byHour.forEach(point => points.push(point));
+      points.sort((a, b) => a.hour - b.hour);
     } else {
       relevant.forEach(item => {
         const rank = songRankInSnapshot(item.snapshot, song);
