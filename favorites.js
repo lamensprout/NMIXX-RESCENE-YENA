@@ -798,7 +798,7 @@ function createArtistRankGraph(artist, color) {
         point.x = left + point.hour / 23 * (right - left);
         points.push(point);
       });
-      const currentRank = Number(song.currentRank ?? song.rank);
+      const currentRank = Number(song.currentRank);
       const currentHour = kstNow.getUTCHours();
       if (Number.isFinite(currentRank) && currentRank >= 1 && currentRank <= 100) {
         const prior = byHour.get(currentHour);
