@@ -1,78 +1,177 @@
-(function () {
+(() => {
+  "use strict";
+
+  if (window.MelonitorChartPopup) return;
+
+  let popupRoot = null;
   let hideTimer = null;
-  let backdrop = null;
   let pendingIntroPopup = null;
 
-  function set(message, hideAfterMs = 0, loading = false, state = "") {
+  function ensurePopup() {
+    if (popupRoot) return popupRoot;
+
+    const style = document.createElement("style");
+    style.id = "melonitor-chart-popup-style";
+    style.textContent = `
+      .melonitor-chart-popup-backdrop {
+        position: fixed;
+        inset: 0;
+        z-index: 10000;
+        display: grid;
+        place-items: center;
+        padding: 20px;
+        background: rgba(5, 9, 12, .62);
+        -webkit-backdrop-filter: blur(5px);
+        backdrop-filter: blur(5px);
+      }
+      .melonitor-chart-popup-backdrop[hidden] { display: none; }
+      .melonitor-chart-popup {
+        box-sizing: border-box;
+        width: min(256px, 100%);
+        min-height: 168px;
+        padding: 32px 20px 28px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+        color: #f4f7fa;
+        background: #202833;
+        border: 1px solid rgba(71, 190, 126, .32);
+        border-radius: 20px;
+        box-shadow: 0 18px 48px rgba(0, 0, 0, .28);
+        text-align: center;
+      }
+      .melonitor-chart-popup-icon {
+        width: 58px;
+        height: 58px;
+        flex: 0 0 58px;
+        display: grid;
+        place-items: center;
+        border-radius: 50%;
+        color: #fff;
+        background: #20d49a;
+      }
+      .melonitor-chart-popup-icon svg {
+        width: 36px;
+        height: 36px;
+        display: block;
+      }
+      .melonitor-chart-popup-icon.is-loading {
+        background: #20d49a;
+      }
+      .melonitor-chart-popup-icon.is-loading::before {
+        content: "";
+        width: 28px;
+        height: 28px;
+        border: 3px solid rgba(255, 255, 255, .35);
+        border-top-color: #fff;
+        border-radius: 50%;
+        animation: melonitor-chart-popup-spin .8s linear infinite;
+      }
+      .melonitor-chart-popup-icon.is-error { background: #e45c66; }
+      .melonitor-chart-popup-message {
+        margin: 0;
+        color: inherit;
+        font-family: inherit;
+        font-size: 15px;
+        font-weight: 700;
+        line-height: 1.55;
+        overflow-wrap: anywhere;
+        white-space: pre-line;
+      }
+      @keyframes melonitor-chart-popup-spin {
+        to { transform: rotate(360deg); }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .melonitor-chart-popup-icon.is-loading::before {
+          animation-duration: 2s;
+        }
+      }
+    `;
+    document.head.appendChild(style);
+
+    const backdrop = document.createElement("div");
+    backdrop.className = "melonitor-chart-popup-backdrop";
+    backdrop.hidden = true;
+    backdrop.setAttribute("aria-hidden", "true");
+
+    const panel = document.createElement("div");
+    panel.className = "melonitor-chart-popup";
+    panel.setAttribute("role", "status");
+    panel.setAttribute("aria-live", "polite");
+
+    const icon = document.createElement("div");
+    icon.className = "melonitor-chart-popup-icon";
+    icon.setAttribute("aria-hidden", "true");
+
+    const message = document.createElement("p");
+    message.className = "melonitor-chart-popup-message";
+
+    panel.append(icon, message);
+    backdrop.appendChild(panel);
+    document.body.appendChild(backdrop);
+    popupRoot = { backdrop, icon, message };
+    return popupRoot;
+  }
+
+  function set(message, duration, loading, state) {
     if (!message) pendingIntroPopup = null;
     const intro = document.getElementById("siteIntro");
     if (message && intro && !intro.classList.contains("site-intro-finish")) {
-      pendingIntroPopup = [message, hideAfterMs, loading, state];
+      pendingIntroPopup = [message, duration, loading, state];
       return;
     }
-    const status = document.getElementById("chartStatus");
-    if (!status) return;
-    if (hideTimer) clearTimeout(hideTimer);
-    hideTimer = null;
+    const popup = ensurePopup();
+    if (hideTimer !== null) {
+      window.clearTimeout(hideTimer);
+      hideTimer = null;
+    }
 
-    if (message) {
-      if (!backdrop) {
-        backdrop = document.createElement("div");
-        backdrop.className = "chart-refresh-backdrop";
-        backdrop.setAttribute("aria-hidden", "true");
-        document.body.appendChild(backdrop);
-      }
-      backdrop.hidden = false;
-      document.body.classList.add("chart-refresh-active");
+    popup.icon.className = "melonitor-chart-popup-icon";
+    popup.icon.replaceChildren();
+
+    if (loading) {
+      popup.icon.classList.add("is-loading");
+    } else if (state === "error") {
+      popup.icon.classList.add("is-error");
+      popup.icon.textContent = "!";
     } else {
-      if (backdrop) backdrop.hidden = true;
-      document.body.classList.remove("chart-refresh-active");
+      const check = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+      check.setAttribute("viewBox", "0 0 24 24");
+      check.setAttribute("fill", "none");
+      check.setAttribute("stroke", "currentColor");
+      check.setAttribute("stroke-width", "2.8");
+      check.setAttribute("stroke-linecap", "round");
+      check.setAttribute("stroke-linejoin", "round");
+      const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+      path.setAttribute("d", "M5 12.5 9.5 17 19 7.5");
+      check.appendChild(path);
+      popup.icon.appendChild(check);
     }
 
-    status.classList.toggle("is-loading", Boolean(loading));
-    status.classList.toggle("is-success", state === "success");
-    status.classList.toggle("is-error", state === "error");
-    status.setAttribute("aria-busy", loading ? "true" : "false");
-    status.dataset.message = message || "";
-    status.title = message || "";
-    status.replaceChildren();
+    popup.message.textContent = String(message || "");
+    popup.backdrop.hidden = false;
+    popup.backdrop.setAttribute("aria-hidden", "false");
 
-    if (message) {
-      if (state === "success" || state === "error") {
-        const icon = document.createElement("span");
-        icon.className = "chart-status-icon " + (state === "success" ? "success" : "error");
-        icon.setAttribute("aria-hidden", "true");
-        icon.innerHTML = state === "success"
-          ? '<svg viewBox="0 0 80 80"><circle class="status-icon-circle" cx="40" cy="40" r="38"/><path class="status-icon-mark" d="M22 41 L34 53 L59 27"/></svg>'
-          : '<svg viewBox="0 0 80 80"><circle class="status-icon-circle" cx="40" cy="40" r="38"/><path class="status-icon-mark" d="M27 27 L53 53 M53 27 L27 53"/></svg>';
-        status.appendChild(icon);
-      }
-      const label = document.createElement("span");
-      label.className = "chart-status-message";
-      const normalizedMessage = String(message).replace(/\\n|\/n/g, "\n");
-      normalizedMessage.split("\n").forEach((line, index) => {
-        if (index > 0) label.appendChild(document.createElement("br"));
-        label.appendChild(document.createTextNode(line));
-      });
-      status.appendChild(label);
-    }
-
-    status.hidden = !message;
-    if (message && (hideAfterMs > 0 || loading)) {
-      const currentMessage = message;
-      const effectiveHideAfterMs = hideAfterMs > 0 ? hideAfterMs : 12000;
+    const timeout = Number(duration);
+    if (Number.isFinite(timeout) && timeout > 0) {
       hideTimer = window.setTimeout(() => {
-        if (status.dataset.message === currentMessage) {
-          status.dataset.message = "";
-          status.replaceChildren();
-          status.hidden = true;
-          status.classList.remove("is-loading", "is-success", "is-error");
-          status.title = "";
-          if (backdrop) backdrop.hidden = true;
-          document.body.classList.remove("chart-refresh-active");
-        }
+        popup.backdrop.hidden = true;
+        popup.backdrop.setAttribute("aria-hidden", "true");
         hideTimer = null;
-      }, effectiveHideAfterMs);
+      }, timeout);
+    }
+  }
+
+  function hide() {
+    if (hideTimer !== null) {
+      window.clearTimeout(hideTimer);
+      hideTimer = null;
+    }
+    if (popupRoot) {
+      popupRoot.backdrop.hidden = true;
+      popupRoot.backdrop.setAttribute("aria-hidden", "true");
     }
   }
 
@@ -83,5 +182,5 @@
     set(args[0], args[1], args[2], args[3]);
   }
 
-  window.MelonitorChartPopup = { set, releaseIntro };
+  window.MelonitorChartPopup = Object.freeze({ set, hide, releaseIntro });
 })();
