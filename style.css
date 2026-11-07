@@ -2437,6 +2437,7 @@ body.dark-mode .environment-badge {
   font-weight: 500;
 }
 .rank-graph-wrap {
+  position: relative;
   min-width: 0;
   width: 100%;
 }
