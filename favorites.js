@@ -1287,7 +1287,7 @@ async function renderFavorites() {
           movement.classList.add("down");
           movement.textContent = "▼ OUT";
         } else if (song.chartIn) {
-          movement.classList.add("up");
+          movement.classList.add("new");
           movement.textContent = "NEW";
         } else {
           const change = Number(song.change) || 0;
