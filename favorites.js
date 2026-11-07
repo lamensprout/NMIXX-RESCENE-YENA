@@ -738,15 +738,26 @@ function createArtistRankGraph(artist, color) {
   })).filter(item => Number.isFinite(item.ts) && item.ts <= now.getTime())
     .sort((a, b) => a.ts - b.ts);
   const songRankInSnapshot = (snapshot, song) => {
-    // 홈 순위 기록은 아티스트별 묶음이 아니라 TOP100 곡 한 곡당
-    // { rank, title, artist } 항목으로 저장됩니다. 전체 행에서 곡을 찾아야
-    // 모든 아티스트가 동일한 홈 기록을 그래프에 사용할 수 있습니다.
+    // 서버 기록은 아티스트별 묶음 { artist, songs: [{ title, rank }] }입니다.
+    // 구형 기록의 대표곡 { artist, title, rank } 형식도 함께 지원합니다.
     const entries = Array.isArray(snapshot && snapshot.artist_ranks) ? snapshot.artist_ranks : [];
-    const songEntry = entries.find(entry => entry && entry.title && entry.artist &&
-      normalize(entry.title) === normalize(song.title) &&
-      (normalize(entry.artist) === normalize(song.artist) || areSameArtist(entry.artist, song.artist)));
-    const rank = songEntry ? Number(songEntry.rank) : NaN;
-    return Number.isFinite(rank) && rank >= 1 && rank <= 100 ? rank : null;
+    const targetTitle = normalize(song && song.title);
+    const targetArtist = String(song && song.artist || "");
+    if (!targetTitle || !targetArtist) return null;
+
+    for (const entry of entries) {
+      if (!entry || !entry.artist ||
+          !(normalize(entry.artist) === normalize(targetArtist) || areSameArtist(entry.artist, targetArtist))) {
+        continue;
+      }
+
+      const groupedSongs = Array.isArray(entry.songs) ? entry.songs : [];
+      const groupedSong = groupedSongs.find(item => item && normalize(item.title) === targetTitle);
+      const rank = groupedSong ? Number(groupedSong.rank) :
+        (entry.title && normalize(entry.title) === targetTitle ? Number(entry.rank) : NaN);
+      if (Number.isFinite(rank) && rank >= 1 && rank <= 100) return rank;
+    }
+    return null;
   };
   const graphColor = /^#[0-9a-f]{6}$/i.test(String(color || "")) ? color : "#168a35";
   const kstOffset = 9 * 3600000;
