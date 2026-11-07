@@ -4091,24 +4091,4 @@ body.dark-mode .favorite-artist-overview{background:#182333;border-color:#344255
 }
 
 
-/* Favorite artist selected TOP100: two spaces on desktop, one space on mobile before an unchanged-rank dash. */
-.favorite-card-song-list li .favorite-card-song-movement.same {
-  text-indent: 2ch;
-}
-@media (max-width: 640px) {
-  .favorite-card-song-list li .favorite-card-song-movement.same {
-    text-indent: 1ch;
-  }
-}
-
-/* Mobile: only the 100th TOP100 row gets two spaces before an unchanged-rank dash. */
-@media (max-width: 640px) {
-  .favorite-card-song-list li:nth-child(100) .favorite-card-song-movement.same {
-    text-indent: 2ch;
-  }
-}
-
-/* Favorite artist graph ranking table: exactly one character-space before an unchanged-rank dash. */
-.favorite-chart-song .change.same {
-  text-indent: 1ch;
-}
+/* Unchanged-rank movement is displayed as a plain dash on desktop and mobile. */
