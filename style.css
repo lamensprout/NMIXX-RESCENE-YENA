@@ -4068,24 +4068,37 @@ body.dark-mode .favorite-artist-overview{background:#182333;border-color:#344255
 }
 
 
-/* Balance the center-to-center spacing of rank, movement, and album cover columns. */
+/* Keep rank, movement, and album-cover columns evenly spaced. Center movement within its own column. */
 .favorite-card-song-list li {
   grid-template-columns: 64px 68px 64px minmax(0, 1fr);
 }
-.favorite-card-song-list li .favorite-card-song-image {
+.favorite-card-song-list li .favorite-card-song-image,
+.favorite-chart-song .album-image {
   justify-self: center;
+}
+.favorite-card-song-list li .favorite-card-song-movement,
+.favorite-chart-song .change {
+  box-sizing: border-box;
+  justify-self: center;
+  width: 100%;
+  min-width: 0;
+  padding-left: 0;
+  text-align: center;
 }
 .favorite-chart-song {
   grid-template-columns: 64px 68px 64px minmax(0, 1fr);
 }
-.favorite-chart-song .album-image {
-  justify-self: center;
-}
 @media (max-width: 640px) {
-  .favorite-card-song-list li {
-    grid-template-columns: 64px 68px 64px minmax(0, 1fr);
-  }
+  .favorite-card-song-list li,
   .favorite-chart-song {
     grid-template-columns: 64px 68px 64px minmax(0, 1fr);
+  }
+  .favorite-card-song-list li .favorite-card-song-movement,
+  .favorite-chart-song .change {
+    justify-self: center;
+    width: 100%;
+    min-width: 0;
+    padding-left: 0;
+    text-align: center;
   }
 }
