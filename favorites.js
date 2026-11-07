@@ -742,9 +742,13 @@ function createArtistRankGraph(artist, color) {
     // { rank, title, artist } 항목으로 저장됩니다. 전체 행에서 곡을 찾아야
     // 모든 아티스트가 동일한 홈 기록을 그래프에 사용할 수 있습니다.
     const entries = Array.isArray(snapshot && snapshot.artist_ranks) ? snapshot.artist_ranks : [];
-    const songEntry = entries.find(entry => entry && entry.title && entry.artist &&
-      normalize(entry.title) === normalize(song.title) &&
-      (normalize(entry.artist) === normalize(song.artist) || areSameArtist(entry.artist, song.artist)));
+    const titleMatches = entries.filter(entry => entry && entry.title &&
+      normalize(entry.title) === normalize(song.title));
+    // 같은 곡의 아티스트 표기가 스냅샷마다 달라질 수 있으므로,
+    // 먼저 아티스트가 일치하는 행을 찾고 없으면 곡 제목으로 기록을 찾습니다.
+    const songEntry = titleMatches.find(entry => entry.artist &&
+      (normalize(entry.artist) === normalize(song.artist) || areSameArtist(entry.artist, song.artist))) ||
+      (titleMatches.length === 1 ? titleMatches[0] : null);
     const rank = songEntry ? Number(songEntry.rank) : NaN;
     return Number.isFinite(rank) && rank >= 1 && rank <= 100 ? rank : null;
   };
