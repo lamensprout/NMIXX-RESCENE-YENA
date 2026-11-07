@@ -703,23 +703,25 @@ function createArtistRankGraph(artist, color) {
     timeText.textContent = String(kstHour).padStart(2, "0") + "시 기준";
     footer.append(trophy, rankText, timeText);
     infoPopup.append(header, songTitle, album, footer);
+    // Keep the graph's layout fixed. Position the popup about 100px beside the hovered point.
     infoPopup.hidden = false;
-    const svgRect = svg.getBoundingClientRect();
-    const wrapperRect = wrapper.getBoundingClientRect();
-    const popupWidth = 210;
-    const scaleX = svgRect.width / width;
-    const scaleY = svgRect.height / height;
-    const pointX = svgRect.left - wrapperRect.left + point.x * scaleX;
-    const pointY = svgRect.top - wrapperRect.top + y(point.rank) * scaleY;
-    let left = pointX + 14;
-    let top = pointY - 42;
-    if (left + popupWidth > wrapper.clientWidth - 8) left = pointX - popupWidth - 14;
-    left = Math.max(8, Math.min(left, wrapper.clientWidth - popupWidth - 8));
-    top = Math.max(8, Math.min(top, wrapper.clientHeight - infoPopup.offsetHeight - 8));
-    infoPopup.style.left = left + "px";
-    infoPopup.style.top = top + "px";
     infoPopup.setAttribute("role", "status");
     infoPopup.setAttribute("aria-live", "polite");
+    const svgRect = svg.getBoundingClientRect();
+    const wrapperRect = wrapper.getBoundingClientRect();
+    const pointX = svgRect.left - wrapperRect.left + point.x * (svgRect.width / width);
+    const pointY = svgRect.top - wrapperRect.top + y(point.rank) * (svgRect.height / height);
+    const popupWidth = infoPopup.offsetWidth || 210;
+    const popupHeight = infoPopup.offsetHeight || 90;
+    const sideGap = 65;
+    const rightLeft = pointX + sideGap;
+    const leftLeft = pointX - sideGap - popupWidth;
+    const left = rightLeft + popupWidth <= wrapper.clientWidth - 8
+      ? rightLeft
+      : Math.max(8, leftLeft);
+    const top = Math.max(8, Math.min(pointY - popupHeight / 2, wrapper.clientHeight - popupHeight - 8));
+    infoPopup.style.left = left + "px";
+    infoPopup.style.top = top + "px";
     wrapper.querySelectorAll(".rank-graph-point.is-selected").forEach(item => item.classList.remove("is-selected"));
     dot.classList.add("is-selected");
   };
