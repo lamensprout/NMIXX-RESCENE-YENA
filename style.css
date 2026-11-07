@@ -4012,3 +4012,42 @@ body.dark-mode .favorite-artist-overview{background:#182333;border-color:#344255
 }
 .rank-graph-point { cursor: pointer; }
 .rank-graph-point.is-selected { stroke: #fff; stroke-width: 1.5; }
+
+
+/* Put the song detail popup in a dedicated column beside the graph, never over points. */
+.rank-graph-wrap:has(.rank-song-info-popup:not([hidden])) {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) 210px !important;
+  grid-template-rows: auto !important;
+  align-items: start !important;
+  column-gap: 12px !important;
+  row-gap: 0 !important;
+  overflow: visible !important;
+}
+.rank-graph-wrap:has(.rank-song-info-popup:not([hidden])) > .rank-graph {
+  grid-column: 1 !important;
+  grid-row: 1 !important;
+  min-width: 0 !important;
+}
+.rank-graph-wrap:has(.rank-song-info-popup:not([hidden])) > .rank-song-info-popup {
+  position: static !important;
+  grid-column: 2 !important;
+  grid-row: 1 !important;
+  align-self: start !important;
+  width: 210px !important;
+  max-width: none !important;
+  margin: 0 !important;
+  transform: none !important;
+}
+@media (max-width: 640px) {
+  .rank-graph-wrap:has(.rank-song-info-popup:not([hidden])) {
+    grid-template-columns: minmax(420px, 1fr) 210px !important;
+    width: 100% !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    padding-bottom: 8px !important;
+  }
+  .rank-graph-wrap:has(.rank-song-info-popup:not([hidden])) > .rank-graph {
+    min-width: 420px !important;
+  }
+}
