@@ -1311,7 +1311,7 @@ async function renderFavorites() {
         } else {
           const change = Number(song.change) || 0;
           movement.classList.add(change > 0 ? "up" : change < 0 ? "down" : "same");
-          movement.textContent = change > 0 ? "▲ " + change : change < 0 ? "▼ " + Math.abs(change) : "-";
+          movement.textContent = change > 0 ? "▲ " + change : change < 0 ? "▼ " + Math.abs(change) : " -";
         }
 
         const albumImage = document.createElement("img");
