@@ -4073,3 +4073,33 @@ body.dark-mode .favorite-artist-overview{background:#182333;border-color:#344255
     color: #aab3c1;
   }
 }
+
+
+/* Favorite artist TOP100: align rank, movement, and album-art columns consistently. */
+.favorite-card-song-list li {
+  display: grid;
+  grid-template-columns: 64px 68px 56px minmax(0, 1fr);
+  align-items: center;
+  gap: 0;
+}
+.favorite-card-song-list li .favorite-card-song-rank {
+  min-width: 0;
+  padding: 0;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+.favorite-card-song-list li .favorite-card-song-movement {
+  min-width: 0;
+  padding: 0;
+  text-align: center;
+  justify-self: stretch;
+}
+.favorite-card-song-list li .favorite-card-song-image {
+  width: 56px;
+  height: 56px;
+}
+.favorite-card-song-list li .favorite-card-song-details {
+  min-width: 0;
+  margin-left: 12px;
+  padding-right: 12px;
+}
