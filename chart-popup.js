@@ -72,7 +72,10 @@
       .melonitor-chart-popup-message {
         margin: 0;
         color: inherit;
-        font-family: inherit;\n        font-size: 15px;\n        font-weight: 700;\n        line-height: 1.55;
+        font-family: inherit;
+        font-size: 15px;
+        font-weight: 700;
+        line-height: 1.55;
         overflow-wrap: anywhere;
         white-space: pre-line;
       }
