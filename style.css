@@ -4096,9 +4096,9 @@ body.dark-mode .favorite-artist-overview{background:#182333;border-color:#344255
   text-indent: 1ch;
 }
 
-/* Mobile-only: add two spaces before unchanged-rank dashes in the selected artist TOP100 table. */
+/* Mobile-only: add two spaces before unchanged-rank dashes in the favorite artist's selected TOP100 list. */
 @media (max-width: 640px) {
-  #results .change.same {
+  .favorite-card-song-list li .favorite-card-song-movement.same {
     text-indent: 2ch;
   }
 }
