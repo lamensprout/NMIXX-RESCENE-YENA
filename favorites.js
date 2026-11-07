@@ -713,7 +713,7 @@ function createArtistRankGraph(artist, color) {
     const pointY = svgRect.top - wrapperRect.top + y(point.rank) * (svgRect.height / height);
     const popupWidth = infoPopup.offsetWidth || 210;
     const popupHeight = infoPopup.offsetHeight || 90;
-    const sideGap = 100;
+    const sideGap = 65;
     const rightLeft = pointX + sideGap;
     const leftLeft = pointX - sideGap - popupWidth;
     const left = rightLeft + popupWidth <= wrapper.clientWidth - 8
