@@ -706,18 +706,48 @@ function createArtistRankGraph(artist, color) {
     infoPopup.hidden = false;
     const svgRect = svg.getBoundingClientRect();
     const wrapperRect = wrapper.getBoundingClientRect();
-    const popupWidth = 210;
     const scaleX = svgRect.width / width;
     const scaleY = svgRect.height / height;
     const pointX = svgRect.left - wrapperRect.left + point.x * scaleX;
     const pointY = svgRect.top - wrapperRect.top + y(point.rank) * scaleY;
-    let left = pointX + 14;
-    let top = pointY - 42;
-    if (left + popupWidth > wrapper.clientWidth - 8) left = pointX - popupWidth - 14;
-    left = Math.max(8, Math.min(left, wrapper.clientWidth - popupWidth - 8));
-    top = Math.max(8, Math.min(top, wrapper.clientHeight - infoPopup.offsetHeight - 8));
-    infoPopup.style.left = left + "px";
-    infoPopup.style.top = top + "px";
+    const popupWidth = infoPopup.offsetWidth;
+    const popupHeight = infoPopup.offsetHeight;
+    const gap = 14;
+    const minLeft = 8;
+    const minTop = 8;
+    const maxLeft = Math.max(minLeft, wrapper.clientWidth - popupWidth - 8);
+    const maxTop = Math.max(minTop, wrapper.clientHeight - popupHeight - 8);
+    const clamp = (value, min, max) => Math.max(min, Math.min(value, max));
+    // Try each side of the selected dot. Choose the placement that covers the
+    // fewest other graph points, so the popup doesn't hide nearby rank dots.
+    const candidates = [
+      { left: pointX + gap, top: pointY - popupHeight / 2 },
+      { left: pointX - popupWidth - gap, top: pointY - popupHeight / 2 },
+      { left: pointX - popupWidth / 2, top: pointY - popupHeight - gap },
+      { left: pointX - popupWidth / 2, top: pointY + gap }
+    ].map(candidate => ({
+      left: clamp(candidate.left, minLeft, maxLeft),
+      top: clamp(candidate.top, minTop, maxTop)
+    }));
+    const otherPoints = Array.from(svg.querySelectorAll(".rank-graph-point")).filter(item => item !== dot);
+    const placement = candidates.map((candidate, index) => {
+      const rect = {
+        left: candidate.left,
+        top: candidate.top,
+        right: candidate.left + popupWidth,
+        bottom: candidate.top + popupHeight
+      };
+      const covered = otherPoints.reduce((count, item) => {
+        const pointRect = item.getBoundingClientRect();
+        const x = pointRect.left - wrapperRect.left + pointRect.width / 2;
+        const y = pointRect.top - wrapperRect.top + pointRect.height / 2;
+        return count + (x >= rect.left && x <= rect.right && y >= rect.top && y <= rect.bottom ? 1 : 0);
+      }, 0);
+      const selectedCovered = pointX >= rect.left && pointX <= rect.right && pointY >= rect.top && pointY <= rect.bottom;
+      return { ...candidate, covered: covered + (selectedCovered ? 1000 : 0), index };
+    }).sort((a, b) => a.covered - b.covered || a.index - b.index)[0];
+    infoPopup.style.left = placement.left + "px";
+    infoPopup.style.top = placement.top + "px";
     infoPopup.setAttribute("role", "status");
     infoPopup.setAttribute("aria-live", "polite");
     wrapper.querySelectorAll(".rank-graph-point.is-selected").forEach(item => item.classList.remove("is-selected"));
