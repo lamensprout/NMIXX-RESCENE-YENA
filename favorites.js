@@ -1053,8 +1053,8 @@ function renderFavoriteSongList() {
       change.classList.add("down");
       change.textContent = "▼ OUT";
     } else if (song.chartIn) {
-      change.classList.add("up");
-      change.textContent = "▲ IN";
+      change.classList.add("new");
+      change.textContent = "NEW";
     } else {
       const amount = Number(song.change) || 0;
       change.textContent = amount > 0 ? "▲ " + amount : amount < 0 ? "▼ " + Math.abs(amount) : "-";
