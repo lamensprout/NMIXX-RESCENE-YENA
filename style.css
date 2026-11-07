@@ -4012,3 +4012,57 @@ body.dark-mode .favorite-artist-overview{background:#182333;border-color:#344255
 }
 .rank-graph-point { cursor: pointer; }
 .rank-graph-point.is-selected { stroke: #fff; stroke-width: 1.5; }
+
+
+/* Mobile song-rank graph: preserve readable chart width and allow horizontal scrolling. */
+@media (max-width: 640px) {
+  .rank-graph-wrap:has(.rank-song-graph-legend) {
+    overflow-x: auto;
+    overflow-y: visible;
+    -webkit-overflow-scrolling: touch;
+  }
+  .rank-graph-wrap:has(.rank-song-graph-legend) .rank-graph {
+    width: 760px !important;
+    min-width: 760px !important;
+    height: 470px !important;
+  }
+  .rank-graph-wrap:has(.rank-song-graph-legend) .rank-graph-axis-label {
+    font-size: 12px !important;
+  }
+  .rank-graph-wrap:has(.rank-song-graph-legend) .rank-graph-grid {
+    stroke-width: 1.2 !important;
+  }
+  .rank-graph-wrap .rank-song-graph-legend {
+    min-width: 760px;
+    justify-content: flex-start !important;
+    padding: 10px 12px !important;
+    font-size: 13px !important;
+  }
+}
+
+
+/* Mobile: replace the song-rank graph with a PC-version notice. */
+@media (max-width: 640px) {
+  .rank-graph-wrap:has(.rank-song-graph-legend) {
+    min-height: 90px;
+    padding: 24px 12px;
+    overflow: visible !important;
+    text-align: center;
+  }
+  .rank-graph-wrap:has(.rank-song-graph-legend)::before {
+    content: "순위 그래프는 PC버전으로만 이용이 가능합니다.\A PC버전으로 이용해주세요.";
+    display: block;
+    color: #68717d;
+    font-size: 11px;
+    line-height: 1.55;
+    white-space: pre-line;
+  }
+  .rank-graph-wrap:has(.rank-song-graph-legend) .rank-graph,
+  .rank-graph-wrap:has(.rank-song-graph-legend) .rank-song-graph-legend,
+  .rank-graph-wrap:has(.rank-song-graph-legend) .rank-song-info-popup {
+    display: none !important;
+  }
+  body.dark-mode .rank-graph-wrap:has(.rank-song-graph-legend)::before {
+    color: #aab3c1;
+  }
+}
