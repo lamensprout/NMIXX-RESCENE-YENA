@@ -4102,6 +4102,6 @@ body.dark-mode .favorite-artist-overview{background:#182333;border-color:#344255
   .song .change.same::before,
   .favorite-chart-song .change.same::before,
   .favorite-card-song-list .favorite-card-song-movement.same::before {
-    content: "\\00a0";
+    content: "\00a0";
   }
 }
