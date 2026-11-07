@@ -936,13 +936,39 @@ function getFavoriteSongsWithRecentHistory() {
   const currentKeys = new Set(songs.map(favoriteSongKey));
   const recent = new Map();
   const cutoff = Date.now() - 7 * 24 * 60 * 60 * 1000;
-  let snapshots = [];
+  const snapshots = [];
+
+  // Prefer the server history used by the rank graph. The old localStorage
+  // history key is not written anywhere, so it cannot reliably identify NEW.
+  (Array.isArray(rankHistorySnapshots) ? rankHistorySnapshots : []).forEach(function(snapshot) {
+    const capturedAt = Date.parse(snapshot && snapshot.snapshot_at);
+    if (!Number.isFinite(capturedAt) || capturedAt < cutoff) return;
+    const snapshotSongs = [];
+    (Array.isArray(snapshot.artist_ranks) ? snapshot.artist_ranks : []).forEach(function(entry) {
+      const artist = String(entry && entry.artist || "").trim();
+      (Array.isArray(entry && entry.songs) ? entry.songs : []).forEach(function(song) {
+        if (!song || !song.title || !artist) return;
+        snapshotSongs.push(Object.assign({}, song, { artist: artist }));
+      });
+      if (entry && entry.title && artist) {
+        snapshotSongs.push(Object.assign({}, entry, { artist: artist }));
+      }
+    });
+    if (snapshotSongs.length) snapshots.push({ capturedAt: capturedAt, songs: snapshotSongs });
+  });
+
+  // Preserve compatibility with any previously saved browser-side snapshots.
   try {
     const saved = JSON.parse(localStorage.getItem(FAVORITE_SONG_HISTORY_KEY) || "[]");
-    if (Array.isArray(saved)) snapshots = saved.filter(function(snapshot) {
-      return snapshot && Number(snapshot.capturedAt) >= cutoff && Array.isArray(snapshot.songs);
-    }).sort(function(a, b) { return Number(a.capturedAt) - Number(b.capturedAt); });
+    if (Array.isArray(saved)) saved.forEach(function(snapshot) {
+      const capturedAt = Number(snapshot && snapshot.capturedAt);
+      if (Number.isFinite(capturedAt) && capturedAt >= cutoff && Array.isArray(snapshot.songs)) {
+        snapshots.push({ capturedAt: capturedAt, songs: snapshot.songs });
+      }
+    });
   } catch (_) {}
+
+  snapshots.sort(function(a, b) { return a.capturedAt - b.capturedAt; });
   const latest = snapshots.length ? snapshots[snapshots.length - 1] : null;
   const beforeLatest = snapshots.length > 1 ? snapshots[snapshots.length - 2] : null;
   const latestKeys = new Set(latest ? latest.songs.map(favoriteSongKey) : []);
@@ -953,23 +979,23 @@ function getFavoriteSongsWithRecentHistory() {
       chartIn: !!latest && !!beforeLatest && latestKeys.has(key) && !previousKeys.has(key)
     });
   });
+
   snapshots.forEach(function(snapshot) {
     snapshot.songs.forEach(function(song) {
       const key = favoriteSongKey(song);
       if (!key || currentKeys.has(key)) return;
       const previous = recent.get(key);
-      if (!previous || Number(snapshot.capturedAt) > previous.lastSeenAt) {
+      if (!previous || snapshot.capturedAt > previous.lastSeenAt) {
         recent.set(key, Object.assign({}, song, {
           chartOut: true,
           lastRank: Number(song.rank) || 0,
-          lastSeenAt: Number(snapshot.capturedAt)
+          lastSeenAt: snapshot.capturedAt
         }));
       }
     });
   });
   return currentSongs.concat(Array.from(recent.values()));
 }
-
 
 const FAVORITE_ARTIST_GRAPH_COLORS_KEY = "melonitor-favorite-artist-graph-colors-v1";
 const FAVORITE_GRAPH_PALETTE = ["#00D5E8", "#4386F7", "#FFD400", "#F36AA8", "#9B7BFF", "#FF8A3D"];
