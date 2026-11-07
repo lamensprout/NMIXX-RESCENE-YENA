@@ -139,7 +139,6 @@
       function showPopup(message, state, duration) {
         window.MelonitorChartPopup.set(message, duration, state === "loading", state || "");
       }
-      showPopup("차트를 불러오는 중입니다.\n잠시만 기다려주세요.", "loading", 0);
       button.addEventListener("click", async () => {
         const config = window.MELONITOR_SUPABASE_CONFIG || {};
         button.disabled = true;
