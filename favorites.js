@@ -949,9 +949,11 @@ function getFavoriteSongsWithRecentHistory() {
   const previousKeys = new Set(beforeLatest ? beforeLatest.songs.map(favoriteSongKey) : []);
   const currentSongs = songs.map(function(song) {
     const key = favoriteSongKey(song);
-    return Object.assign({}, song, {
-      chartIn: !!latest && !!beforeLatest && latestKeys.has(key) && !previousKeys.has(key)
-    });
+    const hasPreviousRank = Object.prototype.hasOwnProperty.call(song, "previous_rank");
+    const chartIn = hasPreviousRank && song.previous_rank == null
+      ? true
+      : !!latest && !latestKeys.has(key);
+    return Object.assign({}, song, { chartIn: chartIn });
   });
   snapshots.forEach(function(snapshot) {
     snapshot.songs.forEach(function(song) {
@@ -1053,8 +1055,8 @@ function renderFavoriteSongList() {
       change.classList.add("down");
       change.textContent = "▼ OUT";
     } else if (song.chartIn) {
-      change.classList.add("up");
-      change.textContent = "▲ IN";
+      change.classList.add("new");
+      change.textContent = "NEW";
     } else {
       const amount = Number(song.change) || 0;
       change.textContent = amount > 0 ? "▲ " + amount : amount < 0 ? "▼ " + Math.abs(amount) : "-";
