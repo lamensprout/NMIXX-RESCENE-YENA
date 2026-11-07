@@ -4094,5 +4094,5 @@ body.dark-mode .favorite-artist-overview{background:#182333;border-color:#344255
 /* Add two character-widths before the unchanged-rank dash only. */
 .favorite-card-song-movement.same,
 .favorite-chart-song .change.same {
-  text-indent: 2ch;
+  text-indent: 1ch;
 }
