@@ -621,22 +621,31 @@ function createArtistRankGraph(artist, color) {
   const width = 1000, height = 620, left = 72, right = 984, top = 28, bottom = 560;
   const y = rank => top + (Math.max(1, Math.min(100, Number(rank) || 100)) - 1) / 99 * (bottom - top);
   const artistSongMap = new Map();
-  const addArtistSong = (entry, entryArtist, rank) => {
+  const addArtistSong = (entry, entryArtist, rank, isCurrent = false) => {
     const songArtist = String(entryArtist || entry && entry.artist || "").trim();
     if (!entry || !entry.title || !songArtist ||
         !(normalize(songArtist) === normalize(artist) || areSameArtist(songArtist, artist))) return;
     const key = normalize(entry.title) + "|" + normalize(songArtist);
     const existing = artistSongMap.get(key);
-    const currentRank = Number(rank ?? entry.rank);
+    const rankValue = Number(rank ?? entry.rank);
+    const validRank = Number.isFinite(rankValue) && rankValue >= 1 && rankValue <= 100
+      ? rankValue
+      : null;
     artistSongMap.set(key, {
       title: entry.title,
       artist: songArtist,
       album: entry.album || (existing && existing.album) || "",
-      rank: Number.isFinite(currentRank) ? currentRank : (existing ? existing.rank : 101)
+      // Keep live TOP100 rank separate. Later historical snapshots must not
+      // overwrite the rank used for the graph's current-time point.
+      currentRank: isCurrent ? validRank : (existing && existing.currentRank != null ? existing.currentRank : null),
+      rank: isCurrent && validRank !== null
+        ? validRank
+        : (existing && existing.rank != null ? existing.rank : validRank ?? 101)
     });
   };
-  // 홈의 현재 TOP100 데이터도 그래프 곡 목록에 포함합니다.
-  songs.forEach(song => addArtistSong(song, song.artist, song.rank));
+  // Current and historical rank records share the same song identity, but the
+  // current chart rank remains authoritative for the current-time graph point.
+  songs.forEach(song => addArtistSong(song, song.artist, song.rank, true));
   // 홈에서 저장한 순위 스냅샷은 아티스트별 songs 배열에 곡별 rank를 담습니다.
   // 과거 구형 스냅샷의 대표곡 형식도 함께 지원합니다.
   rankHistorySnapshots.forEach(snapshot => {
@@ -738,15 +747,26 @@ function createArtistRankGraph(artist, color) {
   })).filter(item => Number.isFinite(item.ts) && item.ts <= now.getTime())
     .sort((a, b) => a.ts - b.ts);
   const songRankInSnapshot = (snapshot, song) => {
-    // 홈 순위 기록은 아티스트별 묶음이 아니라 TOP100 곡 한 곡당
-    // { rank, title, artist } 항목으로 저장됩니다. 전체 행에서 곡을 찾아야
-    // 모든 아티스트가 동일한 홈 기록을 그래프에 사용할 수 있습니다.
+    // 서버 기록은 아티스트별 묶음 { artist, songs: [{ title, rank }] }입니다.
+    // 구형 기록의 대표곡 { artist, title, rank } 형식도 함께 지원합니다.
     const entries = Array.isArray(snapshot && snapshot.artist_ranks) ? snapshot.artist_ranks : [];
-    const songEntry = entries.find(entry => entry && entry.title && entry.artist &&
-      normalize(entry.title) === normalize(song.title) &&
-      (normalize(entry.artist) === normalize(song.artist) || areSameArtist(entry.artist, song.artist)));
-    const rank = songEntry ? Number(songEntry.rank) : NaN;
-    return Number.isFinite(rank) && rank >= 1 && rank <= 100 ? rank : null;
+    const targetTitle = normalize(song && song.title);
+    const targetArtist = String(song && song.artist || "");
+    if (!targetTitle || !targetArtist) return null;
+
+    for (const entry of entries) {
+      if (!entry || !entry.artist ||
+          !(normalize(entry.artist) === normalize(targetArtist) || areSameArtist(entry.artist, targetArtist))) {
+        continue;
+      }
+
+      const groupedSongs = Array.isArray(entry.songs) ? entry.songs : [];
+      const groupedSong = groupedSongs.find(item => item && normalize(item.title) === targetTitle);
+      const rank = groupedSong ? Number(groupedSong.rank) :
+        (entry.title && normalize(entry.title) === targetTitle ? Number(entry.rank) : NaN);
+      if (Number.isFinite(rank) && rank >= 1 && rank <= 100) return rank;
+    }
+    return null;
   };
   const graphColor = /^#[0-9a-f]{6}$/i.test(String(color || "")) ? color : "#168a35";
   const kstOffset = 9 * 3600000;
@@ -778,7 +798,7 @@ function createArtistRankGraph(artist, color) {
         point.x = left + point.hour / 23 * (right - left);
         points.push(point);
       });
-      const currentRank = Number(song.rank);
+      const currentRank = Number(song.currentRank);
       const currentHour = kstNow.getUTCHours();
       if (Number.isFinite(currentRank) && currentRank >= 1 && currentRank <= 100) {
         const prior = byHour.get(currentHour);
@@ -794,11 +814,15 @@ function createArtistRankGraph(artist, color) {
         const x = left + (item.ts - dayStart) / (graphEnd - dayStart || 1) * (right - left);
         points.push({ x, rank, ts: item.ts });
       });
-      const currentRank = Number(song.rank);
+      // Live TOP100 data is authoritative for the current-time point in every range.
+      // Historical snapshots are used only for points before the current time.
+      const currentRank = Number(song.currentRank);
       if (Number.isFinite(currentRank) && currentRank >= 1 && currentRank <= 100 &&
           now.getTime() >= dayStart && now.getTime() <= graphEnd) {
         const latestPoint = points[points.length - 1];
-        if (!latestPoint || now.getTime() - latestPoint.ts > 60 * 1000) {
+        // Never let a recent-but-historical snapshot stand in for the live rank.
+        // Add a separate current point unless this exact timestamp is already present.
+        if (!latestPoint || latestPoint.ts !== now.getTime()) {
           const x = left + (now.getTime() - dayStart) / (graphEnd - dayStart || 1) * (right - left);
           points.push({ x, rank: currentRank, ts: now.getTime() });
         }
