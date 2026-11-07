@@ -738,13 +738,30 @@ function createArtistRankGraph(artist, color) {
   })).filter(item => Number.isFinite(item.ts) && item.ts <= now.getTime())
     .sort((a, b) => a.ts - b.ts);
   const songRankInSnapshot = (snapshot, song) => {
-    // 홈 순위 기록은 아티스트별 묶음이 아니라 TOP100 곡 한 곡당
-    // { rank, title, artist } 항목으로 저장됩니다. 전체 행에서 곡을 찾아야
-    // 모든 아티스트가 동일한 홈 기록을 그래프에 사용할 수 있습니다.
-    const entries = Array.isArray(snapshot && snapshot.artist_ranks) ? snapshot.artist_ranks : [];
-    const songEntry = entries.find(entry => entry && entry.title && entry.artist &&
+    // 서버 스냅샷의 평면 TOP100 행과 아티스트별 songs 배열을 모두 지원합니다.
+    // 곡 제목과 아티스트가 함께 일치하는 행만 사용해 동명곡 순위 혼입을 막습니다.
+    const entries = [];
+    const addEntry = (entry, parentArtist) => {
+      if (!entry || !entry.title) return;
+      entries.push(Object.assign({}, entry, {
+        artist: String(entry.artist || parentArtist || "").trim()
+      }));
+    };
+    (Array.isArray(snapshot && snapshot.songs) ? snapshot.songs : [])
+      .forEach(entry => addEntry(entry, ""));
+    (Array.isArray(snapshot && snapshot.artist_ranks) ? snapshot.artist_ranks : [])
+      .forEach(group => {
+        const parentArtist = String(group && group.artist || "").trim();
+        if (Array.isArray(group && group.songs)) {
+          group.songs.forEach(entry => addEntry(entry, parentArtist));
+        }
+        if (group && group.title) addEntry(group, parentArtist);
+      });
+    const songEntry = entries.find(entry =>
       normalize(entry.title) === normalize(song.title) &&
-      (normalize(entry.artist) === normalize(song.artist) || areSameArtist(entry.artist, song.artist)));
+      entry.artist &&
+      (normalize(entry.artist) === normalize(song.artist) || areSameArtist(entry.artist, song.artist))
+    );
     const rank = songEntry ? Number(songEntry.rank) : NaN;
     return Number.isFinite(rank) && rank >= 1 && rank <= 100 ? rank : null;
   };
@@ -781,12 +798,18 @@ function createArtistRankGraph(artist, color) {
       const currentRank = Number(song.rank);
       const currentHour = kstNow.getUTCHours();
       if (Number.isFinite(currentRank) && currentRank >= 1 && currentRank <= 100) {
-        const prior = byHour.get(currentHour);
-        if (!prior || now.getTime() > prior.ts) {
-          points.push({ x: left + currentHour / 23 * (right - left), rank: currentRank, ts: now.getTime(), hour: currentHour });
-        }
+        // 현재 TOP100 값은 같은 KST 시간의 서버 스냅샷을 대체합니다.
+        // push로 두 점을 겹치게 두면 hover/click에서 오래된 rank가 선택될 수 있습니다.
+        byHour.set(currentHour, {
+          x: left + currentHour / 23 * (right - left),
+          rank: currentRank,
+          ts: now.getTime(),
+          hour: currentHour
+        });
       }
-      points.sort((a, b) => a.ts - b.ts);
+      points.length = 0;
+      byHour.forEach(point => points.push(point));
+      points.sort((a, b) => a.hour - b.hour);
     } else {
       relevant.forEach(item => {
         const rank = songRankInSnapshot(item.snapshot, song);
