@@ -141,15 +141,13 @@
       }
       const showFavoritesReady = () => showPopup("순위 그래프 준비가 완료되었습니다.", "success", 1800);
       window.addEventListener("melonitor-favorites-page-loaded", showFavoritesReady, { once: true });
-      showPopup("차트를 불러오는 중입니다.
-잠시만 기다려주세요.", "loading", 0);
+      showPopup("차트를 불러오는 중입니다.\n잠시만 기다려주세요.", "loading", 0);
       if (window.__melonitorFavoritesPageLoaded) showFavoritesReady();
       button.addEventListener("click", async () => {
         const config = window.MELONITOR_SUPABASE_CONFIG || {};
         button.disabled = true;
         button.textContent = "↻ 차트 불러오는 중...";
-        showPopup("차트를 불러오는 중입니다.
-잠시만 기다려주세요.", "loading", 0);
+        showPopup("차트를 불러오는 중입니다.\n잠시만 기다려주세요.", "loading", 0);
         try {
           if (typeof config.projectUrl !== "string" || !config.projectUrl.startsWith("https://") || typeof config.publishableKey !== "string" || !config.publishableKey.trim()) {
             throw new Error("차트 서버 설정을 찾을 수 없습니다.");
