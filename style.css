@@ -4101,3 +4101,9 @@ body.dark-mode .favorite-artist-overview{background:#182333;border-color:#344255
     text-align: left;
   }
 }
+
+
+/* Favorite artist TOP100 explorer: align current rank to the left. */
+#favoriteSongsList .favorite-chart-song .rank {
+  text-align: left;
+}
