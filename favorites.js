@@ -1086,8 +1086,11 @@ function renderFavoriteSongList() {
     image.className = "album-image";
     image.alt = song.title ? song.title + " 앨범아트" : "앨범아트";
     image.loading = "lazy";
-    if (song.album_image) {
-      image.src = song.album_image;
+    const albumImageUrl = song.album_image || song.albumImage || song.album_image_url ||
+      song.image_url || song.imageUrl || song.cover_url || song.cover || song.album_art ||
+      song.albumArt || song.thumbnail || "";
+    if (albumImageUrl) {
+      image.src = albumImageUrl;
     } else {
       image.style.visibility = "hidden";
     }
