@@ -4122,3 +4122,26 @@ body.dark-mode .favorite-artist-overview{background:#182333;border-color:#344255
   align-items: center;
   justify-content: center;
 }
+
+
+/* Center the unchanged marker itself in the movement column on desktop and mobile. */
+.favorite-chart-song .change.same {
+  position: relative;
+  display: block;
+  width: 100%;
+  min-width: 0;
+  padding: 0 !important;
+  text-align: initial !important;
+  justify-self: stretch;
+}
+.favorite-chart-song .change.same .favorite-chart-no-change-dash {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: block;
+  width: max-content;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
