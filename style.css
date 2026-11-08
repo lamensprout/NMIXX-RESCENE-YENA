@@ -4108,3 +4108,17 @@ body.dark-mode .favorite-artist-overview{background:#182333;border-color:#344255
   align-items: center;
   justify-content: center;
 }
+
+
+/* Override the mobile chart's left padding for the dash only. */
+.favorite-chart-song .change.same {
+  box-sizing: border-box;
+  width: 100%;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  text-align: center !important;
+  justify-self: stretch;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
