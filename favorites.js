@@ -1072,7 +1072,7 @@ function renderFavoriteSongList() {
     change.className = "change";
     if (song.chartOut) {
       change.classList.add("down");
-      change.textContent = "▼ OUT";
+      change.textContent = "OUT";
     } else if (song.chartIn) {
       change.classList.add("new");
       change.textContent = "NEW";
