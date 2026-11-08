@@ -4093,3 +4093,9 @@ body.dark-mode .favorite-artist-overview{background:#182333;border-color:#344255
 
 
 /* Unchanged-rank movement is displayed as a plain dash on desktop and mobile. */
+
+
+/* Center only the no-change dash; keep movement arrows in their existing position. */
+.favorite-chart-song .change.same {
+  text-align: center;
+}
