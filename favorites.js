@@ -1078,8 +1078,19 @@ function renderFavoriteSongList() {
       change.textContent = "NEW";
     } else {
       const amount = Number(song.change) || 0;
-      change.textContent = amount > 0 ? "▲ " + amount : amount < 0 ? "▼ " + Math.abs(amount) : "-";
-      change.classList.add(amount > 0 ? "up" : amount < 0 ? "down" : "same");
+      if (amount > 0) {
+        change.textContent = "▲ " + amount;
+        change.classList.add("up");
+      } else if (amount < 0) {
+        change.textContent = "▼ " + Math.abs(amount);
+        change.classList.add("down");
+      } else {
+        change.classList.add("same");
+        const dash = document.createElement("span");
+        dash.className = "favorite-chart-no-change-dash";
+        dash.textContent = "-";
+        change.appendChild(dash);
+      }
     }
 
     const image = document.createElement("img");
