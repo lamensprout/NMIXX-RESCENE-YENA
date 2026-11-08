@@ -4099,3 +4099,12 @@ body.dark-mode .favorite-artist-overview{background:#182333;border-color:#344255
 .favorite-chart-song .change.same {
   text-align: center;
 }
+
+
+/* Center only the no-change marker within its grid cell; movement indicators remain untouched. */
+.favorite-chart-song .change.same {
+  justify-self: stretch;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
