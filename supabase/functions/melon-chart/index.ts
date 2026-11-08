@@ -491,22 +491,36 @@ Deno.serve(async (request: Request) => {
       // This limits storage growth while giving the beta view a useful trend line.
       const slotMs = Math.floor(now.getTime() / HISTORY_INTERVAL_MS) * HISTORY_INTERVAL_MS;
       const snapshotAt = new Date(slotMs).toISOString();
-      const artistRankMap = new Map<string, { artist: string; rank: number; title: string; songs: Array<{ title: string; rank: number }> }>();
+      const artistRankMap = new Map<string, { artist: string; rank: number; title: string; album: string; album_image: string; songs: Array<{ title: string; rank: number; album: string; album_image: string }> }>();
       songs.forEach((song) => {
         const key = normalizeTrackPart(song.artist);
         const existingArtist = artistRankMap.get(key);
         if (existingArtist) {
-          existingArtist.songs.push({ title: song.title, rank: Number(song.rank) });
+          existingArtist.songs.push({
+            title: song.title,
+            rank: Number(song.rank),
+            album: song.album,
+            album_image: song.album_image,
+          });
           if (song.rank < existingArtist.rank) {
             existingArtist.rank = Number(song.rank);
             existingArtist.title = song.title;
+            existingArtist.album = song.album;
+            existingArtist.album_image = song.album_image;
           }
         } else {
           artistRankMap.set(key, {
             artist: song.artist,
             rank: Number(song.rank),
             title: song.title,
-            songs: [{ title: song.title, rank: Number(song.rank) }],
+            album: song.album,
+            album_image: song.album_image,
+            songs: [{
+              title: song.title,
+              rank: Number(song.rank),
+              album: song.album,
+              album_image: song.album_image,
+            }],
           });
         }
       });
