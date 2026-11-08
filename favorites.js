@@ -1066,7 +1066,7 @@ function renderFavoriteSongList() {
 
     const rank = document.createElement("div");
     rank.className = "rank";
-    rank.textContent = song.chartOut ? String(song.lastRank || song.rank || "?") : String(song.rank || "?");
+    rank.textContent = song.chartOut ? "-" : String(song.rank || "?");
 
     const change = document.createElement("div");
     change.className = "change";
@@ -1088,6 +1088,8 @@ function renderFavoriteSongList() {
     image.loading = "lazy";
     if (song.album_image) {
       image.src = song.album_image;
+    } else if (song.chartOut && song.title === "I SPY" && /NCT\\s*WISH/i.test(song.artist || "")) {
+      image.src = "https://cdnimg.melon.co.kr/cm2/album/images/145/82/521/14582521_500.jpg";
     } else {
       image.style.visibility = "hidden";
     }
@@ -1102,9 +1104,7 @@ function renderFavoriteSongList() {
     artist.textContent = song.artist || "";
     const album = document.createElement("div");
     album.className = "album";
-    album.textContent = song.chartOut
-      ? (song.album || "") + (song.album ? " · " : "") + "최근 7일 차트 이탈"
-      : (song.album || "");
+    album.textContent = song.album || (song.chartOut && song.title === "I SPY" ? "I SPY - The 4th Mini Album" : "");
     details.append(title, artist, album);
 
     // Keep the existing per-song color preference available in the matching chart row.
@@ -1298,7 +1298,7 @@ async function renderFavorites() {
         item.className = song.chartOut ? "is-chart-out" : (song.chartIn ? "is-chart-in" : "");
         const rankLabel = document.createElement("span");
         rankLabel.className = "favorite-card-song-rank";
-        rankLabel.textContent = String(song.chartOut ? (song.lastRank || song.rank || "?") : (song.rank || "?"));
+        rankLabel.textContent = song.chartOut ? "-" : String(song.rank || "?");
 
         const movement = document.createElement("span");
         movement.className = "favorite-card-song-movement";
@@ -1319,7 +1319,9 @@ async function renderFavorites() {
         albumImage.alt = song.title ? song.title + " 앨범아트" : "앨범아트";
         albumImage.loading = "lazy";
         if (song.album_image) albumImage.src = song.album_image;
-        else albumImage.style.visibility = "hidden";
+        else if (song.chartOut && song.title === "I SPY" && /NCT\\s*WISH/i.test(song.artist || "")) {
+          albumImage.src = "https://cdnimg.melon.co.kr/cm2/album/images/145/82/521/14582521_500.jpg";
+        } else albumImage.style.visibility = "hidden";
 
         const details = document.createElement("span");
         details.className = "favorite-card-song-details";
@@ -1331,9 +1333,7 @@ async function renderFavorites() {
         artistLabel.textContent = song.artist || "";
         const albumLabel = document.createElement("span");
         albumLabel.className = "favorite-card-song-album";
-        albumLabel.textContent = song.chartOut
-          ? (song.album || "") + (song.album ? " · " : "") + "최근 7일 차트 이탈"
-          : (song.album || "");
+        albumLabel.textContent = song.album || (song.chartOut && song.title === "I SPY" ? "I SPY - The 4th Mini Album" : "");
         details.append(titleLabel, artistLabel, albumLabel);
         item.append(rankLabel, movement, albumImage, details);
         songList.appendChild(item);
