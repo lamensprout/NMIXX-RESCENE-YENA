@@ -4093,3 +4093,11 @@ body.dark-mode .favorite-artist-overview{background:#182333;border-color:#344255
 
 
 /* Unchanged-rank movement is displayed as a plain dash on desktop and mobile. */
+
+
+/* Home chart: align current rank to the left on desktop only. */
+@media (min-width: 641px) {
+  .results .song .rank {
+    text-align: left;
+  }
+}
